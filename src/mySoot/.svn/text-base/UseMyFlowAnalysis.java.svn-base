@@ -1,0 +1,80 @@
+package mySoot;
+
+import soot.options.*;
+
+import soot.*;
+import java.util.*;
+
+import soot.toolkits.graph.*;
+import soot.toolkits.scalar.*;
+
+public class UseMyFlowAnalysis implements LiveLocals{
+    Map<Unit, List> unitToLocalsAfter;
+    Map<Unit, List> unitToLocalsBefore;
+    
+    //UnitGraph graph;
+
+
+
+    /**
+     *   Computes the analysis given a UnitGraph computed from a
+     *   method body.  It is recommended that a ExceptionalUnitGraph (or
+     *   similar) be provided for correct results in the case of
+     *   exceptional control flow.
+     *
+     *   @param g a graph on which to compute the analysis.
+     *   
+     *   @see ExceptionalUnitGraph
+     */
+    public UseMyFlowAnalysis(UnitGraph graph)
+    {
+        if(Options.v().time())
+            Timers.v().liveTimer.start();
+        
+        if(Options.v().verbose())
+            G.v().out.println("[" + graph.getBody().getMethod().getName() +
+                "]     Constructing UseMyFlowAnalysis...");
+
+        //this.graph = graph;                
+        MyFlowAnalysis analysis = new MyFlowAnalysis(graph);
+
+        if(Options.v().time())
+                Timers.v().livePostTimer.start();
+
+        // Build unitToLocals map
+        {
+            unitToLocalsAfter = new HashMap<Unit, List>(graph.size() * 2 + 1, 0.7f);
+            unitToLocalsBefore = new HashMap<Unit, List>(graph.size() * 2 + 1, 0.7f);
+
+            Iterator unitIt = graph.iterator();
+
+            while(unitIt.hasNext())
+            {
+                Unit s = (Unit) unitIt.next();
+ 
+                FlowSet set = (FlowSet) analysis.getFlowBefore(s);
+                unitToLocalsBefore.put(s, Collections.unmodifiableList(set.toList()));
+                
+                set = (FlowSet) analysis.getFlowAfter(s);
+                unitToLocalsAfter.put(s, Collections.unmodifiableList(set.toList()));
+            }            
+        }
+        
+        if(Options.v().time())
+            Timers.v().livePostTimer.end();
+        
+        if(Options.v().time())
+            Timers.v().liveTimer.end();
+    }
+
+    public List getLiveLocalsAfter(Unit s)
+    {
+        return unitToLocalsAfter.get(s);
+    }
+    
+    public List getLiveLocalsBefore(Unit s)
+    {
+        return unitToLocalsBefore.get(s);
+    }
+
+}

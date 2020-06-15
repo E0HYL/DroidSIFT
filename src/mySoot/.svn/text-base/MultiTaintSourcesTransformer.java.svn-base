@@ -1,0 +1,383 @@
+package mySoot;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import soot.Local;
+import soot.Scene;
+import soot.SceneTransformer;
+import soot.SootClass;
+import soot.SootField;
+import soot.SootMethod;
+import soot.ValueBox;
+import soot.jimple.InstanceFieldRef;
+import soot.jimple.JimpleBody;
+import soot.jimple.StaticFieldRef;
+import soot.jimple.Stmt;
+import soot.util.Chain;
+
+public class MultiTaintSourcesTransformer extends SceneTransformer{
+	
+	static LinkedHashMap<String, TaintTag> taintTagMap = new LinkedHashMap<String, TaintTag>();
+	static LinkedHashMap<String, TaintTag> extraDefTagMap = new LinkedHashMap<String, TaintTag>();	
+	static TaintTag instrumentationTag = new TaintTag(2);
+	
+	private LinkedHashMap<String, LinkedHashMap<String, List<String>>> methodToSourceToVar;
+	private LinkedHashMap<String, LinkedHashMap<String, List<String>>> classToSourceToField;
+	private LinkedHashMap<String, List<String>> methodToTaintVar;
+	private LinkedHashMap<String, List<String>> classToTaintField;
+	
+	public MultiTaintSourcesTransformer(){
+		LinkedHashMap<String, Integer> sources = CallGraphExample.sources;
+		//LinkedHashMap<String, Integer> sinks = CallGraphExample.sinks;
+		
+		Set<String> srcKeySet = sources.keySet();
+		Iterator<String> srcIter = srcKeySet.iterator();
+		while(srcIter.hasNext()){
+			String src = srcIter.next();
+			if(!taintTagMap.containsKey(src)){			
+				TaintTag tag = new TaintTag(sources.get(src).intValue());
+				taintTagMap.put(src, tag);
+			}
+			if(!extraDefTagMap.containsKey(src)){			
+				TaintTag tag = new TaintTag(sources.get(src).intValue());
+				extraDefTagMap.put(src, tag);
+			}
+		}
+	}
+
+	protected void internalTransform(String string, Map map) {
+		
+		methodToSourceToVar = CallGraphTransformer.methodToSourceToVar;
+		classToSourceToField = CallGraphTransformer.classToSourceToField;
+		methodToTaintVar = CallGraphTransformer.methodToTaintVar;
+		classToTaintField = CallGraphTransformer.classToTaintField;
+			
+		markTaintedStatements();
+		
+		removeAllBoolWrappers();
+	}
+	
+	private void markTaintedStatements(){
+		
+		
+		
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+			
+			if(soot_class.isPhantom()){
+				continue;
+			}
+			
+			LinkedHashMap<String, List<String>> taintSourceToField = null;
+			LinkedHashMap<String, List<String>> fieldToTaintSource = new LinkedHashMap<String, List<String>>();
+			
+			String className = soot_class.getName();
+			if(classToSourceToField.containsKey(className)){
+				taintSourceToField = classToSourceToField.get(className);
+			}
+			
+			if(taintSourceToField!=null){
+				Set<String> taintSources = taintSourceToField.keySet();
+				Iterator<String> taintSourcesIter = taintSources.iterator();
+				while(taintSourcesIter.hasNext()){
+					String taintSource = taintSourcesIter.next();
+					List<String> fieldsSig = taintSourceToField.get(taintSource);
+					for(String fieldSig : fieldsSig){
+						if(!fieldToTaintSource.containsKey(fieldSig)){
+							List<String> sources = new ArrayList<String>();
+							sources.add(taintSource);
+							fieldToTaintSource.put(fieldSig, sources);
+						}else{
+							List<String> sources = fieldToTaintSource.get(fieldSig);
+							if(!sources.contains(taintSource)){
+								sources.add(taintSource);
+							}
+						}
+					}
+				}
+			}
+			
+			List<SootMethod> methods = soot_class.getMethods();
+			for (SootMethod method : methods) {
+				
+				if(!method.isConcrete()){
+					continue;
+				}
+				
+				
+				LinkedHashMap<String, List<String>> taintSourceToVariable = null;
+				LinkedHashMap<String, List<String>> varToTaintSource = new LinkedHashMap<String, List<String>>();
+				
+				String methodSig = method.getSignature();
+				if(methodToSourceToVar.containsKey(methodSig)){
+					taintSourceToVariable = methodToSourceToVar.get(methodSig);
+				}
+				
+				if(taintSourceToVariable!=null){
+					Set<String> taintSources = taintSourceToVariable.keySet();
+					Iterator<String> taintSourcesIter = taintSources.iterator();
+					while(taintSourcesIter.hasNext()){
+						String taintSource = taintSourcesIter.next();
+						List<String> varsName = taintSourceToVariable.get(taintSource);
+						for(String varName : varsName){
+							if(!varToTaintSource.containsKey(varName)){
+								List<String> sources = new ArrayList<String>();
+								sources.add(taintSource);
+								varToTaintSource.put(varName, sources);
+							}else{
+								List<String> sources = varToTaintSource.get(varName);
+								if(!sources.contains(taintSource)){
+									sources.add(taintSource);
+								}
+							}
+						}
+					}
+				}
+				
+				JimpleBody body = (JimpleBody) method.retrieveActiveBody();
+				Iterator it = body.getUnits().iterator();
+				
+				while (it.hasNext()) {
+					Stmt s = (Stmt) it.next();
+					
+					List<ValueBox> vbs = s.getUseAndDefBoxes();
+					Iterator iter = vbs.iterator();
+					while(iter.hasNext()){
+						ValueBox vb = (ValueBox)iter.next();
+						
+						if(vb.getValue() instanceof InstanceFieldRef){
+							SootField instanceField = ((InstanceFieldRef)vb.getValue()).getField();
+
+							if(instanceField.getDeclaringClass().isApplicationClass() == false){
+								continue;
+							}
+
+							if(instanceField.getDeclaringClass().isPhantom()){
+								continue;
+							}
+							
+							if(!fieldToTaintSource.isEmpty()){
+								if(fieldToTaintSource.containsKey(instanceField.getSignature())){
+									List<String> taintSources = fieldToTaintSource.get(instanceField.getSignature());
+									for(String taintSource : taintSources){
+										if(!s.getTags().contains(taintTagMap.get(taintSource))){
+											s.addTag(taintTagMap.get(taintSource));
+										}
+										
+									}
+								}
+							}
+							
+							if(classToTaintField.containsKey(method.getSignature())){
+								List<String> taintFields = classToTaintField.get(method.getSignature());
+								if(taintFields.contains(instanceField.getSignature())){
+									if(!s.getTags().contains(instrumentationTag)){
+										s.addTag(instrumentationTag);
+									}
+								}
+							}
+							
+						}else if(vb.getValue() instanceof StaticFieldRef){
+							SootField staticField = ((StaticFieldRef)vb.getValue()).getField();
+
+							if(staticField.getDeclaringClass().isApplicationClass() == false){
+								continue;
+							}
+
+							if(staticField.getDeclaringClass().isPhantom()){
+								continue;
+							}
+							
+							if(!fieldToTaintSource.isEmpty()){
+								if(fieldToTaintSource.containsKey(staticField.getSignature())){
+									List<String> taintSources = fieldToTaintSource.get(staticField.getSignature());
+									for(String taintSource : taintSources){
+										if(!s.getTags().contains(taintTagMap.get(taintSource))){
+											s.addTag(taintTagMap.get(taintSource));
+										}
+									}
+								}
+							}
+							
+							if(classToTaintField.containsKey(method.getSignature())){
+								List<String> taintFields = classToTaintField.get(method.getSignature());
+								if(taintFields.contains(staticField.getSignature())){
+									if(!s.getTags().contains(instrumentationTag)){
+										s.addTag(instrumentationTag);
+									}
+								}
+							}
+							
+						}else if(vb.getValue() instanceof Local){
+							
+							String varName = ((Local)vb.getValue()).getName();
+							
+							if(!varToTaintSource.isEmpty()){
+								if(varToTaintSource.containsKey(varName)){
+									List<String> taintSources = varToTaintSource.get(varName);
+									for(String taintSource : taintSources){
+										if(!s.getTags().contains(taintTagMap.get(taintSource))){
+											s.addTag(taintTagMap.get(taintSource));
+										}
+									}
+								}
+							}
+							
+							if(methodToTaintVar.containsKey(method.getSignature())){
+								List<String> taintVars = methodToTaintVar.get(method.getSignature());
+								if(taintVars.contains(varName)){
+									if(!s.getTags().contains(instrumentationTag)){
+										s.addTag(instrumentationTag);
+									}
+								}
+							}
+						}
+					}
+				}
+				
+			}//end for (SootMethod method : methods)
+			
+		}//end while (classes_iter.hasNext())		
+		
+	}
+	
+	private void removeAllBoolWrappers(){
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+			
+			if(soot_class.isPhantom()){
+				continue;
+			}
+			
+			List<SootMethod> methods = soot_class.getMethods();
+			for (SootMethod method : methods) {
+				
+				if(!method.isConcrete()){
+					continue;
+				}
+				
+				List<Stmt> toRemove = new ArrayList<Stmt>();
+				
+				JimpleBody body = (JimpleBody) method.retrieveActiveBody();
+				Iterator it = body.getUnits().iterator();
+				
+				while (it.hasNext()) {
+					Stmt s = (Stmt) it.next();
+					if(s.getTags().contains(instrumentationTag)){
+						List<ValueBox> vbs = s.getUseAndDefBoxes();
+						Iterator iter = vbs.iterator();
+						while(iter.hasNext()){
+							ValueBox vb = (ValueBox)iter.next();
+							
+							if(vb.getValue() instanceof Local){
+								String type = ((Local)vb.getValue()).getType().toString();
+								boolean isBoolWrapper = false;
+								if(type.lastIndexOf('.')!=-1){
+									String majorType = type.substring(type.lastIndexOf('.'));
+									if(majorType.equals("BoolWrapper")){
+										isBoolWrapper = true;
+									}
+								}
+									
+								if(isBoolWrapper){
+									if(!toRemove.contains(s)){
+										toRemove.add(s);
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				for(Stmt s : toRemove){
+					body.getUnits().remove(s);
+				}
+			}
+		}
+	}
+	
+	private void replaceBoolWrapperInParameters(){
+		
+	}
+
+	private void replaceWithMultiTaints(){
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+			
+			if(soot_class.isPhantom()){
+				continue;
+			}
+			
+			List<SootField> taintFields = new ArrayList<SootField>();
+			
+			//
+			if(classToTaintField.containsKey(soot_class.getName())){
+				List<String> fields = classToTaintField.get(soot_class.getName());
+				for(String field : fields){
+					SootField taintField = soot_class.getField(field);
+					if(!taintFields.contains(taintField)){
+						taintFields.add(taintField);
+					}
+				}
+			}
+			
+			List<SootMethod> methods = soot_class.getMethods();
+			for (SootMethod method : methods) {
+				
+				if(!method.isConcrete()){
+					continue;
+				}
+				
+				List<Local> taintLocals = new ArrayList<Local>();
+				
+				JimpleBody body = (JimpleBody) method.retrieveActiveBody();
+				Iterator it = body.getUnits().iterator();
+				
+				while (it.hasNext()) {
+					Stmt s = (Stmt) it.next();
+					
+					if(s.getTags().contains(instrumentationTag)){
+						List<ValueBox> vbs = s.getUseAndDefBoxes();
+						Iterator iter = vbs.iterator();
+						while(iter.hasNext()){
+							ValueBox vb = (ValueBox)iter.next();
+							if(vb.getValue() instanceof Local){
+								String varName = ((Local)vb.getValue()).getName();
+								Chain<Local> locals = body.getLocals();
+								for(Local local : locals){
+									if(local.getName().equals(varName)){
+										
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

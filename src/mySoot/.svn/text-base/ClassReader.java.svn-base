@@ -1,0 +1,251 @@
+package mySoot;
+
+import soot.*;
+import soot.jimple.*;
+import soot.jimple.toolkits.callgraph.*;
+import soot.jimple.spark.*;
+//import soot.jimple.toolkits.pointer.DumbPointerAnalysis;
+import soot.options.Options;
+import soot.toolkits.graph.ExceptionalUnitGraph;
+import soot.util.*;
+import java.io.*;
+import java.util.*;
+
+public class ClassReader {
+	
+	public static CallGraph callgraph;
+
+	public static void main(String[] args) throws IOException, FileNotFoundException{
+		
+		List<String> argsList = new ArrayList<String>(Arrays.asList(args));
+		argsList.addAll(Arrays.asList(new String[]{
+				"-x", "java.",
+				"-x", "sun.",				
+				"-no-bodies-for-excluded",
+				
+				"-w",
+				"-main-class",
+				"Test1",//main-class
+				"Test1"//argument classes
+							//
+		}));
+
+		PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTrans", new SceneTransformer() {
+
+			protected void internalTransform(String phaseName, Map options) {
+				CHATransformer.v().transform();
+				SootClass a = Scene.v().loadClassAndSupport("Test1");
+				a.setApplicationClass();
+
+				SootMethod src = Scene.v().getMainClass().getMethodByName("main");
+				CallGraph cg = Scene.v().getCallGraph();
+				CallGraphExample.callgraph = cg;
+
+				Iterator targets = new Targets(cg.edgesOutOf(src));
+				while (targets.hasNext()) {
+					SootMethod tgt = (SootMethod)targets.next();
+					System.out.println(src + " may call " + tgt);
+				}
+			}
+			
+		}));
+		
+		args = argsList.toArray(new String[0]);
+
+		soot.Main.main(args);
+		
+		System.out.println("\nsoot.Main finished.");
+		//System.out.println(CallGraphExample.callgraph);
+		
+		
+		/*
+		Chain<SootClass> csClasses = Scene.v().getClasses();
+		
+		Iterator ics = csClasses.iterator();
+		while(ics.hasNext()){
+			SootClass sClass = (SootClass)ics.next();
+			System.out.println("class:"+sClass.getName());
+		}
+		*/
+	
+		System.out.println(Scene.v().getClasses());
+		//reset soot
+	    G.reset();
+	    
+		String path = "/home/muzhang/workspace/sootTest/bin/test1/";
+		System.out.println(SourceLocator.v().getClassesUnder(path));
+		for (String cl : SourceLocator.v().getClassesUnder(path)) {
+			
+			System.out.println(Scene.v().getClasses());
+			
+            SootClass sClass = Scene.v().loadClassAndSupport(cl);
+            
+            Chain<SootClass> csClasses = Scene.v().getClasses();
+    		
+    		Iterator ics = csClasses.iterator();
+    		while(ics.hasNext()){
+    			SootClass sClass1 = (SootClass)ics.next();
+    			System.out.println("class:"+sClass1.getName());
+    		}
+            
+            
+            
+            sClass.setApplicationClass();
+            System.out.println("\nclass:"+sClass.getName());
+            
+           
+            
+            
+            /*
+            
+            HashMap opt = new HashMap();
+            opt.put("verbose", "true");
+            opt.put("propagator", "worklist");
+            opt.put("simple-edges-bidirectional", "false");
+            opt.put("on-fly-cg", "true");
+            opt.put("set-impl", "double");
+            opt.put("double-set-old", "hybrid");
+            opt.put("double-set-new", "bybrid");
+            
+            Scene.v().setMainClass(sClass);
+            
+            
+            
+            SparkTransformer.v().transform("", opt);
+            SootClass a = Scene.v().getSootClass(sClass.getName());
+            SootMethod src = Scene.v().getMainClass().getMethodByName("main");
+            CallGraph cg = Scene.v().getCallGraph();
+            
+            */
+            
+            List<SootMethod> sMethods = sClass.getMethods();
+            Iterator itMeth = sMethods.iterator();
+            while(itMeth.hasNext()){
+            	SootMethod sMethod = (SootMethod)itMeth.next();
+            	System.out.println();
+            	System.out.println("method:"+sMethod.getName());
+            	
+            	/*
+            	Iterator itEdges = cg.edgesOutOf(sMethod);
+            	while(itEdges.hasNext()){
+            		Edge e = (Edge)itEdges.next();
+            		System.out.println("edge: " + e);
+            	}
+            	*/
+                
+            	JimpleBody body = (JimpleBody)sMethod.retrieveActiveBody();
+            	
+            	/*
+            	//dump bytecode instructions                
+                Chain units = body.getUnits();
+                
+                Iterator itUnit = units.iterator();
+                while(itUnit.hasNext()){
+                	//System.out.println("hasNext");
+                	Stmt s = (Stmt)itUnit.next();
+                	System.out.println(s.toString());
+                }
+                */
+            	
+            	ExceptionalUnitGraph eug = new ExceptionalUnitGraph(body);
+
+                MyReachingDefinition mrd = new MyReachingDefinition(eug);
+                
+                Vector<Stmt> defs = new Vector<Stmt>();
+                Vector<Stmt> delta = new Vector<Stmt>();
+                {
+	                Iterator it = body.getUnits().iterator();
+	                while(it.hasNext()){
+	                	Stmt s = (Stmt)it.next();
+	                	//System.out.println("stmt: " + s);
+	                	
+	                   	Iterator defIt = s.getDefBoxes().iterator();
+	                	while(defIt.hasNext()){
+	                		ValueBox vbox = (ValueBox)defIt.next();
+	                		if(vbox.getValue() instanceof Local){
+	                			Local l = (Local)vbox.getValue();
+	                			if(l.getName().equals("l0")){
+	                				if(!defs.contains(s)){
+	                					defs.add(s);
+	                					delta.add(s);
+	                				}
+	                			}
+	                		}
+	                	}
+	                }
+                }
+                
+                while(!delta.isEmpty()){
+                	
+                	delta = new Vector<Stmt>();
+                
+		            Iterator it = body.getUnits().iterator();
+		            while(it.hasNext()){
+		            	Stmt s = (Stmt)it.next();
+		            	Iterator usesIt = s.getUseBoxes().iterator();
+		                while (usesIt.hasNext()){
+		                	ValueBox vbox = (ValueBox)usesIt.next();
+		                	if (vbox.getValue() instanceof Local) {
+		                		Local l = (Local)vbox.getValue();
+		            	
+		                		Iterator rDefsIt = mrd.getDefsOfAt(l, s).iterator();
+		                		while(rDefsIt.hasNext()){
+		                			Stmt next = (Stmt)rDefsIt.next();
+		                			if(defs.contains(next)){
+		                            	if(!defs.contains(s)){
+		                            		defs.add(s);
+		                            		delta.add(s);
+		                            	}
+		                			}
+		                		}
+		                	}
+		                }
+		           	}
+	       
+                
+                }//end while(!delta.isEmpty())
+                
+                System.out.println("dataflow for l0:");
+                Iterator i = defs.iterator();
+                while(i.hasNext()){
+                	Stmt s = (Stmt)i.next();
+                	System.out.println(s);
+                }
+                
+                /*
+                System.out.println("\nreaching definition results:");
+                Iterator it = body.getUnits().iterator();
+                while (it.hasNext()){
+                    Stmt s = (Stmt)it.next();
+                    System.out.println("stmt: "+s);
+                    Iterator usesIt = s.getUseBoxes().iterator();
+                    while (usesIt.hasNext()){
+                        ValueBox vbox = (ValueBox)usesIt.next();
+                        if (vbox.getValue() instanceof Local) {
+                            Local l = (Local)vbox.getValue();
+                            System.out.println("local: "+l);
+                            Iterator rDefsIt = mrd.getDefsOfAt(l, s).iterator();
+                            while (rDefsIt.hasNext()){
+                                Stmt next = (Stmt)rDefsIt.next();
+                                String info = l+" has reaching def: "+next.toString();
+                                //s.addTag(new LinkTag(info, next, b.getMethod().getDeclaringClass().getName(), "Reaching Defs"));
+                                System.out.println(info);
+                            }
+                            System.out.println();
+                        }
+                    }
+                    System.out.println();
+                }
+                
+                */
+                
+            }
+            
+          //dump internal Jimple
+            File file = new File("/home/muzhang/dalvik/test/Test_class.dump");
+            PrintWriter pw = new PrintWriter(file);
+            Printer.v().printTo(sClass, pw);
+            pw.flush();
+        }
+	}
+}

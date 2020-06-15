@@ -1,0 +1,107 @@
+android.content.SharedPreferences:contains+ +CONST###2
+android.os.IBinder:queryLocalInterface+ +CONST###2
+android.text.format.Time:set+UserInteractiveEntryPoint+ ###2
+android.widget.ListView:setOnCreateContextMenuListener+ + ###2
+android.content.ContentValues:containsKey+UserInteractiveEntryPoint+CONST###2
+android.content.ContentValues:getAsString+UserInteractiveEntryPoint+CONST###2
+java.io.InputStream:reset+ + ###2
+android.app.Dialog:setCancelable+UserInteractiveEntryPoint+ ###2
+android.view.View:getParent+ + ###2
+android.app.Activity:getWindowManager+ + ###2
+java.net.URLConnection:setReadTimeout+UserInteractiveEntryPoint+ ###2
+java.io.DataInputStream:readByte+ + ###2
+android.database.Cursor:moveToPrevious+ + ###2
+android.os.Bundle:putParcelable+ + ###2
+java.net.URLConnection:getContentLength+UserInteractiveEntryPoint+ ###2
+android.graphics.Canvas:drawLine+ + ###2
+android.text.Editable:insert+UserInteractiveEntryPoint+ ###2
+android.widget.ListView:getItemAtPosition+UserInteractiveEntryPoint+ ###2
+android.telephony.TelephonyManager:getPhoneType+ + ###6
+android.telephony.TelephonyManager:getSimOperatorName+ + ###6
+android.telephony.TelephonyManager:getDeviceSoftwareVersion+ + ###2
+android.util.SparseArray:get+ + ###2
+android.app.Dialog:show+UserInteractiveEntryPoint+ ###2
+android.telephony.TelephonyManager:getLine1Number+ +CONST###8
+android.widget.LinearLayout:findViewById+UserInteractiveEntryPoint+ ###2
+android.content.Context:openFileInput+ +CONST###6
+android.database.sqlite.SQLiteQueryBuilder:query+UserInteractiveEntryPoint+ ###2
+android.database.Cursor:getColumnNames+ + ###2
+android.telephony.gsm.SmsManager:getDefault+UserInteractiveEntryPoint+ ###2
+java.io.ByteArrayOutputStream:reset+ + ###4
+android.content.Context:openFileInput+UserInteractiveEntryPoint+CONST###2
+android.content.Context:startService+ + ###6
+android.os.Environment:getDataDirectory+UserInteractiveEntryPoint+ ###2
+android.telephony.TelephonyManager:getCellLocation+UserInteractiveEntryPoint+ ###4
+android.telephony.gsm.SmsManager:divideMessage+ + ###8
+android.widget.EditText:setFocusable+ + ###2
+android.os.Bundle:putStringArray+ + ###2
+android.database.Cursor:getColumnName+UserInteractiveEntryPoint+ ###2
+java.io.File:getAbsoluteFile+UserInteractiveEntryPoint+ ###2
+android.net.wifi.WifiManager:isWifiEnabled+UserInteractiveEntryPoint+ ###4
+android.provider.CallLog$Calls:getLastOutgoingCall+ + ###8
+android.content.Context:getExternalCacheDir+ + ###2
+android.app.Activity:findViewById+UserInteractiveEntryPoint+ ###2
+java.io.DataOutput:writeUTF+ + ###2
+android.webkit.WebViewClient:onPageStarted+ + ###2
+java.net.URLConnection:getContentLength+ + ###2
+android.content.ContentResolver:getType+ + ###2
+java.lang.reflect.Method:getName+UserInteractiveEntryPoint+ ###2
+android.telephony.SmsMessage:getServiceCenterAddress+ + ###2
+android.content.SharedPreferences$Editor:clear+ + ###4
+android.graphics.Paint:setTextSize+ + ###2
+android.content.Context:getText+UserInteractiveEntryPoint+ ###2
+android.app.Dialog:setTitle+ + ###4
+android.content.pm.PackageManager:getLaunchIntentForPackage+ + ###4
+android.content.Intent:getParcelableArrayExtra+ +CONST###2
+android.telephony.gsm.SmsManager:sendTextMessage+ + ###8
+android.widget.RelativeLayout:setBackgroundResource+ + ###2
+android.widget.RelativeLayout$LayoutParams:setMargins+ + ###2
+android.text.ClipboardManager:setText+UserInteractiveEntryPoint+ ###4
+android.telephony.gsm.SmsManager:sendTextMessage+ +CONST###14
+java.io.BufferedInputStream:available+UserInteractiveEntryPoint+ ###2
+android.database.Cursor:getColumnIndexOrThrow+UserInteractiveEntryPoint+ ###2
+android.telephony.TelephonyManager:getSubscriberId+UserInteractiveEntryPoint+ ###4
+android.content.res.AssetFileDescriptor:getLength+ + ###2
+android.app.Activity:getPackageManager+UserInteractiveEntryPoint+ ###4
+android.media.MediaRecorder:setOutputFile+UserInteractiveEntryPoint+CONST###6
+android.content.res.Resources:getAssets+UserInteractiveEntryPoint+ ###2
+android.widget.RelativeLayout:setLayoutParams+ + ###2
+android.telephony.TelephonyManager:getDeviceId+ +CONST###6
+android.app.ActivityManager:getMemoryInfo+ + ###2
+android.telephony.SmsMessage:createFromPdu+ +CONST###8
+android.app.ActivityManager:killBackgroundProcesses+UserInteractiveEntryPoint+CONST###2
+android.provider.Browser:getAllVisitedUrls+ + ###8
+android.database.sqlite.SQLiteQueryBuilder:appendWhere+UserInteractiveEntryPoint+ ###2
+android.content.res.AssetFileDescriptor:createInputStream+UserInteractiveEntryPoint+ ###2
+android.app.AlertDialog$Builder:setMultiChoiceItems+UserInteractiveEntryPoint+ ###2
+android.util.Base64:encode+ + ###6
+android.text.format.Formatter:formatShortFileSize+ + ###2
+android.telephony.TelephonyManager:getSimSerialNumber+UserInteractiveEntryPoint+ ###2
+android.telephony.TelephonyManager:getSimCountryIso+UserInteractiveEntryPoint+ ###2
+android.preference.PreferenceCategory:addPreference+ + ###2
+android.view.inputmethod.BaseInputConnection:getComposingSpanStart+ + ###2
+android.view.inputmethod.BaseInputConnection:getComposingSpanEnd+ + ###2
+android.content.res.Resources:getResourceName+ + ###2
+android.widget.LinearLayout:onSizeChanged+ + ###2
+java.io.BufferedInputStream:available+ + ###2
+java.io.File:getAbsolutePath+ +CONST###2
+android.net.ConnectivityManager:getAllNetworkInfo+UserInteractiveEntryPoint+ ###2
+android.app.Activity:openOrCreateDatabase+UserInteractiveEntryPoint+CONST###2
+android.app.Activity:openOrCreateDatabase+ +CONST###2
+android.util.TypedValue:applyDimension+ + ###2
+android.content.ContentValues:remove+UserInteractiveEntryPoint+ ###2
+android.net.LocalSocket:getOutputStream+ + ###2
+java.net.Socket:setKeepAlive+ + ###2
+android.media.MediaRecorder:setOutputFile+UserInteractiveEntryPoint+ ###4
+android.app.ActivityManager:getRunningTasks+ +###10
+android.app.ActivityManager:getRunningServices+ + ###10
+android.app.ActivityManager:restartPackage+ + ###12
+android.os.Process:killProcess+ + ###12
+android.media.AudioRecord:read+ + ###8
+android.content.pm.PackageManager:getInstalledPackages+ + ###12
+android.provider.Browser:clearSearches+ + ###10
+android.provider.Browser:clearHistory+ + ###10
+android.telephony.SmsManager:sendMultipartTextMessage+ + ###8
+android.telephony.SmsManager:sendTextMessage+ + ###8
+java.lang.Runtime:exec+ + ###10
+android.location.LocationManager:getLastKnownLocation+ + ###10

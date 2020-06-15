@@ -1,0 +1,49 @@
+package mySoot;
+
+import java.util.*;
+
+import soot.jimple.*;
+import soot.*;
+
+public class LocTransformer extends BodyTransformer {
+
+	private LinkedHashMap<String, Integer> methodToLoc;
+	
+	public LocTransformer(){
+		methodToLoc = new LinkedHashMap<String, Integer>();
+	}
+	
+	protected void internalTransform(Body body, String string, Map map) {
+			
+			int loc = 0;
+			SootMethod method = body.getMethod();
+			
+			Iterator iter = body.getUnits().iterator();
+			while(iter.hasNext()){
+				Stmt s = (Stmt)iter.next();
+				loc++;
+			}
+			
+			methodToLoc.put(method.getSignature(), new Integer(loc));
+	
+	}
+	
+	public LinkedHashMap<String, Integer> getLocs(){
+		return this.methodToLoc;
+	}
+	
+	public int totalLOC(){
+		
+		int loc = 0;
+		
+		Set<String> keySet = methodToLoc.keySet();
+		Iterator<String> iter = keySet.iterator();
+		while(iter.hasNext()){
+			String meth = iter.next();
+			loc += methodToLoc.get(meth).intValue();
+		}
+		
+		return loc;
+	}
+
+}

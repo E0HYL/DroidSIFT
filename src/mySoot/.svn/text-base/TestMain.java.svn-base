@@ -1,0 +1,1014 @@
+package mySoot;
+
+import soot.*;
+import soot.jimple.DefinitionStmt;
+import soot.jimple.JimpleBody;
+import soot.jimple.Stmt;
+import soot.jimple.spark.SparkTransformer;
+import soot.jimple.spark.builder.ContextInsensitiveBuilder;
+import soot.jimple.spark.pag.PAG;
+import soot.jimple.toolkits.callgraph.*;
+import soot.options.Options;
+import soot.options.SparkOptions;
+import soot.util.Chain;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import mySoot.util.Config;
+import mySoot.util.Log;
+
+public class TestMain {
+	
+	public static String CLASSPATH;
+	//public static String ANDROID;	
+	public static String OUTPUT;
+	public static String LIB_DIR;
+	public static String API_PERMISSION_MAP;
+	public static String LOG;
+	public static String LOG_DOT;
+	public static String API_LOCAL_LOG;
+	public static String API_LOCAL_DOT;
+	public static String API_GLOBAL_LOG;
+	public static String API_GLOBAL_DOT;
+	public static String DDG_LOCAL_DOT;
+	public static String DDG_GLOBAL_DOT;
+	public static String DDG_GLOBAL_SUCCINCT_DOT;
+	public static String MAL_FEATURE_LOG;
+	public static String BENIGN_FEATURE_LOG;
+	public static String ACTIVITY_LOG;
+	public static String GSPAN_LOG;
+	public static String SENSITIVEAPIDUMP_DOT;
+	public static String INDEXTOSIG;
+	public static String CONF;
+	public static String MANIFEST_FILE;
+	
+	public static String COMMON_LOGGING;
+	public static String COMMON_CODEC;
+	public static String HTTP_CLIENT;
+	public static String HTTP_CORE;
+	
+	public static String JODA_TIME;
+	public static String XML_PARSER_APIS;
+	
+	public static String ANDROID_19;
+	public static String ANDROID_18;
+	public static String ANDROID_17;
+	public static String ANDROID_16;
+	public static String ANDROID_15;
+	public static String ANDROID_10;
+	public static String ANDROID_8;
+	public static String ANDROID_7;
+	public static String ANDROID_4;
+	public static String ANDROID_3;
+	
+	public static String GOOGLE_MAPS_17;
+	public static String GOOGLE_MAPS_16;
+	public static String GOOGLE_MAPS_15;
+	public static String GOOGLE_MAPS_10;
+	public static String GOOGLE_MAPS_8;
+	public static String GOOGLE_MAPS_7;
+	public static String GOOGLE_MAPS_4;
+	public static String GOOGLE_MAPS_3;
+	
+	public static String GOOGLE_ANALYTICS;
+	public static String GOOGLE_ANALYTICS_V2;
+	public static String GOOGLE_ADMOB_ADS;
+	
+	public static String INFO_SOURCE;
+	public static String INFO_SINK;
+	
+	
+	private OnCreateTransformer m_OnCreateTransformer;
+	private TestSceneTransformer testSceneTransformer;
+	private LineNumberTransformer lineNumberTransformer;
+	private ModelAPIForPointsToAnalysisTransformer modelAPITransformer;
+	
+	private PackageNameTransformer pkgTransformer;
+	
+	public static void main(String[] args){
+		
+		String arg1 = args[0];
+		
+		CLASSPATH = arg1 + "/";
+		String filename = arg1.substring(arg1.lastIndexOf('/')+1);
+		OUTPUT = "output" + "_" + filename;
+				
+		File directory = new File(".");
+		String pwd = "";
+		try{
+			pwd = directory.getAbsolutePath();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			System.err.println("java -Xss4m -Xmx1024m -cp $JASMIN:$SOOTCLASS:$POLYGLOT:$ANDROID:. mySoot.AnalyzerMain $CURR_DIR/apks/$FILENAME > $OUTPUT");
+			System.exit(-1);
+		}
+		
+		LIB_DIR = pwd + "/../sdk/platforms/default/";
+		LOG = pwd + "/../output/" + filename + ".log";
+		LOG_DOT = pwd + "/../output/" + filename + ".log.dot";
+		API_LOCAL_LOG = pwd + "/../output/" + filename + ".api.local.log";
+		API_LOCAL_DOT = pwd + "/../output/" + filename + ".api.dot";
+		API_GLOBAL_LOG = pwd + "/../output/" + filename + ".api.global.log";
+		API_GLOBAL_DOT = pwd + "/../output/" + filename + ".api.global.dot";
+		DDG_LOCAL_DOT = pwd + "/../output/" + filename + ".ddg.local.dot";
+		DDG_GLOBAL_DOT = pwd + "/../output/" + filename + ".ddg.global.dot";
+		DDG_GLOBAL_SUCCINCT_DOT = pwd + "/../output/" + filename + ".ddg.global.succinct.dot";
+		MAL_FEATURE_LOG = pwd + "/../output/" + "malware" + ".arff";
+		BENIGN_FEATURE_LOG = pwd + "/../output/" + "benign" + ".arff";
+		ACTIVITY_LOG = pwd + "/../output/" + filename + ".activity.log";
+		GSPAN_LOG = pwd + "/../output/" + filename + ".gSpan.log";
+		INDEXTOSIG= pwd + "/../output/" + "indexToSigInfo.log";
+		SENSITIVEAPIDUMP_DOT = pwd + "/../output/" + filename + "sensitiveAPIDump.dot"; 
+		CONF = pwd + "/../config/android-sdk-version.conf";
+		API_PERMISSION_MAP = pwd + "/../permissionmap/APICalls.txt";
+		MANIFEST_FILE = pwd + "/../output/" + "AndroidManifest.xml";
+		
+		Log.init(LOG);
+		Log.init(API_LOCAL_LOG);
+		Log.init(API_LOCAL_DOT);
+		Log.init(API_GLOBAL_LOG);
+		Log.init(API_GLOBAL_DOT);
+		Log.init(DDG_LOCAL_DOT);
+		Log.init(DDG_GLOBAL_DOT);
+		Log.init(DDG_GLOBAL_SUCCINCT_DOT);
+		Log.initAppending(MAL_FEATURE_LOG);
+		Log.initAppending(BENIGN_FEATURE_LOG);
+		Log.init(ACTIVITY_LOG);
+		Log.init(GSPAN_LOG);
+		Log.init(SENSITIVEAPIDUMP_DOT);
+		//Config.configure(CONF);
+		Config.ReadSDKVersion(MANIFEST_FILE);
+		
+		Calendar cal = Calendar.getInstance();
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss aaa z");
+		Log.dumpln(LOG, "Analysis starts at " + (sdf.format(cal.getTime())));
+				
+		COMMON_LOGGING = LIB_DIR + MyConstants.ORG_APACHE_COMMONS_LOGGING;
+		COMMON_CODEC = LIB_DIR + MyConstants.ORG_APACHE_COMMONS_CODEC;
+		HTTP_CLIENT = LIB_DIR + MyConstants.ORG_APACHE_HTTP_CLIENT;
+		HTTP_CORE = LIB_DIR + MyConstants.ORG_APACHE_HTTP_CORE;
+		JODA_TIME = LIB_DIR + MyConstants.JODA_TIME;
+		XML_PARSER_APIS = LIB_DIR + MyConstants.XML_PARSER_APIS;
+		
+		ANDROID_19 = LIB_DIR + MyConstants.ANDROID_19;
+		ANDROID_18 = LIB_DIR + MyConstants.ANDROID_18;
+		ANDROID_17 = LIB_DIR + MyConstants.ANDROID_17;
+		ANDROID_16 = LIB_DIR + MyConstants.ANDROID_16;
+		ANDROID_15 = LIB_DIR + MyConstants.ANDROID_15;
+		ANDROID_10 = LIB_DIR + MyConstants.ANDROID_10;
+		ANDROID_8 = LIB_DIR + MyConstants.ANDROID_8;
+		ANDROID_7 = LIB_DIR + MyConstants.ANDROID_7;
+		ANDROID_4 = LIB_DIR + MyConstants.ANDROID_4;
+		ANDROID_3 = LIB_DIR + MyConstants.ANDROID_3;
+		
+		GOOGLE_MAPS_17 = LIB_DIR + MyConstants.GOOGLE_MAPS_17;
+		GOOGLE_MAPS_16 = LIB_DIR + MyConstants.GOOGLE_MAPS_16;
+		GOOGLE_MAPS_15 = LIB_DIR + MyConstants.GOOGLE_MAPS_15;
+		GOOGLE_MAPS_10 = LIB_DIR + MyConstants.GOOGLE_MAPS_10;
+		GOOGLE_MAPS_8 = LIB_DIR + MyConstants.GOOGLE_MAPS_8;
+		GOOGLE_MAPS_7 = LIB_DIR + MyConstants.GOOGLE_MAPS_7;
+		GOOGLE_MAPS_4 = LIB_DIR + MyConstants.GOOGLE_MAPS_4;
+		GOOGLE_MAPS_3 = LIB_DIR + MyConstants.GOOGLE_MAPS_3;
+		
+		GOOGLE_ANALYTICS = LIB_DIR + MyConstants.GOOGLE_ANALYTICS;
+		GOOGLE_ANALYTICS_V2 = LIB_DIR + MyConstants.GOOGLE_ANALYTICS_V2;
+		GOOGLE_ADMOB_ADS = LIB_DIR + MyConstants.GOOGLE_ADMOB_ADS;
+		
+		System.out.println("processing package " + filename + " under " + CLASSPATH + ", output directory:" + OUTPUT);
+		
+		TestMain analyzer = new TestMain();
+		analyzer.run4();
+		
+	}
+	
+	private String getLibs() {
+		
+		switch(Config.ANDROID_API_LEVEL)
+		{
+		case 1:
+		case 2:	
+		case 3:
+		{
+			return ANDROID_3 + ":" + GOOGLE_MAPS_3 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+	
+		case 4:
+		{
+			return ANDROID_4 + ":" + GOOGLE_MAPS_4 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+		
+		case 5:
+		case 6:
+		case 7:
+		{
+			return ANDROID_7 + ":" + GOOGLE_MAPS_7 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+			
+		case 8:
+		{
+			return ANDROID_8 + ":" + GOOGLE_MAPS_8 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+		
+		case 9:
+		case 10:
+		{
+			return ANDROID_10 + ":" + GOOGLE_MAPS_10 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+		
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+		{
+			return ANDROID_15 + ":" + GOOGLE_MAPS_15 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+			
+		case 16:
+		{
+			return ANDROID_16 + ":" + GOOGLE_MAPS_16 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+		
+		case 17:
+		{
+			return ANDROID_17 + ":" + GOOGLE_MAPS_17 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+		case 18:
+		case 19:
+		{
+			return ANDROID_19 + ":" + GOOGLE_MAPS_17 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}
+		
+		default:
+			return ANDROID_16 + ":" + GOOGLE_MAPS_16 + ":" + COMMON_CODEC + ":" + HTTP_CORE + ":" + JODA_TIME + ":"
+					+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS + ":" + COMMON_LOGGING + ":" + HTTP_CLIENT + ":"
+					+ XML_PARSER_APIS;
+		}		
+					
+	}	
+	
+	private void replaceAPIStatements(){
+		
+		/*
+		PhaseOptions.v().setPhaseOption("jb", "use-original-names:true");
+		PhaseOptions.v().setPhaseOption("bb.lp", "enabled:false");
+		//PhaseOptions.v().setPhaseOption("bb.lp", "unsplit-original-locals:true");
+		*/
+		
+		/*
+		PhaseOptions.v().setPhaseOption("jb.a","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.cp-ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.ne","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.uce","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.a","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.cp-ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.ne","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.uce","enabled:false");
+		PhaseOptions.v().setPhaseOption("sop.cpf","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.uce1","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ubf1","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.uce2","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ubf2","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("gb.ule","enabled:false");
+		
+		//PhaseOptions.v().setPhaseOption("bb.lso","enabled:false");
+		PhaseOptions.v().setPhaseOption("bb.ule","enabled:false");
+		*/
+		modelAPITransformer = new ModelAPIForPointsToAnalysisTransformer();
+		Transform transform2 = new Transform("jtp.ModelAPIForPointsToAnalysisTransformer", modelAPITransformer);
+
+		PackManager.v().getPack("jtp").add(transform2);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("c");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(CLASSPATH);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+				
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void run4(){
+		
+		//simpleOptimization();
+		//G.reset();		
+		
+		//replaceAPIStatements();
+		//G.reset();
+		/*
+		LinkedHashMap<String, LinkedHashMap<Integer, Stmt>> methodToOldStmts = modelAPITransformer.getMethodToOldStmts();
+		LinkedHashMap<String, LinkedHashMap<Integer, Stmt>> methodToNewStmts = modelAPITransformer.getMethodToNewStmts();
+		
+		Set<String> methodSet = methodToOldStmts.keySet();
+		Iterator<String> methodIter = methodSet.iterator();
+		while(methodIter.hasNext()){
+			String methodSig = methodIter.next();
+			System.out.println("method: " + methodSig);
+			
+			LinkedHashMap<Integer, Stmt> oldStmts = methodToOldStmts.get(methodSig);
+			LinkedHashMap<Integer, Stmt> newStmts = methodToNewStmts.get(methodSig);
+			
+			Set<Integer> lnSet = oldStmts.keySet();
+			Iterator<Integer> lnIter = lnSet.iterator();
+			while(lnIter.hasNext()){
+				Integer ln = lnIter.next();
+				Stmt oldStmt = oldStmts.get(ln);
+				Stmt newStmt = newStmts.get(ln);
+				System.out.println("[" + ln + "]" + oldStmt + " <-> " + newStmt);
+			}
+		}
+		*/
+		
+		enableSpark2();
+		
+	}
+	
+	private void run3(){
+		Options.v().set_whole_program(true);
+		Scene.v().loadBasicClasses();		
+		Scene.v().setSootClassPath(getLibs() + ":" + CLASSPATH);
+		Scene.v().setMainClass(Scene.v().loadClassAndSupport("Leakage"));
+		Scene.v().loadNecessaryClasses();
+
+		//HashMap<String, String> optionsMap = new HashMap<String, String>();
+		Map<String,String> optionsMap = new
+				HashMap<String,String>(PhaseOptions.v().getPhaseOptions("cg.spark"));
+		
+		optionsMap.put("enabled", "true");
+		optionsMap.put("verbose", "true");
+		//optionsMap.put("on-the-fly", "true");
+		optionsMap.put("propagator", "worklist");
+		optionsMap.put("simple-edges-bidirectional", "false");
+		optionsMap.put("set-impl", "double");
+		optionsMap.put("double-set-old", "hybrid");
+		optionsMap.put("double-set-new", "hybrid");
+		
+		SparkTransformer.v().transform("", optionsMap);
+		CallGraph cg = Scene.v().getCallGraph();
+
+		PointsToAnalysis pta = Scene.v().getPointsToAnalysis();
+		SootMethod m = Scene.v().getMethod("<Leakage: void post(java.lang.String,byte[])>");
+		
+		Iterator targets = new Targets(cg.edgesOutOf(m));
+		while (targets.hasNext()) {
+			SootMethod target = (SootMethod) targets.next();
+			System.out.println(m + " may call " + target);
+		}
+		
+		//System.out.println("METHOD:" + m);
+		JimpleBody body = (JimpleBody)m.retrieveActiveBody();
+		Iterator iter = body.getUnits().iterator();
+		while(iter.hasNext()){
+			Stmt s = (Stmt)iter.next();
+			if(s instanceof DefinitionStmt){
+				Value lhs = ((DefinitionStmt) s).getLeftOp();
+				if(lhs instanceof Local){
+					PointsToSet pts = pta.reachingObjects((Local)lhs);
+					System.out.println(s + "[" + lhs + "]");
+					System.out.println("pts:" + pts);
+				}
+			}
+		}
+		
+		
+		/*
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			System.out.println("class:" + soot_class);
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+			
+			if(soot_class.isPhantom()){
+				continue;
+			}
+
+			List<SootMethod> methods = soot_class.getMethods();
+			for (SootMethod m : methods) {
+				
+				if(!m.isConcrete()){
+					continue;
+				}
+				
+				System.out.println("METHOD:" + m);
+				JimpleBody body = (JimpleBody)m.retrieveActiveBody();
+				Iterator iter = body.getUnits().iterator();
+				while(iter.hasNext()){
+					Stmt s = (Stmt)iter.next();
+					if(s instanceof DefinitionStmt){
+						Value lhs = ((DefinitionStmt) s).getLeftOp();
+						if(lhs instanceof Local){
+							PointsToSet pts = pta.reachingObjects((Local)lhs);
+							System.out.println(s + "[" + lhs + "]");
+							System.out.println("pts:" + pts);
+						}
+					}
+				}
+			}
+		}
+		*/
+		
+		
+		
+		/*
+		SootClass main_class = Scene.v().getMainClass();
+		List<SootMethod> methods = main_class.getMethods();
+		for (SootMethod method : methods) {
+			
+			if(!method.isConcrete()){
+				continue;
+			}
+			
+			System.out.println("method:" + method);
+			
+			Iterator targets = new Targets(cg.edgesOutOf(method));
+			while (targets.hasNext()) {
+				SootMethod target = (SootMethod) targets.next();
+				System.out.println(method + " may call " + target);
+			}
+		}
+		*/
+		/*
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			System.out.println("class:" + soot_class);
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+			
+			if(soot_class.isPhantom()){
+				continue;
+			}
+
+			List<SootMethod> methods = soot_class.getMethods();
+			for (SootMethod method : methods) {
+				
+				if(!method.isConcrete()){
+					continue;
+				}
+				
+				System.out.println("method:" + method);
+				
+				Iterator targets = new Targets(cg.edgesOutOf(method));
+				while (targets.hasNext()) {
+					SootMethod target = (SootMethod) targets.next();
+					System.out.println(method + " may call " + target);
+				}
+			}
+		}
+		*/
+	}
+	
+	private void run2(){
+		Scene.v().setSootClassPath(CLASSPATH + ":" + getLibs());
+		Options.v().set_whole_program(true);
+		Options.v().set_app(true);
+		
+		SootClass main_class = Scene.v().loadClass("com.leakage.Leakage", SootClass.BODIES);
+		SootMethod main_method = main_class.getMethodByName("main");
+		Scene.v().setMainClass(main_class);
+		
+		Scene.v().loadNecessaryClasses();
+		
+		CallGraphBuilder cg_builder;
+		CallGraph cg;
+		ContextInsensitiveBuilder cg_ins_builder = new ContextInsensitiveBuilder();
+		TreeMap<String,String> map = new TreeMap();
+		map.put("enabled","true");
+		map.put("verbose","true");
+		//map.put("rta","true");
+		map.put("on-fly-cg","false");
+		map.put("simulates-natives","false");
+		map.put("propagator","worklist");
+		map.put("set-impl","hash");
+
+		SparkOptions spark_options = new SparkOptions(map);
+		PAG pag = cg_ins_builder.setup(spark_options);
+		cg_ins_builder.build();
+
+		cg_builder = new CallGraphBuilder(pag);
+		cg_builder.build();
+		cg = cg_builder.getCallGraph();
+		
+		PointsToAnalysis pta = Scene.v().getPointsToAnalysis();
+		
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+			
+			if(soot_class.isPhantom()){
+				continue;
+			}
+
+			List<SootMethod> methods = soot_class.getMethods();
+			for (SootMethod method : methods) {
+				
+				if(!method.isConcrete()){
+					continue;
+				}
+				
+				System.out.println("method:" + method);
+				
+				Iterator targets = new Targets(cg.edgesOutOf(method));
+				while (targets.hasNext()) {
+					SootMethod target = (SootMethod) targets.next();
+					System.out.println(method + " may call " + target);
+				}
+				
+				/*
+				JimpleBody body = (JimpleBody)method.retrieveActiveBody();
+				Iterator iter = body.getUnits().iterator();
+				while(iter.hasNext()){				
+					
+					Stmt s = (Stmt) iter.next();
+					
+					System.out.println("Iterating statements for method:" + method + ":" + s);
+					
+					if(s.containsInvokeExpr()){
+						Iterator sTargets = new Targets(cg.edgesOutOf(s));
+						while (sTargets.hasNext()) {
+							SootMethod sTarget = (SootMethod) sTargets.next();
+							System.out.println(s + " may call " + sTarget);
+						}
+					}
+					
+					Iterator usesIt = s.getUseBoxes().iterator();
+					while (usesIt.hasNext()) {
+						ValueBox vbox = (ValueBox) usesIt.next();
+						if (vbox.getValue() instanceof Local) {
+							PointsToSet pts = pta.reachingObjects((Local)vbox.getValue());
+							System.out.println("s = " + s);
+							System.out.println("v = " + vbox.getValue());
+							System.out.println("pts = " + pts);
+						}
+					}
+				}
+				*/
+			}
+			
+		}
+	}
+	
+	private void run(){
+		printLineNumber();
+		G.reset();
+		//findNaiveEntryPoints();
+		//G.reset();
+		enableSpark2();
+	}
+	
+	private void printLineNumber(){
+		
+		soot.options.Options.v().set_keep_line_number(true);
+		PhaseOptions.v().setPhaseOption("tag.ln", "on");
+		
+		lineNumberTransformer = new LineNumberTransformer();
+		Transform transform2 = new Transform("jtp.LineNumberTransformer", lineNumberTransformer);
+
+		PackManager.v().getPack("jtp").add(transform2);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+				
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void enableSpark2(){
+		
+		soot.options.Options.v().set_keep_line_number(true);
+		soot.options.Options.v().set_whole_program(true);
+		PhaseOptions.v().setPhaseOption("tag.ln", "on");
+		PhaseOptions.v().setPhaseOption("cg.spark","ignore-types:true");
+		/*
+		PhaseOptions.v().setPhaseOption("jb", "use-original-names:true");
+		PhaseOptions.v().setPhaseOption("bb.lp", "enabled:false");
+		//PhaseOptions.v().setPhaseOption("bb.lp", "unsplit-original-locals:true");
+		*/
+		/*
+		PhaseOptions.v().setPhaseOption("jb.a","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.cp-ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.ne","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.uce","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.a","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.cp-ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.ne","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.uce","enabled:false");
+		PhaseOptions.v().setPhaseOption("sop.cpf","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.uce1","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ubf1","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.uce2","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ubf2","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("gb.ule","enabled:false");
+		
+		//PhaseOptions.v().setPhaseOption("bb.lso","enabled:false");
+		PhaseOptions.v().setPhaseOption("bb.ule","enabled:false");
+		*/
+		/*
+		soot.options.Options.v().set_keep_line_number(true);
+		soot.options.Options.v().set_whole_program(true);
+		Scene.v().setSootClassPath(CLASSPATH + ":" + ANDROID);
+
+		
+		//soot.options.Options.v().setPhaseOption("cg","implicit-entry:false");
+		soot.options.Options.v().setPhaseOption("cg.spark","enabled:true");
+		//soot.options.Options.v().setPhaseOption("cg.spark","ignore-types:true");
+		//soot.options.Options.v().setPhaseOption("cg.spark","field-based:false");
+		//soot.options.Options.v().setPhaseOption("cg.spark","types-for-sites:false");
+		//soot.options.Options.v().setPhaseOption("cg.spark","vta:true");	
+		soot.options.Options.v().setPhaseOption("cg.spark","on-fly-cg:false");
+		soot.options.Options.v().setPhaseOption("cg.spark","set-impl:hash");
+		//soot.options.Options.v().setPhaseOption("cg.spark","double-set-old:hybrid");
+		//soot.options.Options.v().setPhaseOption("cg.spark","double-set-new:hybrid");
+		soot.options.Options.v().setPhaseOption("cg.spark","verbose:true");	
+		soot.options.Options.v().setPhaseOption("cg.spark","on-fly-cg:true");
+		soot.options.Options.v().setPhaseOption("cg.spark","propagator:worklist");
+		soot.options.Options.v().setPhaseOption("cg.spark","dump-solution:true");
+		*/
+
+		//LinkedHashMap<String, String> mClassToMethod = findUncalledOverridingMethodsTransformer.getClassToMethod();
+		
+		/*
+		LinkedHashMap<String, String> mClassToMethod = m_OnCreateTransformer.getClassToMethod();
+
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+
+		Set<String> keySet = mClassToMethod.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+
+			String mClass = keyIterator.next();
+			String method = mClassToMethod.get(mClass);
+
+			//System.out.println("building entry points:" + mClass + "|" + method);
+
+			mClass = mClass.substring(0, mClass.indexOf("|"));
+
+			SootClass main_soot_class = Scene.v().loadClassAndSupport(mClass);
+			SootMethod sMethod = main_soot_class.getMethod(method);
+			sMethod.setDeclaringClass(main_soot_class);
+
+			//System.out.println("entry point:" + method);
+
+			entry_points.add(sMethod);
+		}		
+		
+		//System.out.println("setting entry points: " + entry_points);
+		Scene.v().setEntryPoints(entry_points);
+		*/
+		
+		/*
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+		Scene.v().loadBasicClasses();
+		SootClass main_soot_class =  Scene.v().loadClassAndSupport("Leakage");
+		SootMethod sMethod = main_soot_class.getMethod("void main(java.lang.String[])");
+		entry_points.add(sMethod);
+		Scene.v().setEntryPoints(entry_points);
+		*/
+		
+		testSceneTransformer = new TestSceneTransformer();
+		Transform transform1 = new Transform("wjtp.TestSceneTransformer", testSceneTransformer);
+		
+		PackManager.v().getPack("wjtp").add(transform1);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		//sootArgs.add("-x");
+		//sootArgs.add("java.");
+		//sootArgs.add("-x");
+		//sootArgs.add("android.");
+		//sootArgs.add("-dynamic-package");
+		//sootArgs.add("android.");
+		
+		//sootArgs.add("-dynamic-class");
+		//sootArgs.add("java.net.URLConnection");
+		
+		//sootArgs.add("-dynamic-class");
+		//sootArgs.add("java.net.HttpURLConnection");
+		
+		sootArgs.add("-w");
+		sootArgs.add("-p");
+		sootArgs.add("cg.spark");
+		sootArgs.add("enabled");
+		
+		//sootArgs.add("ignore-types");
+		//sootArgs.add("true");
+		
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void findNaiveEntryPoints() {
+
+		m_OnCreateTransformer = new OnCreateTransformer();
+		Transform transform1 = new Transform("jtp.OnCreateTransform",
+				m_OnCreateTransformer);
+		PackManager.v().getPack("jtp").add(transform1);
+
+				
+		List<String> sootArgs = new ArrayList<String>();
+
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		String[] soot_args = new String[sootArgs.size()];
+		for (int i = 0; i < sootArgs.size(); i++) {
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void enableSpark(){
+		LinkedHashMap<String, String> mClassToMethod = m_OnCreateTransformer.getClassToMethod();
+		
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+		
+		Set<String> keySet = mClassToMethod.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+
+			String mClass = keyIterator.next();
+			String method = mClassToMethod.get(mClass);
+
+			//System.out.println("building entry points:" + mClass + "|" + method);
+			
+			mClass = mClass.substring(0, mClass.indexOf("|"));
+			
+			SootClass main_soot_class = Scene.v().loadClassAndSupport(mClass);
+			SootMethod sMethod = main_soot_class.getMethod(method);
+			sMethod.setDeclaringClass(main_soot_class);
+
+			//System.out.println("entry point:" + method);
+
+			entry_points.add(sMethod);
+		}		
+				
+		//System.out.println("setting entry points: " + entry_points);
+		Scene.v().setMainClass(Scene.v().loadClassAndSupport("com.leakage.Leakage"));
+
+		//Prepare arguments for soot.Main
+		List<String> sootArgs = new ArrayList<String>();
+		
+		//Specify that output format is Jimple IR
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+		
+		//enable whole program mode
+		sootArgs.add("-w");
+		
+		/*
+		sootArgs.add("-p");
+		sootArgs.add("wjop");
+		sootArgs.add("enabled:true");
+
+		//enable points-to analysis
+		sootArgs.add("-p");
+		sootArgs.add("cg");
+		sootArgs.add("enabled:true");
+		*/
+
+		//enable Spark
+		sootArgs.add("-p");
+		sootArgs.add("cg.spark");
+		sootArgs.add("enabled:true");
+
+		
+
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		//Start Soot
+		soot.Main.main(soot_args);
+	}
+	
+	private void simpleOptimization(){
+		/*
+		PhaseOptions.v().setPhaseOption("jb.a","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.cp-ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.ne","enabled:false");
+		PhaseOptions.v().setPhaseOption("jb.uce","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.a","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.cp-ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.ne","enabled:false");
+		PhaseOptions.v().setPhaseOption("jj.uce","enabled:false");
+		PhaseOptions.v().setPhaseOption("sop.cpf","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.uce1","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ubf1","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.uce2","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ubf2","enabled:false");
+		PhaseOptions.v().setPhaseOption("jop.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("gb.ule","enabled:false");
+		PhaseOptions.v().setPhaseOption("bb.ule","enabled:false");
+		*/
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("c");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(CLASSPATH);
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		//sootArgs.add("-O");
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void addMain(){
+		System.out.println("package names:" + pkgTransformer.getPackageNames());
+		Vector<String> packages = new Vector<String>();
+		
+				
+		if(!(pkgTransformer.getPackageNames().isEmpty())){
+			for(String s : pkgTransformer.getPackageNames()){
+				
+			}
+		}
+	}
+	
+	/*
+	private void findPackages(){
+		soot.options.Options.v().set_whole_program(true);
+		//Scene.v().setSootClassPath(getClassPath() + ":" + getRtJars());
+		Scene.v().setSootClassPath(getLibs() + ":" + CLASSPATH);
+		
+		//LinkedHashMap<String, String> mClassToMethod = m_OnCreateTransformer.getClassToMethod();
+		LinkedHashMap<String, String> mClassToMethod = findUncalledOverridingMethodsTransformer.getClassToMethod();		
+		
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+		
+		Set<String> keySet = mClassToMethod.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+
+			String mClass = keyIterator.next();
+			String method = mClassToMethod.get(mClass);
+
+			System.out.println("building entry points:" + mClass + "|" + method);
+			
+			mClass = mClass.substring(0, mClass.indexOf("|"));
+			
+			try{
+				SootClass main_soot_class = Scene.v().loadClassAndSupport(mClass);
+				SootMethod sMethod = main_soot_class.getMethod(method);
+				sMethod.setDeclaringClass(main_soot_class);
+				
+				System.out.println("entry point:" + method);
+
+				entry_points.add(sMethod);
+				
+			}catch(Exception e){
+				System.out.println("EXCEPTION is raised loading " + mClass);
+				e.printStackTrace();
+			}			
+		}
+		
+		Scene.v().setEntryPoints(entry_points);
+
+		
+		pkgTransformer = new PackageNameTransformer();
+		
+		Transform transform1 = new Transform("wjtp.PackageNameTransformer",	pkgTransformer);
+		PackManager.v().getPack("wjtp").add(transform1);
+
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("c");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(CLASSPATH);
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		//sootArgs.add("-O");
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+		
+	}
+	*/
+}

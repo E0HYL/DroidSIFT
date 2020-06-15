@@ -1,0 +1,49 @@
+package mySoot;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import soot.Scene;
+import soot.SceneTransformer;
+import soot.SootClass;
+import soot.SootMethod;
+import soot.jimple.toolkits.callgraph.CallGraph;
+import soot.jimple.toolkits.callgraph.Targets;
+import soot.util.Chain;
+
+public class WholeProgramAnalysisTransformer extends SceneTransformer{
+	
+	private CallGraph cg;
+
+	protected void internalTransform(String string, Map map) {
+		CallGraph cg = Scene.v().getCallGraph();
+		this.cg = cg;
+
+		/*
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+
+			List<SootMethod> methods = soot_class.getMethods();
+			
+			
+			for (SootMethod method : methods) {
+				Iterator targets = new Targets(cg.edgesOutOf(method));
+				while (targets.hasNext()) {
+					SootMethod target = (SootMethod) targets.next();
+					System.out.println(method + " may call " + target);
+				}
+			}
+			
+		}
+		*/
+		
+		
+	}
+}

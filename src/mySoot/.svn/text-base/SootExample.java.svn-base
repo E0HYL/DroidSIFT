@@ -1,0 +1,69 @@
+package mySoot;
+
+import soot.*;
+import java.util.*;
+
+public class SootExample {
+	
+	//class path where application classes are located
+	public static final String CLASSPATH = "/home/muzhang/transblocker/apks/sendsms/";
+	public static final String PROCESSPATH = "/home/muzhang/test/sendsms/";
+	
+	//class path where Android framework is located
+	public static final String ANDROID = "/home/muzhang/transblocker/sdk/platforms/default/android-17.jar";
+	
+	//directory for output. It is a relative path.
+	public static final String OUTPUT = "sendsms_output";
+
+	
+	public static void main(String[] args){
+		
+		//Create a self-defined Transformer, and embed it to Soot's Jimple transformation phase. 
+		APILookupTransformer apiLookupTransformer = new APILookupTransformer();
+		Transform transform = new Transform("jtp.APILookupTransformer", apiLookupTransformer);		
+		PackManager.v().getPack("jtp").add(transform);
+		
+		
+			
+		
+		//Prepare arguments for soot.Main
+		List<String> sootArgs = new ArrayList<String>();
+		
+		//Specify that output format is Jimple IR
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + ANDROID);
+		
+		sootArgs.add("-process-dir");
+		sootArgs.add(PROCESSPATH);
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		//Start Soot
+		soot.Main.main(soot_args);
+		
+		//Get analysis results from self-defined Transformer
+		LinkedHashMap<String, List<String>> methodToAPIs = apiLookupTransformer.getMethodToAPIs();
+		
+		Set<String> keySet = methodToAPIs.keySet();
+		Iterator<String> iter = keySet.iterator();
+		while(iter.hasNext()){
+			String method = iter.next();
+			List<String> apis = methodToAPIs.get(method);
+			System.out.println(method + " calls APIs: ");
+			for(String api : apis){
+				System.out.println(api);
+			}
+			System.out.println();
+		}
+		
+	}
+}

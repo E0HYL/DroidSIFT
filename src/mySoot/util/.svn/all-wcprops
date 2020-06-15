@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/main/!svn/ver/7078/dalvik-analyzer/trunk/mySoot/util
+END
+Graph.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/main/!svn/ver/2595/dalvik-analyzer/trunk/mySoot/util/Graph.java
+END
+Log.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/main/!svn/ver/5187/dalvik-analyzer/trunk/mySoot/util/Log.java
+END
+UseWithScope.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/main/!svn/ver/4624/dalvik-analyzer/trunk/mySoot/util/UseWithScope.java
+END
+DefWithScope.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/main/!svn/ver/4623/dalvik-analyzer/trunk/mySoot/util/DefWithScope.java
+END
+Edge.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/main/!svn/ver/5095/dalvik-analyzer/trunk/mySoot/util/Edge.java
+END
+PscoutPermissionMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/main/!svn/ver/5422/dalvik-analyzer/trunk/mySoot/util/PscoutPermissionMap.java
+END
+AndroidSourceSinkSummary.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/main/!svn/ver/7078/dalvik-analyzer/trunk/mySoot/util/AndroidSourceSinkSummary.java
+END
+Config.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/main/!svn/ver/6485/dalvik-analyzer/trunk/mySoot/util/Config.java
+END
+AndroidPermissionMap.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/main/!svn/ver/5186/dalvik-analyzer/trunk/mySoot/util/AndroidPermissionMap.java
+END
+GXLToDOTConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/main/!svn/ver/5825/dalvik-analyzer/trunk/mySoot/util/GXLToDOTConverter.java
+END
+ReadEpiccResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/main/!svn/ver/4700/dalvik-analyzer/trunk/mySoot/util/ReadEpiccResult.java
+END

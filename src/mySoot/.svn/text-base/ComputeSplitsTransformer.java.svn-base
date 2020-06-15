@@ -1,0 +1,44 @@
+package mySoot;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import soot.Scene;
+import soot.SceneTransformer;
+import soot.SootClass;
+import soot.SootMethod;
+import soot.jimple.toolkits.callgraph.Targets;
+import soot.util.Chain;
+
+public class ComputeSplitsTransformer extends SceneTransformer {
+	
+	protected void internalTransform(String string, Map map) {
+		
+		List<SootMethod> entryPoints = new ArrayList<SootMethod>();
+		List<SootMethod> onCreateMethods = new ArrayList<SootMethod>();
+		
+		Chain<SootClass> classes = Scene.v().getClasses();
+		Iterator<SootClass> classes_iter = classes.iterator();
+		while (classes_iter.hasNext()) {
+			SootClass soot_class = classes_iter.next();
+
+			if (soot_class.isApplicationClass() == false) {
+				continue;
+			}
+
+			List<SootMethod> methods = soot_class.getMethods();
+			
+			
+			for (SootMethod method : methods) {	
+						
+				if(!method.isConcrete()){
+					continue;
+				}
+				
+			}
+		}
+	}
+	
+}

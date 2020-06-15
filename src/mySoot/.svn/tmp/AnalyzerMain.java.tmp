@@ -1,0 +1,813 @@
+package mySoot;
+
+import mySoot.util.*;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import soot.*;
+
+public class AnalyzerMain {
+
+	public static String CLASSPATH;
+	//public static String ANDROID;	
+	public static String OUTPUT;
+	public static String LIB_DIR;
+	public static String LOG;
+	public static String LOG_DOT;
+	public static String API_LOCAL_LOG;
+	public static String API_LOCAL_DOT;
+	public static String API_GLOBAL_LOG;
+	public static String API_GLOBAL_DOT;
+	public static String ACTIVITY_LOG;
+	public static String GSPAN_LOG;
+	public static String INDEXTOSIG;
+	public static String CONF;
+	
+	public static String COMMON_LOGGING;
+	public static String COMMON_CODEC;
+	
+	public static String ANDROID_18;
+	public static String ANDROID_17;
+	public static String ANDROID_16;
+	public static String ANDROID_15;
+	public static String ANDROID_10;
+	public static String ANDROID_8;
+	public static String ANDROID_7;
+	public static String ANDROID_4;
+	public static String ANDROID_3;
+	
+	public static String GOOGLE_MAPS_17;
+	public static String GOOGLE_MAPS_16;
+	public static String GOOGLE_MAPS_15;
+	public static String GOOGLE_MAPS_10;
+	public static String GOOGLE_MAPS_8;
+	public static String GOOGLE_MAPS_7;
+	public static String GOOGLE_MAPS_4;
+	public static String GOOGLE_MAPS_3;
+	
+	public static String GOOGLE_ANALYTICS;
+	public static String GOOGLE_ANALYTICS_V2;
+	public static String GOOGLE_ADMOB_ADS;
+	
+	public static String INFO_SINK;
+	
+	public static FindUncalledMethodsTransformer findUncalledMethodsTransformer;
+	public static FindUncalledOverridingMethodsTransformer findUncalledOverridingMethodsTransformer;
+	public static FindEntryPointsTransformer findEntryPointsTransformer;
+	public static APISubGraphTransformer apiSubGraphTransformer;
+	public static GlobalAPISubGraphTransformer globalAPISubGraphTransformer;
+	public static GlobalBackwardDataflowAnalysis globalBackwardDataflowAnalysis;
+	private FindSourcesTransformer findSourcesTransformer;
+	private LeakSourceTransformer leakSourceTransformer;
+	private FlowSinkTransformer flowSinkTransformer;
+	public static RecursionDetectionTransformer recursionDetectionTransformer;
+	
+	public static LinkedHashMap<String, String> entryPoints;
+	public static List<String> appUncalledMethods;
+	public static List<String> appMethods;
+	public static List<String> appCalledMethods;
+	public static List<String> uncalledOverridingFrameworkMethods;
+	private OnCreateTransformer m_OnCreateTransformer;
+	
+	public static LinkedHashMap<String, LinkedHashMap<String, String>> sourcesLocationMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
+	public static LinkedHashMap<String, Integer> sources;
+	public static LinkedHashMap<String, Integer> sinks;
+	
+	public static void main(String[] args){
+		
+		String arg1 = args[0];
+		
+		CLASSPATH = arg1 + "/";
+		String filename = arg1.substring(arg1.lastIndexOf('/')+1);
+		OUTPUT = "output" + "_" + filename;
+				
+		File directory = new File(".");
+		String pwd = "";
+		try{
+			pwd = directory.getAbsolutePath();
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			System.err.println("java -Xss4m -Xmx1024m -cp $JASMIN:$SOOTCLASS:$POLYGLOT:$ANDROID:. mySoot.AnalyzerMain $CURR_DIR/apks/$FILENAME > $OUTPUT");
+			System.exit(-1);
+		}
+		
+		LIB_DIR = pwd + "/../sdk/platforms/default/";
+		LOG = pwd + "/../output/" + filename + ".log";
+		LOG_DOT = pwd + "/../output/" + filename + ".log.dot";
+		API_LOCAL_LOG = pwd + "/../output/" + filename + ".api.local.log";
+		API_LOCAL_DOT = pwd + "/../output/" + filename + ".api.dot";
+		API_GLOBAL_LOG = pwd + "/../output/" + filename + ".api.global.log";
+		API_GLOBAL_DOT = pwd + "/../output/" + filename + ".api.global.dot";
+		ACTIVITY_LOG = pwd + "/../output/" + filename + ".activity.log";
+		GSPAN_LOG = pwd + "/../output/" + filename + ".gSpan.log";
+		INDEXTOSIG= pwd + "/../output/" + "indexToSigInfo.log";
+		CONF = pwd + "/../config/android-sdk-version.conf";
+		
+		Log.init(LOG);
+		Log.init(API_LOCAL_LOG);
+		Log.init(API_LOCAL_DOT);
+		Log.init(API_GLOBAL_LOG);
+		Log.init(API_GLOBAL_DOT);
+		Log.init(ACTIVITY_LOG);
+		Log.init(GSPAN_LOG);
+		Config.configure(CONF);
+		
+		Calendar cal = Calendar.getInstance();
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss aaa z");
+		Log.dumpln(LOG, "Analysis starts at " + (sdf.format(cal.getTime())));
+				
+		COMMON_LOGGING = LIB_DIR + MyConstants.ORG_APACHE_COMMONS_LOGGING;
+		COMMON_CODEC = LIB_DIR + MyConstants.ORG_APACHE_COMMONS_CODEC;
+		
+		ANDROID_18 = LIB_DIR + MyConstants.ANDROID_18;
+		ANDROID_17 = LIB_DIR + MyConstants.ANDROID_17;
+		ANDROID_16 = LIB_DIR + MyConstants.ANDROID_16;
+		ANDROID_15 = LIB_DIR + MyConstants.ANDROID_15;
+		ANDROID_10 = LIB_DIR + MyConstants.ANDROID_10;
+		ANDROID_8 = LIB_DIR + MyConstants.ANDROID_8;
+		ANDROID_7 = LIB_DIR + MyConstants.ANDROID_7;
+		ANDROID_4 = LIB_DIR + MyConstants.ANDROID_4;
+		ANDROID_3 = LIB_DIR + MyConstants.ANDROID_3;
+		
+		GOOGLE_MAPS_17 = LIB_DIR + MyConstants.GOOGLE_MAPS_17;
+		GOOGLE_MAPS_16 = LIB_DIR + MyConstants.GOOGLE_MAPS_16;
+		GOOGLE_MAPS_15 = LIB_DIR + MyConstants.GOOGLE_MAPS_15;
+		GOOGLE_MAPS_10 = LIB_DIR + MyConstants.GOOGLE_MAPS_10;
+		GOOGLE_MAPS_8 = LIB_DIR + MyConstants.GOOGLE_MAPS_8;
+		GOOGLE_MAPS_7 = LIB_DIR + MyConstants.GOOGLE_MAPS_7;
+		GOOGLE_MAPS_4 = LIB_DIR + MyConstants.GOOGLE_MAPS_4;
+		GOOGLE_MAPS_3 = LIB_DIR + MyConstants.GOOGLE_MAPS_3;
+		
+		GOOGLE_ANALYTICS = LIB_DIR + MyConstants.GOOGLE_ANALYTICS;
+		GOOGLE_ANALYTICS_V2 = LIB_DIR + MyConstants.GOOGLE_ANALYTICS_V2;
+		GOOGLE_ADMOB_ADS = LIB_DIR + MyConstants.GOOGLE_ADMOB_ADS;
+		
+		AnalyzerMain analyzer = new AnalyzerMain();
+		analyzer.run();
+		
+	}
+		
+	private String getLibs() {
+		
+		switch(Config.ANDROID_API_LEVEL){
+			case 3:
+			{
+				return ANDROID_3 + ":" + GOOGLE_MAPS_3 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 4:
+			{
+				return ANDROID_4 + ":" + GOOGLE_MAPS_4 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 7:
+			{
+				return ANDROID_7 + ":" + GOOGLE_MAPS_7 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 8:
+			{
+				return ANDROID_8 + ":" + GOOGLE_MAPS_8 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 10:
+			{
+				return ANDROID_10 + ":" + GOOGLE_MAPS_10 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 15:
+			{
+				return ANDROID_15 + ":" + GOOGLE_MAPS_15 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 16:
+			{
+				return ANDROID_16 + ":" + GOOGLE_MAPS_16 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			case 17:
+			{
+				return ANDROID_17 + ":" + GOOGLE_MAPS_17 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			case 18:
+			{
+				return ANDROID_18 + ":" + GOOGLE_MAPS_17 + ":" + COMMON_CODEC + ":" 
+						+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;
+			}
+			
+			default:
+				return ANDROID_16 + ":" + GOOGLE_MAPS_16 + ":" + COMMON_CODEC + ":" 
+				+ GOOGLE_ADMOB_ADS + ":" + GOOGLE_ANALYTICS;		
+		}	
+						
+	}
+	
+	
+	private void run(){
+	
+		/*
+		System.out.println("finding out all classes...");
+		findNaiveEntryPoints();
+		entryPoints = m_OnCreateTransformer.getClassToMethod();
+		G.reset();
+		*/
+		findUncalledMethods();
+		appMethods = findUncalledMethodsTransformer.getAppMethods();
+		appCalledMethods = findUncalledMethodsTransformer.getCalledMethods();
+		appUncalledMethods = new ArrayList<String>();
+		for(String appMethod : appMethods){
+			if(!appCalledMethods.contains(appMethod)){
+				if(!appUncalledMethods.contains(appMethod)){
+					appUncalledMethods.add(appMethod);
+				}
+			}
+		}
+		
+		System.out.println(appUncalledMethods.size() + " Uncalled Methods:");
+		for(String appUncalledMethod : appUncalledMethods){
+			System.out.println(appUncalledMethod);
+		}
+		
+		
+		G.reset();
+		
+		findUncalledOverridingMethods();
+		uncalledOverridingFrameworkMethods = findUncalledOverridingMethodsTransformer.getUncalledOverridingFrameworkMethods();
+		
+		System.out.println(uncalledOverridingFrameworkMethods.size() + " Uncalled Overriding Framework Methods:");
+		for(String override : uncalledOverridingFrameworkMethods){
+			System.out.println(override);
+		}
+		G.reset();
+		
+		
+		simpleOptimization();
+		G.reset();
+				
+		entryPoints = findUncalledOverridingMethodsTransformer.getClassToMethod();
+		System.out.println("looking for all sources and sinks in the program...");
+		scanForSourcesAndSinks();
+		G.reset();
+		sources = findSourcesTransformer.getSources();
+		sinks = findSourcesTransformer.getSinks();
+		
+		System.out.println("locating all sources...");
+		
+		/*
+		for(int i=0;i<MyConstants.SOURCES.length;i++){
+			
+			INFO_SOURCE = MyConstants.SOURCES[i];
+			findSources();
+			G.reset();
+			entryPointsVector.add(leakSourceTransformer.getClassToMethod());
+			System.out.println("entry points:" + entryPointsVector.get(i));
+		}
+		*/
+		
+		Set<String> keySet = sinks.keySet();
+		Iterator<String> iter = keySet.iterator();
+		while(iter.hasNext()){
+			String signature = iter.next();
+			
+			INFO_SINK = signature;
+			System.out.println("INFO_SINK: " + signature);
+			locateSinks();
+			G.reset();
+			sourcesLocationMap.put(signature, flowSinkTransformer.getClassToMethod());
+		}
+		
+		//doGlobalBackwardDataflowAnalysis();
+		G.reset();
+<<<<<<< .mine
+		//recursionDetector();
+		buildGlobalAPISubGraph();
+=======
+		//recursionDetector();
+		//buildGlobalAPISubGraph();
+>>>>>>> .r4894
+		
+		simpleAPILookup();
+		//buildAPISubGraph();
+		
+		
+	}
+	
+	private void scanForSourcesAndSinks() {
+
+		findSourcesTransformer = new FindSourcesTransformer();
+		Transform transform1 = new Transform("jtp.FindSourcesTransformer",
+				findSourcesTransformer);
+		PackManager.v().getPack("jtp").add(transform1);
+
+				
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void locateSinks() {
+
+		flowSinkTransformer = new FlowSinkTransformer();
+		Transform transform1 = new Transform("jtp.FlowSinkTransformer",
+				flowSinkTransformer);
+		PackManager.v().getPack("jtp").add(transform1);
+
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void locateSources() {
+
+		leakSourceTransformer = new LeakSourceTransformer();
+		Transform transform1 = new Transform("jtp.LeakSourceTransformer",
+				leakSourceTransformer);
+		PackManager.v().getPack("jtp").add(transform1);
+
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void simpleOptimization(){
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("c");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(CLASSPATH);
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		sootArgs.add("-O");
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void doGlobalBackwardDataflowAnalysis(){
+
+		
+		soot.options.Options.v().set_whole_program(true);
+		Scene.v().setSootClassPath(CLASSPATH + ":" + getLibs());
+				
+		
+		//LinkedHashMap<String, String> mClassToMethod = findUncalledOverridingMethodsTransformer.getClassToMethod();
+		LinkedHashMap<String, String> mClassToMethod = m_OnCreateTransformer.getClassToMethod();
+		
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+		
+		Set<String> keySet = mClassToMethod.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+
+			String mClass = keyIterator.next();
+			String method = mClassToMethod.get(mClass);
+
+			//System.out.println("building entry points:" + mClass + "|" + method);
+			
+			mClass = mClass.substring(0, mClass.indexOf("|"));
+			
+			SootClass main_soot_class = Scene.v().loadClassAndSupport(mClass);
+			SootMethod sMethod = main_soot_class.getMethod(method);
+			sMethod.setDeclaringClass(main_soot_class);
+
+			System.out.println("entry point:" + method);
+
+			entry_points.add(sMethod);
+		}		
+				
+		//System.out.println("setting entry points: " + entry_points);
+		Scene.v().setEntryPoints(entry_points);
+
+		globalBackwardDataflowAnalysis = new GlobalBackwardDataflowAnalysis();
+		Transform transform1 = new Transform("wjtp.GlobalBackwardDataflowAnalysis", globalBackwardDataflowAnalysis);
+		
+		PackManager.v().getPack("wjtp").add(transform1);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	
+	private void buildGlobalAPISubGraph(){
+
+		soot.options.Options.v().set_whole_program(true);
+		Scene.v().setSootClassPath(CLASSPATH + ":" + getLibs());
+				
+		
+		LinkedHashMap<String, String> mClassToMethod = findUncalledOverridingMethodsTransformer.getClassToMethod();
+		//LinkedHashMap<String, String> mClassToMethod = m_OnCreateTransformer.getClassToMethod();
+		
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+		
+		Set<String> keySet = mClassToMethod.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+
+			String mClass = keyIterator.next();
+			
+			String method = mClassToMethod.get(mClass);
+
+			System.out.println("building entry points:" + mClass + "|" + method);
+			
+			mClass = mClass.substring(0, mClass.indexOf("|"));
+			
+			SootClass main_soot_class = Scene.v().loadClassAndSupport(mClass);
+			SootMethod sMethod = main_soot_class.getMethod(method);
+			sMethod.setDeclaringClass(main_soot_class);
+
+			System.out.println("entry point:" + method);
+
+			entry_points.add(sMethod);
+		}		
+		//System.out.println("setting entry points: " + entry_points);
+		Scene.v().setEntryPoints(entry_points);
+
+		globalAPISubGraphTransformer = new GlobalAPISubGraphTransformer();
+		Transform transform1 = new Transform("wjtp.GlobalAPISubGraphTransformer", globalAPISubGraphTransformer);
+		PackManager.v().getPack("wjtp").add(transform1);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+
+	}
+	
+	private void recursionDetector(){
+
+		soot.options.Options.v().set_whole_program(true);
+		Scene.v().setSootClassPath(CLASSPATH + ":" + getLibs());				
+		
+		LinkedHashMap<String, String> mClassToMethod = findUncalledOverridingMethodsTransformer.getClassToMethod();
+		
+		List<SootMethod> entry_points = new ArrayList<SootMethod>();
+		
+		Set<String> keySet = mClassToMethod.keySet();
+		Iterator<String> keyIterator = keySet.iterator();
+		while (keyIterator.hasNext()) {
+
+			String mClass = keyIterator.next();
+			
+			String method = mClassToMethod.get(mClass);
+
+			System.out.println("building entry points:" + mClass + "|" + method);
+			
+			mClass = mClass.substring(0, mClass.indexOf("|"));
+			
+			SootClass main_soot_class = Scene.v().loadClassAndSupport(mClass);
+			SootMethod sMethod = main_soot_class.getMethod(method);
+			sMethod.setDeclaringClass(main_soot_class);
+
+			System.out.println("entry point:" + method);
+
+			entry_points.add(sMethod);
+		}		
+		
+		Scene.v().setEntryPoints(entry_points);
+
+		recursionDetectionTransformer = new RecursionDetectionTransformer();
+		Transform transform1 = new Transform("wjtp.RecursionDetectionTransformer", recursionDetectionTransformer);
+		PackManager.v().getPack("wjtp").add(transform1);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+				
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);		
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+
+	}
+		
+	private void findUncalledOverridingMethods(){
+		
+		findUncalledOverridingMethodsTransformer = new FindUncalledOverridingMethodsTransformer(appUncalledMethods);
+		Transform transform = new Transform("jtp.FindUncalledOverridingMethodsTransformer", findUncalledOverridingMethodsTransformer);
+		PackManager.v().getPack("jtp").add(transform);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		sootArgs.add("-process-dir"); 
+		sootArgs.add(CLASSPATH);
+		
+		sootArgs.add("-O");
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void findUncalledMethods(){
+		
+		findUncalledMethodsTransformer = new FindUncalledMethodsTransformer();
+		Transform transform = new Transform("jtp.FindUncalledMethodsTransformer", findUncalledMethodsTransformer);
+		PackManager.v().getPack("jtp").add(transform);
+		
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+
+	private void findEntryPoints() {
+
+		findEntryPointsTransformer = new FindEntryPointsTransformer();
+		Transform transform = new Transform("jtp.FindEntryPointsTransformer", findEntryPointsTransformer);
+		PackManager.v().getPack("jtp").add(transform);
+
+				
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+
+	private void buildAPISubGraph() {
+		
+		Log.dumpln(LOG, "building API sub-graph...");
+
+		apiSubGraphTransformer = new APISubGraphTransformer();
+		Transform transform = new Transform("jtp.APISubGraphTransformer", apiSubGraphTransformer);
+		PackManager.v().getPack("jtp").add(transform);
+				
+		List<String> sootArgs = new ArrayList<String>();
+		
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+		
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+		
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+		
+		String[] soot_args = new String[sootArgs.size()];
+		for(int i=0;i<sootArgs.size();i++){
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	public void simpleAPILookup() {
+
+		Log.dumpln(LOG, "looking up APIs...");
+
+		APILookupTransformer apiLookupTransformer = new APILookupTransformer();
+		Transform transform = new Transform("jtp.APILookupTransformer",	apiLookupTransformer);
+		PackManager.v().getPack("jtp").add(transform);
+
+		List<String> sootArgs = new ArrayList<String>();
+
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		String[] soot_args = new String[sootArgs.size()];
+		for (int i = 0; i < sootArgs.size(); i++) {
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+
+		/*
+		LinkedHashMap<String, List<String>> methodToAPIs = apiLookupTransformer.getMethodToAPIs();
+
+		Set<String> keySet = methodToAPIs.keySet();
+		Iterator<String> iter = keySet.iterator();
+		while (iter.hasNext()) {
+			String method = iter.next();
+			List<String> apis = methodToAPIs.get(method);
+			
+			Log.dumpln(LOG, method + " calls APIs: ");
+			for (String api : apis) {
+				
+				Log.dumpln(LOG, api);
+			}
+			Log.dumpln(LOG);
+		}
+		*/
+		System.out.println("Average API-Call Count (per Method): " + apiLookupTransformer.getAverageAPICallCount());
+	}	
+	
+	private void findNaiveEntryPoints() {
+
+		m_OnCreateTransformer = new OnCreateTransformer();
+		Transform transform1 = new Transform("jtp.OnCreateTransform",
+				m_OnCreateTransformer);
+		PackManager.v().getPack("jtp").add(transform1);
+
+				
+		List<String> sootArgs = new ArrayList<String>();
+
+		sootArgs.add("-output-format");
+		sootArgs.add("J");
+
+		sootArgs.add("-soot-class-path");
+		sootArgs.add(CLASSPATH + ":" + getLibs());
+
+		sootArgs.add("-process-dir");
+		sootArgs.add(CLASSPATH);
+
+		sootArgs.add("-output-dir");
+		sootArgs.add(OUTPUT);
+
+		String[] soot_args = new String[sootArgs.size()];
+		for (int i = 0; i < sootArgs.size(); i++) {
+			soot_args[i] = sootArgs.get(i);
+		}
+
+		soot.Main.main(soot_args);
+	}
+	
+	private void findFiles(String sDir, List<File> fileList){
+		File[] faFiles = new File(sDir).listFiles();
+		for(File file: faFiles){
+			//if(file.getName().matches("^(.*?)")){
+			if(file.getName().contains(".class")){
+				//System.out.println(file.getAbsolutePath());
+				fileList.add(file);
+			}
+			if(file.isDirectory()){
+				findFiles(file.getAbsolutePath(), fileList);
+			}
+		}
+	}
+	
+	
+}
