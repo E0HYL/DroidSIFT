@@ -2,7 +2,7 @@
 
 Download from [Bitbucket](https://bitbucket.org/muzhang/droidsift/src/master/).
 
-Other links: [Slides](https://drive.google.com/file/d/1uMi0ERYhXInfoJSQgnMOKzPaZCQFDIt1/view), [a branch-out from DroidSIFT for Third party lib Diff Analysis](https://github.com/yijiufly/thirdPartyLibAnalysis)
+Other links: [PDF](https://www.cs.ucr.edu/~heng/pubs/Zhang-DroidSIFT-CCS14.pdf), [Slides](https://drive.google.com/file/d/1uMi0ERYhXInfoJSQgnMOKzPaZCQFDIt1/view), [(Github) A branch-out from DroidSIFT for Third party lib Diff Analysis](https://github.com/yijiufly/thirdPartyLibAnalysis), [Homepage of the first author](https://sites.google.com/site/muzhang82/), [Homepage of the third author (also DroidScope)](https://www.cs.ucr.edu/~heng/software.html)
 
 What is DroidSIFT?
 ==================
