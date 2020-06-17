@@ -13,7 +13,9 @@ Compilation & Installation
 ===========
 
 
-~~~
+~~~shell
+$ cd DroidSIFT
+$ chmod -R a+x .
 $ ./compile.sh
 ~~~
 
@@ -21,16 +23,16 @@ $ ./compile.sh
 Run
 =====
 
-~~~
+~~~shell
 $ ./api-graph.sh <file_basename> <temp_dir_for_processing> <input_dir> <file_extension> <android_api_level>
 ~~~
 
-For example, you can generate API Dependency Graphs for an app named GPSLogger.apk with Android v4.2 (API level 17).
-~~~
-$ ./api-graph.sh GPSLogger GPSLoggerdir ~/apks .apk 17
+For example, you can generate API Dependency Graphs for ./ apktest/test.apk with Android v4.2 (API level 17).
+~~~shell
+$ ./api-graph.sh test testLogger apktest .apk 17
 ~~~
 
-Publication
+Related Publication
 ===========
 Mu Zhang, Yue Duan, Qian Feng and Heng Yin, "Towards Automatic Generation of Security-Centric Descriptions for Android Apps", appeared in Proceedings of the 22nd ACM Conference on Computer and Communications Security (**CCS'15**), Denver, Colorado, October 2015.
 
