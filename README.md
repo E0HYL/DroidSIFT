@@ -14,8 +14,7 @@ Compilation & Installation
 
 
 ~~~shell
-$ cd DroidSIFT
-$ chmod -R a+x .
+$ cd DroidSIFT # $ chmod -R a+x .
 $ ./compile.sh
 ~~~
 

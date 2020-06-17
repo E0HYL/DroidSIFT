@@ -20,5 +20,5 @@ cd ..
 echo "Installing..."
 mv src/mySoot/*.class bin/mySoot/
 mv src/mySoot/util/*.class bin/mySoot/util/
-mv src/mySoot/preprocessor/*.class bin/mySoot/preprocessor/
+cp src/mySoot/preprocessor/*.class bin/mySoot/preprocessor/
 
