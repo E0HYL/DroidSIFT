@@ -1,0 +1,33 @@
+public final class com.ophone.MiniPlayer.R$layout extends java.lang.Object
+{
+    public static final int baseline_1;
+    public static final int feeds;
+    public static final int feeds_list;
+    public static final int fullscreen_loading_indicator;
+    public static final int griditem;
+    public static final int item_menu;
+    public static final int login;
+    public static final int main;
+    public static final int main1;
+    public static final int my_photo_selector;
+    public static final int onlinesongs;
+    public static final int onlinesongs_list;
+    public static final int playing;
+    public static final int playlistfilename;
+    public static final int playlistsongs;
+    public static final int playlistsongs_list;
+    public static final int playwithlyric;
+    public static final int popwindow;
+    public static final int search;
+    public static final int songs;
+    public static final int songs_list;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$layout r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$layout;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

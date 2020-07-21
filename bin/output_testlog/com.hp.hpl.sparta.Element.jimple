@@ -1,0 +1,1016 @@
+public class com.hp.hpl.sparta.Element extends com.hp.hpl.sparta.Node
+{
+    private static final boolean DEBUG;
+    private java.util.Vector attributeNames_;
+    private java.util.Hashtable attributes_;
+    private com.hp.hpl.sparta.Node firstChild_;
+    private com.hp.hpl.sparta.Node lastChild_;
+    private java.lang.String tagName_;
+
+    void <init>()
+    {
+        com.hp.hpl.sparta.Element r0;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        specialinvoke r0.<com.hp.hpl.sparta.Node: void <init>()>();
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_> = null;
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_> = null;
+        r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_> = null;
+        r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_> = null;
+        r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_> = null;
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1, $r2;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<com.hp.hpl.sparta.Node: void <init>()>();
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_> = null;
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_> = null;
+        r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_> = null;
+        r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_> = null;
+        r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_> = null;
+        $r2 = staticinvoke <com.hp.hpl.sparta.Sparta: java.lang.String intern(java.lang.String)>(r1);
+        r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_> = $r2;
+        return;
+    }
+
+    private void checkInvariant()
+    {
+        com.hp.hpl.sparta.Element r0;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        return;
+    }
+
+    private boolean removeChildNoChecking(com.hp.hpl.sparta.Node)
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Node r1, r2, $r3, $r4, $r5, $r6;
+        boolean $z0;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Node;
+        r2 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label0:
+        if r2 != null goto label1;
+
+        return 0;
+
+     label1:
+        $z0 = virtualinvoke r2.<java.lang.Object: boolean equals(java.lang.Object)>(r1);
+        if $z0 == 0 goto label4;
+
+        $r3 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+        if $r3 != r2 goto label2;
+
+        $r4 = virtualinvoke r2.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_> = $r4;
+
+     label2:
+        $r5 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_>;
+        if $r5 != r2 goto label3;
+
+        $r6 = virtualinvoke r2.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getPreviousSibling()>();
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_> = $r6;
+
+     label3:
+        virtualinvoke r2.<com.hp.hpl.sparta.Node: void removeFromLinkedList()>();
+        virtualinvoke r2.<com.hp.hpl.sparta.Node: void setParentNode(com.hp.hpl.sparta.Element)>(null);
+        virtualinvoke r2.<com.hp.hpl.sparta.Node: void setOwnerDocument(com.hp.hpl.sparta.Document)>(null);
+        return 1;
+
+     label4:
+        r2 = virtualinvoke r2.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label0;
+    }
+
+    private void replaceChild_(com.hp.hpl.sparta.Node, com.hp.hpl.sparta.Node) throws com.hp.hpl.sparta.DOMException
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Node r1, r2, r3, $r11, $r12;
+        java.lang.StringBuffer $r4, $r6, $r7, $r8, $r9;
+        com.hp.hpl.sparta.DOMException $r5;
+        java.lang.String $r10;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Node;
+        r2 := @parameter1: com.hp.hpl.sparta.Node;
+        r3 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label0:
+        if r3 != null goto label1;
+
+        $r5 = new com.hp.hpl.sparta.DOMException;
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r6 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("Cannot find ");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r2);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" in ");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r0);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke $r5.<com.hp.hpl.sparta.DOMException: void <init>(short,java.lang.String)>(8, $r10);
+        throw $r5;
+
+     label1:
+        if r3 != r2 goto label4;
+
+        $r11 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+        if $r11 != r2 goto label2;
+
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_> = r1;
+
+     label2:
+        $r12 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_>;
+        if $r12 != r2 goto label3;
+
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_> = r1;
+
+     label3:
+        virtualinvoke r2.<com.hp.hpl.sparta.Node: void replaceInLinkedList(com.hp.hpl.sparta.Node)>(r1);
+        virtualinvoke r1.<com.hp.hpl.sparta.Node: void setParentNode(com.hp.hpl.sparta.Element)>(r0);
+        virtualinvoke r2.<com.hp.hpl.sparta.Node: void setParentNode(com.hp.hpl.sparta.Element)>(null);
+        return;
+
+     label4:
+        r3 = virtualinvoke r3.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label0;
+    }
+
+    private com.hp.hpl.sparta.XPathVisitor visitor(java.lang.String, boolean) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1, r4, $r10;
+        boolean z0, $z1;
+        java.lang.StringBuffer $r2, $r6, $r7, $r8, $r9;
+        com.hp.hpl.sparta.xpath.XPath r3;
+        com.hp.hpl.sparta.xpath.XPathException $r5;
+        com.hp.hpl.sparta.XPathVisitor $r11;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        z0 := @parameter1: boolean;
+        r3 = staticinvoke <com.hp.hpl.sparta.xpath.XPath: com.hp.hpl.sparta.xpath.XPath get(java.lang.String)>(r1);
+        $z1 = virtualinvoke r3.<com.hp.hpl.sparta.xpath.XPath: boolean isStringValue()>();
+        if $z1 == z0 goto label2;
+
+        if z0 == 0 goto label1;
+
+        r4 = "evaluates to element not string";
+
+     label0:
+        $r5 = new com.hp.hpl.sparta.xpath.XPathException;
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        $r6 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\"");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r3);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\" evaluates to ");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r4);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke $r5.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String)>(r3, $r10);
+        throw $r5;
+
+     label1:
+        r4 = "evaluates to string not element";
+        goto label0;
+
+     label2:
+        $r11 = new com.hp.hpl.sparta.XPathVisitor;
+        specialinvoke $r11.<com.hp.hpl.sparta.XPathVisitor: void <init>(com.hp.hpl.sparta.Element,com.hp.hpl.sparta.xpath.XPath)>(r0, r3);
+        return $r11;
+    }
+
+    public void appendChild(com.hp.hpl.sparta.Node)
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Node r1, r3;
+        boolean $z0;
+        java.lang.Object $r2;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Node;
+        $z0 = virtualinvoke r0.<com.hp.hpl.sparta.Element: boolean canHaveAsDescendent(com.hp.hpl.sparta.Node)>(r1);
+        if $z0 != 0 goto label1;
+
+        $r2 = virtualinvoke r1.<com.hp.hpl.sparta.Node: java.lang.Object clone()>();
+        r3 = (com.hp.hpl.sparta.Element) $r2;
+
+     label0:
+        virtualinvoke r0.<com.hp.hpl.sparta.Element: void appendChildNoChecking(com.hp.hpl.sparta.Node)>(r3);
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+
+     label1:
+        r3 = r1;
+        goto label0;
+    }
+
+    void appendChildNoChecking(com.hp.hpl.sparta.Node)
+    {
+        com.hp.hpl.sparta.Element r0, r2;
+        com.hp.hpl.sparta.Node r1, $r3, $r4;
+        com.hp.hpl.sparta.Document $r5;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Node;
+        r2 = virtualinvoke r1.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Element getParentNode()>();
+        if r2 == null goto label0;
+
+        specialinvoke r2.<com.hp.hpl.sparta.Element: boolean removeChildNoChecking(com.hp.hpl.sparta.Node)>(r1);
+
+     label0:
+        $r3 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_>;
+        virtualinvoke r1.<com.hp.hpl.sparta.Node: void insertAtEndOfLinkedList(com.hp.hpl.sparta.Node)>($r3);
+        $r4 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+        if $r4 != null goto label1;
+
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_> = r1;
+
+     label1:
+        virtualinvoke r1.<com.hp.hpl.sparta.Node: void setParentNode(com.hp.hpl.sparta.Element)>(r0);
+        r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_> = r1;
+        $r5 = virtualinvoke r0.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Document getOwnerDocument()>();
+        virtualinvoke r1.<com.hp.hpl.sparta.Node: void setOwnerDocument(com.hp.hpl.sparta.Document)>($r5);
+        return;
+    }
+
+    boolean canHaveAsDescendent(com.hp.hpl.sparta.Node)
+    {
+        com.hp.hpl.sparta.Element r0, r2;
+        com.hp.hpl.sparta.Node r1;
+        boolean $z0;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Node;
+        if r1 != r0 goto label0;
+
+        return 0;
+
+     label0:
+        r2 = virtualinvoke r0.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Element getParentNode()>();
+        if r2 != null goto label1;
+
+        return 1;
+
+     label1:
+        $z0 = virtualinvoke r2.<com.hp.hpl.sparta.Element: boolean canHaveAsDescendent(com.hp.hpl.sparta.Node)>(r1);
+        return $z0;
+    }
+
+    public java.lang.Object clone()
+    {
+        com.hp.hpl.sparta.Element r0, $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r1 = virtualinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Element cloneElement(boolean)>(1);
+        return $r1;
+    }
+
+    public com.hp.hpl.sparta.Element cloneElement(boolean)
+    {
+        com.hp.hpl.sparta.Element r0, r1;
+        boolean z0, $z1;
+        java.util.Enumeration r2;
+        java.lang.String r3, $r4, $r11;
+        java.util.Vector $r5, $r6;
+        com.hp.hpl.sparta.Node r7, $r13;
+        java.lang.Object $r8, $r10, $r12;
+        java.util.Hashtable $r9;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        z0 := @parameter0: boolean;
+        r1 = new com.hp.hpl.sparta.Element;
+        $r4 = r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        specialinvoke r1.<com.hp.hpl.sparta.Element: void <init>(java.lang.String)>($r4);
+        $r5 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        if $r5 == null goto label1;
+
+        $r6 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        r2 = virtualinvoke $r6.<java.util.Vector: java.util.Enumeration elements()>();
+
+     label0:
+        $z1 = interfaceinvoke r2.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z1 != 0 goto label4;
+
+     label1:
+        if z0 == 0 goto label3;
+
+        r7 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label2:
+        if r7 != null goto label5;
+
+     label3:
+        return r1;
+
+     label4:
+        $r8 = interfaceinvoke r2.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r3 = (java.lang.String) $r8;
+        $r9 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r10 = virtualinvoke $r9.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r3);
+        $r11 = (java.lang.String) $r10;
+        virtualinvoke r1.<com.hp.hpl.sparta.Element: void setAttribute(java.lang.String,java.lang.String)>(r3, $r11);
+        goto label0;
+
+     label5:
+        $r12 = virtualinvoke r7.<com.hp.hpl.sparta.Node: java.lang.Object clone()>();
+        $r13 = (com.hp.hpl.sparta.Node) $r12;
+        virtualinvoke r1.<com.hp.hpl.sparta.Element: void appendChild(com.hp.hpl.sparta.Node)>($r13);
+        r7 = virtualinvoke r7.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label2;
+    }
+
+    public com.hp.hpl.sparta.Element cloneShallow()
+    {
+        com.hp.hpl.sparta.Element r0, $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r1 = virtualinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Element cloneElement(boolean)>(0);
+        return $r1;
+    }
+
+    protected int computeHashCode()
+    {
+        com.hp.hpl.sparta.Element r0;
+        int i0, i1, i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        java.util.Enumeration r1;
+        java.lang.String r2, $r3, $r10;
+        java.util.Hashtable $r4, $r5, $r8;
+        boolean $z0;
+        com.hp.hpl.sparta.Node r6;
+        java.lang.Object $r7, $r9;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r3 = r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        i0 = virtualinvoke $r3.<java.lang.String: int hashCode()>();
+        $r4 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r4 == null goto label1;
+
+        $r5 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        r1 = virtualinvoke $r5.<java.util.Hashtable: java.util.Enumeration keys()>();
+        i1 = i0;
+
+     label0:
+        $z0 = interfaceinvoke r1.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z0 != 0 goto label3;
+
+        i0 = i1;
+
+     label1:
+        i2 = i0;
+        r6 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label2:
+        if r6 != null goto label4;
+
+        return i2;
+
+     label3:
+        $r7 = interfaceinvoke r1.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r2 = (java.lang.String) $r7;
+        $i3 = virtualinvoke r2.<java.lang.String: int hashCode()>();
+        $i4 = i1 * 31;
+        $i5 = $i3 + $i4;
+        $i6 = $i5 * 31;
+        $r8 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r9 = virtualinvoke $r8.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r2);
+        $r10 = (java.lang.String) $r9;
+        $i7 = virtualinvoke $r10.<java.lang.String: int hashCode()>();
+        i1 = $i6 + $i7;
+        goto label0;
+
+     label4:
+        $i8 = i2 * 31;
+        $i9 = virtualinvoke r6.<com.hp.hpl.sparta.Node: int hashCode()>();
+        i2 = $i8 + $i9;
+        r6 = virtualinvoke r6.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label2;
+    }
+
+    public boolean equals(java.lang.Object)
+    {
+        com.hp.hpl.sparta.Element r0, r2;
+        java.lang.Object r1, $r14, $r17, $r20;
+        int i0, i1;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.lang.String $r3, $r4, r15, $r18, $r21;
+        java.util.Hashtable $r5, $r6, $r7, $r8, $r9, $r10, $r16, $r19;
+        java.util.Enumeration r11;
+        com.hp.hpl.sparta.Node r12, r13;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.Object;
+        if r0 != r1 goto label0;
+
+        return 1;
+
+     label0:
+        $z0 = r1 instanceof com.hp.hpl.sparta.Element;
+        if $z0 != 0 goto label1;
+
+        return 0;
+
+     label1:
+        r2 = (com.hp.hpl.sparta.Element) r1;
+        $r3 = r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        $r4 = r2.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        $z1 = virtualinvoke $r3.<java.lang.String: boolean equals(java.lang.Object)>($r4);
+        if $z1 != 0 goto label2;
+
+        return 0;
+
+     label2:
+        $r5 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r5 != null goto label5;
+
+        i0 = 0;
+
+     label3:
+        $r6 = r2.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r6 != null goto label6;
+
+        i1 = 0;
+
+     label4:
+        if i0 == i1 goto label7;
+
+        return 0;
+
+     label5:
+        $r7 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        i0 = virtualinvoke $r7.<java.util.Hashtable: int size()>();
+        goto label3;
+
+     label6:
+        $r8 = r2.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        i1 = virtualinvoke $r8.<java.util.Hashtable: int size()>();
+        goto label4;
+
+     label7:
+        $r9 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r9 == null goto label9;
+
+        $r10 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        r11 = virtualinvoke $r10.<java.util.Hashtable: java.util.Enumeration keys()>();
+
+     label8:
+        $z2 = interfaceinvoke r11.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z2 != 0 goto label11;
+
+     label9:
+        r12 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+        r13 = r2.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label10:
+        if r12 != null goto label12;
+
+        return 1;
+
+     label11:
+        $r14 = interfaceinvoke r11.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r15 = (java.lang.String) $r14;
+        $r16 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r17 = virtualinvoke $r16.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r15);
+        $r18 = (java.lang.String) $r17;
+        $r19 = r2.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r20 = virtualinvoke $r19.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r15);
+        $r21 = (java.lang.String) $r20;
+        $z3 = virtualinvoke $r18.<java.lang.String: boolean equals(java.lang.Object)>($r21);
+        if $z3 != 0 goto label8;
+
+        return 0;
+
+     label12:
+        $z4 = virtualinvoke r12.<java.lang.Object: boolean equals(java.lang.Object)>(r13);
+        if $z4 != 0 goto label13;
+
+        return 0;
+
+     label13:
+        r12 = virtualinvoke r12.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        r13 = virtualinvoke r13.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label10;
+    }
+
+    public java.lang.String getAttribute(java.lang.String)
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1, $r5;
+        java.util.Hashtable $r2, $r3;
+        java.lang.Object $r4;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        $r2 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r2 != null goto label0;
+
+        return null;
+
+     label0:
+        $r3 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r4 = virtualinvoke $r3.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r1);
+        $r5 = (java.lang.String) $r4;
+        return $r5;
+    }
+
+    public java.util.Enumeration getAttributeNames()
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.util.Vector $r1, $r3;
+        java.util.Enumeration $r2, $r4;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r1 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        if $r1 != null goto label0;
+
+        $r2 = <com.hp.hpl.sparta.Document: java.util.Enumeration EMPTY>;
+        return $r2;
+
+     label0:
+        $r3 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        $r4 = virtualinvoke $r3.<java.util.Vector: java.util.Enumeration elements()>();
+        return $r4;
+    }
+
+    public com.hp.hpl.sparta.Node getFirstChild()
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Node $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r1 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+        return $r1;
+    }
+
+    public com.hp.hpl.sparta.Node getLastChild()
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Node $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r1 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node lastChild_>;
+        return $r1;
+    }
+
+    public java.lang.String getTagName()
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        $r1 = r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        return $r1;
+    }
+
+    public void removeAttribute(java.lang.String)
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1;
+        java.util.Hashtable $r2, $r3;
+        java.util.Vector $r5;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        $r2 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r2 != null goto label0;
+
+        return;
+
+     label0:
+        $r3 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        virtualinvoke $r3.<java.util.Hashtable: java.lang.Object remove(java.lang.Object)>(r1);
+        $r5 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        virtualinvoke $r5.<java.util.Vector: boolean removeElement(java.lang.Object)>(r1);
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+    }
+
+    public void removeChild(com.hp.hpl.sparta.Node) throws com.hp.hpl.sparta.DOMException
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Node r1;
+        java.lang.StringBuffer $r2, $r4, $r5, $r6, $r7;
+        boolean $z0;
+        com.hp.hpl.sparta.DOMException $r3;
+        java.lang.String $r8;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Node;
+        $z0 = specialinvoke r0.<com.hp.hpl.sparta.Element: boolean removeChildNoChecking(com.hp.hpl.sparta.Node)>(r1);
+        if $z0 != 0 goto label0;
+
+        $r3 = new com.hp.hpl.sparta.DOMException;
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("Cannot find ");
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r1);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" in ");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r0);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke $r3.<com.hp.hpl.sparta.DOMException: void <init>(short,java.lang.String)>(8, $r8);
+        throw $r3;
+
+     label0:
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+    }
+
+    public void replaceChild(com.hp.hpl.sparta.Element, com.hp.hpl.sparta.Node) throws com.hp.hpl.sparta.DOMException
+    {
+        com.hp.hpl.sparta.Element r0, r1;
+        com.hp.hpl.sparta.Node r2;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Element;
+        r2 := @parameter1: com.hp.hpl.sparta.Node;
+        specialinvoke r0.<com.hp.hpl.sparta.Element: void replaceChild_(com.hp.hpl.sparta.Node,com.hp.hpl.sparta.Node)>(r1, r2);
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+    }
+
+    public void replaceChild(com.hp.hpl.sparta.Text, com.hp.hpl.sparta.Node) throws com.hp.hpl.sparta.DOMException
+    {
+        com.hp.hpl.sparta.Element r0;
+        com.hp.hpl.sparta.Text r1;
+        com.hp.hpl.sparta.Node r2;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: com.hp.hpl.sparta.Text;
+        r2 := @parameter1: com.hp.hpl.sparta.Node;
+        specialinvoke r0.<com.hp.hpl.sparta.Element: void replaceChild_(com.hp.hpl.sparta.Node,com.hp.hpl.sparta.Node)>(r1, r2);
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+    }
+
+    public void setAttribute(java.lang.String, java.lang.String)
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1, r2;
+        java.util.Hashtable $r3, $r4, $r6, $r9;
+        java.util.Vector $r5, $r8;
+        java.lang.Object $r7;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        $r4 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        if $r4 != null goto label0;
+
+        $r3 = new java.util.Hashtable;
+        specialinvoke $r3.<java.util.Hashtable: void <init>()>();
+        r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_> = $r3;
+        $r5 = new java.util.Vector;
+        specialinvoke $r5.<java.util.Vector: void <init>()>();
+        r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_> = $r5;
+
+     label0:
+        $r6 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r7 = virtualinvoke $r6.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r1);
+        if $r7 != null goto label1;
+
+        $r8 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        virtualinvoke $r8.<java.util.Vector: void addElement(java.lang.Object)>(r1);
+
+     label1:
+        $r9 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        virtualinvoke $r9.<java.util.Hashtable: java.lang.Object put(java.lang.Object,java.lang.Object)>(r1, r2);
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+    }
+
+    public void setTagName(java.lang.String)
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1, $r2;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        $r2 = staticinvoke <com.hp.hpl.sparta.Sparta: java.lang.String intern(java.lang.String)>(r1);
+        r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_> = $r2;
+        virtualinvoke r0.<com.hp.hpl.sparta.Node: void notifyObservers()>();
+        return;
+    }
+
+    void toString(java.io.Writer) throws java.io.IOException
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.io.Writer r1;
+        com.hp.hpl.sparta.Node r2;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.io.Writer;
+        r2 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label0:
+        if r2 != null goto label1;
+
+        return;
+
+     label1:
+        virtualinvoke r2.<com.hp.hpl.sparta.Node: void toString(java.io.Writer)>(r1);
+        r2 = virtualinvoke r2.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label0;
+    }
+
+    public void toXml(java.io.Writer) throws java.io.IOException
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.io.Writer r1;
+        java.lang.StringBuffer $r2, $r5, $r6, $r8, $r17, $r18, $r19, $r22, $r23, $r25, $r26;
+        java.util.Enumeration r3;
+        java.lang.String r4, $r7, $r9, $r16, $r20, $r24, $r27;
+        java.util.Vector $r10, $r11;
+        boolean $z0;
+        com.hp.hpl.sparta.Node $r12, r21;
+        java.lang.Object $r13, $r15;
+        java.util.Hashtable $r14;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.io.Writer;
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        $r6 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("<");
+        $r7 = r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        $r8 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r7);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke r1.<java.io.Writer: void write(java.lang.String)>($r9);
+        $r10 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        if $r10 == null goto label1;
+
+        $r11 = r0.<com.hp.hpl.sparta.Element: java.util.Vector attributeNames_>;
+        r3 = virtualinvoke $r11.<java.util.Vector: java.util.Enumeration elements()>();
+
+     label0:
+        $z0 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z0 != 0 goto label2;
+
+     label1:
+        $r12 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+        if $r12 != null goto label3;
+
+        virtualinvoke r1.<java.io.Writer: void write(java.lang.String)>("/>");
+        return;
+
+     label2:
+        $r13 = interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r4 = (java.lang.String) $r13;
+        $r14 = r0.<com.hp.hpl.sparta.Element: java.util.Hashtable attributes_>;
+        $r15 = virtualinvoke $r14.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r4);
+        $r16 = (java.lang.String) $r15;
+        $r5 = new java.lang.StringBuffer;
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>()>();
+        $r17 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" ");
+        $r18 = virtualinvoke $r17.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r4);
+        $r19 = virtualinvoke $r18.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("=\"");
+        $r20 = virtualinvoke $r19.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke r1.<java.io.Writer: void write(java.lang.String)>($r20);
+        staticinvoke <com.hp.hpl.sparta.Node: void htmlEncode(java.io.Writer,java.lang.String)>(r1, $r16);
+        virtualinvoke r1.<java.io.Writer: void write(java.lang.String)>("\"");
+        goto label0;
+
+     label3:
+        virtualinvoke r1.<java.io.Writer: void write(java.lang.String)>(">");
+        r21 = r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node firstChild_>;
+
+     label4:
+        if r21 != null goto label5;
+
+        $r22 = new java.lang.StringBuffer;
+        specialinvoke $r22.<java.lang.StringBuffer: void <init>()>();
+        $r23 = virtualinvoke $r22.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("</");
+        $r24 = r0.<com.hp.hpl.sparta.Element: java.lang.String tagName_>;
+        $r25 = virtualinvoke $r23.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r24);
+        $r26 = virtualinvoke $r25.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(">");
+        $r27 = virtualinvoke $r26.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke r1.<java.io.Writer: void write(java.lang.String)>($r27);
+        return;
+
+     label5:
+        virtualinvoke r21.<com.hp.hpl.sparta.Node: void toXml(java.io.Writer)>(r1);
+        r21 = virtualinvoke r21.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Node getNextSibling()>();
+        goto label4;
+    }
+
+    public boolean xpathEnsure(java.lang.String) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Element r0, $r4, r9, $r10, r17;
+        java.lang.String r1, $r15, r16;
+        int i0, i1, $i2, $i3, $i4;
+        com.hp.hpl.sparta.xpath.XPath r2, $r14;
+        java.util.Enumeration r3, r6;
+        boolean $z0, $z1;
+        com.hp.hpl.sparta.xpath.Step[] r5;
+        java.lang.Object $r7, $r12;
+        com.hp.hpl.sparta.xpath.Step r8, $r13;
+        com.hp.hpl.sparta.xpath.XPathException $r18, r19;
+        com.hp.hpl.sparta.ParseException $r20;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+        i0 = 0;
+
+     label0:
+        $r4 = virtualinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Element xpathSelectElement(java.lang.String)>(r1);
+        if $r4 == null goto label2;
+
+     label1:
+        return 0;
+
+     label2:
+        r2 = staticinvoke <com.hp.hpl.sparta.xpath.XPath: com.hp.hpl.sparta.xpath.XPath get(java.lang.String)>(r1);
+        r3 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.XPath: java.util.Enumeration getSteps()>();
+
+     label3:
+        i1 = 0;
+
+     label4:
+        $z0 = interfaceinvoke r3.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z0 != 0 goto label9;
+
+        $i2 = i1 - 1;
+        r5 = newarray (com.hp.hpl.sparta.xpath.Step)[$i2];
+        r6 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.XPath: java.util.Enumeration getSteps()>();
+
+     label5:
+        $i3 = lengthof r5;
+        if i0 < $i3 goto label11;
+
+        $r7 = interfaceinvoke r6.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r8 = (com.hp.hpl.sparta.xpath.Step) $r7;
+        $i4 = lengthof r5;
+        if $i4 != 0 goto label13;
+
+     label6:
+        r9 = r0;
+
+     label7:
+        $r10 = virtualinvoke r0.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Element makeMatching(com.hp.hpl.sparta.Element,com.hp.hpl.sparta.xpath.Step,java.lang.String)>(r9, r8, r1);
+        virtualinvoke r9.<com.hp.hpl.sparta.Element: void appendChildNoChecking(com.hp.hpl.sparta.Node)>($r10);
+
+     label8:
+        return 1;
+
+     label9:
+        interfaceinvoke r3.<java.util.Enumeration: java.lang.Object nextElement()>();
+
+     label10:
+        i1 = i1 + 1;
+        goto label4;
+
+     label11:
+        $r12 = interfaceinvoke r6.<java.util.Enumeration: java.lang.Object nextElement()>();
+        $r13 = (com.hp.hpl.sparta.xpath.Step) $r12;
+        r5[i0] = $r13;
+
+     label12:
+        i0 = i0 + 1;
+        goto label5;
+
+     label13:
+        $z1 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.XPath: boolean isAbsolute()>();
+        $r14 = staticinvoke <com.hp.hpl.sparta.xpath.XPath: com.hp.hpl.sparta.xpath.XPath get(boolean,com.hp.hpl.sparta.xpath.Step[])>($z1, r5);
+        $r15 = virtualinvoke $r14.<com.hp.hpl.sparta.xpath.XPath: java.lang.String toString()>();
+        r16 = virtualinvoke $r15.<java.lang.String: java.lang.String toString()>();
+        virtualinvoke r0.<com.hp.hpl.sparta.Element: boolean xpathEnsure(java.lang.String)>(r16);
+        r17 = virtualinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Element xpathSelectElement(java.lang.String)>($r15);
+
+     label14:
+        r9 = r17;
+        goto label7;
+
+     label15:
+        $r18 := @caughtexception;
+        r19 = $r18;
+        $r20 = new com.hp.hpl.sparta.ParseException;
+        specialinvoke $r20.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,java.lang.Throwable)>(r1, r19);
+        throw $r20;
+
+        catch com.hp.hpl.sparta.xpath.XPathException from label0 to label1 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label2 to label3 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label4 to label5 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label5 to label6 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label7 to label8 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label9 to label10 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label11 to label12 with label15;
+        catch com.hp.hpl.sparta.xpath.XPathException from label13 to label14 with label15;
+    }
+
+    public com.hp.hpl.sparta.Element xpathSelectElement(java.lang.String) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Element r0, r3;
+        java.lang.String r1;
+        com.hp.hpl.sparta.XPathVisitor $r2;
+        com.hp.hpl.sparta.xpath.XPathException $r4, r5;
+        com.hp.hpl.sparta.ParseException $r6;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+
+     label0:
+        $r2 = specialinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.XPathVisitor visitor(java.lang.String,boolean)>(r1, 0);
+        r3 = virtualinvoke $r2.<com.hp.hpl.sparta.XPathVisitor: com.hp.hpl.sparta.Element getFirstResultElement()>();
+
+     label1:
+        return r3;
+
+     label2:
+        $r4 := @caughtexception;
+        r5 = $r4;
+        $r6 = new com.hp.hpl.sparta.ParseException;
+        specialinvoke $r6.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,java.lang.Throwable)>("XPath problem", r5);
+        throw $r6;
+
+        catch com.hp.hpl.sparta.xpath.XPathException from label0 to label1 with label2;
+    }
+
+    public java.util.Enumeration xpathSelectElements(java.lang.String) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1;
+        com.hp.hpl.sparta.XPathVisitor $r2;
+        java.util.Enumeration r3;
+        com.hp.hpl.sparta.xpath.XPathException $r4, r5;
+        com.hp.hpl.sparta.ParseException $r6;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+
+     label0:
+        $r2 = specialinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.XPathVisitor visitor(java.lang.String,boolean)>(r1, 0);
+        r3 = virtualinvoke $r2.<com.hp.hpl.sparta.XPathVisitor: java.util.Enumeration getResultEnumeration()>();
+
+     label1:
+        return r3;
+
+     label2:
+        $r4 := @caughtexception;
+        r5 = $r4;
+        $r6 = new com.hp.hpl.sparta.ParseException;
+        specialinvoke $r6.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,java.lang.Throwable)>("XPath problem", r5);
+        throw $r6;
+
+        catch com.hp.hpl.sparta.xpath.XPathException from label0 to label1 with label2;
+    }
+
+    public java.lang.String xpathSelectString(java.lang.String) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1, r3;
+        com.hp.hpl.sparta.XPathVisitor $r2;
+        com.hp.hpl.sparta.xpath.XPathException $r4, r5;
+        com.hp.hpl.sparta.ParseException $r6;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+
+     label0:
+        $r2 = specialinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.XPathVisitor visitor(java.lang.String,boolean)>(r1, 1);
+        r3 = virtualinvoke $r2.<com.hp.hpl.sparta.XPathVisitor: java.lang.String getFirstResultString()>();
+
+     label1:
+        return r3;
+
+     label2:
+        $r4 := @caughtexception;
+        r5 = $r4;
+        $r6 = new com.hp.hpl.sparta.ParseException;
+        specialinvoke $r6.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,java.lang.Throwable)>("XPath problem", r5);
+        throw $r6;
+
+        catch com.hp.hpl.sparta.xpath.XPathException from label0 to label1 with label2;
+    }
+
+    public java.util.Enumeration xpathSelectStrings(java.lang.String) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Element r0;
+        java.lang.String r1;
+        com.hp.hpl.sparta.XPathVisitor $r2;
+        java.util.Enumeration r3;
+        com.hp.hpl.sparta.xpath.XPathException $r4, r5;
+        com.hp.hpl.sparta.ParseException $r6;
+
+        r0 := @this: com.hp.hpl.sparta.Element;
+        r1 := @parameter0: java.lang.String;
+
+     label0:
+        $r2 = specialinvoke r0.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.XPathVisitor visitor(java.lang.String,boolean)>(r1, 1);
+        r3 = virtualinvoke $r2.<com.hp.hpl.sparta.XPathVisitor: java.util.Enumeration getResultEnumeration()>();
+
+     label1:
+        return r3;
+
+     label2:
+        $r4 := @caughtexception;
+        r5 = $r4;
+        $r6 = new com.hp.hpl.sparta.ParseException;
+        specialinvoke $r6.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,java.lang.Throwable)>("XPath problem", r5);
+        throw $r6;
+
+        catch com.hp.hpl.sparta.xpath.XPathException from label0 to label1 with label2;
+    }
+}

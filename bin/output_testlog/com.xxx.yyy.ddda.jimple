@@ -1,0 +1,141 @@
+public class com.xxx.yyy.ddda extends java.lang.Object
+{
+    private byte[] desKey;
+
+    public void <init>()
+    {
+        com.xxx.yyy.ddda r0;
+
+        r0 := @this: com.xxx.yyy.ddda;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static byte[] convertHexString(java.lang.String)
+    {
+        java.lang.String r0, $r2;
+        byte[] r1;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7;
+        byte $b8;
+
+        r0 := @parameter0: java.lang.String;
+        $i1 = virtualinvoke r0.<java.lang.String: int length()>();
+        $i2 = $i1 / 2;
+        r1 = newarray (byte)[$i2];
+        i0 = 0;
+
+     label0:
+        $i3 = lengthof r1;
+        if i0 < $i3 goto label1;
+
+        return r1;
+
+     label1:
+        $i4 = i0 * 2;
+        $i5 = i0 * 2;
+        $i6 = 2 + $i5;
+        $r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>($i4, $i6);
+        $i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String,int)>($r2, 16);
+        $b8 = (byte) $i7;
+        r1[i0] = $b8;
+        i0 = i0 + 1;
+        goto label0;
+    }
+
+    public static java.lang.String decrypt(java.lang.String, java.lang.String) throws java.lang.Exception
+    {
+        java.lang.String r0, r1, $r4;
+        javax.crypto.spec.DESKeySpec r2;
+        byte[] r3, $r6, $r10, $r11;
+        javax.crypto.Cipher $r5;
+        javax.crypto.SecretKeyFactory $r7;
+        javax.crypto.SecretKey $r8;
+        javax.crypto.spec.IvParameterSpec $r9;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.String;
+        r3 = staticinvoke <com.xxx.yyy.ddda: byte[] convertHexString(java.lang.String)>(r0);
+        $r4 = new java.lang.String;
+        $r5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/CBC/PKCS5Padding");
+        r2 = new javax.crypto.spec.DESKeySpec;
+        $r6 = virtualinvoke r1.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8");
+        specialinvoke r2.<javax.crypto.spec.DESKeySpec: void <init>(byte[])>($r6);
+        $r7 = staticinvoke <javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String)>("DES");
+        $r8 = virtualinvoke $r7.<javax.crypto.SecretKeyFactory: javax.crypto.SecretKey generateSecret(java.security.spec.KeySpec)>(r2);
+        $r9 = new javax.crypto.spec.IvParameterSpec;
+        $r10 = virtualinvoke r1.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8");
+        specialinvoke $r9.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>($r10);
+        virtualinvoke $r5.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(2, $r8, $r9);
+        $r11 = virtualinvoke $r5.<javax.crypto.Cipher: byte[] doFinal(byte[])>(r3);
+        specialinvoke $r4.<java.lang.String: void <init>(byte[])>($r11);
+        return $r4;
+    }
+
+    public static java.lang.String encrypt(java.lang.String, java.lang.String) throws java.lang.Exception
+    {
+        java.lang.String r0, r1, $r11;
+        javax.crypto.spec.DESKeySpec r2;
+        javax.crypto.Cipher $r3;
+        byte[] $r4, $r8, $r9, $r10;
+        javax.crypto.SecretKeyFactory $r5;
+        javax.crypto.SecretKey $r6;
+        javax.crypto.spec.IvParameterSpec $r7;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.String;
+        $r3 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/CBC/PKCS5Padding");
+        r2 = new javax.crypto.spec.DESKeySpec;
+        $r4 = virtualinvoke r1.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8");
+        specialinvoke r2.<javax.crypto.spec.DESKeySpec: void <init>(byte[])>($r4);
+        $r5 = staticinvoke <javax.crypto.SecretKeyFactory: javax.crypto.SecretKeyFactory getInstance(java.lang.String)>("DES");
+        $r6 = virtualinvoke $r5.<javax.crypto.SecretKeyFactory: javax.crypto.SecretKey generateSecret(java.security.spec.KeySpec)>(r2);
+        $r7 = new javax.crypto.spec.IvParameterSpec;
+        $r8 = virtualinvoke r1.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8");
+        specialinvoke $r7.<javax.crypto.spec.IvParameterSpec: void <init>(byte[])>($r8);
+        virtualinvoke $r3.<javax.crypto.Cipher: void init(int,java.security.Key,java.security.spec.AlgorithmParameterSpec)>(1, $r6, $r7);
+        $r9 = virtualinvoke r0.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8");
+        $r10 = virtualinvoke $r3.<javax.crypto.Cipher: byte[] doFinal(byte[])>($r9);
+        $r11 = staticinvoke <com.xxx.yyy.ddda: java.lang.String toHexString(byte[])>($r10);
+        return $r11;
+    }
+
+    public static java.lang.String toHexString(byte[])
+    {
+        byte[] r0;
+        java.lang.StringBuffer r1;
+        int i0, $i1, $i4;
+        java.lang.String r2, $r3;
+        byte $b2;
+        short $s3;
+        java.lang.StringBuilder $r4, $r5;
+
+        r0 := @parameter0: byte[];
+        r1 = new java.lang.StringBuffer;
+        specialinvoke r1.<java.lang.StringBuffer: void <init>()>();
+        i0 = 0;
+
+     label0:
+        $i1 = lengthof r0;
+        if i0 < $i1 goto label1;
+
+        $r3 = virtualinvoke r1.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r3;
+
+     label1:
+        $b2 = r0[i0];
+        $s3 = 255 & $b2;
+        r2 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>($s3);
+        $i4 = virtualinvoke r2.<java.lang.String: int length()>();
+        if $i4 >= 2 goto label2;
+
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("0");
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+        r2 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        i0 = i0 + 1;
+        goto label0;
+    }
+}

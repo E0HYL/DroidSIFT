@@ -1,0 +1,43 @@
+class com.ophone.MiniPlayer.AsyncImageLoader$1 extends android.os.Handler
+{
+    final com.ophone.MiniPlayer.AsyncImageLoader this$0;
+    private final com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback val$imageCallback;
+    private final java.lang.String val$imageUrl;
+
+    void <init>(com.ophone.MiniPlayer.AsyncImageLoader, com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback, java.lang.String)
+    {
+        com.ophone.MiniPlayer.AsyncImageLoader$1 r0;
+        com.ophone.MiniPlayer.AsyncImageLoader r1;
+        com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback r2;
+        java.lang.String r3;
+
+        r0 := @this: com.ophone.MiniPlayer.AsyncImageLoader$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.AsyncImageLoader;
+        r2 := @parameter1: com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback;
+        r3 := @parameter2: java.lang.String;
+        r0.<com.ophone.MiniPlayer.AsyncImageLoader$1: com.ophone.MiniPlayer.AsyncImageLoader this$0> = r1;
+        r0.<com.ophone.MiniPlayer.AsyncImageLoader$1: com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback val$imageCallback> = r2;
+        r0.<com.ophone.MiniPlayer.AsyncImageLoader$1: java.lang.String val$imageUrl> = r3;
+        specialinvoke r0.<android.os.Handler: void <init>()>();
+        return;
+    }
+
+    public void handleMessage(android.os.Message)
+    {
+        com.ophone.MiniPlayer.AsyncImageLoader$1 r0;
+        android.os.Message r1;
+        com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback $r2;
+        java.lang.Object $r3;
+        android.graphics.drawable.Drawable $r4;
+        java.lang.String $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.AsyncImageLoader$1;
+        r1 := @parameter0: android.os.Message;
+        $r2 = r0.<com.ophone.MiniPlayer.AsyncImageLoader$1: com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback val$imageCallback>;
+        $r3 = r1.<android.os.Message: java.lang.Object obj>;
+        $r4 = (android.graphics.drawable.Drawable) $r3;
+        $r5 = r0.<com.ophone.MiniPlayer.AsyncImageLoader$1: java.lang.String val$imageUrl>;
+        interfaceinvoke $r2.<com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback: void imageLoaded(android.graphics.drawable.Drawable,java.lang.String)>($r4, $r5);
+        return;
+    }
+}

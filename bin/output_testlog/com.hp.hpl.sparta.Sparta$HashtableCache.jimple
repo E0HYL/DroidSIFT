@@ -1,0 +1,23 @@
+class com.hp.hpl.sparta.Sparta$HashtableCache extends java.util.Hashtable implements com.hp.hpl.sparta.Sparta$Cache
+{
+
+    private void <init>()
+    {
+        com.hp.hpl.sparta.Sparta$HashtableCache r0;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta$HashtableCache;
+        specialinvoke r0.<java.util.Hashtable: void <init>()>();
+        return;
+    }
+
+    void <init>(com.hp.hpl.sparta.Sparta$1)
+    {
+        com.hp.hpl.sparta.Sparta$HashtableCache r0;
+        com.hp.hpl.sparta.Sparta$1 r1;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta$HashtableCache;
+        r1 := @parameter0: com.hp.hpl.sparta.Sparta$1;
+        specialinvoke r0.<com.hp.hpl.sparta.Sparta$HashtableCache: void <init>()>();
+        return;
+    }
+}

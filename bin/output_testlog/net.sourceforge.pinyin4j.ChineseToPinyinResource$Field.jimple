@@ -1,0 +1,19 @@
+class net.sourceforge.pinyin4j.ChineseToPinyinResource$Field extends java.lang.Object
+{
+    static final java.lang.String COMMA;
+    static final java.lang.String LEFT_BRACKET;
+    static final java.lang.String RIGHT_BRACKET;
+    private final net.sourceforge.pinyin4j.ChineseToPinyinResource this$0;
+
+    void <init>(net.sourceforge.pinyin4j.ChineseToPinyinResource)
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource$Field r0;
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource$Field;
+        r1 := @parameter0: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource$Field: net.sourceforge.pinyin4j.ChineseToPinyinResource this$0> = r1;
+        return;
+    }
+}

@@ -1,0 +1,5 @@
+interface  com.hp.hpl.sparta.DocumentSource extends java.lang.Object implements com.hp.hpl.sparta.ParseSource
+{
+
+    public abstract com.hp.hpl.sparta.Document getDocument();
+}

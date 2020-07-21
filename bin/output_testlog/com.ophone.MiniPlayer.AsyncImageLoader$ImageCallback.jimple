@@ -1,0 +1,5 @@
+public interface  com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback extends java.lang.Object
+{
+
+    public abstract void imageLoaded(android.graphics.drawable.Drawable, java.lang.String);
+}

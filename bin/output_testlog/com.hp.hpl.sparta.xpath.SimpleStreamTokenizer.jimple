@@ -1,0 +1,403 @@
+public class com.hp.hpl.sparta.xpath.SimpleStreamTokenizer extends java.lang.Object
+{
+    private static final int QUOTE;
+    public static final int TT_EOF;
+    public static final int TT_NUMBER;
+    public static final int TT_WORD;
+    private static final int WHITESPACE;
+    private final java.lang.StringBuffer buf_;
+    private final int[] charType_;
+    private char inQuote_;
+    private int nextType_;
+    public int nval;
+    private boolean pushedBack_;
+    private final java.io.Reader reader_;
+    public java.lang.String sval;
+    public int ttype;
+
+    public void <init>(java.io.Reader) throws java.io.IOException
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        java.io.Reader r1;
+        java.lang.StringBuffer $r2;
+        int[] $r3, $r4, $r5, $r6, $r7, $r8;
+        char c0;
+        int $i1, $i3;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        r1 := @parameter0: java.io.Reader;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype> = -2147483648;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nval> = -2147483648;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval> = "";
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_> = $r2;
+        $r3 = newarray (int)[256];
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_> = $r3;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: boolean pushedBack_> = 0;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_> = 0;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.io.Reader reader_> = r1;
+        c0 = 0;
+
+     label0:
+        $r4 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $i1 = lengthof $r4;
+        if c0 < $i1 goto label1;
+
+        virtualinvoke r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        return;
+
+     label1:
+        if 65 > c0 goto label2;
+
+        if c0 <= 90 goto label4;
+
+     label2:
+        if 97 > c0 goto label3;
+
+        if c0 <= 122 goto label4;
+
+     label3:
+        if c0 != 45 goto label6;
+
+     label4:
+        $r5 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $r5[c0] = -3;
+
+     label5:
+        $i3 = c0 + 1;
+        c0 = (char) $i3;
+        goto label0;
+
+     label6:
+        if 48 > c0 goto label7;
+
+        if c0 > 57 goto label7;
+
+        $r6 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $r6[c0] = -2;
+        goto label5;
+
+     label7:
+        if c0 < 0 goto label8;
+
+        if c0 > 32 goto label8;
+
+        $r7 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $r7[c0] = -5;
+        goto label5;
+
+     label8:
+        $r8 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $r8[c0] = c0;
+        goto label5;
+    }
+
+    public int nextToken() throws java.io.IOException
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        boolean z0, z1, $z2, z3;
+        int i0, i1, $i2, $i3, $i9, $i10, $i11, $i12, $i13, i14, $i15, $i17, $i18, $i19;
+        java.io.Reader $r1;
+        char $c4, $c5, $c6, $c7, $c8, $c16, $c20;
+        java.io.IOException $r2;
+        int[] $r3;
+        java.lang.StringBuffer $r4, $r6, $r7, $r9, $r11, $r12, $r14, $r15;
+        java.lang.String $r5, $r8, $r10, $r13;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        $z2 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: boolean pushedBack_>;
+        if $z2 == 0 goto label0;
+
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: boolean pushedBack_> = 0;
+        $i2 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        return $i2;
+
+     label0:
+        $i3 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextType_>;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype> = $i3;
+
+     label1:
+        z0 = 0;
+
+     label2:
+        $r1 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.io.Reader reader_>;
+        i0 = virtualinvoke $r1.<java.io.Reader: int read()>();
+        if i0 != -1 goto label18;
+
+        $c4 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_>;
+        if $c4 == 0 goto label3;
+
+        $r2 = new java.io.IOException;
+        specialinvoke $r2.<java.io.IOException: void <init>(java.lang.String)>("Unterminated quote");
+        throw $r2;
+
+     label3:
+        i1 = -1;
+
+     label4:
+        $c5 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_>;
+        if $c5 != 0 goto label19;
+
+        if i1 != -5 goto label19;
+
+        z1 = 1;
+
+     label5:
+        if z0 != 0 goto label6;
+
+        if z1 == 0 goto label20;
+
+     label6:
+        z0 = 1;
+
+     label7:
+        if z1 != 0 goto label2;
+
+        if i1 == 39 goto label8;
+
+        if i1 != 34 goto label9;
+
+     label8:
+        $c6 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_>;
+        if $c6 != 0 goto label21;
+
+        $c7 = (char) i1;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_> = $c7;
+
+     label9:
+        $c8 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_>;
+        if $c8 == 0 goto label10;
+
+        i1 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_>;
+
+     label10:
+        if z0 != 0 goto label12;
+
+        $i9 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i9 < -1 goto label11;
+
+        $i10 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i10 == 39 goto label11;
+
+        $i11 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i11 != 34 goto label12;
+
+     label11:
+        $i12 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i12 == i1 goto label22;
+
+     label12:
+        z3 = 1;
+
+     label13:
+        if z3 == 0 goto label16;
+
+        $i13 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        lookupswitch($i13)
+        {
+            case -3: goto label23;
+            case -2: goto label25;
+            case 34: goto label24;
+            case 39: goto label24;
+            default: goto label14;
+        };
+
+     label14:
+        if i1 == -5 goto label16;
+
+        if i1 != -6 goto label26;
+
+        i14 = i0;
+
+     label15:
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextType_> = i14;
+
+     label16:
+        lookupswitch(i1)
+        {
+            case -3: goto label27;
+            case -2: goto label27;
+            case 34: goto label27;
+            case 39: goto label27;
+            default: goto label17;
+        };
+
+     label17:
+        if z3 == 0 goto label1;
+
+        $i15 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        return $i15;
+
+     label18:
+        $r3 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        i1 = $r3[i0];
+        goto label4;
+
+     label19:
+        z1 = 0;
+        goto label5;
+
+     label20:
+        z0 = 0;
+        goto label7;
+
+     label21:
+        $c16 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_>;
+        if $c16 != i1 goto label9;
+
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: char inQuote_> = 0;
+        goto label9;
+
+     label22:
+        z3 = 0;
+        goto label13;
+
+     label23:
+        $r4 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.String toString()>();
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval> = $r5;
+        $r6 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        virtualinvoke $r6.<java.lang.StringBuffer: void setLength(int)>(0);
+        goto label14;
+
+     label24:
+        $r7 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.String toString()>();
+        $r9 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        $i17 = virtualinvoke $r9.<java.lang.StringBuffer: int length()>();
+        $i18 = $i17 - 1;
+        $r10 = virtualinvoke $r8.<java.lang.String: java.lang.String substring(int,int)>(1, $i18);
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval> = $r10;
+        $r11 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        virtualinvoke $r11.<java.lang.StringBuffer: void setLength(int)>(0);
+        goto label14;
+
+     label25:
+        $r12 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        $r13 = virtualinvoke $r12.<java.lang.StringBuffer: java.lang.String toString()>();
+        $i19 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r13);
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nval> = $i19;
+        $r14 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        virtualinvoke $r14.<java.lang.StringBuffer: void setLength(int)>(0);
+        goto label14;
+
+     label26:
+        i14 = i1;
+        goto label15;
+
+     label27:
+        $r15 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.StringBuffer buf_>;
+        $c20 = (char) i0;
+        virtualinvoke $r15.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c20);
+        goto label17;
+    }
+
+    public void ordinaryChar(char)
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        char c0;
+        int[] $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        c0 := @parameter0: char;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $r1[c0] = c0;
+        return;
+    }
+
+    public void pushBack()
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: boolean pushedBack_> = 1;
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        int $i0, $i1, $i3;
+        java.lang.StringBuffer $r1, $r2, $r3, $r4, $r7, $r8, $r10, $r11, $r13, $r14, $r16, $r17;
+        char $c2;
+        java.lang.String $r5, $r6, $r9, $r12, $r15, $r18;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        $i0 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        lookupswitch($i0)
+        {
+            case -3: goto label2;
+            case -2: goto label1;
+            case -1: goto label4;
+            case 34: goto label2;
+            case 39: goto label3;
+            default: goto label0;
+        };
+
+     label0:
+        $r1 = new java.lang.StringBuffer;
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>()>();
+        $r2 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'");
+        $i1 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        $c2 = (char) $i1;
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c2);
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'");
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r5;
+
+     label1:
+        $i3 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nval>;
+        $r6 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($i3);
+        return $r6;
+
+     label2:
+        $r7 = new java.lang.StringBuffer;
+        specialinvoke $r7.<java.lang.StringBuffer: void <init>()>();
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\"");
+        $r9 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval>;
+        $r10 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r9);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\"");
+        $r12 = virtualinvoke $r11.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r12;
+
+     label3:
+        $r13 = new java.lang.StringBuffer;
+        specialinvoke $r13.<java.lang.StringBuffer: void <init>()>();
+        $r14 = virtualinvoke $r13.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'");
+        $r15 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval>;
+        $r16 = virtualinvoke $r14.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r15);
+        $r17 = virtualinvoke $r16.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'");
+        $r18 = virtualinvoke $r17.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r18;
+
+     label4:
+        return "(EOF)";
+    }
+
+    public void wordChars(char, char)
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        char c0, c1, c2;
+        int[] $r1;
+        int $i3;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        c0 := @parameter0: char;
+        c1 := @parameter1: char;
+        c2 = c0;
+
+     label0:
+        if c2 <= c1 goto label1;
+
+        return;
+
+     label1:
+        $r1 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int[] charType_>;
+        $r1[c2] = -3;
+        $i3 = c2 + 1;
+        c2 = (char) $i3;
+        goto label0;
+    }
+}

@@ -1,0 +1,139 @@
+public class com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver extends android.content.BroadcastReceiver
+{
+    final com.ophone.MiniPlayer.PlayingListActivity this$0;
+
+    public void <init>(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver r0;
+        com.ophone.MiniPlayer.PlayingListActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver;
+        r1 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0> = r1;
+        specialinvoke r0.<android.content.BroadcastReceiver: void <init>()>();
+        return;
+    }
+
+    static com.ophone.MiniPlayer.PlayingListActivity access$0(com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver r0;
+        com.ophone.MiniPlayer.PlayingListActivity $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        return $r1;
+    }
+
+    public void onReceive(android.content.Context, android.content.Intent)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver r0;
+        android.content.Context r1;
+        android.content.Intent r2;
+        com.ophone.MiniPlayer.PlayingListActivity $r3, $r4, $r7, $r8, $r14, $r16, $r18, $r20, $r21, $r23, $r24, $r26, $r31, $r33, $r35, $r37, $r40;
+        int $i0, $i1, i2, i6, $i8;
+        java.io.Serializable $r5;
+        java.util.ArrayList $r6, $r9, $r15, $r27;
+        java.lang.StringBuilder $r10, $r11, $r28, $r29, $r39, $r41;
+        java.lang.String $r12, $r30, $r42;
+        com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver$1 $r13;
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter $r19, $r22, $r25, $r34, $r38;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: android.content.Intent;
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $i0 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("status", -1);
+        staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: void access$4(com.ophone.MiniPlayer.PlayingListActivity,int)>($r3, $i0);
+        $r4 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r5 = virtualinvoke r2.<android.content.Intent: java.io.Serializable getSerializableExtra(java.lang.String)>("songlist");
+        $r6 = (java.util.ArrayList) $r5;
+        $r4.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist> = $r6;
+        $r7 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $i1 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: int access$5(com.ophone.MiniPlayer.PlayingListActivity)>($r7);
+        lookupswitch($i1)
+        {
+            case 100: goto label4;
+            case 103: goto label3;
+            case 116: goto label2;
+            case 117: goto label5;
+            case 118: goto label1;
+            case 122: goto label6;
+            case 123: goto label0;
+            default: goto label0;
+        };
+
+     label0:
+        return;
+
+     label1:
+        $r8 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r9 = $r8.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        i2 = virtualinvoke $r9.<java.util.ArrayList: int size()>();
+        $r10 = new java.lang.StringBuilder;
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("a=");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r12);
+        $r13 = new com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver$1;
+        specialinvoke $r13.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver$1: void <init>(com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver)>(r0);
+        virtualinvoke $r13.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver$1: void start()>();
+        return;
+
+     label2:
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", "IntentParam.STATUS_CLEARSONGLIST");
+        $r14 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r15 = $r14.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        virtualinvoke $r15.<java.util.ArrayList: int size()>();
+        $r16 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        virtualinvoke $r16.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List getAdapterMap()>();
+        $r18 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r19 = $r18.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r19.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: void notifyDataSetChanged()>();
+        return;
+
+     label3:
+        $r20 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r21 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r22 = $r21.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r20.<com.ophone.MiniPlayer.PlayingListActivity: void setListAdapter(android.widget.ListAdapter)>($r22);
+        return;
+
+     label4:
+        $r23 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r24 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r25 = $r24.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r23.<com.ophone.MiniPlayer.PlayingListActivity: void setListAdapter(android.widget.ListAdapter)>($r25);
+        return;
+
+     label5:
+        $r26 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r27 = $r26.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        i6 = virtualinvoke $r27.<java.util.ArrayList: int size()>();
+        $r28 = new java.lang.StringBuilder;
+        specialinvoke $r28.<java.lang.StringBuilder: void <init>(java.lang.String)>("playinglistActivity:STATUS_DELETESONG");
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i6);
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r30);
+        $r31 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        virtualinvoke $r31.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List getAdapterMap()>();
+        $r33 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r34 = $r33.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r34.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: void notifyDataSetChanged()>();
+        return;
+
+     label6:
+        $r35 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        virtualinvoke $r35.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List getAdapterMap()>();
+        $r37 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r38 = $r37.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r38.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: void notifyDataSetChanged()>();
+        $r39 = new java.lang.StringBuilder;
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>("status=");
+        $r40 = r0.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $i8 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: int access$5(com.ophone.MiniPlayer.PlayingListActivity)>($r40);
+        $r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r42);
+        return;
+    }
+}

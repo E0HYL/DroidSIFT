@@ -1,0 +1,255 @@
+public class com.ophone.MiniPlayer.provider.Sentence extends java.lang.Object implements java.io.Serializable
+{
+    private static final long DISAPPEAR_TIME;
+    private static final int V_SPACE;
+    private static final long serialVersionUID;
+    private java.lang.String content;
+    private long fromTime;
+    private long toTime;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public java.awt.Color getBestInColor(java.awt.Color, java.awt.Color, long)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        java.awt.Color r1, r2, $r3;
+        long l0, $l1, $l2, $l3, $l5, $l6, $l7;
+        float f0, $f1, $f2, $f3, $f4, $f5, $f6, $f7, f8;
+        byte $b4, $b8, $b9;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        r1 := @parameter0: java.awt.Color;
+        r2 := @parameter1: java.awt.Color;
+        l0 := @parameter2: long;
+        $l1 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $l2 = l0 - $l1;
+        $f1 = (float) $l2;
+        $f2 = 1.0F * $f1;
+        $l3 = virtualinvoke r0.<com.ophone.MiniPlayer.provider.Sentence: long getDuring()>();
+        $f3 = (float) $l3;
+        $f4 = $f2 / $f3;
+        $b4 = $f4 cmpl 0.1F;
+        if $b4 <= 0 goto label0;
+
+        return r1;
+
+     label0:
+        $l5 = virtualinvoke r0.<com.ophone.MiniPlayer.provider.Sentence: long getDuring()>();
+        $f5 = (float) $l5;
+        f0 = 0.1F * $f5;
+        $l6 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $l7 = l0 - $l6;
+        $f6 = (float) $l7;
+        $f7 = 1.0F * $f6;
+        f8 = $f7 / f0;
+        $b8 = f8 cmpl 1.0F;
+        if $b8 > 0 goto label1;
+
+        $b9 = f8 cmpg 0.0F;
+        if $b9 >= 0 goto label2;
+
+     label1:
+        return r1;
+
+     label2:
+        $r3 = staticinvoke <com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color getGradientColor(java.awt.Color,java.awt.Color,float)>(r2, r1, f8);
+        return $r3;
+    }
+
+    public java.lang.String getContent()
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String content>;
+        return $r1;
+    }
+
+    public int getContentHeight(android.graphics.Paint)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        android.graphics.Paint r1;
+        android.graphics.Paint$FontMetrics $r2, $r3;
+        float $f0, $f1, $f2, $f3;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        r1 := @parameter0: android.graphics.Paint;
+        $r2 = virtualinvoke r1.<android.graphics.Paint: android.graphics.Paint$FontMetrics getFontMetrics()>();
+        $f0 = $r2.<android.graphics.Paint$FontMetrics: float ascent>;
+        $r3 = virtualinvoke r1.<android.graphics.Paint: android.graphics.Paint$FontMetrics getFontMetrics()>();
+        $f1 = $r3.<android.graphics.Paint$FontMetrics: float descent>;
+        $f2 = $f0 + $f1;
+        $f3 = -10.0F + $f2;
+        $i0 = (int) $f3;
+        return $i0;
+    }
+
+    public int getContentWidth(android.graphics.Paint)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        android.graphics.Paint r1;
+        java.lang.String $r2, $r3;
+        float $f0;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        r1 := @parameter0: android.graphics.Paint;
+        $r2 = r0.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String content>;
+        if $r2 == null goto label0;
+
+        $r3 = r0.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String content>;
+        $f0 = virtualinvoke r1.<android.graphics.Paint: float measureText(java.lang.String)>($r3);
+        $i0 = (int) $f0;
+        return $i0;
+
+     label0:
+        return 0;
+    }
+
+    public long getDuring()
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        long $l0, $l1, $l2;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        $l0 = r0.<com.ophone.MiniPlayer.provider.Sentence: long toTime>;
+        $l1 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $l2 = $l0 - $l1;
+        return $l2;
+    }
+
+    public long getFromTime()
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        long $l0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        $l0 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        return $l0;
+    }
+
+    public long getToTime()
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        long $l0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        $l0 = r0.<com.ophone.MiniPlayer.provider.Sentence: long toTime>;
+        return $l0;
+    }
+
+    public int getVIncrease(android.graphics.Paint, long)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        android.graphics.Paint r1;
+        long l0, $l3, $l4, $l5, $l6, $l7;
+        int $i1, $i2, $i8;
+        double $d0, $d1, $d2, $d3, $d4, $d5;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        r1 := @parameter0: android.graphics.Paint;
+        l0 := @parameter1: long;
+        $i1 = virtualinvoke r0.<com.ophone.MiniPlayer.provider.Sentence: int getContentHeight(android.graphics.Paint)>(r1);
+        $i2 = -10 + $i1;
+        $d0 = (double) $i2;
+        $l3 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $l4 = l0 - $l3;
+        $d1 = (double) $l4;
+        $d2 = 1.0 * $d1;
+        $l5 = r0.<com.ophone.MiniPlayer.provider.Sentence: long toTime>;
+        $l6 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $l7 = $l5 - $l6;
+        $d3 = (double) $l7;
+        $d4 = $d2 / $d3;
+        $d5 = $d0 * $d4;
+        $i8 = (int) $d5;
+        return $i8;
+    }
+
+    public boolean isInTime(long)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        long l0, $l1, $l3;
+        byte $b2, $b4;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        l0 := @parameter0: long;
+        $l1 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $b2 = l0 cmp $l1;
+        if $b2 < 0 goto label0;
+
+        $l3 = r0.<com.ophone.MiniPlayer.provider.Sentence: long toTime>;
+        $b4 = l0 cmp $l3;
+        if $b4 > 0 goto label0;
+
+        return 1;
+
+     label0:
+        return 0;
+    }
+
+    public void setContent(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String content> = r1;
+        return;
+    }
+
+    public void setFromTime(long)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        long l0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        l0 := @parameter0: long;
+        r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime> = l0;
+        return;
+    }
+
+    public void setToTime(long)
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        long l0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        l0 := @parameter0: long;
+        r0.<com.ophone.MiniPlayer.provider.Sentence: long toTime> = l0;
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.ophone.MiniPlayer.provider.Sentence r0;
+        java.lang.StringBuilder $r1, $r2, $r3, $r5, $r6, $r7, $r8;
+        long $l0, $l1;
+        java.lang.String $r4, $r9;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Sentence;
+        $r1 = new java.lang.StringBuilder;
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>("{");
+        $l0 = r0.<com.ophone.MiniPlayer.provider.Sentence: long fromTime>;
+        $r2 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l0);
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("(");
+        $r4 = r0.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String content>;
+        $r5 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r4);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+        $l1 = r0.<com.ophone.MiniPlayer.provider.Sentence: long toTime>;
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l1);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("}");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+        return $r9;
+    }
+}

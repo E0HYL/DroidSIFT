@@ -1,0 +1,20 @@
+public abstract class com.ophone.MiniPlayer.provider.XmlHandler extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.XmlHandler r0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.XmlHandler;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public abstract java.util.ArrayList analyseTheSonglist(java.io.InputStream) throws java.lang.Exception;
+
+    public abstract java.util.ArrayList analyseTheSonglistGoogle(java.io.InputStream) throws java.lang.Exception;
+
+    public abstract java.util.ArrayList parseSongSource(java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException, java.io.IOException;
+
+    public abstract java.util.Map parseSongSourceGoogle(java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException, java.io.IOException;
+}

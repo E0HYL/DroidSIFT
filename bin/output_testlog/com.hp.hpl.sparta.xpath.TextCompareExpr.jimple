@@ -1,0 +1,46 @@
+public abstract class com.hp.hpl.sparta.xpath.TextCompareExpr extends com.hp.hpl.sparta.xpath.BooleanExpr
+{
+    private final java.lang.String value_;
+
+    void <init>(java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.TextCompareExpr r0;
+        java.lang.String r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TextCompareExpr;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.BooleanExpr: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.TextCompareExpr: java.lang.String value_> = r1;
+        return;
+    }
+
+    public java.lang.String getValue()
+    {
+        com.hp.hpl.sparta.xpath.TextCompareExpr r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TextCompareExpr;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.TextCompareExpr: java.lang.String value_>;
+        return $r1;
+    }
+
+    protected java.lang.String toString(java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.TextCompareExpr r0;
+        java.lang.String r1, $r6, $r9;
+        java.lang.StringBuffer $r2, $r3, $r4, $r5, $r7, $r8;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TextCompareExpr;
+        r1 := @parameter0: java.lang.String;
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("[text()");
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'");
+        $r6 = r0.<com.hp.hpl.sparta.xpath.TextCompareExpr: java.lang.String value_>;
+        $r7 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\']");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r9;
+    }
+}

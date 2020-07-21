@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog17.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#openStream</string></attr>
+<attr name="functionPrototype"><string>r4 = virtualinvoke r2.(java.net.URL: java.io.InputStream openStream())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>read</string></attr>
+<attr name="functionPrototype"><string>i1 = virtualinvoke r4.(java.io.InputStream: int read(byte[],int,int))(r5, 0, 8192)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#write</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r3.(java.io.OutputStream: void write(byte[],int,int))(r5, 0, i1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r2.(java.net.URL: void (init)(java.lang.String))(r0)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r3.(java.io.FileOutputStream: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="2" to="3">
+</edge>
+<edge from="4" to="1">
+</edge>
+<edge from="5" to="3">
+</edge>
+</graph>
+</gxl>

@@ -1,0 +1,444 @@
+public class com.ophone.MiniPlayer.StreamingMediaPlayer extends java.lang.Object
+{
+    public static final java.lang.String AUDIO_MIME;
+    public static final java.lang.String BITERATE_HEADER;
+    private int BIT;
+    private java.lang.String DOWNFILE;
+    private int INTIAL_KB_BUFFER;
+    private int SECONDS;
+    private android.content.Context context;
+    private int counter;
+    private java.io.File downloadingMediaFile;
+    private java.util.Vector mediaplayers;
+    private int playedcounter;
+    private boolean started;
+    private java.io.InputStream stream;
+    private int totalKbRead;
+
+    public void <init>(android.content.Context)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        android.content.Context r1, $r5;
+        java.lang.StringBuilder $r2, $r9;
+        java.util.Vector $r3;
+        java.io.File $r4, $r6, $r11;
+        java.lang.String $r7, $r8, $r10;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r1 := @parameter0: android.content.Context;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int BIT> = 8;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int SECONDS> = 30;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int totalKbRead> = 0;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.lang.String DOWNFILE> = "downloadingMediaFile";
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int counter> = 0;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int playedcounter> = 0;
+        $r3 = new java.util.Vector;
+        specialinvoke $r3.<java.util.Vector: void <init>(int)>(3);
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector mediaplayers> = $r3;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: boolean started> = 0;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream> = null;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: android.content.Context context> = r1;
+        $r4 = new java.io.File;
+        $r5 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: android.content.Context context>;
+        $r6 = virtualinvoke $r5.<android.content.Context: java.io.File getCacheDir()>();
+        $r2 = new java.lang.StringBuilder;
+        $r7 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.lang.String DOWNFILE>;
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+        $i0 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int counter>;
+        $r9 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+        specialinvoke $r4.<java.io.File: void <init>(java.io.File,java.lang.String)>($r6, $r10);
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile> = $r4;
+        $r11 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile>;
+        virtualinvoke $r11.<java.io.File: void deleteOnExit()>();
+        return;
+    }
+
+    static java.util.Vector access$0(com.ophone.MiniPlayer.StreamingMediaPlayer)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.util.Vector $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        $r1 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector mediaplayers>;
+        return $r1;
+    }
+
+    static void access$1(com.ophone.MiniPlayer.StreamingMediaPlayer)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        specialinvoke r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: void removefile()>();
+        return;
+    }
+
+    static boolean access$2(com.ophone.MiniPlayer.StreamingMediaPlayer)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        boolean $z0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        $z0 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: boolean started>;
+        return $z0;
+    }
+
+    static void access$3(com.ophone.MiniPlayer.StreamingMediaPlayer)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        specialinvoke r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: void startMediaPlayer()>();
+        return;
+    }
+
+    private void removefile()
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.io.File r1, $r4;
+        java.lang.StringBuilder $r2, $r7;
+        android.content.Context $r3;
+        java.lang.String $r5, $r6, $r8, $r9;
+        int $i0, $i2, $i3;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r1 = new java.io.File;
+        $r3 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: android.content.Context context>;
+        $r4 = virtualinvoke $r3.<android.content.Context: java.io.File getCacheDir()>();
+        $r2 = new java.lang.StringBuilder;
+        $r5 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.lang.String DOWNFILE>;
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r5);
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>($r6);
+        $i0 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int playedcounter>;
+        $r7 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+        specialinvoke r1.<java.io.File: void <init>(java.io.File,java.lang.String)>($r4, $r8);
+        $r9 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("removefile", $r9);
+        virtualinvoke r1.<java.io.File: boolean delete()>();
+        $i2 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int playedcounter>;
+        $i3 = 1 + $i2;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int playedcounter> = $i3;
+        return;
+    }
+
+    private void setupplayer(java.io.File)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.io.File r1;
+        java.lang.StringBuilder $r2, $r4;
+        java.lang.String $r3, $r5;
+        java.lang.Thread $r6;
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2 $r7;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r1 := @parameter0: java.io.File;
+        $r2 = new java.lang.StringBuilder;
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("File ");
+        $r3 = virtualinvoke r1.<java.io.File: java.lang.String getAbsolutePath()>();
+        $r4 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r3);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("setupplayer", $r5);
+        $r6 = new java.lang.Thread;
+        $r7 = new com.ophone.MiniPlayer.StreamingMediaPlayer$2;
+        specialinvoke $r7.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: void <init>(com.ophone.MiniPlayer.StreamingMediaPlayer,java.io.File)>(r0, r1);
+        specialinvoke $r6.<java.lang.Thread: void <init>(java.lang.Runnable)>($r7);
+        virtualinvoke $r6.<java.lang.Thread: void start()>();
+        return;
+    }
+
+    private void startMediaPlayer()
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.util.Vector $r1;
+        java.lang.Object $r2;
+        android.media.MediaPlayer $r3;
+        android.content.Context $r4;
+        android.app.Activity r5;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: boolean started> = 1;
+        $r1 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector mediaplayers>;
+        $r2 = virtualinvoke $r1.<java.util.Vector: java.lang.Object get(int)>(0);
+        $r3 = (android.media.MediaPlayer) $r2;
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("startMediaPlayer", "Start Player");
+        virtualinvoke $r3.<android.media.MediaPlayer: void start()>();
+        $r4 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: android.content.Context context>;
+        r5 = (android.app.Activity) $r4;
+        return;
+    }
+
+    public void downloadAudioIncrement(java.lang.String) throws java.io.IOException
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.lang.String r1, $r11, $r15, $r22, $r25, $r30, $r31, $r33, $r43;
+        org.apache.http.impl.client.DefaultHttpClient $r2;
+        org.apache.http.client.methods.HttpGet r3;
+        org.apache.http.HttpResponse r4;
+        int i0, $i1, $i4, $i5, $i6, $i8, i9, $i11, $i12, $i13, $i14, $i15;
+        org.apache.http.StatusLine $r5;
+        org.apache.http.HttpEntity $r6;
+        java.io.InputStream $r7, $r8, $r38, $r45;
+        java.lang.StringBuilder $r9, $r10, $r12, $r14, $r21, $r23, $r24, $r29, $r32, $r39, $r40, $r41, $r42;
+        java.io.File $r13, $r18, $r26, $r28, $r34, $r37, $r44;
+        java.io.BufferedOutputStream $r16, r19, $r35;
+        java.io.FileOutputStream $r17, $r36;
+        byte[] r20;
+        android.content.Context $r27;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r1 := @parameter0: java.lang.String;
+        $r2 = new org.apache.http.impl.client.DefaultHttpClient;
+        specialinvoke $r2.<org.apache.http.impl.client.DefaultHttpClient: void <init>()>();
+        r3 = new org.apache.http.client.methods.HttpGet;
+        specialinvoke r3.<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>(r1);
+        virtualinvoke r3.<org.apache.http.client.methods.HttpGet: void addHeader(java.lang.String,java.lang.String)>("Accept", "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5");
+        virtualinvoke r3.<org.apache.http.client.methods.HttpGet: void addHeader(java.lang.String,java.lang.String)>("User-Agent", "Mozilla/5.0 (Linux; U; Android 1.5; en-za; HTC Hero Build/CUPCAKE) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1");
+        virtualinvoke r3.<org.apache.http.client.methods.HttpGet: void addHeader(java.lang.String,java.lang.String)>("Accept-Language", "zh-CN, en-US");
+        virtualinvoke r3.<org.apache.http.client.methods.HttpGet: void addHeader(java.lang.String,java.lang.String)>("Connection", "Keep-Alive");
+        virtualinvoke r3.<org.apache.http.client.methods.HttpGet: void addHeader(java.lang.String,java.lang.String)>("Accept-Charset", "utf-8, iso-8859-1, utf-16, *;q=0.7");
+        r4 = virtualinvoke $r2.<org.apache.http.impl.client.DefaultHttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest)>(r3);
+        $r5 = interfaceinvoke r4.<org.apache.http.HttpResponse: org.apache.http.StatusLine getStatusLine()>();
+        $i1 = interfaceinvoke $r5.<org.apache.http.StatusLine: int getStatusCode()>();
+        if $i1 == 200 goto label0;
+
+        return;
+
+     label0:
+        $r6 = interfaceinvoke r4.<org.apache.http.HttpResponse: org.apache.http.HttpEntity getEntity()>();
+        $r7 = interfaceinvoke $r6.<org.apache.http.HttpEntity: java.io.InputStream getContent()>();
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream> = $r7;
+        $r8 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream>;
+        if $r8 != null goto label1;
+
+        $r9 = new java.lang.StringBuilder;
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("Unable to create InputStream for mediaUrl: ");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("downloadAudioIncrement", $r11);
+
+     label1:
+        $r12 = new java.lang.StringBuilder;
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("File name: ");
+        $r13 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile>;
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r13);
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("downloadAudioIncrement", $r15);
+        $r16 = new java.io.BufferedOutputStream;
+        $r17 = new java.io.FileOutputStream;
+        $r18 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile>;
+        specialinvoke $r17.<java.io.FileOutputStream: void <init>(java.io.File)>($r18);
+        specialinvoke $r16.<java.io.BufferedOutputStream: void <init>(java.io.OutputStream,int)>($r17, 32768);
+        r19 = $r16;
+        r20 = newarray (byte)[16384];
+        i0 = 0;
+
+     label2:
+        if r19 != null goto label3;
+
+        $i4 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int counter>;
+        $i5 = 1 + $i4;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int counter> = $i5;
+        $r21 = new java.lang.StringBuilder;
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("FileOutputStream is null, Create new one: ");
+        $r22 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.lang.String DOWNFILE>;
+        $r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+        $i6 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int counter>;
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i6);
+        $r25 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("downloadAudioIncrement", $r25);
+        $r26 = new java.io.File;
+        $r27 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: android.content.Context context>;
+        $r28 = virtualinvoke $r27.<android.content.Context: java.io.File getCacheDir()>();
+        $r29 = new java.lang.StringBuilder;
+        $r30 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.lang.String DOWNFILE>;
+        $r31 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r30);
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>($r31);
+        $i8 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int counter>;
+        $r32 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i8);
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+        specialinvoke $r26.<java.io.File: void <init>(java.io.File,java.lang.String)>($r28, $r33);
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile> = $r26;
+        $r34 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile>;
+        virtualinvoke $r34.<java.io.File: void deleteOnExit()>();
+        $r35 = new java.io.BufferedOutputStream;
+        $r36 = new java.io.FileOutputStream;
+        $r37 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile>;
+        specialinvoke $r36.<java.io.FileOutputStream: void <init>(java.io.File)>($r37);
+        specialinvoke $r35.<java.io.BufferedOutputStream: void <init>(java.io.OutputStream)>($r36);
+        r19 = $r35;
+
+     label3:
+        $r38 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream>;
+        i9 = virtualinvoke $r38.<java.io.InputStream: int read(byte[])>(r20);
+        if i9 > 0 goto label4;
+
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("downloadAudioIncrement", "numread <= 0");
+        return;
+
+     label4:
+        virtualinvoke r19.<java.io.BufferedOutputStream: void write(byte[],int,int)>(r20, 0, i9);
+        i0 = i0 + i9;
+        $i11 = i0 / 1000;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int totalKbRead> = $i11;
+        $i12 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int totalKbRead>;
+        $i13 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int INTIAL_KB_BUFFER>;
+        if $i12 < $i13 goto label5;
+
+        $r39 = new java.lang.StringBuilder;
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>("Reached Buffer amount we want: totalKbRead: ");
+        $i14 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int totalKbRead>;
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i14);
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" INTIAL_KB_BUFFER: ");
+        $i15 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int INTIAL_KB_BUFFER>;
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i15);
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("downloadAudioIncrement", $r43);
+        virtualinvoke r19.<java.io.BufferedOutputStream: void flush()>();
+        virtualinvoke r19.<java.io.BufferedOutputStream: void close()>();
+        r19 = null;
+        $r44 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.File downloadingMediaFile>;
+        specialinvoke r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: void setupplayer(java.io.File)>($r44);
+        i0 = 0;
+
+     label5:
+        $r45 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream>;
+        if $r45 != null goto label2;
+
+        return;
+    }
+
+    public void startStreaming(java.lang.String) throws java.io.IOException
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.lang.String r1, $r6, $r8, $r9, $r10, $r11, r12, $r15, $r23;
+        int i0, i3, $i4, $i5, $i6, $i7;
+        java.net.HttpURLConnection r2;
+        java.net.URL $r3;
+        java.net.URLConnection $r4;
+        java.lang.StringBuilder $r5, $r7, $r13, $r14, $r21, $r22;
+        boolean $z0;
+        java.lang.Integer $r16;
+        java.lang.Thread $r17;
+        com.ophone.MiniPlayer.StreamingMediaPlayer$1 $r18;
+        java.io.IOException $r19, r20;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r1 := @parameter0: java.lang.String;
+        i0 = 128;
+
+     label0:
+        $r3 = new java.net.URL;
+        specialinvoke $r3.<java.net.URL: void <init>(java.lang.String)>(r1);
+        $r4 = virtualinvoke $r3.<java.net.URL: java.net.URLConnection openConnection()>();
+        r2 = (java.net.HttpURLConnection) $r4;
+        $r5 = new java.lang.StringBuilder;
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("Content Type: ");
+        $r6 = virtualinvoke r2.<java.net.URLConnection: java.lang.String getContentType()>();
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("startStreaming", $r8);
+        $r9 = virtualinvoke r2.<java.net.URLConnection: java.lang.String getContentType()>();
+        if $r9 == null goto label5;
+
+        $r10 = virtualinvoke r2.<java.net.URLConnection: java.lang.String getContentType()>();
+        $r11 = virtualinvoke $r10.<java.lang.String: java.lang.String toLowerCase()>();
+        $z0 = virtualinvoke $r11.<java.lang.String: boolean contains(java.lang.CharSequence)>("audio/mpeg");
+        if $z0 == 0 goto label5;
+
+        r12 = virtualinvoke r2.<java.net.URLConnection: java.lang.String getHeaderField(java.lang.String)>("icy-br");
+        $r13 = new java.lang.StringBuilder;
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("Bitrate: ");
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r12);
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("startStreaming", $r15);
+
+     label1:
+        if r12 == null goto label4;
+
+     label2:
+        $r16 = new java.lang.Integer;
+        specialinvoke $r16.<java.lang.Integer: void <init>(java.lang.String)>(r12);
+        i3 = virtualinvoke $r16.<java.lang.Integer: int intValue()>();
+
+     label3:
+        i0 = i3;
+
+     label4:
+        $i4 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int SECONDS>;
+        $i5 = i0 * $i4;
+        $i6 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int BIT>;
+        $i7 = $i5 / $i6;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: int INTIAL_KB_BUFFER> = $i7;
+        $r17 = new java.lang.Thread;
+        $r18 = new com.ophone.MiniPlayer.StreamingMediaPlayer$1;
+        specialinvoke $r18.<com.ophone.MiniPlayer.StreamingMediaPlayer$1: void <init>(com.ophone.MiniPlayer.StreamingMediaPlayer,java.lang.String)>(r0, r1);
+        specialinvoke $r17.<java.lang.Thread: void <init>(java.lang.Runnable)>($r18);
+        virtualinvoke $r17.<java.lang.Thread: void start()>();
+        return;
+
+     label5:
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("startStreaming", "Can not open media type");
+
+     label6:
+        goto label4;
+
+     label7:
+        $r19 := @caughtexception;
+        r20 = $r19;
+        $r21 = new java.lang.StringBuilder;
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("Could not connect to ");
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("startStreaming", $r23);
+        goto label4;
+
+        catch java.io.IOException from label0 to label1 with label7;
+        catch java.io.IOException from label2 to label3 with label7;
+        catch java.io.IOException from label5 to label6 with label7;
+    }
+
+    public void stop()
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer r0;
+        java.util.Vector $r1;
+        java.lang.Object $r2;
+        android.media.MediaPlayer $r3;
+        java.io.InputStream $r4;
+        java.lang.ArrayIndexOutOfBoundsException $r5, r6;
+        java.io.IOException $r7, r8;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("STOP", "Stop Player");
+
+     label0:
+        $r1 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector mediaplayers>;
+        $r2 = virtualinvoke $r1.<java.util.Vector: java.lang.Object get(int)>(0);
+        $r3 = (android.media.MediaPlayer) $r2;
+        virtualinvoke $r3.<android.media.MediaPlayer: void pause()>();
+        $r4 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream>;
+        virtualinvoke $r4.<java.io.InputStream: void close()>();
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer: java.io.InputStream stream> = null;
+
+     label1:
+        return;
+
+     label2:
+        $r5 := @caughtexception;
+        r6 = $r5;
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("STOP", "No items in Vector");
+        return;
+
+     label3:
+        $r7 := @caughtexception;
+        r8 = $r7;
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("STOP", "error closing open connection");
+        return;
+
+        catch java.lang.ArrayIndexOutOfBoundsException from label0 to label1 with label2;
+        catch java.io.IOException from label0 to label1 with label3;
+    }
+}

@@ -1,0 +1,319 @@
+public class com.hp.hpl.sparta.Parser extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.hp.hpl.sparta.Parser r0;
+
+        r0 := @this: com.hp.hpl.sparta.Parser;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        char[] $r1;
+        com.hp.hpl.sparta.Document $r2;
+
+        r0 := @parameter0: java.lang.String;
+        $r1 = virtualinvoke r0.<java.lang.String: char[] toCharArray()>();
+        $r2 = staticinvoke <com.hp.hpl.sparta.Parser: com.hp.hpl.sparta.Document parse(char[])>($r1);
+        return $r2;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String, java.io.InputStream) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.InputStream r1;
+        com.hp.hpl.sparta.BuildDocument r2;
+        com.hp.hpl.sparta.ParseByteStream $r3;
+        com.hp.hpl.sparta.Document $r4;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.InputStream;
+        r2 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r2.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r3 = new com.hp.hpl.sparta.ParseByteStream;
+        specialinvoke $r3.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, null, null, r2);
+        $r4 = virtualinvoke r2.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r4;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String, java.io.InputStream, com.hp.hpl.sparta.ParseLog) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.InputStream r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.BuildDocument r3;
+        com.hp.hpl.sparta.ParseByteStream $r4;
+        com.hp.hpl.sparta.Document $r5;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.InputStream;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r3.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r4 = new com.hp.hpl.sparta.ParseByteStream;
+        specialinvoke $r4.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, null, r3);
+        $r5 = virtualinvoke r3.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r5;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String, java.io.InputStream, com.hp.hpl.sparta.ParseLog, java.lang.String) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0, r3;
+        java.io.InputStream r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.BuildDocument r4;
+        com.hp.hpl.sparta.ParseByteStream $r5;
+        com.hp.hpl.sparta.Document $r6;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.InputStream;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 := @parameter3: java.lang.String;
+        r4 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r4.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r5 = new com.hp.hpl.sparta.ParseByteStream;
+        specialinvoke $r5.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, r3, r4);
+        $r6 = virtualinvoke r4.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r6;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String, java.io.Reader) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.Reader r1;
+        com.hp.hpl.sparta.BuildDocument r2;
+        com.hp.hpl.sparta.ParseCharStream $r3;
+        com.hp.hpl.sparta.Document $r4;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.Reader;
+        r2 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r2.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r3 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r3.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,java.io.Reader,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, null, null, r2);
+        $r4 = virtualinvoke r2.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r4;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String, java.io.Reader, com.hp.hpl.sparta.ParseLog) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.Reader r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.BuildDocument r3;
+        com.hp.hpl.sparta.ParseCharStream $r4;
+        com.hp.hpl.sparta.Document $r5;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.Reader;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r3.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r4 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r4.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,java.io.Reader,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, null, r3);
+        $r5 = virtualinvoke r3.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r5;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(java.lang.String, java.io.Reader, com.hp.hpl.sparta.ParseLog, java.lang.String) throws com.hp.hpl.sparta.ParseException, com.hp.hpl.sparta.EncodingMismatchException, java.io.IOException
+    {
+        java.lang.String r0, r3;
+        java.io.Reader r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.BuildDocument r4;
+        com.hp.hpl.sparta.ParseCharStream $r5;
+        com.hp.hpl.sparta.Document $r6;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.Reader;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 := @parameter3: java.lang.String;
+        r4 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r4.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r5 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r5.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,java.io.Reader,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, r3, r4);
+        $r6 = virtualinvoke r4.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r6;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(byte[]) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        byte[] r0;
+        com.hp.hpl.sparta.BuildDocument r1;
+        java.io.ByteArrayInputStream $r2;
+        com.hp.hpl.sparta.ParseByteStream $r3;
+        com.hp.hpl.sparta.Document $r4;
+
+        r0 := @parameter0: byte[];
+        r1 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r1.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r3 = new com.hp.hpl.sparta.ParseByteStream;
+        $r2 = new java.io.ByteArrayInputStream;
+        specialinvoke $r2.<java.io.ByteArrayInputStream: void <init>(byte[])>(r0);
+        specialinvoke $r3.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>("file:anonymous-string", $r2, null, null, r1);
+        $r4 = virtualinvoke r1.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r4;
+    }
+
+    public static com.hp.hpl.sparta.Document parse(char[]) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        char[] r0;
+        com.hp.hpl.sparta.BuildDocument r1;
+        com.hp.hpl.sparta.ParseCharStream $r2;
+        com.hp.hpl.sparta.Document $r3;
+
+        r0 := @parameter0: char[];
+        r1 = new com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r1.<com.hp.hpl.sparta.BuildDocument: void <init>()>();
+        $r2 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r2.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,char[],com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>("file:anonymous-string", r0, null, null, r1);
+        $r3 = virtualinvoke r1.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document getDocument()>();
+        return $r3;
+    }
+
+    public static void parse(java.lang.String, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        com.hp.hpl.sparta.ParseHandler r1;
+        char[] $r2;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: com.hp.hpl.sparta.ParseHandler;
+        $r2 = virtualinvoke r0.<java.lang.String: char[] toCharArray()>();
+        staticinvoke <com.hp.hpl.sparta.Parser: void parse(char[],com.hp.hpl.sparta.ParseHandler)>($r2, r1);
+        return;
+    }
+
+    public static void parse(java.lang.String, java.io.InputStream, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.InputStream r1;
+        com.hp.hpl.sparta.ParseHandler r2;
+        com.hp.hpl.sparta.ParseByteStream $r3;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.InputStream;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseHandler;
+        $r3 = new com.hp.hpl.sparta.ParseByteStream;
+        specialinvoke $r3.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, null, null, r2);
+        return;
+    }
+
+    public static void parse(java.lang.String, java.io.InputStream, com.hp.hpl.sparta.ParseLog, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.InputStream r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.ParseHandler r3;
+        com.hp.hpl.sparta.ParseByteStream $r4;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.InputStream;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 := @parameter3: com.hp.hpl.sparta.ParseHandler;
+        $r4 = new com.hp.hpl.sparta.ParseByteStream;
+        specialinvoke $r4.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, null, r3);
+        return;
+    }
+
+    public static void parse(java.lang.String, java.io.InputStream, com.hp.hpl.sparta.ParseLog, java.lang.String, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0, r3;
+        java.io.InputStream r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.ParseHandler r4;
+        com.hp.hpl.sparta.ParseByteStream $r5;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.InputStream;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 := @parameter3: java.lang.String;
+        r4 := @parameter4: com.hp.hpl.sparta.ParseHandler;
+        $r5 = new com.hp.hpl.sparta.ParseByteStream;
+        specialinvoke $r5.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, r3, r4);
+        return;
+    }
+
+    public static void parse(java.lang.String, java.io.Reader, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.Reader r1;
+        com.hp.hpl.sparta.ParseHandler r2;
+        com.hp.hpl.sparta.ParseCharStream $r3;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.Reader;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseHandler;
+        $r3 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r3.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,java.io.Reader,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, null, null, r2);
+        return;
+    }
+
+    public static void parse(java.lang.String, java.io.Reader, com.hp.hpl.sparta.ParseLog, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        java.lang.String r0;
+        java.io.Reader r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.ParseHandler r3;
+        com.hp.hpl.sparta.ParseCharStream $r4;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.Reader;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 := @parameter3: com.hp.hpl.sparta.ParseHandler;
+        $r4 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r4.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,java.io.Reader,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, null, r3);
+        return;
+    }
+
+    public static void parse(java.lang.String, java.io.Reader, com.hp.hpl.sparta.ParseLog, java.lang.String, com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, com.hp.hpl.sparta.EncodingMismatchException, java.io.IOException
+    {
+        java.lang.String r0, r3;
+        java.io.Reader r1;
+        com.hp.hpl.sparta.ParseLog r2;
+        com.hp.hpl.sparta.ParseHandler r4;
+        com.hp.hpl.sparta.ParseCharStream $r5;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.io.Reader;
+        r2 := @parameter2: com.hp.hpl.sparta.ParseLog;
+        r3 := @parameter3: java.lang.String;
+        r4 := @parameter4: com.hp.hpl.sparta.ParseHandler;
+        $r5 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r5.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,java.io.Reader,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>(r0, r1, r2, r3, r4);
+        return;
+    }
+
+    public static void parse(byte[], com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        byte[] r0;
+        com.hp.hpl.sparta.ParseHandler r1;
+        com.hp.hpl.sparta.ParseByteStream $r2;
+        java.io.ByteArrayInputStream $r3;
+
+        r0 := @parameter0: byte[];
+        r1 := @parameter1: com.hp.hpl.sparta.ParseHandler;
+        $r2 = new com.hp.hpl.sparta.ParseByteStream;
+        $r3 = new java.io.ByteArrayInputStream;
+        specialinvoke $r3.<java.io.ByteArrayInputStream: void <init>(byte[])>(r0);
+        specialinvoke $r2.<com.hp.hpl.sparta.ParseByteStream: void <init>(java.lang.String,java.io.InputStream,com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>("file:anonymous-string", $r3, null, null, r1);
+        return;
+    }
+
+    public static void parse(char[], com.hp.hpl.sparta.ParseHandler) throws com.hp.hpl.sparta.ParseException, java.io.IOException
+    {
+        char[] r0;
+        com.hp.hpl.sparta.ParseHandler r1;
+        com.hp.hpl.sparta.ParseCharStream $r2;
+
+        r0 := @parameter0: char[];
+        r1 := @parameter1: com.hp.hpl.sparta.ParseHandler;
+        $r2 = new com.hp.hpl.sparta.ParseCharStream;
+        specialinvoke $r2.<com.hp.hpl.sparta.ParseCharStream: void <init>(java.lang.String,char[],com.hp.hpl.sparta.ParseLog,java.lang.String,com.hp.hpl.sparta.ParseHandler)>("file:anonymous-string", r0, null, null, r1);
+        return;
+    }
+}

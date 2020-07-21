@@ -1,0 +1,18 @@
+class com.ophone.MiniPlayer.PlayingListActivity$ViewHolder extends java.lang.Object
+{
+    android.widget.ImageView Icon;
+    android.widget.TextView itemArtist;
+    android.widget.TextView itemCounter;
+    android.widget.TextView itemDuration;
+    android.widget.ImageView itemIcon;
+    android.widget.TextView itemTitle;
+
+    void <init>()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$ViewHolder r0;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

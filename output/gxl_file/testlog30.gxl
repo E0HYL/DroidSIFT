@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog30.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer.provider</string></attr>
+<attr name="functionCategory"><string>Misc#getElementsByTagName</string></attr>
+<attr name="functionPrototype"><string>r11 = interfaceinvoke $r10.(org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String))("data")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer.provider</string></attr>
+<attr name="functionCategory"><string>equals</string></attr>
+<attr name="functionPrototype"><string>$z1 = virtualinvoke r5.(java.lang.String: boolean equals(java.lang.Object))("id")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer.provider</string></attr>
+<attr name="functionCategory"><string>equals</string></attr>
+<attr name="functionPrototype"><string>$z2 = virtualinvoke r5.(java.lang.String: boolean equals(java.lang.Object))("name")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer.provider</string></attr>
+<attr name="functionCategory"><string>indexOf</string></attr>
+<attr name="functionPrototype"><string>i7 = virtualinvoke r14.(java.lang.String: int indexOf(java.lang.String))("$$")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer.provider</string></attr>
+<attr name="functionCategory"><string>indexOf</string></attr>
+<attr name="functionPrototype"><string>i2 = virtualinvoke r14.(java.lang.String: int indexOf(java.lang.String,int))("$$", $i8)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="6">
+<attr name="packageName"><string>com.ophone.MiniPlayer.provider</string></attr>
+<attr name="functionCategory"><string>i</string></attr>
+<attr name="functionPrototype"><string>staticinvoke (android.util.Log: int i(java.lang.String,java.lang.String))("debug", $r19)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="1" to="3">
+</edge>
+<edge from="1" to="4">
+</edge>
+<edge from="1" to="5">
+</edge>
+<edge from="1" to="6">
+</edge>
+<edge from="4" to="5">
+</edge>
+</graph>
+</gxl>

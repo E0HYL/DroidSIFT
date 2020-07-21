@@ -1,0 +1,1116 @@
+public class demo.Pinyin4jAppletDemo extends javax.swing.JApplet
+{
+    private static final java.awt.Dimension APP_SIZE;
+    private static java.lang.String appName;
+    private static final long serialVersionUID;
+    private javax.swing.JPanel buttonPanel;
+    java.lang.String[] caseTypes;
+    private javax.swing.JComboBox caseTypesComboBox;
+    private javax.swing.JLabel charLabel;
+    private javax.swing.JTextField charTextField;
+    private javax.swing.JButton convertButton;
+    private javax.swing.JPanel formattedCharPanel;
+    private javax.swing.JTextArea formattedOutputField;
+    private javax.swing.JPanel jContentPane;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JPanel optionPanel;
+    private javax.swing.JLabel toneLabel;
+    java.lang.String[] toneTypes;
+    private javax.swing.JComboBox toneTypesComboBox;
+    private javax.swing.JPanel unformattedCharPanel;
+    private javax.swing.JLabel unformattedGwoyeuRomatzyhLabel;
+    private javax.swing.JPanel unformattedGwoyeuRomatzyhPanel;
+    private javax.swing.JScrollPane unformattedGwoyeuRomatzyhScrollPane;
+    private javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea;
+    private javax.swing.JLabel unformattedHanyuPinyinLabel;
+    private javax.swing.JPanel unformattedHanyuPinyinPanel;
+    private javax.swing.JScrollPane unformattedHanyuPinyinScrollPane;
+    private javax.swing.JTextArea unformattedHanyuPinyinTextArea;
+    private javax.swing.JLabel unformattedMPS2PinyinLabel;
+    private javax.swing.JPanel unformattedMPS2PinyinPanel;
+    private javax.swing.JScrollPane unformattedMPS2PinyinScrollPane;
+    private javax.swing.JTextArea unformattedMPS2PinyinTextArea;
+    private javax.swing.JLabel unformattedTongyongPinyinLabel;
+    private javax.swing.JPanel unformattedTongyongPinyinPanel;
+    private javax.swing.JScrollPane unformattedTongyongPinyinScrollPane;
+    private javax.swing.JTextArea unformattedTongyongPinyinTextArea;
+    private javax.swing.JLabel unformattedWadePinyinLabel;
+    private javax.swing.JPanel unformattedWadePinyinPanel;
+    private javax.swing.JScrollPane unformattedWadePinyinScrollPane;
+    private javax.swing.JTextArea unformattedWadePinyinTextArea;
+    private javax.swing.JLabel unformattedYalePinyinLabel;
+    private javax.swing.JPanel unformattedYalePinyinPanel;
+    private javax.swing.JScrollPane unformattedYalePinyinScrollPane;
+    private javax.swing.JTextArea unformattedYalePinyinTextArea;
+    java.lang.String[] vCharTypes;
+    private javax.swing.JComboBox vCharTypesComboBox;
+
+    static void <clinit>()
+    {
+        java.awt.Dimension $r0;
+
+        $r0 = new java.awt.Dimension;
+        specialinvoke $r0.<java.awt.Dimension: void <init>(int,int)>(600, 400);
+        <demo.Pinyin4jAppletDemo: java.awt.Dimension APP_SIZE> = $r0;
+        <demo.Pinyin4jAppletDemo: java.lang.String appName> = "pinyin4j-2.0.0 applet demo";
+        return;
+    }
+
+    public void <init>()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        java.lang.String[] r1, r2, r3;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        specialinvoke r0.<javax.swing.JApplet: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane jTabbedPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel formattedCharPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton convertButton> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel buttonPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea formattedOutputField> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox toneTypesComboBox> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox vCharTypesComboBox> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox caseTypesComboBox> = null;
+        r1 = newarray (java.lang.String)[2];
+        r1[0] = "LOWERCASE";
+        r1[1] = "UPPERCASE";
+        r0.<demo.Pinyin4jAppletDemo: java.lang.String[] caseTypes> = r1;
+        r2 = newarray (java.lang.String)[3];
+        r2[0] = "WITH_U_AND_COLON";
+        r2[1] = "WITH_V";
+        r2[2] = "WITH_U_UNICODE";
+        r0.<demo.Pinyin4jAppletDemo: java.lang.String[] vCharTypes> = r2;
+        r3 = newarray (java.lang.String)[3];
+        r3[0] = "WITH_TONE_NUMBER";
+        r3[1] = "WITHOUT_TONE";
+        r3[2] = "WITH_TONE_MARK";
+        r0.<demo.Pinyin4jAppletDemo: java.lang.String[] toneTypes> = r3;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel toneLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel charLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedHanyuPinyinLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedTongyongPinyinLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedWadePinyinLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedMPS2PinyinLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedYalePinyinLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedGwoyeuRomatzyhLabel> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedMPS2PinyinScrollPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedHanyuPinyinScrollPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedTongyongPinyinScrollPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedWadePinyinScrollPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedYalePinyinScrollPane> = null;
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedGwoyeuRomatzyhScrollPane> = null;
+        virtualinvoke r0.<demo.Pinyin4jAppletDemo: void init()>();
+        return;
+    }
+
+    static java.lang.String access$000(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        java.lang.String $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = specialinvoke r0.<demo.Pinyin4jAppletDemo: java.lang.String getChineseCharText()>();
+        return $r1;
+    }
+
+    static javax.swing.JComboBox access$100(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JComboBox $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox toneTypesComboBox>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$1000(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea formattedOutputField>;
+        return $r1;
+    }
+
+    static javax.swing.JComboBox access$200(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JComboBox $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox vCharTypesComboBox>;
+        return $r1;
+    }
+
+    static javax.swing.JComboBox access$300(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JComboBox $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox caseTypesComboBox>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$400(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$500(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$600(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$700(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$800(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea>;
+        return $r1;
+    }
+
+    static javax.swing.JTextArea access$900(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1;
+
+        r0 := @parameter0: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea>;
+        return $r1;
+    }
+
+    private javax.swing.JPanel getButtonPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JPanel $r1, $r2, $r3, $r5;
+        javax.swing.JButton $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel buttonPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JPanel;
+        specialinvoke $r1.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel buttonPanel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel buttonPanel>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton getConvertButton()>();
+        virtualinvoke $r3.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r4, null);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel buttonPanel>;
+        return $r5;
+    }
+
+    private javax.swing.JComboBox getCaseTypesComboBox()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JComboBox $r1, $r2, $r4;
+        java.lang.String[] $r3;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox caseTypesComboBox>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JComboBox;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: java.lang.String[] caseTypes>;
+        specialinvoke $r1.<javax.swing.JComboBox: void <init>(java.lang.Object[])>($r3);
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox caseTypesComboBox> = $r1;
+
+     label0:
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox caseTypesComboBox>;
+        return $r4;
+    }
+
+    private javax.swing.JTextField getCharTextField()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextField $r1, $r2, $r3, $r5, $r6, $r8;
+        java.awt.Font $r4;
+        java.awt.Dimension $r7;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextField;
+        specialinvoke $r1.<javax.swing.JTextField: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField>;
+        $r4 = new java.awt.Font;
+        specialinvoke $r4.<java.awt.Font: void <init>(java.lang.String,int,int)>("Dialog", 0, 12);
+        virtualinvoke $r3.<javax.swing.JTextField: void setFont(java.awt.Font)>($r4);
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField>;
+        virtualinvoke $r5.<javax.swing.JTextField: void setText(java.lang.String)>("\u548c");
+        $r6 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField>;
+        $r7 = new java.awt.Dimension;
+        specialinvoke $r7.<java.awt.Dimension: void <init>(int,int)>(26, 20);
+        virtualinvoke $r6.<javax.swing.JTextField: void setPreferredSize(java.awt.Dimension)>($r7);
+
+     label0:
+        $r8 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField>;
+        return $r8;
+    }
+
+    private java.lang.String getChineseCharText()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextField $r1;
+        java.lang.String $r2;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r1 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField charTextField>;
+        $r2 = virtualinvoke $r1.<javax.swing.JTextField: java.lang.String getText()>();
+        return $r2;
+    }
+
+    private javax.swing.JButton getConvertButton()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JButton $r1, $r2, $r3, $r4, $r6;
+        demo.Pinyin4jAppletDemo$2 $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton convertButton>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JButton;
+        specialinvoke $r1.<javax.swing.JButton: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton convertButton> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton convertButton>;
+        virtualinvoke $r3.<javax.swing.JButton: void setText(java.lang.String)>("Convert to Pinyin");
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton convertButton>;
+        $r5 = new demo.Pinyin4jAppletDemo$2;
+        specialinvoke $r5.<demo.Pinyin4jAppletDemo$2: void <init>(demo.Pinyin4jAppletDemo)>(r0);
+        virtualinvoke $r4.<javax.swing.JButton: void addActionListener(java.awt.event.ActionListener)>($r5);
+
+     label0:
+        $r6 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JButton convertButton>;
+        return $r6;
+    }
+
+    private javax.swing.JPanel getFormattedCharPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JPanel $r1, $r2, $r3, $r5, $r7;
+        java.awt.BorderLayout $r4;
+        javax.swing.JTextArea $r6;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel formattedCharPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JPanel;
+        specialinvoke $r1.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel formattedCharPanel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel formattedCharPanel>;
+        $r4 = new java.awt.BorderLayout;
+        specialinvoke $r4.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r3.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r4);
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel formattedCharPanel>;
+        $r6 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getFormattedOutputField()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r6, "Center");
+
+     label0:
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel formattedCharPanel>;
+        return $r7;
+    }
+
+    private javax.swing.JTextArea getFormattedOutputField()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea formattedOutputField>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea formattedOutputField> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea formattedOutputField>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+
+     label0:
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea formattedOutputField>;
+        return $r4;
+    }
+
+    private javax.swing.JPanel getJContentPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JPanel $r1, $r2, $r3, $r5, $r7, $r8, $r9, $r10, $r11;
+        java.awt.BorderLayout $r4;
+        javax.swing.JTabbedPane $r6;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JPanel;
+        specialinvoke $r1.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane>;
+        $r4 = new java.awt.BorderLayout;
+        specialinvoke $r4.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r3.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r4);
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane>;
+        $r6 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane getJTabbedPane()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r6, "Center");
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane>;
+        $r8 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getOptionPanel()>();
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "North");
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getButtonPanel()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, "South");
+
+     label0:
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel jContentPane>;
+        return $r11;
+    }
+
+    private javax.swing.JTabbedPane getJTabbedPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTabbedPane $r1, $r2, $r3, $r5, $r7;
+        javax.swing.JPanel $r4, $r6;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane jTabbedPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTabbedPane;
+        specialinvoke $r1.<javax.swing.JTabbedPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane jTabbedPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane jTabbedPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedCharPanel()>();
+        virtualinvoke $r3.<javax.swing.JTabbedPane: void addTab(java.lang.String,javax.swing.Icon,java.awt.Component,java.lang.String)>("Unformatted Chinese Romanization Systems", null, $r4, null);
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane jTabbedPane>;
+        $r6 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getFormattedCharPanel()>();
+        virtualinvoke $r5.<javax.swing.JTabbedPane: void addTab(java.lang.String,javax.swing.Icon,java.awt.Component,java.lang.String)>("Formatted Hanyu Pinyin", null, $r6, null);
+
+     label0:
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTabbedPane jTabbedPane>;
+        return $r7;
+    }
+
+    private javax.swing.JPanel getOptionPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r3, $r4, $r5, $r10, $r14;
+        javax.swing.JPanel $r2, $r6, $r7, $r9, $r11, $r13, $r15, $r17, $r19, $r21;
+        java.awt.Dimension $r8;
+        javax.swing.JTextField $r12;
+        javax.swing.JComboBox $r16, $r18, $r20;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel charLabel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel charLabel>;
+        virtualinvoke $r3.<javax.swing.JLabel: void setText(java.lang.String)>("Input Chinese:");
+        $r4 = new javax.swing.JLabel;
+        specialinvoke $r4.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel toneLabel> = $r4;
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel toneLabel>;
+        virtualinvoke $r5.<javax.swing.JLabel: void setText(java.lang.String)>(" Format:");
+        $r6 = new javax.swing.JPanel;
+        specialinvoke $r6.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel> = $r6;
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r8 = new java.awt.Dimension;
+        specialinvoke $r8.<java.awt.Dimension: void <init>(int,int)>(640, 34);
+        virtualinvoke $r7.<javax.swing.JPanel: void setPreferredSize(java.awt.Dimension)>($r8);
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r10 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel charLabel>;
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, null);
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r12 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextField getCharTextField()>();
+        virtualinvoke $r11.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r12, null);
+        $r13 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r14 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel toneLabel>;
+        virtualinvoke $r13.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r14, null);
+        $r15 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r16 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox getToneTypesComboBox()>();
+        virtualinvoke $r15.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r16, null);
+        $r17 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r18 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox getVCharTypesComboBox()>();
+        virtualinvoke $r17.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r18, null);
+        $r19 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        $r20 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox getCaseTypesComboBox()>();
+        virtualinvoke $r19.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r20, null);
+
+     label0:
+        $r21 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel optionPanel>;
+        return $r21;
+    }
+
+    private javax.swing.JComboBox getToneTypesComboBox()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JComboBox $r1, $r2, $r4, $r6;
+        java.lang.String[] $r3;
+        demo.Pinyin4jAppletDemo$3 $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox toneTypesComboBox>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JComboBox;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: java.lang.String[] toneTypes>;
+        specialinvoke $r1.<javax.swing.JComboBox: void <init>(java.lang.Object[])>($r3);
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox toneTypesComboBox> = $r1;
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox toneTypesComboBox>;
+        $r5 = new demo.Pinyin4jAppletDemo$3;
+        specialinvoke $r5.<demo.Pinyin4jAppletDemo$3: void <init>(demo.Pinyin4jAppletDemo)>(r0);
+        virtualinvoke $r4.<javax.swing.JComboBox: void addActionListener(java.awt.event.ActionListener)>($r5);
+
+     label0:
+        $r6 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox toneTypesComboBox>;
+        return $r6;
+    }
+
+    private javax.swing.JPanel getUnformattedCharPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r4;
+        java.awt.GridLayout r2;
+        javax.swing.JPanel $r3, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        if $r3 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedHanyuPinyinLabel> = $r1;
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedHanyuPinyinLabel>;
+        virtualinvoke $r4.<javax.swing.JLabel: void setText(java.lang.String)>("Hanyu Pinyin");
+        r2 = new java.awt.GridLayout;
+        specialinvoke r2.<java.awt.GridLayout: void <init>()>();
+        virtualinvoke r2.<java.awt.GridLayout: void setRows(int)>(2);
+        virtualinvoke r2.<java.awt.GridLayout: void setHgap(int)>(1);
+        virtualinvoke r2.<java.awt.GridLayout: void setVgap(int)>(1);
+        virtualinvoke r2.<java.awt.GridLayout: void setColumns(int)>(3);
+        $r5 = new javax.swing.JPanel;
+        specialinvoke $r5.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel> = $r5;
+        $r6 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        virtualinvoke $r6.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>(r2);
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        $r8 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedHanyuPinyinPanel()>();
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, null);
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedTongyongPinyinPanel()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, null);
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        $r12 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedWadePinyinPanel()>();
+        virtualinvoke $r11.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r12, null);
+        $r13 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        $r14 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedMPS2PinyinPanel()>();
+        virtualinvoke $r13.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r14, null);
+        $r15 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        $r16 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedYalePinyinPanel()>();
+        virtualinvoke $r15.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r16, null);
+        $r17 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        $r18 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getUnformattedGwoyeuRomatzyhPanel()>();
+        virtualinvoke $r17.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r18, null);
+
+     label0:
+        $r19 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedCharPanel>;
+        return $r19;
+    }
+
+    private javax.swing.JPanel getUnformattedGwoyeuRomatzyhPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r3, $r8;
+        javax.swing.JPanel $r2, $r4, $r5, $r7, $r9, $r11;
+        java.awt.BorderLayout $r6;
+        javax.swing.JScrollPane $r10;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedGwoyeuRomatzyhLabel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedGwoyeuRomatzyhLabel>;
+        virtualinvoke $r3.<javax.swing.JLabel: void setText(java.lang.String)>("Gwoyeu Romatzyh");
+        $r4 = new javax.swing.JPanel;
+        specialinvoke $r4.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel> = $r4;
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel>;
+        $r6 = new java.awt.BorderLayout;
+        specialinvoke $r6.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r6);
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel>;
+        $r8 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedGwoyeuRomatzyhLabel>;
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "North");
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane getUnformattedGwoyeuRomatzyhScrollPane()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, "Center");
+
+     label0:
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedGwoyeuRomatzyhPanel>;
+        return $r11;
+    }
+
+    private javax.swing.JScrollPane getUnformattedGwoyeuRomatzyhScrollPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JScrollPane $r1, $r2, $r3, $r5;
+        javax.swing.JTextArea $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedGwoyeuRomatzyhScrollPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JScrollPane;
+        specialinvoke $r1.<javax.swing.JScrollPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedGwoyeuRomatzyhScrollPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedGwoyeuRomatzyhScrollPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getUnformattedGwoyeuRomatzyhTextArea()>();
+        virtualinvoke $r3.<javax.swing.JScrollPane: void setViewportView(java.awt.Component)>($r4);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedGwoyeuRomatzyhScrollPane>;
+        return $r5;
+    }
+
+    private javax.swing.JTextArea getUnformattedGwoyeuRomatzyhTextArea()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4, $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea>;
+        virtualinvoke $r4.<javax.swing.JTextArea: void setLineWrap(boolean)>(1);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedGwoyeuRomatzyhTextArea>;
+        return $r5;
+    }
+
+    private javax.swing.JPanel getUnformattedHanyuPinyinPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JPanel $r1, $r2, $r3, $r5, $r7, $r9;
+        java.awt.BorderLayout $r4;
+        javax.swing.JLabel $r6;
+        javax.swing.JScrollPane $r8;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JPanel;
+        specialinvoke $r1.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel>;
+        $r4 = new java.awt.BorderLayout;
+        specialinvoke $r4.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r3.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r4);
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel>;
+        $r6 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedHanyuPinyinLabel>;
+        virtualinvoke $r5.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r6, "North");
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel>;
+        $r8 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane getUnformattedHanyuPinyinScrollPane()>();
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "Center");
+
+     label0:
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedHanyuPinyinPanel>;
+        return $r9;
+    }
+
+    private javax.swing.JScrollPane getUnformattedHanyuPinyinScrollPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JScrollPane $r1, $r2, $r3, $r5;
+        javax.swing.JTextArea $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedHanyuPinyinScrollPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JScrollPane;
+        specialinvoke $r1.<javax.swing.JScrollPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedHanyuPinyinScrollPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedHanyuPinyinScrollPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getUnformattedHanyuPinyinTextArea()>();
+        virtualinvoke $r3.<javax.swing.JScrollPane: void setViewportView(java.awt.Component)>($r4);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedHanyuPinyinScrollPane>;
+        return $r5;
+    }
+
+    private javax.swing.JTextArea getUnformattedHanyuPinyinTextArea()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4, $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea>;
+        virtualinvoke $r4.<javax.swing.JTextArea: void setLineWrap(boolean)>(1);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedHanyuPinyinTextArea>;
+        return $r5;
+    }
+
+    private javax.swing.JPanel getUnformattedMPS2PinyinPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r3, $r8;
+        javax.swing.JPanel $r2, $r4, $r5, $r7, $r9, $r11;
+        java.awt.BorderLayout $r6;
+        javax.swing.JScrollPane $r10;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedMPS2PinyinLabel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedMPS2PinyinLabel>;
+        virtualinvoke $r3.<javax.swing.JLabel: void setText(java.lang.String)>("MPSII Pinyin");
+        $r4 = new javax.swing.JPanel;
+        specialinvoke $r4.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel> = $r4;
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel>;
+        $r6 = new java.awt.BorderLayout;
+        specialinvoke $r6.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r6);
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel>;
+        $r8 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedMPS2PinyinLabel>;
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "North");
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane getUnformattedMPS2PinyinScrollPane()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, "Center");
+
+     label0:
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedMPS2PinyinPanel>;
+        return $r11;
+    }
+
+    private javax.swing.JScrollPane getUnformattedMPS2PinyinScrollPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JScrollPane $r1, $r2, $r3, $r5;
+        javax.swing.JTextArea $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedMPS2PinyinScrollPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JScrollPane;
+        specialinvoke $r1.<javax.swing.JScrollPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedMPS2PinyinScrollPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedMPS2PinyinScrollPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getUnformattedMPS2PinyinTextArea()>();
+        virtualinvoke $r3.<javax.swing.JScrollPane: void setViewportView(java.awt.Component)>($r4);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedMPS2PinyinScrollPane>;
+        return $r5;
+    }
+
+    private javax.swing.JTextArea getUnformattedMPS2PinyinTextArea()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4, $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea>;
+        virtualinvoke $r4.<javax.swing.JTextArea: void setLineWrap(boolean)>(1);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedMPS2PinyinTextArea>;
+        return $r5;
+    }
+
+    private javax.swing.JPanel getUnformattedTongyongPinyinPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r3, $r8;
+        javax.swing.JPanel $r2, $r4, $r5, $r7, $r9, $r11;
+        java.awt.BorderLayout $r6;
+        javax.swing.JScrollPane $r10;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedTongyongPinyinLabel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedTongyongPinyinLabel>;
+        virtualinvoke $r3.<javax.swing.JLabel: void setText(java.lang.String)>("Tongyong Pinyin");
+        $r4 = new javax.swing.JPanel;
+        specialinvoke $r4.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel> = $r4;
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel>;
+        $r6 = new java.awt.BorderLayout;
+        specialinvoke $r6.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r6);
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel>;
+        $r8 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedTongyongPinyinLabel>;
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "North");
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane getUnformattedTongyongPinyinScrollPane()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, "Center");
+
+     label0:
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedTongyongPinyinPanel>;
+        return $r11;
+    }
+
+    private javax.swing.JScrollPane getUnformattedTongyongPinyinScrollPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JScrollPane $r1, $r2, $r3, $r5;
+        javax.swing.JTextArea $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedTongyongPinyinScrollPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JScrollPane;
+        specialinvoke $r1.<javax.swing.JScrollPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedTongyongPinyinScrollPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedTongyongPinyinScrollPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getUnformattedTongyongPinyinTextArea()>();
+        virtualinvoke $r3.<javax.swing.JScrollPane: void setViewportView(java.awt.Component)>($r4);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedTongyongPinyinScrollPane>;
+        return $r5;
+    }
+
+    private javax.swing.JTextArea getUnformattedTongyongPinyinTextArea()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4, $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea>;
+        virtualinvoke $r4.<javax.swing.JTextArea: void setLineWrap(boolean)>(1);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedTongyongPinyinTextArea>;
+        return $r5;
+    }
+
+    private javax.swing.JPanel getUnformattedWadePinyinPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r3, $r8;
+        javax.swing.JPanel $r2, $r4, $r5, $r7, $r9, $r11;
+        java.awt.BorderLayout $r6;
+        javax.swing.JScrollPane $r10;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedWadePinyinLabel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedWadePinyinLabel>;
+        virtualinvoke $r3.<javax.swing.JLabel: void setText(java.lang.String)>("Wade-Giles  Pinyin");
+        $r4 = new javax.swing.JPanel;
+        specialinvoke $r4.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel> = $r4;
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel>;
+        $r6 = new java.awt.BorderLayout;
+        specialinvoke $r6.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r6);
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel>;
+        $r8 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedWadePinyinLabel>;
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "North");
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane getUnformattedWadePinyinScrollPane()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, "Center");
+
+     label0:
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedWadePinyinPanel>;
+        return $r11;
+    }
+
+    private javax.swing.JScrollPane getUnformattedWadePinyinScrollPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JScrollPane $r1, $r2, $r3, $r5;
+        javax.swing.JTextArea $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedWadePinyinScrollPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JScrollPane;
+        specialinvoke $r1.<javax.swing.JScrollPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedWadePinyinScrollPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedWadePinyinScrollPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getUnformattedWadePinyinTextArea()>();
+        virtualinvoke $r3.<javax.swing.JScrollPane: void setViewportView(java.awt.Component)>($r4);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedWadePinyinScrollPane>;
+        return $r5;
+    }
+
+    private javax.swing.JTextArea getUnformattedWadePinyinTextArea()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4, $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea>;
+        virtualinvoke $r4.<javax.swing.JTextArea: void setLineWrap(boolean)>(1);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedWadePinyinTextArea>;
+        return $r5;
+    }
+
+    private javax.swing.JPanel getUnformattedYalePinyinPanel()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JLabel $r1, $r3, $r8;
+        javax.swing.JPanel $r2, $r4, $r5, $r7, $r9, $r11;
+        java.awt.BorderLayout $r6;
+        javax.swing.JScrollPane $r10;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JLabel;
+        specialinvoke $r1.<javax.swing.JLabel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedYalePinyinLabel> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedYalePinyinLabel>;
+        virtualinvoke $r3.<javax.swing.JLabel: void setText(java.lang.String)>("Yale Pinyin");
+        $r4 = new javax.swing.JPanel;
+        specialinvoke $r4.<javax.swing.JPanel: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel> = $r4;
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel>;
+        $r6 = new java.awt.BorderLayout;
+        specialinvoke $r6.<java.awt.BorderLayout: void <init>()>();
+        virtualinvoke $r5.<javax.swing.JPanel: void setLayout(java.awt.LayoutManager)>($r6);
+        $r7 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel>;
+        $r8 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JLabel unformattedYalePinyinLabel>;
+        virtualinvoke $r7.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r8, "North");
+        $r9 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel>;
+        $r10 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane getUnformattedYalePinyinScrollPane()>();
+        virtualinvoke $r9.<javax.swing.JPanel: void add(java.awt.Component,java.lang.Object)>($r10, "Center");
+
+     label0:
+        $r11 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel unformattedYalePinyinPanel>;
+        return $r11;
+    }
+
+    private javax.swing.JScrollPane getUnformattedYalePinyinScrollPane()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JScrollPane $r1, $r2, $r3, $r5;
+        javax.swing.JTextArea $r4;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedYalePinyinScrollPane>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JScrollPane;
+        specialinvoke $r1.<javax.swing.JScrollPane: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedYalePinyinScrollPane> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedYalePinyinScrollPane>;
+        $r4 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea getUnformattedYalePinyinTextArea()>();
+        virtualinvoke $r3.<javax.swing.JScrollPane: void setViewportView(java.awt.Component)>($r4);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JScrollPane unformattedYalePinyinScrollPane>;
+        return $r5;
+    }
+
+    private javax.swing.JTextArea getUnformattedYalePinyinTextArea()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JTextArea $r1, $r2, $r3, $r4, $r5;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JTextArea;
+        specialinvoke $r1.<javax.swing.JTextArea: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea> = $r1;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea>;
+        virtualinvoke $r3.<javax.swing.JTextArea: void setEditable(boolean)>(0);
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea>;
+        virtualinvoke $r4.<javax.swing.JTextArea: void setLineWrap(boolean)>(1);
+
+     label0:
+        $r5 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JTextArea unformattedYalePinyinTextArea>;
+        return $r5;
+    }
+
+    private javax.swing.JComboBox getVCharTypesComboBox()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        javax.swing.JComboBox $r1, $r2, $r4;
+        java.lang.String[] $r3;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r2 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox vCharTypesComboBox>;
+        if $r2 != null goto label0;
+
+        $r1 = new javax.swing.JComboBox;
+        $r3 = r0.<demo.Pinyin4jAppletDemo: java.lang.String[] vCharTypes>;
+        specialinvoke $r1.<javax.swing.JComboBox: void <init>(java.lang.Object[])>($r3);
+        r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox vCharTypesComboBox> = $r1;
+
+     label0:
+        $r4 = r0.<demo.Pinyin4jAppletDemo: javax.swing.JComboBox vCharTypesComboBox>;
+        return $r4;
+    }
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] r0;
+        javax.swing.JFrame r1;
+        java.lang.String $r2;
+        demo.Pinyin4jAppletDemo r3;
+        demo.Pinyin4jAppletDemo$1 $r4;
+        java.awt.Dimension $r6;
+
+        r0 := @parameter0: java.lang.String[];
+        r3 = new demo.Pinyin4jAppletDemo;
+        specialinvoke r3.<demo.Pinyin4jAppletDemo: void <init>()>();
+        staticinvoke <java.lang.System: void runFinalizersOnExit(boolean)>(1);
+        r1 = new javax.swing.JFrame;
+        $r2 = <demo.Pinyin4jAppletDemo: java.lang.String appName>;
+        specialinvoke r1.<javax.swing.JFrame: void <init>(java.lang.String)>($r2);
+        $r4 = new demo.Pinyin4jAppletDemo$1;
+        specialinvoke $r4.<demo.Pinyin4jAppletDemo$1: void <init>(demo.Pinyin4jAppletDemo)>(r3);
+        virtualinvoke r1.<javax.swing.JFrame: void addWindowListener(java.awt.event.WindowListener)>($r4);
+        virtualinvoke r1.<javax.swing.JFrame: java.awt.Component add(java.lang.String,java.awt.Component)>("Center", r3);
+        virtualinvoke r3.<demo.Pinyin4jAppletDemo: void init()>();
+        virtualinvoke r3.<demo.Pinyin4jAppletDemo: void start()>();
+        $r6 = <demo.Pinyin4jAppletDemo: java.awt.Dimension APP_SIZE>;
+        virtualinvoke r1.<javax.swing.JFrame: void setSize(java.awt.Dimension)>($r6);
+        virtualinvoke r1.<javax.swing.JFrame: void pack()>();
+        virtualinvoke r1.<javax.swing.JFrame: void setVisible(boolean)>(1);
+        return;
+    }
+
+    public void init()
+    {
+        demo.Pinyin4jAppletDemo r0;
+        java.awt.Dimension $r1;
+        javax.swing.JPanel $r2;
+        java.lang.String $r3;
+
+        r0 := @this: demo.Pinyin4jAppletDemo;
+        $r1 = <demo.Pinyin4jAppletDemo: java.awt.Dimension APP_SIZE>;
+        virtualinvoke r0.<demo.Pinyin4jAppletDemo: void setSize(java.awt.Dimension)>($r1);
+        $r2 = specialinvoke r0.<demo.Pinyin4jAppletDemo: javax.swing.JPanel getJContentPane()>();
+        virtualinvoke r0.<demo.Pinyin4jAppletDemo: void setContentPane(java.awt.Container)>($r2);
+        $r3 = <demo.Pinyin4jAppletDemo: java.lang.String appName>;
+        virtualinvoke r0.<demo.Pinyin4jAppletDemo: void setName(java.lang.String)>($r3);
+        return;
+    }
+}

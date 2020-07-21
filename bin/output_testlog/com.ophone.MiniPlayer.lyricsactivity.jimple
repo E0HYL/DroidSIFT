@@ -1,0 +1,1969 @@
+public class com.ophone.MiniPlayer.lyricsactivity extends android.app.Activity implements android.view.View$OnClickListener
+{
+    public static final int OPTION_ITEM_EXIT;
+    public static final int OPTION_ITEM_LOCALSONG;
+    public static final int OPTION_ITEM_ONLINESONG;
+    public static final int OPTION_ITEM_PLAYLIST;
+    public static final int OPTION_ITEM_TOMAINMENU;
+    private static final int SHOW_EXIT_DIALOG;
+    public static final java.lang.String TAG;
+    public static final int UPDATE;
+    private java.util.List _artist;
+    private int _artistcount;
+    private java.lang.String _songname;
+    private android.widget.TextView artist;
+    private android.widget.SeekBar bar;
+    private android.content.ServiceConnection connection;
+    private android.widget.TextView current;
+    private android.util.DisplayMetrics dm;
+    private long duration;
+    private java.lang.Boolean flag;
+    private android.os.Handler handler;
+    private android.widget.ImageView image;
+    private android.widget.ImageView iv;
+    private android.widget.LinearLayout l1;
+    private android.widget.LinearLayout l5;
+    private com.ophone.MiniPlayer.Loadimageurl liu;
+    private android.widget.TextView lyrics;
+    private java.lang.String lyricurlgoogle;
+    private java.lang.String lyricurllocal;
+    private com.ophone.MiniPlayer.MyView mTextView;
+    private android.widget.Button nextsongbn;
+    private android.widget.Button playpausebn;
+    private long pos;
+    private android.widget.Button presongbn;
+    private java.lang.Integer rString;
+    com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver receiver;
+    private android.widget.SeekBar$OnSeekBarChangeListener seekListener;
+    java.util.List sentencelist;
+    private com.ophone.MiniPlayer.IPlayback service;
+    private com.ophone.MiniPlayer.provider.Song song;
+    private android.widget.TextView songname;
+    private int status;
+    private android.widget.TextView total;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        com.ophone.MiniPlayer.Loadimageurl $r1;
+        java.util.ArrayList $r2;
+        com.ophone.MiniPlayer.lyricsactivity$1 $r3;
+        com.ophone.MiniPlayer.lyricsactivity$2 $r4;
+        com.ophone.MiniPlayer.lyricsactivity$3 $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<android.app.Activity: void <init>()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: long duration> = -1L;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: long pos> = 0L;
+        $r1 = new com.ophone.MiniPlayer.Loadimageurl;
+        specialinvoke $r1.<com.ophone.MiniPlayer.Loadimageurl: void <init>()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.Loadimageurl liu> = $r1;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song> = null;
+        $r2 = new java.util.ArrayList;
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist> = $r2;
+        $r3 = new com.ophone.MiniPlayer.lyricsactivity$1;
+        specialinvoke $r3.<com.ophone.MiniPlayer.lyricsactivity$1: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.os.Handler handler> = $r3;
+        $r4 = new com.ophone.MiniPlayer.lyricsactivity$2;
+        specialinvoke $r4.<com.ophone.MiniPlayer.lyricsactivity$2: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.ServiceConnection connection> = $r4;
+        $r5 = new com.ophone.MiniPlayer.lyricsactivity$3;
+        specialinvoke $r5.<com.ophone.MiniPlayer.lyricsactivity$3: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar$OnSeekBarChangeListener seekListener> = $r5;
+        return;
+    }
+
+    private void Init()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.content.Intent r1;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 18);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    private void SendIsPlaying()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.content.Intent r1;
+        com.ophone.MiniPlayer.provider.Song $r3;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 0);
+        $r3 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song>;
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("song", $r3);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    private void UpdateProgressbar()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        com.ophone.MiniPlayer.provider.Sentence r1;
+        com.ophone.MiniPlayer.IPlayback $r2, $r3, $r5, $r6, $r10, $r12, $r47, $r49, $r51;
+        boolean $z0, $z1, $z3, $z4;
+        java.lang.Boolean $r4, $r48;
+        int $i0, $i2, $i13, $i14, $i15, $i16, $i18;
+        long $l1, $l3, $l4, $l5, $l6, $l7, $l9, $l10, $l11, $l12;
+        com.ophone.MiniPlayer.MyView $r7, $r9;
+        java.util.List $r8, $r11, $r19, $r20, $r21, $r24, $r29, $r41, $r56, $r59, $r60, $r61;
+        java.lang.String $r13, $r15, $r17, $r26, $r27, $r31, $r33, $r34, $r36, $r50, $r52, $r53, $r54, $r55, $r57, $r58;
+        android.widget.TextView $r14, $r16, $r22, $r35, $r40, $r45, $r46;
+        byte $b8;
+        android.widget.SeekBar $r18;
+        java.lang.StringBuilder $r23, $r28, $r32;
+        java.lang.Object $r25, $r30, $r42;
+        android.os.Handler $r37, $r38;
+        android.os.Message $r39;
+        java.lang.CharSequence $r43;
+        android.os.RemoteException $r44;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+
+     label0:
+        $r2 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        if $r2 == null goto label4;
+
+        $r3 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $z0 = interfaceinvoke $r3.<com.ophone.MiniPlayer.IPlayback: boolean isPlaying()>();
+        if $z0 == 0 goto label13;
+
+        $r4 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Boolean flag>;
+        $z1 = virtualinvoke $r4.<java.lang.Boolean: boolean booleanValue()>();
+        if $z1 == 0 goto label13;
+
+        $r5 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $i0 = interfaceinvoke $r5.<com.ophone.MiniPlayer.IPlayback: int getDuration()>();
+        $l1 = (long) $i0;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: long duration> = $l1;
+        $r6 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $i2 = interfaceinvoke $r6.<com.ophone.MiniPlayer.IPlayback: int getTime()>();
+        $l3 = (long) $i2;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: long pos> = $l3;
+        $r7 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.MyView mTextView>;
+        $l4 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $r8 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist>;
+        virtualinvoke $r7.<com.ophone.MiniPlayer.MyView: void setText(long,java.util.List)>($l4, $r8);
+        $r9 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.MyView mTextView>;
+        virtualinvoke $r9.<com.ophone.MiniPlayer.MyView: void invalidate()>();
+        $r10 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $r11 = interfaceinvoke $r10.<com.ophone.MiniPlayer.IPlayback: java.util.List getArtist()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist> = $r11;
+        $r12 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $r13 = interfaceinvoke $r12.<com.ophone.MiniPlayer.IPlayback: java.lang.String getTitle()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String _songname> = $r13;
+        $r14 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView current>;
+        $l5 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $r15 = staticinvoke <com.ophone.MiniPlayer.utils.StringUtil: java.lang.String timeToString(long)>($l5);
+        virtualinvoke $r14.<android.widget.TextView: void setText(java.lang.CharSequence)>($r15);
+        $r16 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView total>;
+        $l6 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $r17 = staticinvoke <com.ophone.MiniPlayer.utils.StringUtil: java.lang.String timeToString(long)>($l6);
+        virtualinvoke $r16.<android.widget.TextView: void setText(java.lang.CharSequence)>($r17);
+        $l7 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $b8 = $l7 cmp 0L;
+        if $b8 == 0 goto label1;
+
+        $r18 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar>;
+        $l9 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $l10 = 100L * $l9;
+        $l11 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $l12 = $l10 / $l11;
+        $i13 = (int) $l12;
+        virtualinvoke $r18.<android.widget.SeekBar: void setProgress(int)>($i13);
+
+     label1:
+        $r19 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        if $r19 == null goto label2;
+
+        $r20 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $i14 = interfaceinvoke $r20.<java.util.List: int size()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: int _artistcount> = $i14;
+
+     label2:
+        $r21 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        if $r21 == null goto label9;
+
+        $i15 = r0.<com.ophone.MiniPlayer.lyricsactivity: int _artistcount>;
+        if $i15 <= 1 goto label6;
+
+        $r22 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist>;
+        $r23 = new java.lang.StringBuilder;
+        $r24 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $r25 = interfaceinvoke $r24.<java.util.List: java.lang.Object get(int)>(0);
+        $r26 = (java.lang.String) $r25;
+        $r27 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r26);
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>($r27);
+        $r28 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(",");
+        $r29 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $r30 = interfaceinvoke $r29.<java.util.List: java.lang.Object get(int)>(1);
+        $r31 = (java.lang.String) $r30;
+        $r32 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r31);
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r22.<android.widget.TextView: void setText(java.lang.CharSequence)>($r33);
+
+     label3:
+        $r34 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String _songname>;
+        if $r34 == null goto label11;
+
+        $r35 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView songname>;
+        $r36 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String _songname>;
+        virtualinvoke $r35.<android.widget.TextView: void setText(java.lang.CharSequence)>($r36);
+
+     label4:
+        $r37 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.os.Handler handler>;
+        $r38 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.os.Handler handler>;
+        $r39 = virtualinvoke $r38.<android.os.Handler: android.os.Message obtainMessage(int)>(2);
+        virtualinvoke $r37.<android.os.Handler: boolean sendMessageDelayed(android.os.Message,long)>($r39, 300L);
+
+     label5:
+        return;
+
+     label6:
+        $i16 = r0.<com.ophone.MiniPlayer.lyricsactivity: int _artistcount>;
+        if $i16 > 1 goto label3;
+
+        $r40 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist>;
+        $r41 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $r42 = interfaceinvoke $r41.<java.util.List: java.lang.Object get(int)>(0);
+        $r43 = (java.lang.CharSequence) $r42;
+        virtualinvoke $r40.<android.widget.TextView: void setText(java.lang.CharSequence)>($r43);
+
+     label7:
+        goto label3;
+
+     label8:
+        $r44 := @caughtexception;
+        virtualinvoke $r44.<android.os.RemoteException: void printStackTrace()>();
+        return;
+
+     label9:
+        $r45 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist>;
+        virtualinvoke $r45.<android.widget.TextView: void setText(java.lang.CharSequence)>("");
+
+     label10:
+        goto label3;
+
+     label11:
+        $r46 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView songname>;
+        virtualinvoke $r46.<android.widget.TextView: void setText(java.lang.CharSequence)>("");
+
+     label12:
+        goto label4;
+
+     label13:
+        $r47 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $z3 = interfaceinvoke $r47.<com.ophone.MiniPlayer.IPlayback: boolean isPlaying()>();
+        if $z3 == 0 goto label14;
+
+        $r48 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Boolean flag>;
+        $z4 = virtualinvoke $r48.<java.lang.Boolean: boolean booleanValue()>();
+        if $z4 != 0 goto label4;
+
+     label14:
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", "else  if(!service.isPlaying()||!flag)");
+        $r49 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $r50 = interfaceinvoke $r49.<com.ophone.MiniPlayer.IPlayback: java.lang.String getlyricurlgoogle()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle> = $r50;
+        $r51 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $r52 = interfaceinvoke $r51.<com.ophone.MiniPlayer.IPlayback: java.lang.String getlyricurllocal()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal> = $r52;
+        $r53 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        if $r53 == null goto label16;
+
+        $r54 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        $i18 = virtualinvoke $r54.<java.lang.String: int length()>();
+        if $i18 <= 0 goto label16;
+
+        $r55 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        $r56 = specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List getLyricsgoogle(java.lang.String)>($r55);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist> = $r56;
+
+     label15:
+        return;
+
+     label16:
+        $r57 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal>;
+        if $r57 == null goto label18;
+
+        $r58 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal>;
+        $r59 = specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List getLyricslocal(java.lang.String)>($r58);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist> = $r59;
+
+     label17:
+        return;
+
+     label18:
+        $r60 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist>;
+        interfaceinvoke $r60.<java.util.List: void clear()>();
+        r1 = new com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: void <init>()>();
+        virtualinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: void setContent(java.lang.String)>("\u5bf9\u4e0d\u8d77\uff0c\u6ca1\u6709\u627e\u5230\u76f8\u5173\u6b4c\u8bcd\uff01");
+        $r61 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist>;
+        interfaceinvoke $r61.<java.util.List: boolean add(java.lang.Object)>(r1);
+
+     label19:
+        return;
+
+        catch android.os.RemoteException from label0 to label1 with label8;
+        catch android.os.RemoteException from label1 to label2 with label8;
+        catch android.os.RemoteException from label2 to label3 with label8;
+        catch android.os.RemoteException from label3 to label4 with label8;
+        catch android.os.RemoteException from label4 to label5 with label8;
+        catch android.os.RemoteException from label6 to label7 with label8;
+        catch android.os.RemoteException from label9 to label10 with label8;
+        catch android.os.RemoteException from label11 to label12 with label8;
+        catch android.os.RemoteException from label13 to label14 with label8;
+        catch android.os.RemoteException from label14 to label15 with label8;
+        catch android.os.RemoteException from label16 to label17 with label8;
+        catch android.os.RemoteException from label18 to label19 with label8;
+    }
+
+    private void UpdateSonginfo()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        com.ophone.MiniPlayer.provider.Sentence r1;
+        java.util.List $r2, $r5, $r10, $r51, $r53, $r62, $r63, $r64;
+        int $i0, $i1, $i3, $i22, $i25, $i26;
+        android.widget.TextView $r3, $r16, $r35, $r37, $r52, $r56, $r57;
+        java.lang.StringBuilder $r4, $r9, $r13, $r25, $r27, $r29, $r30, $r32, $r33, $r40, $r42, $r44, $r46;
+        java.lang.Object $r6, $r11, $r54;
+        java.lang.String $r7, $r8, $r12, $r14, $r15, $r17, $r22, $r24, $r26, $r28, $r31, $r34, $r36, $r38, $r41, $r43, $r45, $r47, $r48, $r49, $r50, $r60, $r61;
+        com.ophone.MiniPlayer.IPlayback $r18, $r19, $r20, $r21, $r23;
+        long $l2, $l4, $l6, $l8, $l10, $l11, $l12, $l14, $l16, $l18, $l19, $l20, $l21;
+        byte $b13, $b15, $b17;
+        android.widget.SeekBar $r39, $r58;
+        java.lang.CharSequence $r55;
+        android.os.RemoteException $r59;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        $r2 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        if $r2 == null goto label6;
+
+        $i0 = r0.<com.ophone.MiniPlayer.lyricsactivity: int _artistcount>;
+        if $i0 <= 1 goto label5;
+
+        $r3 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist>;
+        $r4 = new java.lang.StringBuilder;
+        $r5 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $r6 = interfaceinvoke $r5.<java.util.List: java.lang.Object get(int)>(0);
+        $r7 = (java.lang.String) $r6;
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+        $r9 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(",");
+        $r10 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $r11 = interfaceinvoke $r10.<java.util.List: java.lang.Object get(int)>(1);
+        $r12 = (java.lang.String) $r11;
+        $r13 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r3.<android.widget.TextView: void setText(java.lang.CharSequence)>($r14);
+
+     label0:
+        $r15 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String _songname>;
+        if $r15 == null goto label7;
+
+        $r16 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView songname>;
+        $r17 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String _songname>;
+        virtualinvoke $r16.<android.widget.TextView: void setText(java.lang.CharSequence)>($r17);
+
+     label1:
+        $r18 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        if $r18 == null goto label2;
+
+        $r19 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $i1 = interfaceinvoke $r19.<com.ophone.MiniPlayer.IPlayback: int getDuration()>();
+        $l2 = (long) $i1;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: long duration> = $l2;
+        $r20 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $i3 = interfaceinvoke $r20.<com.ophone.MiniPlayer.IPlayback: int getTime()>();
+        $l4 = (long) $i3;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: long pos> = $l4;
+        $r21 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $r22 = interfaceinvoke $r21.<com.ophone.MiniPlayer.IPlayback: java.lang.String getlyricurlgoogle()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle> = $r22;
+        $r23 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        $r24 = interfaceinvoke $r23.<com.ophone.MiniPlayer.IPlayback: java.lang.String getlyricurllocal()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal> = $r24;
+
+     label2:
+        $r25 = new java.lang.StringBuilder;
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("lyricurl=");
+        $r26 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        $r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r26);
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r28);
+        $r29 = new java.lang.StringBuilder;
+        specialinvoke $r29.<java.lang.StringBuilder: void <init>(java.lang.String)>("duration=");
+        $l6 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l6);
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r31);
+        $r32 = new java.lang.StringBuilder;
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("pos=");
+        $l8 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r34);
+        $r35 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView current>;
+        $l10 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $r36 = staticinvoke <com.ophone.MiniPlayer.utils.StringUtil: java.lang.String timeToString(long)>($l10);
+        virtualinvoke $r35.<android.widget.TextView: void setText(java.lang.CharSequence)>($r36);
+        $r37 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView total>;
+        $l11 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $r38 = staticinvoke <com.ophone.MiniPlayer.utils.StringUtil: java.lang.String timeToString(long)>($l11);
+        virtualinvoke $r37.<android.widget.TextView: void setText(java.lang.CharSequence)>($r38);
+        $l12 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $b13 = $l12 cmp 0L;
+        if $b13 == 0 goto label8;
+
+        $l14 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $b15 = $l14 cmp -1L;
+        if $b15 < 0 goto label8;
+
+        $l16 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $b17 = $l16 cmp 0L;
+        if $b17 < 0 goto label8;
+
+        $r39 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar>;
+        $l18 = r0.<com.ophone.MiniPlayer.lyricsactivity: long pos>;
+        $l19 = 100L * $l18;
+        $l20 = r0.<com.ophone.MiniPlayer.lyricsactivity: long duration>;
+        $l21 = $l19 / $l20;
+        $i22 = (int) $l21;
+        virtualinvoke $r39.<android.widget.SeekBar: void setProgress(int)>($i22);
+
+     label3:
+        $r40 = new java.lang.StringBuilder;
+        specialinvoke $r40.<java.lang.StringBuilder: void <init>(java.lang.String)>("lyricurlgoogle=");
+        $r41 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        $r42 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41);
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r43);
+        $r44 = new java.lang.StringBuilder;
+        specialinvoke $r44.<java.lang.StringBuilder: void <init>(java.lang.String)>("lyricurllocal=");
+        $r45 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal>;
+        $r46 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r45);
+        $r47 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r47);
+        $r48 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        if $r48 == null goto label11;
+
+        $r49 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        $i25 = virtualinvoke $r49.<java.lang.String: int length()>();
+        if $i25 <= 0 goto label11;
+
+        $r50 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle>;
+        $r51 = specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List getLyricsgoogle(java.lang.String)>($r50);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist> = $r51;
+
+     label4:
+        return;
+
+     label5:
+        $i26 = r0.<com.ophone.MiniPlayer.lyricsactivity: int _artistcount>;
+        if $i26 > 1 goto label0;
+
+        $r52 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist>;
+        $r53 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        $r54 = interfaceinvoke $r53.<java.util.List: java.lang.Object get(int)>(0);
+        $r55 = (java.lang.CharSequence) $r54;
+        virtualinvoke $r52.<android.widget.TextView: void setText(java.lang.CharSequence)>($r55);
+        goto label0;
+
+     label6:
+        $r56 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist>;
+        virtualinvoke $r56.<android.widget.TextView: void setText(java.lang.CharSequence)>("");
+        goto label0;
+
+     label7:
+        $r57 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView songname>;
+        virtualinvoke $r57.<android.widget.TextView: void setText(java.lang.CharSequence)>("");
+        goto label1;
+
+     label8:
+        $r58 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar>;
+        virtualinvoke $r58.<android.widget.SeekBar: void setProgress(int)>(0);
+
+     label9:
+        goto label3;
+
+     label10:
+        $r59 := @caughtexception;
+        virtualinvoke $r59.<android.os.RemoteException: void printStackTrace()>();
+        return;
+
+     label11:
+        $r60 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal>;
+        if $r60 == null goto label13;
+
+        $r61 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal>;
+        $r62 = specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List getLyricslocal(java.lang.String)>($r61);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist> = $r62;
+
+     label12:
+        return;
+
+     label13:
+        $r63 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist>;
+        interfaceinvoke $r63.<java.util.List: void clear()>();
+        r1 = new com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: void <init>()>();
+        virtualinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: void setContent(java.lang.String)>("\u5bf9\u4e0d\u8d77\uff0c\u6ca1\u6709\u627e\u5230\u76f8\u5173\u6b4c\u8bcd\uff01");
+        $r64 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List sentencelist>;
+        interfaceinvoke $r64.<java.util.List: boolean add(java.lang.Object)>(r1);
+
+     label14:
+        return;
+
+        catch android.os.RemoteException from label1 to label2 with label10;
+        catch android.os.RemoteException from label2 to label3 with label10;
+        catch android.os.RemoteException from label3 to label4 with label10;
+        catch android.os.RemoteException from label8 to label9 with label10;
+        catch android.os.RemoteException from label11 to label12 with label10;
+        catch android.os.RemoteException from label13 to label14 with label10;
+    }
+
+    static void access$0(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void UpdateProgressbar()>();
+        return;
+    }
+
+    static void access$1(com.ophone.MiniPlayer.lyricsactivity, com.ophone.MiniPlayer.IPlayback)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        com.ophone.MiniPlayer.IPlayback r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter1: com.ophone.MiniPlayer.IPlayback;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service> = r1;
+        return;
+    }
+
+    static void access$10(com.ophone.MiniPlayer.lyricsactivity, int)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        int i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        i0 := @parameter1: int;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: int _artistcount> = i0;
+        return;
+    }
+
+    static int access$11(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        int $i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        $i0 = r0.<com.ophone.MiniPlayer.lyricsactivity: int status>;
+        return $i0;
+    }
+
+    static android.widget.Button access$12(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.widget.Button $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        $r1 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button playpausebn>;
+        return $r1;
+    }
+
+    static void access$13(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void UpdateSonginfo()>();
+        return;
+    }
+
+    static android.os.Handler access$2(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.os.Handler $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        $r1 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.os.Handler handler>;
+        return $r1;
+    }
+
+    static com.ophone.MiniPlayer.IPlayback access$3(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        com.ophone.MiniPlayer.IPlayback $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        $r1 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.IPlayback service>;
+        return $r1;
+    }
+
+    static void access$4(com.ophone.MiniPlayer.lyricsactivity, int)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        int i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        i0 := @parameter1: int;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: int status> = i0;
+        return;
+    }
+
+    static void access$5(com.ophone.MiniPlayer.lyricsactivity, java.util.List)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.util.List r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter1: java.util.List;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist> = r1;
+        return;
+    }
+
+    static void access$6(com.ophone.MiniPlayer.lyricsactivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter1: java.lang.String;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String _songname> = r1;
+        return;
+    }
+
+    static void access$7(com.ophone.MiniPlayer.lyricsactivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter1: java.lang.String;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurlgoogle> = r1;
+        return;
+    }
+
+    static void access$8(com.ophone.MiniPlayer.lyricsactivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter1: java.lang.String;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String lyricurllocal> = r1;
+        return;
+    }
+
+    static java.util.List access$9(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.util.List $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        $r1 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.util.List _artist>;
+        return $r1;
+    }
+
+    private java.util.List getLyricsgoogle(java.lang.String)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.lang.String r1, r15, $r25, $r33, $r35, $r39, $r41, $r45, $r48, $r49, $r50, $r51, $r54, $r55, $r57, $r58, r59, $r62, $r64, $r65, $r66, $r67;
+        java.util.ArrayList r2;
+        java.io.IOException r3, $r13;
+        java.io.InputStreamReader r4;
+        java.io.BufferedReader r5;
+        java.util.StringTokenizer r6, r7;
+        int i0, i1, i2, $i3, i5, i6, i9, $i10, i12, i14, $i15, $i16, $i18;
+        java.net.URL $r8, r9;
+        java.net.URLConnection r10;
+        java.io.InputStream r11;
+        java.lang.RuntimeException $r12;
+        java.io.DataInputStream r14;
+        com.ophone.MiniPlayer.lyricsactivity$6 $r16;
+        java.lang.Object $r17, $r19, $r23, $r27, $r31, $r68, $r70;
+        com.ophone.MiniPlayer.provider.Sentence $r18, $r20, $r24, $r28, $r32, r36, r63, $r69, $r71;
+        long $l4, $l7, $l8, $l11, $l17, $l19;
+        java.io.PrintStream $r21, $r37, $r42, $r52;
+        java.lang.StringBuilder $r22, $r26, $r29, $r30, $r34, $r38, $r40, $r43, $r44, $r53, $r56, $r60, $r61;
+        java.lang.String[] r46;
+        java.net.MalformedURLException $r47;
+        boolean $z1, $z2, $z3, $z4;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter0: java.lang.String;
+        r2 = new java.util.ArrayList;
+        specialinvoke r2.<java.util.ArrayList: void <init>()>();
+        if r1 == null goto label10;
+
+     label0:
+        $r8 = new java.net.URL;
+        specialinvoke $r8.<java.net.URL: void <init>(java.lang.String)>(r1);
+        r9 = $r8;
+
+     label1:
+        if r9 == null goto label11;
+
+     label2:
+        r10 = virtualinvoke r9.<java.net.URL: java.net.URLConnection openConnection()>();
+        virtualinvoke r10.<java.net.URLConnection: void connect()>();
+
+     label3:
+        if r10 == null goto label12;
+
+     label4:
+        r11 = virtualinvoke r10.<java.net.URLConnection: java.io.InputStream getInputStream()>();
+
+     label5:
+        if r11 != null goto label13;
+
+     label6:
+        $r12 = new java.lang.RuntimeException;
+        specialinvoke $r12.<java.lang.RuntimeException: void <init>(java.lang.String)>("stream is null");
+        throw $r12;
+
+     label7:
+        $r13 := @caughtexception;
+        r3 = $r13;
+
+     label8:
+        virtualinvoke r3.<java.io.IOException: void printStackTrace()>();
+
+     label9:
+        return r2;
+
+     label10:
+        r9 = null;
+        goto label1;
+
+     label11:
+        r10 = null;
+        goto label3;
+
+     label12:
+        r11 = null;
+        goto label5;
+
+     label13:
+        r14 = new java.io.DataInputStream;
+        specialinvoke r14.<java.io.DataInputStream: void <init>(java.io.InputStream)>(r11);
+        r4 = new java.io.InputStreamReader;
+        specialinvoke r4.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.lang.String)>(r14, "UTF-8");
+        r5 = new java.io.BufferedReader;
+        specialinvoke r5.<java.io.BufferedReader: void <init>(java.io.Reader)>(r4);
+
+     label14:
+        r15 = virtualinvoke r5.<java.io.BufferedReader: java.lang.String readLine()>();
+
+     label15:
+        if r15 != null goto label26;
+
+     label16:
+        $r16 = new com.ophone.MiniPlayer.lyricsactivity$6;
+        specialinvoke $r16.<com.ophone.MiniPlayer.lyricsactivity$6: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r2, $r16);
+
+     label17:
+        i1 = 0;
+
+     label18:
+        i2 = interfaceinvoke r2.<java.util.List: int size()>();
+
+     label19:
+        $i3 = i2 - 1;
+        if i1 < $i3 goto label50;
+
+     label20:
+        $r17 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>(i1);
+        $r18 = (com.ophone.MiniPlayer.provider.Sentence) $r17;
+        $r19 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>(i1);
+        $r20 = (com.ophone.MiniPlayer.provider.Sentence) $r19;
+        $l4 = virtualinvoke $r20.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        virtualinvoke $r18.<com.ophone.MiniPlayer.provider.Sentence: void setToTime(long)>($l4);
+
+     label21:
+        i5 = 0;
+
+     label22:
+        i6 = interfaceinvoke r2.<java.util.List: int size()>();
+
+     label23:
+        if i5 >= i6 goto label9;
+
+     label24:
+        $r21 = <java.lang.System: java.io.PrintStream out>;
+        $r22 = new java.lang.StringBuilder;
+        $r23 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>(i5);
+        $r24 = (com.ophone.MiniPlayer.provider.Sentence) $r23;
+        $l7 = virtualinvoke $r24.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        $r25 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($l7);
+        specialinvoke $r22.<java.lang.StringBuilder: void <init>(java.lang.String)>($r25);
+        $r26 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("-");
+        $r27 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>(i5);
+        $r28 = (com.ophone.MiniPlayer.provider.Sentence) $r27;
+        $l8 = virtualinvoke $r28.<com.ophone.MiniPlayer.provider.Sentence: long getToTime()>();
+        $r29 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l8);
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+        $r31 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>(i5);
+        $r32 = (com.ophone.MiniPlayer.provider.Sentence) $r31;
+        $r33 = virtualinvoke $r32.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $r34 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r21.<java.io.PrintStream: void println(java.lang.String)>($r35);
+
+     label25:
+        i5 = i5 + 1;
+        goto label22;
+
+     label26:
+        r36 = new com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r36.<com.ophone.MiniPlayer.provider.Sentence: void <init>()>();
+        r6 = new java.util.StringTokenizer;
+        specialinvoke r6.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r15, "[]");
+        $r37 = <java.lang.System: java.io.PrintStream out>;
+        $r38 = new java.lang.StringBuilder;
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("token.toString()");
+        $r39 = virtualinvoke r6.<java.lang.Object: java.lang.String toString()>();
+        $r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r39);
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r37.<java.io.PrintStream: void println(java.lang.String)>($r41);
+        i0 = virtualinvoke r6.<java.util.StringTokenizer: int countTokens()>();
+        $r42 = <java.lang.System: java.io.PrintStream out>;
+        $r43 = new java.lang.StringBuilder;
+        specialinvoke $r43.<java.lang.StringBuilder: void <init>(java.lang.String)>("count=");
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r42.<java.io.PrintStream: void println(java.lang.String)>($r45);
+        r46 = newarray (java.lang.String)[i0];
+
+     label27:
+        if i0 > 2 goto label37;
+
+        i9 = 0;
+
+     label28:
+        if i9 < i0 goto label32;
+
+     label29:
+        interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r36);
+
+     label30:
+        goto label14;
+
+     label31:
+        $r47 := @caughtexception;
+        virtualinvoke $r47.<java.net.MalformedURLException: void printStackTrace()>();
+        return r2;
+
+     label32:
+        $r48 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>();
+        r46[i9] = $r48;
+        $r49 = r46[i9];
+        $z1 = virtualinvoke $r49.<java.lang.String: boolean contains(java.lang.CharSequence)>(":");
+        if $z1 == 0 goto label35;
+
+        $r50 = r46[i9];
+        $z2 = virtualinvoke $r50.<java.lang.String: boolean contains(java.lang.CharSequence)>(".");
+        if $z2 == 0 goto label35;
+
+        $r51 = r46[i9];
+        $i10 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: int transfer(java.lang.String)>($r51);
+        $l11 = (long) $i10;
+        virtualinvoke r36.<com.ophone.MiniPlayer.provider.Sentence: void setFromTime(long)>($l11);
+
+     label33:
+        $r52 = <java.lang.System: java.io.PrintStream out>;
+        $r53 = new java.lang.StringBuilder;
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("st[i]=");
+        $r54 = r46[i9];
+        $r55 = virtualinvoke $r54.<java.lang.String: java.lang.String toString()>();
+        $r56 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r55);
+        $r57 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r52.<java.io.PrintStream: void println(java.lang.String)>($r57);
+
+     label34:
+        i9 = i9 + 1;
+        goto label28;
+
+     label35:
+        $r58 = r46[i9];
+        virtualinvoke r36.<com.ophone.MiniPlayer.provider.Sentence: void setContent(java.lang.String)>($r58);
+
+     label36:
+        goto label33;
+
+     label37:
+        if i0 <= 2 goto label14;
+
+     label38:
+        r7 = new java.util.StringTokenizer;
+        specialinvoke r7.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r15, "[]");
+
+     label39:
+        r59 = null;
+
+     label40:
+        i12 = virtualinvoke r7.<java.util.StringTokenizer: int countTokens()>();
+
+     label41:
+        if i12 != 0 goto label48;
+
+     label42:
+        $r60 = new java.lang.StringBuilder;
+        specialinvoke $r60.<java.lang.StringBuilder: void <init>(java.lang.String)>("STI=");
+        $r61 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r59);
+        $r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r62);
+
+     label43:
+        i14 = 0;
+
+     label44:
+        $i15 = i0 - 1;
+        if i14 >= $i15 goto label14;
+
+     label45:
+        r63 = new com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r63.<com.ophone.MiniPlayer.provider.Sentence: void <init>()>();
+        $r64 = virtualinvoke r6.<java.util.StringTokenizer: java.lang.String nextToken()>();
+        r46[i14] = $r64;
+        $r65 = r46[i14];
+        $z3 = virtualinvoke $r65.<java.lang.String: boolean contains(java.lang.CharSequence)>(":");
+        if $z3 == 0 goto label46;
+
+        $r66 = r46[i14];
+        $z4 = virtualinvoke $r66.<java.lang.String: boolean contains(java.lang.CharSequence)>(".");
+        if $z4 == 0 goto label46;
+
+        $r67 = r46[i14];
+        $i16 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: int transfer(java.lang.String)>($r67);
+        $l17 = (long) $i16;
+        virtualinvoke r63.<com.ophone.MiniPlayer.provider.Sentence: void setFromTime(long)>($l17);
+        virtualinvoke r63.<com.ophone.MiniPlayer.provider.Sentence: void setContent(java.lang.String)>(r59);
+
+     label46:
+        interfaceinvoke r2.<java.util.List: boolean add(java.lang.Object)>(r63);
+
+     label47:
+        i14 = i14 + 1;
+        goto label44;
+
+     label48:
+        r59 = virtualinvoke r7.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+     label49:
+        i12 = i12 + -1;
+        goto label41;
+
+     label50:
+        $r68 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>(i1);
+        $r69 = (com.ophone.MiniPlayer.provider.Sentence) $r68;
+        $i18 = i1 + 1;
+        $r70 = interfaceinvoke r2.<java.util.List: java.lang.Object get(int)>($i18);
+        $r71 = (com.ophone.MiniPlayer.provider.Sentence) $r70;
+        $l19 = virtualinvoke $r71.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        virtualinvoke $r69.<com.ophone.MiniPlayer.provider.Sentence: void setToTime(long)>($l19);
+
+     label51:
+        i1 = i1 + 1;
+        goto label19;
+
+        catch java.net.MalformedURLException from label0 to label1 with label31;
+        catch java.io.IOException from label2 to label3 with label7;
+        catch java.net.MalformedURLException from label2 to label3 with label31;
+        catch java.io.IOException from label4 to label5 with label7;
+        catch java.net.MalformedURLException from label4 to label5 with label31;
+        catch java.io.IOException from label6 to label7 with label7;
+        catch java.net.MalformedURLException from label6 to label7 with label31;
+        catch java.net.MalformedURLException from label8 to label9 with label31;
+        catch java.io.IOException from label13 to label14 with label7;
+        catch java.net.MalformedURLException from label13 to label14 with label31;
+        catch java.io.IOException from label14 to label15 with label7;
+        catch java.net.MalformedURLException from label14 to label15 with label31;
+        catch java.io.IOException from label16 to label17 with label7;
+        catch java.net.MalformedURLException from label16 to label17 with label31;
+        catch java.io.IOException from label18 to label19 with label7;
+        catch java.net.MalformedURLException from label18 to label19 with label31;
+        catch java.io.IOException from label20 to label21 with label7;
+        catch java.net.MalformedURLException from label20 to label21 with label31;
+        catch java.io.IOException from label22 to label23 with label7;
+        catch java.net.MalformedURLException from label22 to label23 with label31;
+        catch java.io.IOException from label24 to label25 with label7;
+        catch java.net.MalformedURLException from label24 to label25 with label31;
+        catch java.io.IOException from label26 to label27 with label7;
+        catch java.net.MalformedURLException from label26 to label27 with label31;
+        catch java.io.IOException from label29 to label30 with label7;
+        catch java.net.MalformedURLException from label29 to label30 with label31;
+        catch java.io.IOException from label32 to label33 with label7;
+        catch java.net.MalformedURLException from label32 to label33 with label31;
+        catch java.io.IOException from label33 to label34 with label7;
+        catch java.net.MalformedURLException from label33 to label34 with label31;
+        catch java.io.IOException from label35 to label36 with label7;
+        catch java.net.MalformedURLException from label35 to label36 with label31;
+        catch java.io.IOException from label38 to label39 with label7;
+        catch java.net.MalformedURLException from label38 to label39 with label31;
+        catch java.io.IOException from label40 to label41 with label7;
+        catch java.net.MalformedURLException from label40 to label41 with label31;
+        catch java.io.IOException from label42 to label43 with label7;
+        catch java.net.MalformedURLException from label42 to label43 with label31;
+        catch java.io.IOException from label45 to label46 with label7;
+        catch java.net.MalformedURLException from label45 to label46 with label31;
+        catch java.io.IOException from label46 to label47 with label7;
+        catch java.net.MalformedURLException from label46 to label47 with label31;
+        catch java.io.IOException from label48 to label49 with label7;
+        catch java.net.MalformedURLException from label48 to label49 with label31;
+        catch java.io.IOException from label50 to label51 with label7;
+        catch java.net.MalformedURLException from label50 to label51 with label31;
+    }
+
+    private java.util.List getLyricslocal(java.lang.String)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.lang.String r1, $r9, $r11, $r12, $r15, r19, $r28, $r30, $r34, $r41, $r42, $r43, $r44, $r47, $r48, $r50, $r51, r52, $r55, $r57, $r58, $r59, $r60, $r64, $r67, $r69, $r72, $r73, $r75, r76, $r85, $r87, $r96, $r98, $r107, $r115, $r117;
+        java.lang.StringBuilder r2, $r13, $r14, $r27, $r29, $r32, $r33, $r46, $r49, $r53, $r54, $r62, $r63, $r66, $r68, $r71, $r74, $r78, $r81, $r82, $r86, $r89, $r92, $r93, $r97, $r104, $r108, $r111, $r112, $r116;
+        java.io.File r3, r4;
+        java.util.ArrayList r5;
+        java.io.BufferedReader r6;
+        java.util.StringTokenizer r7, r8;
+        long l0, $l16, $l22, $l28, $l29, $l31, $l32, $l33;
+        int $i1, $i2, $i3, $i4, $i5, $i6, i7, i8, $i9, i10, i11, $i12, i13, i14, $i15, i17, i18, i19, i20, $i21, i23, i25, $i26, $i27, $i30;
+        java.io.FileInputStream r16;
+        java.io.DataInputStream r17;
+        java.io.InputStreamReader r18;
+        com.ophone.MiniPlayer.lyricsactivity$7 $r20;
+        java.lang.Object $r21, $r23, $r79, $r83, $r90, $r94, $r99, $r101, $r105, $r109, $r113;
+        com.ophone.MiniPlayer.provider.Sentence $r22, $r24, r25, r56, $r80, $r84, $r91, $r95, $r100, $r102, $r106, $r110, $r114;
+        java.io.PrintStream $r26, $r31, $r45, $r61, $r65, $r70, $r77, $r88, $r103;
+        java.lang.String[] r35;
+        java.io.IOException $r36, r37;
+        java.io.UnsupportedEncodingException $r38, r39;
+        java.io.FileNotFoundException $r40;
+        boolean $z1, $z2, $z3, $z4;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter0: java.lang.String;
+        $i1 = virtualinvoke r1.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+        $i2 = 1 + $i1;
+        $i3 = virtualinvoke r1.<java.lang.String: int length()>();
+        $r9 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>($i2, $i3);
+        virtualinvoke $r9.<java.lang.String: java.lang.String toLowerCase()>();
+        r2 = new java.lang.StringBuilder;
+        $i4 = virtualinvoke r1.<java.lang.String: int lastIndexOf(java.lang.String)>("/");
+        $i5 = 1 + $i4;
+        $i6 = virtualinvoke r1.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+        $r11 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>($i5, $i6);
+        r3 = new java.io.File;
+        specialinvoke r3.<java.io.File: void <init>(java.lang.String)>("\\sdcard\\myplayer\\lrc");
+        r4 = new java.io.File;
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r11);
+        specialinvoke r2.<java.lang.StringBuilder: void <init>(java.lang.String)>($r12);
+        $r13 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".");
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("lrc");
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+        specialinvoke r4.<java.io.File: void <init>(java.io.File,java.lang.String)>(r3, $r15);
+        r5 = new java.util.ArrayList;
+        specialinvoke r5.<java.util.ArrayList: void <init>()>();
+
+     label0:
+        r16 = new java.io.FileInputStream;
+        specialinvoke r16.<java.io.FileInputStream: void <init>(java.io.File)>(r4);
+        r17 = new java.io.DataInputStream;
+        specialinvoke r17.<java.io.DataInputStream: void <init>(java.io.InputStream)>(r16);
+
+     label1:
+        r18 = new java.io.InputStreamReader;
+        specialinvoke r18.<java.io.InputStreamReader: void <init>(java.io.InputStream,java.lang.String)>(r17, "UTF-8");
+        r6 = new java.io.BufferedReader;
+        specialinvoke r6.<java.io.BufferedReader: void <init>(java.io.Reader)>(r18);
+
+     label2:
+        r19 = virtualinvoke r6.<java.io.BufferedReader: java.lang.String readLine()>();
+
+     label3:
+        if r19 != null goto label17;
+
+     label4:
+        i7 = 0;
+
+     label5:
+        i8 = interfaceinvoke r5.<java.util.List: int size()>();
+
+     label6:
+        $i9 = i8 - 1;
+        if i7 < $i9 goto label47;
+
+     label7:
+        $r20 = new com.ophone.MiniPlayer.lyricsactivity$7;
+        specialinvoke $r20.<com.ophone.MiniPlayer.lyricsactivity$7: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        staticinvoke <java.util.Collections: void sort(java.util.List,java.util.Comparator)>(r5, $r20);
+
+     label8:
+        i10 = 0;
+
+     label9:
+        i11 = interfaceinvoke r5.<java.util.List: int size()>();
+
+     label10:
+        $i12 = i11 - 1;
+        if i10 < $i12 goto label49;
+
+        i13 = 0;
+
+     label11:
+        i14 = interfaceinvoke r5.<java.util.List: int size()>();
+
+     label12:
+        $i15 = i14 - 1;
+        if i13 < $i15 goto label51;
+
+     label13:
+        $r21 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i13);
+        $r22 = (com.ophone.MiniPlayer.provider.Sentence) $r21;
+        $r23 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i13);
+        $r24 = (com.ophone.MiniPlayer.provider.Sentence) $r23;
+        $l16 = virtualinvoke $r24.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        virtualinvoke $r22.<com.ophone.MiniPlayer.provider.Sentence: void setToTime(long)>($l16);
+
+     label14:
+        i17 = 0;
+
+     label15:
+        i18 = interfaceinvoke r5.<java.util.List: int size()>();
+
+     label16:
+        if i17 < i18 goto label53;
+
+        return r5;
+
+     label17:
+        r25 = new com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r25.<com.ophone.MiniPlayer.provider.Sentence: void <init>()>();
+        r7 = new java.util.StringTokenizer;
+        specialinvoke r7.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r19, "[]");
+        $r26 = <java.lang.System: java.io.PrintStream out>;
+        $r27 = new java.lang.StringBuilder;
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>("token.toString()");
+        $r28 = virtualinvoke r7.<java.lang.Object: java.lang.String toString()>();
+        $r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r28);
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r26.<java.io.PrintStream: void println(java.lang.String)>($r30);
+        i19 = virtualinvoke r7.<java.util.StringTokenizer: int countTokens()>();
+        $r31 = <java.lang.System: java.io.PrintStream out>;
+        $r32 = new java.lang.StringBuilder;
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("count=");
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i19);
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r31.<java.io.PrintStream: void println(java.lang.String)>($r34);
+        r35 = newarray (java.lang.String)[i19];
+
+     label18:
+        if i19 > 2 goto label34;
+
+        i20 = 0;
+
+     label19:
+        if i20 < i19 goto label29;
+
+     label20:
+        interfaceinvoke r5.<java.util.List: boolean add(java.lang.Object)>(r25);
+
+     label21:
+        goto label2;
+
+     label22:
+        $r36 := @caughtexception;
+        r37 = $r36;
+
+     label23:
+        virtualinvoke r37.<java.io.IOException: void printStackTrace()>();
+
+     label24:
+        goto label4;
+
+     label25:
+        $r38 := @caughtexception;
+        r39 = $r38;
+
+     label26:
+        virtualinvoke r39.<java.io.UnsupportedEncodingException: void printStackTrace()>();
+
+     label27:
+        return r5;
+
+     label28:
+        $r40 := @caughtexception;
+        virtualinvoke $r40.<java.io.FileNotFoundException: void printStackTrace()>();
+        return r5;
+
+     label29:
+        $r41 = virtualinvoke r7.<java.util.StringTokenizer: java.lang.String nextToken()>();
+        r35[i20] = $r41;
+        $r42 = r35[i20];
+        $z1 = virtualinvoke $r42.<java.lang.String: boolean contains(java.lang.CharSequence)>(":");
+        if $z1 == 0 goto label32;
+
+        $r43 = r35[i20];
+        $z2 = virtualinvoke $r43.<java.lang.String: boolean contains(java.lang.CharSequence)>(".");
+        if $z2 == 0 goto label32;
+
+        $r44 = r35[i20];
+        $i21 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: int transfer(java.lang.String)>($r44);
+        $l22 = (long) $i21;
+        virtualinvoke r25.<com.ophone.MiniPlayer.provider.Sentence: void setFromTime(long)>($l22);
+
+     label30:
+        $r45 = <java.lang.System: java.io.PrintStream out>;
+        $r46 = new java.lang.StringBuilder;
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("st[i]=");
+        $r47 = r35[i20];
+        $r48 = virtualinvoke $r47.<java.lang.String: java.lang.String toString()>();
+        $r49 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r48);
+        $r50 = virtualinvoke $r49.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r45.<java.io.PrintStream: void println(java.lang.String)>($r50);
+
+     label31:
+        i20 = i20 + 1;
+        goto label19;
+
+     label32:
+        $r51 = r35[i20];
+        virtualinvoke r25.<com.ophone.MiniPlayer.provider.Sentence: void setContent(java.lang.String)>($r51);
+
+     label33:
+        goto label30;
+
+     label34:
+        if i19 <= 2 goto label2;
+
+     label35:
+        r8 = new java.util.StringTokenizer;
+        specialinvoke r8.<java.util.StringTokenizer: void <init>(java.lang.String,java.lang.String)>(r19, "[]");
+
+     label36:
+        r52 = null;
+
+     label37:
+        i23 = virtualinvoke r8.<java.util.StringTokenizer: int countTokens()>();
+
+     label38:
+        if i23 != 0 goto label45;
+
+     label39:
+        $r53 = new java.lang.StringBuilder;
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("STI=");
+        $r54 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r52);
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r55);
+
+     label40:
+        i25 = 0;
+
+     label41:
+        $i26 = i19 - 1;
+        if i25 >= $i26 goto label2;
+
+     label42:
+        r56 = new com.ophone.MiniPlayer.provider.Sentence;
+        specialinvoke r56.<com.ophone.MiniPlayer.provider.Sentence: void <init>()>();
+        $r57 = virtualinvoke r7.<java.util.StringTokenizer: java.lang.String nextToken()>();
+        r35[i25] = $r57;
+        $r58 = r35[i25];
+        $z3 = virtualinvoke $r58.<java.lang.String: boolean contains(java.lang.CharSequence)>(":");
+        if $z3 == 0 goto label43;
+
+        $r59 = r35[i25];
+        $z4 = virtualinvoke $r59.<java.lang.String: boolean contains(java.lang.CharSequence)>(".");
+        if $z4 == 0 goto label43;
+
+        $r60 = r35[i25];
+        $i27 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: int transfer(java.lang.String)>($r60);
+        l0 = (long) $i27;
+        virtualinvoke r56.<com.ophone.MiniPlayer.provider.Sentence: void setFromTime(long)>(l0);
+        virtualinvoke r56.<com.ophone.MiniPlayer.provider.Sentence: void setContent(java.lang.String)>(r52);
+        $r61 = <java.lang.System: java.io.PrintStream out>;
+        $r62 = new java.lang.StringBuilder;
+        specialinvoke $r62.<java.lang.StringBuilder: void <init>(java.lang.String)>("time count>2=");
+        $r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+        $r64 = virtualinvoke $r63.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r61.<java.io.PrintStream: void println(java.lang.String)>($r64);
+        $r65 = <java.lang.System: java.io.PrintStream out>;
+        $r66 = new java.lang.StringBuilder;
+        specialinvoke $r66.<java.lang.StringBuilder: void <init>(java.lang.String)>("sti count>2=");
+        $r67 = virtualinvoke r52.<java.lang.String: java.lang.String toString()>();
+        $r68 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r67);
+        $r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r65.<java.io.PrintStream: void println(java.lang.String)>($r69);
+
+     label43:
+        $r70 = <java.lang.System: java.io.PrintStream out>;
+        $r71 = new java.lang.StringBuilder;
+        specialinvoke $r71.<java.lang.StringBuilder: void <init>(java.lang.String)>("st[i] count>2=");
+        $r72 = r35[i25];
+        $r73 = virtualinvoke $r72.<java.lang.String: java.lang.String toString()>();
+        $r74 = virtualinvoke $r71.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r73);
+        $r75 = virtualinvoke $r74.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r70.<java.io.PrintStream: void println(java.lang.String)>($r75);
+        interfaceinvoke r5.<java.util.List: boolean add(java.lang.Object)>(r56);
+
+     label44:
+        i25 = i25 + 1;
+        goto label41;
+
+     label45:
+        r76 = virtualinvoke r8.<java.util.StringTokenizer: java.lang.String nextToken()>();
+
+     label46:
+        r52 = r76;
+        i23 = i23 + -1;
+        goto label38;
+
+     label47:
+        $r77 = <java.lang.System: java.io.PrintStream out>;
+        $r78 = new java.lang.StringBuilder;
+        specialinvoke $r78.<java.lang.StringBuilder: void <init>(java.lang.String)>("list.get(i).getFromTime()=");
+        $r79 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i7);
+        $r80 = (com.ophone.MiniPlayer.provider.Sentence) $r79;
+        $l28 = virtualinvoke $r80.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        $r81 = virtualinvoke $r78.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l28);
+        $r82 = virtualinvoke $r81.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("    list.get(i).getContent()=");
+        $r83 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i7);
+        $r84 = (com.ophone.MiniPlayer.provider.Sentence) $r83;
+        $r85 = virtualinvoke $r84.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $r86 = virtualinvoke $r82.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r85);
+        $r87 = virtualinvoke $r86.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r77.<java.io.PrintStream: void println(java.lang.String)>($r87);
+
+     label48:
+        i7 = i7 + 1;
+        goto label6;
+
+     label49:
+        $r88 = <java.lang.System: java.io.PrintStream out>;
+        $r89 = new java.lang.StringBuilder;
+        specialinvoke $r89.<java.lang.StringBuilder: void <init>(java.lang.String)>("list.get(i).getFromTime()=");
+        $r90 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i10);
+        $r91 = (com.ophone.MiniPlayer.provider.Sentence) $r90;
+        $l29 = virtualinvoke $r91.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        $r92 = virtualinvoke $r89.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l29);
+        $r93 = virtualinvoke $r92.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("    list.get(i).getContent()=");
+        $r94 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i10);
+        $r95 = (com.ophone.MiniPlayer.provider.Sentence) $r94;
+        $r96 = virtualinvoke $r95.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $r97 = virtualinvoke $r93.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r96);
+        $r98 = virtualinvoke $r97.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r88.<java.io.PrintStream: void println(java.lang.String)>($r98);
+
+     label50:
+        i10 = i10 + 1;
+        goto label10;
+
+     label51:
+        $r99 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i13);
+        $r100 = (com.ophone.MiniPlayer.provider.Sentence) $r99;
+        $i30 = i13 + 1;
+        $r101 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>($i30);
+        $r102 = (com.ophone.MiniPlayer.provider.Sentence) $r101;
+        $l31 = virtualinvoke $r102.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        virtualinvoke $r100.<com.ophone.MiniPlayer.provider.Sentence: void setToTime(long)>($l31);
+
+     label52:
+        i13 = i13 + 1;
+        goto label12;
+
+     label53:
+        $r103 = <java.lang.System: java.io.PrintStream out>;
+        $r104 = new java.lang.StringBuilder;
+        $r105 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i17);
+        $r106 = (com.ophone.MiniPlayer.provider.Sentence) $r105;
+        $l32 = virtualinvoke $r106.<com.ophone.MiniPlayer.provider.Sentence: long getFromTime()>();
+        $r107 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($l32);
+        specialinvoke $r104.<java.lang.StringBuilder: void <init>(java.lang.String)>($r107);
+        $r108 = virtualinvoke $r104.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("-");
+        $r109 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i17);
+        $r110 = (com.ophone.MiniPlayer.provider.Sentence) $r109;
+        $l33 = virtualinvoke $r110.<com.ophone.MiniPlayer.provider.Sentence: long getToTime()>();
+        $r111 = virtualinvoke $r108.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($l33);
+        $r112 = virtualinvoke $r111.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+        $r113 = interfaceinvoke r5.<java.util.List: java.lang.Object get(int)>(i17);
+        $r114 = (com.ophone.MiniPlayer.provider.Sentence) $r113;
+        $r115 = virtualinvoke $r114.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $r116 = virtualinvoke $r112.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r115);
+        $r117 = virtualinvoke $r116.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r103.<java.io.PrintStream: void println(java.lang.String)>($r117);
+
+     label54:
+        i17 = i17 + 1;
+        goto label15;
+
+        catch java.io.FileNotFoundException from label0 to label1 with label28;
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label25;
+        catch java.io.FileNotFoundException from label1 to label2 with label28;
+        catch java.io.IOException from label2 to label3 with label22;
+        catch java.io.UnsupportedEncodingException from label2 to label3 with label25;
+        catch java.io.FileNotFoundException from label2 to label3 with label28;
+        catch java.io.UnsupportedEncodingException from label5 to label6 with label25;
+        catch java.io.FileNotFoundException from label5 to label6 with label28;
+        catch java.io.UnsupportedEncodingException from label7 to label8 with label25;
+        catch java.io.FileNotFoundException from label7 to label8 with label28;
+        catch java.io.UnsupportedEncodingException from label9 to label10 with label25;
+        catch java.io.FileNotFoundException from label9 to label10 with label28;
+        catch java.io.UnsupportedEncodingException from label11 to label12 with label25;
+        catch java.io.FileNotFoundException from label11 to label12 with label28;
+        catch java.io.UnsupportedEncodingException from label13 to label14 with label25;
+        catch java.io.FileNotFoundException from label13 to label14 with label28;
+        catch java.io.UnsupportedEncodingException from label15 to label16 with label25;
+        catch java.io.FileNotFoundException from label15 to label16 with label28;
+        catch java.io.IOException from label17 to label18 with label22;
+        catch java.io.UnsupportedEncodingException from label17 to label18 with label25;
+        catch java.io.FileNotFoundException from label17 to label18 with label28;
+        catch java.io.IOException from label20 to label21 with label22;
+        catch java.io.UnsupportedEncodingException from label20 to label21 with label25;
+        catch java.io.FileNotFoundException from label20 to label21 with label28;
+        catch java.io.UnsupportedEncodingException from label23 to label24 with label25;
+        catch java.io.FileNotFoundException from label23 to label24 with label28;
+        catch java.io.FileNotFoundException from label26 to label27 with label28;
+        catch java.io.IOException from label29 to label30 with label22;
+        catch java.io.UnsupportedEncodingException from label29 to label30 with label25;
+        catch java.io.FileNotFoundException from label29 to label30 with label28;
+        catch java.io.IOException from label30 to label31 with label22;
+        catch java.io.UnsupportedEncodingException from label30 to label31 with label25;
+        catch java.io.FileNotFoundException from label30 to label31 with label28;
+        catch java.io.IOException from label32 to label33 with label22;
+        catch java.io.UnsupportedEncodingException from label32 to label33 with label25;
+        catch java.io.FileNotFoundException from label32 to label33 with label28;
+        catch java.io.IOException from label35 to label36 with label22;
+        catch java.io.UnsupportedEncodingException from label35 to label36 with label25;
+        catch java.io.FileNotFoundException from label35 to label36 with label28;
+        catch java.io.IOException from label37 to label38 with label22;
+        catch java.io.UnsupportedEncodingException from label37 to label38 with label25;
+        catch java.io.FileNotFoundException from label37 to label38 with label28;
+        catch java.io.IOException from label39 to label40 with label22;
+        catch java.io.UnsupportedEncodingException from label39 to label40 with label25;
+        catch java.io.FileNotFoundException from label39 to label40 with label28;
+        catch java.io.IOException from label42 to label43 with label22;
+        catch java.io.UnsupportedEncodingException from label42 to label43 with label25;
+        catch java.io.FileNotFoundException from label42 to label43 with label28;
+        catch java.io.IOException from label43 to label44 with label22;
+        catch java.io.UnsupportedEncodingException from label43 to label44 with label25;
+        catch java.io.FileNotFoundException from label43 to label44 with label28;
+        catch java.io.IOException from label45 to label46 with label22;
+        catch java.io.UnsupportedEncodingException from label45 to label46 with label25;
+        catch java.io.FileNotFoundException from label45 to label46 with label28;
+        catch java.io.UnsupportedEncodingException from label47 to label48 with label25;
+        catch java.io.FileNotFoundException from label47 to label48 with label28;
+        catch java.io.UnsupportedEncodingException from label49 to label50 with label25;
+        catch java.io.FileNotFoundException from label49 to label50 with label28;
+        catch java.io.UnsupportedEncodingException from label51 to label52 with label25;
+        catch java.io.FileNotFoundException from label51 to label52 with label28;
+        catch java.io.UnsupportedEncodingException from label53 to label54 with label25;
+        catch java.io.FileNotFoundException from label53 to label54 with label28;
+    }
+
+    private void sendcancelnotification()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.content.Intent r1;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 28);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    public static int transfer(java.lang.String)
+    {
+        java.lang.String r0, $r1, r2, $r3, r4, r5;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21;
+
+        r0 := @parameter0: java.lang.String;
+        $i2 = virtualinvoke r0.<java.lang.String: int length()>();
+        if $i2 >= 6 goto label1;
+
+        i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(":");
+        if i0 != -1 goto label0;
+
+        i0 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(".");
+
+     label0:
+        $r1 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i0);
+        $i3 = i0 + 1;
+        r2 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int)>($i3);
+        $i4 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r1);
+        $i5 = 60 * $i4;
+        $i6 = 1000 * $i5;
+        $i7 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r2);
+        $i8 = 1000 * $i7;
+        $i9 = $i6 + $i8;
+        return $i9;
+
+     label1:
+        i10 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(":");
+        if i10 != -1 goto label2;
+
+        i10 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(".");
+
+     label2:
+        i1 = virtualinvoke r0.<java.lang.String: int indexOf(java.lang.String)>(".");
+        if i1 != i10 goto label3;
+
+        i1 = virtualinvoke r0.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+
+     label3:
+        $r3 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>(0, i10);
+        $i11 = i10 + 1;
+        r4 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int,int)>($i11, i1);
+        $i12 = i1 + 1;
+        r5 = virtualinvoke r0.<java.lang.String: java.lang.String substring(int)>($i12);
+        $i13 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($r3);
+        $i14 = 60 * $i13;
+        $i15 = 1000 * $i14;
+        $i16 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r4);
+        $i17 = 1000 * $i16;
+        $i18 = $i15 + $i17;
+        $i19 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r5);
+        $i20 = 10 * $i19;
+        $i21 = $i18 + $i20;
+        return $i21;
+    }
+
+    public void onClick(android.view.View)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.view.View r1;
+        android.content.Intent r2;
+        int $i0, $i2, $i4, $i5, $i6;
+        byte b1;
+        java.lang.StringBuilder $r3, $r4;
+        java.lang.String $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter0: android.view.View;
+        r2 = new android.content.Intent;
+        specialinvoke r2.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        $i0 = virtualinvoke r1.<android.view.View: int getId()>();
+        b1 = 0;
+        tableswitch($i0)
+        {
+            case 2131230742: goto label5;
+            case 2131230743: goto label1;
+            case 2131230744: goto label6;
+            default: goto label0;
+        };
+
+     label0:
+        $r3 = new java.lang.StringBuilder;
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>("Myplayer STATUS=");
+        $i2 = r0.<com.ophone.MiniPlayer.lyricsactivity: int status>;
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r5);
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", b1);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void sendBroadcast(android.content.Intent)>(r2);
+        return;
+
+     label1:
+        $i4 = r0.<com.ophone.MiniPlayer.lyricsactivity: int status>;
+        if $i4 != 100 goto label2;
+
+        b1 = 1;
+        goto label0;
+
+     label2:
+        $i5 = r0.<com.ophone.MiniPlayer.lyricsactivity: int status>;
+        if $i5 != 101 goto label3;
+
+        b1 = 2;
+        goto label0;
+
+     label3:
+        $i6 = r0.<com.ophone.MiniPlayer.lyricsactivity: int status>;
+        if $i6 != 111 goto label4;
+
+        b1 = 2;
+        goto label0;
+
+     label4:
+        b1 = 2;
+        goto label0;
+
+     label5:
+        b1 = 5;
+        goto label0;
+
+     label6:
+        b1 = 4;
+        goto label0;
+    }
+
+    protected void onCreate(android.os.Bundle)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.os.Bundle r1;
+        java.lang.Boolean $r2;
+        android.content.Intent $r3, $r21;
+        java.io.Serializable $r4;
+        com.ophone.MiniPlayer.provider.Song r5, $r8, $r10, $r11, $r14, $r16;
+        int $i1, $i2;
+        java.lang.Integer $r6, $r7, $r13;
+        java.lang.String $r9;
+        boolean $z1, $z2;
+        com.ophone.MiniPlayer.provider.Song$Source $r12;
+        java.util.ArrayList $r15;
+        com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver $r17, $r19;
+        android.content.IntentFilter r18;
+        android.content.ServiceConnection $r22;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter0: android.os.Bundle;
+        specialinvoke r0.<android.app.Activity: void onCreate(android.os.Bundle)>(r1);
+        $r2 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(1);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Boolean flag> = $r2;
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: boolean requestWindowFeature(int)>(1);
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", "enter playwithlyricsactivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void setContentView(int)>(2130903056);
+        $r3 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.Intent getIntent()>();
+        $r4 = virtualinvoke $r3.<android.content.Intent: java.io.Serializable getSerializableExtra(java.lang.String)>("song");
+        r5 = (com.ophone.MiniPlayer.provider.Song) $r4;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song> = r5;
+        $i1 = virtualinvoke $r3.<android.content.Intent: int getIntExtra(java.lang.String,int)>("R.string", -1);
+        $r6 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i1);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Integer rString> = $r6;
+        $r7 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Integer rString>;
+        $i2 = virtualinvoke $r7.<java.lang.Integer: int intValue()>();
+        if $i2 == -1 goto label1;
+
+        $r8 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song>;
+        $r9 = virtualinvoke $r8.<com.ophone.MiniPlayer.provider.Song: java.lang.String nextSource()>();
+        if $r9 != null goto label0;
+
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", "song.nextSource()==null");
+        $r10 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song>;
+        $z1 = virtualinvoke $r10.<com.ophone.MiniPlayer.provider.Song: boolean isTagbaidu()>();
+        if $z1 == 0 goto label0;
+
+        $r11 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song>;
+        $r12 = virtualinvoke $r11.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source getSource()>();
+        $r13 = r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Integer rString>;
+        $r14 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song>;
+        $r15 = staticinvoke <com.ophone.MiniPlayer.provider.SongManager: java.util.ArrayList getSongSource(java.lang.Integer,com.ophone.MiniPlayer.provider.Song)>($r13, $r14);
+        virtualinvoke $r12.<com.ophone.MiniPlayer.provider.Song$Source: void setLinks(java.util.ArrayList)>($r15);
+
+     label0:
+        $r16 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.provider.Song song>;
+        virtualinvoke $r16.<com.ophone.MiniPlayer.provider.Song: void setTag(boolean)>(1);
+
+     label1:
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void setview()>();
+        $r17 = new com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver;
+        specialinvoke $r17.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver receiver> = $r17;
+        r18 = new android.content.IntentFilter;
+        specialinvoke r18.<android.content.IntentFilter: void <init>()>();
+        virtualinvoke r18.<android.content.IntentFilter: void addAction(java.lang.String)>("com.myplayer.servicetoactivity");
+        $r19 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver receiver>;
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.Intent registerReceiver(android.content.BroadcastReceiver,android.content.IntentFilter)>($r19, r18);
+        specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void SendIsPlaying()>();
+        specialinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void Init()>();
+        $r21 = new android.content.Intent;
+        specialinvoke $r21.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MyPlayerService");
+        $r22 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.ServiceConnection connection>;
+        $z2 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: boolean bindService(android.content.Intent,android.content.ServiceConnection,int)>($r21, $r22, 1);
+        if $z2 != 0 goto label2;
+
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void finish()>();
+
+     label2:
+        return;
+    }
+
+    protected android.app.Dialog onCreateDialog(int)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        int i0;
+        android.app.AlertDialog$Builder $r1, $r2, $r4, $r6;
+        com.ophone.MiniPlayer.lyricsactivity$4 $r3;
+        com.ophone.MiniPlayer.lyricsactivity$5 $r5;
+        android.app.AlertDialog $r7;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        i0 := @parameter0: int;
+        tableswitch(i0)
+        {
+            case 3: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        return null;
+
+     label1:
+        $r1 = new android.app.AlertDialog$Builder;
+        specialinvoke $r1.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r2 = virtualinvoke $r1.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034216);
+        $r3 = new com.ophone.MiniPlayer.lyricsactivity$4;
+        specialinvoke $r3.<com.ophone.MiniPlayer.lyricsactivity$4: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        $r4 = virtualinvoke $r2.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener)>(2131034194, $r3);
+        $r5 = new com.ophone.MiniPlayer.lyricsactivity$5;
+        specialinvoke $r5.<com.ophone.MiniPlayer.lyricsactivity$5: void <init>(com.ophone.MiniPlayer.lyricsactivity)>(r0);
+        $r6 = virtualinvoke $r4.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener)>(2131034195, $r5);
+        $r7 = virtualinvoke $r6.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        return $r7;
+    }
+
+    public boolean onCreateOptionsMenu(android.view.Menu)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.view.Menu r1;
+        android.graphics.drawable.Drawable r2, r8, r12;
+        android.content.res.Resources r3;
+        android.graphics.Bitmap $r4, $r7, $r11;
+        android.view.MenuItem $r5, $r9, $r13, $r15;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter0: android.view.Menu;
+        r3 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.res.Resources getResources()>();
+        $r4 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837529);
+        r2 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r4, 48, 48);
+        $r5 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 0, 0, 2131034173);
+        interfaceinvoke $r5.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r2);
+        $r7 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837521);
+        r8 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r7, 48, 48);
+        $r9 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 1, 1, 2131034174);
+        interfaceinvoke $r9.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r8);
+        $r11 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837536);
+        r12 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r11, 48, 48);
+        $r13 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 2, 2, 2131034175);
+        interfaceinvoke $r13.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r12);
+        $r15 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 3, 3, 2131034159);
+        interfaceinvoke $r15.<android.view.MenuItem: android.view.MenuItem setIcon(int)>(2130837523);
+        return 1;
+    }
+
+    public void onDestroy()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        java.lang.Boolean $r1;
+        com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver $r2;
+        android.content.ServiceConnection $r3;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<android.app.Activity: void onDestroy()>();
+        $r1 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+        r0.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Boolean flag> = $r1;
+        $r2 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver receiver>;
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void unregisterReceiver(android.content.BroadcastReceiver)>($r2);
+        $r3 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.ServiceConnection connection>;
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void unbindService(android.content.ServiceConnection)>($r3);
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("debug", "onDestroy()");
+        return;
+    }
+
+    public boolean onOptionsItemSelected(android.view.MenuItem)
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        android.view.MenuItem r1;
+        android.content.Intent $r2, $r3, $r4, $r5;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        r1 := @parameter0: android.view.MenuItem;
+        $i0 = interfaceinvoke r1.<android.view.MenuItem: int getItemId()>();
+        tableswitch($i0)
+        {
+            case 0: goto label1;
+            case 1: goto label2;
+            case 2: goto label3;
+            case 3: goto label4;
+            default: goto label0;
+        };
+
+     label0:
+        return 1;
+
+     label1:
+        $r2 = new android.content.Intent;
+        specialinvoke $r2.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MusicFeedActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void startActivity(android.content.Intent)>($r2);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void finish()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("debug", "lyricsactivity.this.finish();");
+        goto label0;
+
+     label2:
+        $r3 = new android.content.Intent;
+        specialinvoke $r3.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MusicActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void startActivity(android.content.Intent)>($r3);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void finish()>();
+        goto label0;
+
+     label3:
+        $r4 = new android.content.Intent;
+        specialinvoke $r4.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/PlayingListActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void startActivity(android.content.Intent)>($r4);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void finish()>();
+        goto label0;
+
+     label4:
+        $r5 = new android.content.Intent;
+        specialinvoke $r5.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MainActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void startActivity(android.content.Intent)>($r5);
+        virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: void finish()>();
+        goto label0;
+    }
+
+    public void onPause()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<android.app.Activity: void onPause()>();
+        return;
+    }
+
+    protected void onResume()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<android.app.Activity: void onResume()>();
+        return;
+    }
+
+    public void onStop()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        specialinvoke r0.<android.app.Activity: void onStop()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("debug", "onStop()");
+        return;
+    }
+
+    protected void setview()
+    {
+        com.ophone.MiniPlayer.lyricsactivity r0;
+        int i0, i1, $i2, $i4, $i5, $i6, i7, $i9;
+        android.widget.LinearLayout$LayoutParams r1;
+        android.view.View $r2, $r4, $r6, $r8, $r10, $r12, $r14, $r16, $r18, $r30;
+        android.widget.SeekBar $r3, $r41, $r42, $r46;
+        android.widget.TextView $r5, $r7, $r15, $r17;
+        android.widget.Button $r9, $r11, $r13, $r38, $r39, $r40, $r43, $r44, $r45, $r48;
+        com.ophone.MiniPlayer.MyView $r19, $r36, $r37;
+        android.util.DisplayMetrics $r20, $r23, $r24, $r25;
+        android.view.WindowManager $r21;
+        android.view.Display $r22;
+        android.content.SharedPreferences $r26;
+        java.lang.StringBuilder $r27, $r28, $r32, $r33;
+        java.lang.String $r29, $r34;
+        android.widget.LinearLayout $r31, $r35;
+        android.widget.SeekBar$OnSeekBarChangeListener $r47;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity;
+        $r2 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230746);
+        $r3 = (android.widget.SeekBar) $r2;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar> = $r3;
+        $r4 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230741);
+        $r5 = (android.widget.TextView) $r4;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView current> = $r5;
+        $r6 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230745);
+        $r7 = (android.widget.TextView) $r6;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView total> = $r7;
+        $r8 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230743);
+        $r9 = (android.widget.Button) $r8;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button playpausebn> = $r9;
+        $r10 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230744);
+        $r11 = (android.widget.Button) $r10;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button nextsongbn> = $r11;
+        $r12 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230742);
+        $r13 = (android.widget.Button) $r12;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button presongbn> = $r13;
+        $r14 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230737);
+        $r15 = (android.widget.TextView) $r14;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView artist> = $r15;
+        $r16 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230739);
+        $r17 = (android.widget.TextView) $r16;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.TextView songname> = $r17;
+        $r18 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230765);
+        $r19 = (com.ophone.MiniPlayer.MyView) $r18;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.MyView mTextView> = $r19;
+        $r20 = new android.util.DisplayMetrics;
+        specialinvoke $r20.<android.util.DisplayMetrics: void <init>()>();
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.util.DisplayMetrics dm> = $r20;
+        $r21 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.WindowManager getWindowManager()>();
+        $r22 = interfaceinvoke $r21.<android.view.WindowManager: android.view.Display getDefaultDisplay()>();
+        $r23 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.util.DisplayMetrics dm>;
+        virtualinvoke $r22.<android.view.Display: void getMetrics(android.util.DisplayMetrics)>($r23);
+        $r24 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.util.DisplayMetrics dm>;
+        i0 = $r24.<android.util.DisplayMetrics: int widthPixels>;
+        $r25 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.util.DisplayMetrics dm>;
+        $i2 = $r25.<android.util.DisplayMetrics: int heightPixels>;
+        $r26 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.content.SharedPreferences getSharedPreferences(java.lang.String,int)>("MyPlayer", 0);
+        i1 = interfaceinvoke $r26.<android.content.SharedPreferences: int getInt(java.lang.String,int)>("statusBarHeight", 0);
+        $r27 = new java.lang.StringBuilder;
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>("statusBarHeight=");
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r29);
+        $r30 = virtualinvoke r0.<com.ophone.MiniPlayer.lyricsactivity: android.view.View findViewById(int)>(2131230764);
+        $r31 = (android.widget.LinearLayout) $r30;
+        r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.LinearLayout l5> = $r31;
+        $i4 = $i2 - 40;
+        $i5 = $i4 - 28;
+        $i6 = $i5 - 110;
+        i7 = $i6 - i1;
+        $r32 = new java.lang.StringBuilder;
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("l5height=");
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i7);
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r34);
+        r1 = new android.widget.LinearLayout$LayoutParams;
+        specialinvoke r1.<android.widget.LinearLayout$LayoutParams: void <init>(int,int)>(-1, i7);
+        $r35 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.LinearLayout l5>;
+        virtualinvoke $r35.<android.widget.LinearLayout: void setLayoutParams(android.view.ViewGroup$LayoutParams)>(r1);
+        $r36 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.MyView mTextView>;
+        virtualinvoke $r36.<com.ophone.MiniPlayer.MyView: void setWidth(int)>(i0);
+        $r37 = r0.<com.ophone.MiniPlayer.lyricsactivity: com.ophone.MiniPlayer.MyView mTextView>;
+        virtualinvoke $r37.<com.ophone.MiniPlayer.MyView: void setHeight(int)>(i7);
+        $r38 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button presongbn>;
+        virtualinvoke $r38.<android.widget.Button: void setBackgroundResource(int)>(2130837538);
+        $r39 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button nextsongbn>;
+        virtualinvoke $r39.<android.widget.Button: void setBackgroundResource(int)>(2130837527);
+        $i9 = r0.<com.ophone.MiniPlayer.lyricsactivity: int status>;
+        if $i9 != 111 goto label1;
+
+        $r40 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button playpausebn>;
+        virtualinvoke $r40.<android.widget.Button: void setBackgroundResource(int)>(2130837532);
+
+     label0:
+        $r41 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar>;
+        virtualinvoke $r41.<android.widget.SeekBar: void setMax(int)>(100);
+        $r42 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar>;
+        virtualinvoke $r42.<android.widget.SeekBar: void setProgress(int)>(0);
+        $r43 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button playpausebn>;
+        virtualinvoke $r43.<android.widget.Button: void setOnClickListener(android.view.View$OnClickListener)>(r0);
+        $r44 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button nextsongbn>;
+        virtualinvoke $r44.<android.widget.Button: void setOnClickListener(android.view.View$OnClickListener)>(r0);
+        $r45 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button presongbn>;
+        virtualinvoke $r45.<android.widget.Button: void setOnClickListener(android.view.View$OnClickListener)>(r0);
+        $r46 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar bar>;
+        $r47 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.SeekBar$OnSeekBarChangeListener seekListener>;
+        virtualinvoke $r46.<android.widget.SeekBar: void setOnSeekBarChangeListener(android.widget.SeekBar$OnSeekBarChangeListener)>($r47);
+        return;
+
+     label1:
+        $r48 = r0.<com.ophone.MiniPlayer.lyricsactivity: android.widget.Button playpausebn>;
+        virtualinvoke $r48.<android.widget.Button: void setBackgroundResource(int)>(2130837531);
+        goto label0;
+    }
+}

@@ -1,0 +1,12 @@
+public final class com.ophone.MiniPlayer.R extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

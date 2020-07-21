@@ -1,0 +1,159 @@
+public class com.ophone.MiniPlayer.FileUtils extends java.lang.Object
+{
+    private static java.lang.String LOG_TAG;
+
+    static void <clinit>()
+    {
+        <com.ophone.MiniPlayer.FileUtils: java.lang.String LOG_TAG> = "myFileUtils";
+        return;
+    }
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.FileUtils r0;
+
+        r0 := @this: com.ophone.MiniPlayer.FileUtils;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static void copyFile(java.io.File, java.io.File)
+    {
+        java.io.File r0, r1;
+        java.lang.Class r2;
+        java.lang.reflect.Method[] r3;
+        int i0, $i1;
+        java.lang.Class[] r4;
+        java.lang.reflect.Method r5, $r10;
+        java.lang.Object $r6;
+        java.lang.Object[] r7;
+        java.lang.String $r9, $r11;
+        java.lang.InstantiationException $r12, r13;
+        java.lang.ClassNotFoundException $r14;
+        java.lang.SecurityException $r15;
+        java.lang.IllegalArgumentException $r16;
+        java.lang.NoSuchMethodException $r17;
+        java.lang.IllegalAccessException $r18;
+        java.lang.Exception $r19;
+
+        r0 := @parameter0: java.io.File;
+        r1 := @parameter1: java.io.File;
+
+     label0:
+        r2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.FileUtils");
+        r3 = virtualinvoke r2.<java.lang.Class: java.lang.reflect.Method[] getMethods()>();
+
+     label1:
+        i0 = 0;
+
+     label2:
+        $i1 = lengthof r3;
+        if i0 < $i1 goto label5;
+
+        r4 = newarray (java.lang.Class)[2];
+        r4[0] = class "java/io/File";
+        r4[1] = class "java/io/File";
+        r5 = virtualinvoke r2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("copyFile", r4);
+
+     label3:
+        $r6 = virtualinvoke r2.<java.lang.Class: java.lang.Object newInstance()>();
+        r7 = newarray (java.lang.Object)[2];
+        r7[0] = r0;
+        r7[1] = r1;
+        virtualinvoke r5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($r6, r7);
+
+     label4:
+        return;
+
+     label5:
+        $r9 = <com.ophone.MiniPlayer.FileUtils: java.lang.String LOG_TAG>;
+        $r10 = r3[i0];
+        $r11 = virtualinvoke $r10.<java.lang.reflect.Method: java.lang.String getName()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>($r9, $r11);
+
+     label6:
+        i0 = i0 + 1;
+        goto label2;
+
+     label7:
+        $r12 := @caughtexception;
+        r13 = $r12;
+
+     label8:
+        virtualinvoke r13.<java.lang.InstantiationException: void printStackTrace()>();
+
+     label9:
+        return;
+
+     label10:
+        $r14 := @caughtexception;
+        virtualinvoke $r14.<java.lang.ClassNotFoundException: void printStackTrace()>();
+        return;
+
+     label11:
+        $r15 := @caughtexception;
+        virtualinvoke $r15.<java.lang.SecurityException: void printStackTrace()>();
+        return;
+
+     label12:
+        $r16 := @caughtexception;
+        virtualinvoke $r16.<java.lang.IllegalArgumentException: void printStackTrace()>();
+        return;
+
+     label13:
+        $r17 := @caughtexception;
+        virtualinvoke $r17.<java.lang.NoSuchMethodException: void printStackTrace()>();
+        return;
+
+     label14:
+        $r18 := @caughtexception;
+        virtualinvoke $r18.<java.lang.IllegalAccessException: void printStackTrace()>();
+        return;
+
+     label15:
+        $r19 := @caughtexception;
+        virtualinvoke $r19.<java.lang.Exception: void printStackTrace()>();
+        return;
+
+        catch java.lang.ClassNotFoundException from label0 to label1 with label10;
+        catch java.lang.SecurityException from label0 to label1 with label11;
+        catch java.lang.IllegalArgumentException from label0 to label1 with label12;
+        catch java.lang.NoSuchMethodException from label0 to label1 with label13;
+        catch java.lang.IllegalAccessException from label0 to label1 with label14;
+        catch java.lang.Exception from label0 to label1 with label15;
+        catch java.lang.ClassNotFoundException from label2 to label3 with label10;
+        catch java.lang.SecurityException from label2 to label3 with label11;
+        catch java.lang.IllegalArgumentException from label2 to label3 with label12;
+        catch java.lang.NoSuchMethodException from label2 to label3 with label13;
+        catch java.lang.IllegalAccessException from label2 to label3 with label14;
+        catch java.lang.Exception from label2 to label3 with label15;
+        catch java.lang.InstantiationException from label3 to label4 with label7;
+        catch java.lang.ClassNotFoundException from label3 to label4 with label10;
+        catch java.lang.SecurityException from label3 to label4 with label11;
+        catch java.lang.IllegalArgumentException from label3 to label4 with label12;
+        catch java.lang.NoSuchMethodException from label3 to label4 with label13;
+        catch java.lang.IllegalAccessException from label3 to label4 with label14;
+        catch java.lang.Exception from label3 to label4 with label15;
+        catch java.lang.ClassNotFoundException from label5 to label6 with label10;
+        catch java.lang.SecurityException from label5 to label6 with label11;
+        catch java.lang.IllegalArgumentException from label5 to label6 with label12;
+        catch java.lang.NoSuchMethodException from label5 to label6 with label13;
+        catch java.lang.IllegalAccessException from label5 to label6 with label14;
+        catch java.lang.Exception from label5 to label6 with label15;
+        catch java.lang.ClassNotFoundException from label8 to label9 with label10;
+        catch java.lang.SecurityException from label8 to label9 with label11;
+        catch java.lang.IllegalArgumentException from label8 to label9 with label12;
+        catch java.lang.NoSuchMethodException from label8 to label9 with label13;
+        catch java.lang.IllegalAccessException from label8 to label9 with label14;
+        catch java.lang.Exception from label8 to label9 with label15;
+    }
+
+    public static void copyFile(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.String;
+        return;
+    }
+}

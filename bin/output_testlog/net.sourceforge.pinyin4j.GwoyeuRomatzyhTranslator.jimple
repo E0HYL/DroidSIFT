@@ -1,0 +1,91 @@
+class net.sourceforge.pinyin4j.GwoyeuRomatzyhTranslator extends java.lang.Object
+{
+    private static java.lang.String[] tones;
+
+    static void <clinit>()
+    {
+        java.lang.String[] r0;
+
+        r0 = newarray (java.lang.String)[5];
+        r0[0] = "_I";
+        r0[1] = "_II";
+        r0[2] = "_III";
+        r0[3] = "_IV";
+        r0[4] = "_V";
+        <net.sourceforge.pinyin4j.GwoyeuRomatzyhTranslator: java.lang.String[] tones> = r0;
+        return;
+    }
+
+    void <init>()
+    {
+        net.sourceforge.pinyin4j.GwoyeuRomatzyhTranslator r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.GwoyeuRomatzyhTranslator;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    static java.lang.String convertHanyuPinyinToGwoyeuRomatzyh(java.lang.String)
+    {
+        java.lang.String r0, r1, r2, $r6, r11, $r18, $r21, $r24, r25;
+        java.lang.StringBuffer $r3, $r4, $r7, $r8, $r9, $r10, $r15, $r16, $r19, $r22, $r23;
+        net.sourceforge.pinyin4j.PinyinRomanizationType $r5, $r17;
+        net.sourceforge.pinyin4j.GwoyeuRomatzyhResource $r12;
+        com.hp.hpl.sparta.Document $r13;
+        com.hp.hpl.sparta.Element r14;
+        java.lang.String[] $r20;
+        int $i0, $i1;
+        com.hp.hpl.sparta.ParseException $r26;
+
+        r0 := @parameter0: java.lang.String;
+        r1 = staticinvoke <net.sourceforge.pinyin4j.TextHelper: java.lang.String extractPinyinString(java.lang.String)>(r0);
+        r2 = staticinvoke <net.sourceforge.pinyin4j.TextHelper: java.lang.String extractToneNumber(java.lang.String)>(r0);
+
+     label0:
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("//");
+        $r5 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType HANYU_PINYIN>;
+        $r6 = virtualinvoke $r5.<net.sourceforge.pinyin4j.PinyinRomanizationType: java.lang.String getTagName()>();
+        $r7 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("[text()=\'");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\']");
+        r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.String toString()>();
+        $r12 = staticinvoke <net.sourceforge.pinyin4j.GwoyeuRomatzyhResource: net.sourceforge.pinyin4j.GwoyeuRomatzyhResource getInstance()>();
+        $r13 = virtualinvoke $r12.<net.sourceforge.pinyin4j.GwoyeuRomatzyhResource: com.hp.hpl.sparta.Document getPinyinToGwoyeuMappingDoc()>();
+        r14 = virtualinvoke $r13.<com.hp.hpl.sparta.Document: com.hp.hpl.sparta.Element xpathSelectElement(java.lang.String)>(r11);
+
+     label1:
+        if r14 == null goto label5;
+
+     label2:
+        $r15 = new java.lang.StringBuffer;
+        specialinvoke $r15.<java.lang.StringBuffer: void <init>()>();
+        $r16 = virtualinvoke $r15.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("../");
+        $r17 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType GWOYEU_ROMATZYH>;
+        $r18 = virtualinvoke $r17.<net.sourceforge.pinyin4j.PinyinRomanizationType: java.lang.String getTagName()>();
+        $r19 = virtualinvoke $r16.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r18);
+        $r20 = <net.sourceforge.pinyin4j.GwoyeuRomatzyhTranslator: java.lang.String[] tones>;
+        $i0 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>(r2);
+        $i1 = $i0 - 1;
+        $r21 = $r20[$i1];
+        $r22 = virtualinvoke $r19.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r21);
+        $r23 = virtualinvoke $r22.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("/text()");
+        $r24 = virtualinvoke $r23.<java.lang.StringBuffer: java.lang.String toString()>();
+        r25 = virtualinvoke r14.<com.hp.hpl.sparta.Element: java.lang.String xpathSelectString(java.lang.String)>($r24);
+
+     label3:
+        return r25;
+
+     label4:
+        $r26 := @caughtexception;
+        virtualinvoke $r26.<com.hp.hpl.sparta.ParseException: void printStackTrace()>();
+
+     label5:
+        return null;
+
+        catch com.hp.hpl.sparta.ParseException from label0 to label1 with label4;
+        catch com.hp.hpl.sparta.ParseException from label2 to label3 with label4;
+    }
+}

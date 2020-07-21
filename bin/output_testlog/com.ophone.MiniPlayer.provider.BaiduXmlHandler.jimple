@@ -1,0 +1,250 @@
+public class com.ophone.MiniPlayer.provider.BaiduXmlHandler extends com.ophone.MiniPlayer.provider.XmlHandler
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler r0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        specialinvoke r0.<com.ophone.MiniPlayer.provider.XmlHandler: void <init>()>();
+        return;
+    }
+
+    public java.util.ArrayList analyseTheSonglist(java.io.InputStream) throws java.lang.Exception
+    {
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler r0;
+        java.io.InputStream r1;
+        int i0, i1, i2, $i3, $i4, i7, $i8, $i9, $i11;
+        org.w3c.dom.NodeList r2, r11;
+        com.ophone.MiniPlayer.provider.Song r3;
+        org.w3c.dom.Node r4, $r12, $r13;
+        java.lang.String r5, r14, $r16, $r19, $r20, r21;
+        java.util.ArrayList r6, r22;
+        javax.xml.parsers.DocumentBuilderFactory $r7;
+        javax.xml.parsers.DocumentBuilder $r8;
+        org.w3c.dom.Document $r9;
+        org.w3c.dom.Element $r10;
+        short $s5;
+        java.lang.StringBuilder $r15, $r17, $r18;
+        boolean $z1, $z2;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        r6 = new java.util.ArrayList;
+        specialinvoke r6.<java.util.ArrayList: void <init>()>();
+        $r7 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>();
+        $r8 = virtualinvoke $r7.<javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilder newDocumentBuilder()>();
+        $r9 = virtualinvoke $r8.<javax.xml.parsers.DocumentBuilder: org.w3c.dom.Document parse(java.io.InputStream)>(r1);
+        $r10 = interfaceinvoke $r9.<org.w3c.dom.Document: org.w3c.dom.Element getDocumentElement()>();
+        r11 = interfaceinvoke $r10.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("data");
+        i0 = 0;
+
+     label0:
+        $i3 = interfaceinvoke r11.<org.w3c.dom.NodeList: int getLength()>();
+        if i0 < $i3 goto label1;
+
+        return r6;
+
+     label1:
+        $r12 = interfaceinvoke r11.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i0);
+        r2 = interfaceinvoke $r12.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>();
+        r3 = new com.ophone.MiniPlayer.provider.Song;
+        specialinvoke r3.<com.ophone.MiniPlayer.provider.Song: void <init>()>();
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setTagbaidu(boolean)>(1);
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setTaggoogle(boolean)>(0);
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setTag(boolean)>(1);
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setTagImage(boolean)>(0);
+        i1 = 0;
+
+     label2:
+        $i4 = interfaceinvoke r2.<org.w3c.dom.NodeList: int getLength()>();
+        if i1 < $i4 goto label3;
+
+        virtualinvoke r6.<java.util.ArrayList: boolean add(java.lang.Object)>(r3);
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        r4 = interfaceinvoke r2.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i1);
+        $s5 = interfaceinvoke r4.<org.w3c.dom.Node: short getNodeType()>();
+        if $s5 != 1 goto label4;
+
+        r5 = interfaceinvoke r4.<org.w3c.dom.Node: java.lang.String getNodeName()>();
+        $r13 = interfaceinvoke r4.<org.w3c.dom.Node: org.w3c.dom.Node getFirstChild()>();
+        r14 = interfaceinvoke $r13.<org.w3c.dom.Node: java.lang.String getNodeValue()>();
+        $r15 = new java.lang.StringBuilder;
+        $r16 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r5);
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>($r16);
+        $r17 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("debug", $r19);
+        $z1 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>("id");
+        if $z1 == 0 goto label5;
+
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setId(java.lang.String)>(r14);
+
+     label4:
+        i1 = i1 + 1;
+        goto label2;
+
+     label5:
+        $z2 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>("name");
+        if $z2 == 0 goto label4;
+
+        i7 = virtualinvoke r14.<java.lang.String: int indexOf(java.lang.String)>("$$");
+        i2 = 0;
+        if i7 == -1 goto label6;
+
+        $i8 = i7 + 2;
+        i2 = virtualinvoke r14.<java.lang.String: int indexOf(java.lang.String,int)>("$$", $i8);
+
+     label6:
+        if i2 == -1 goto label7;
+
+        $i9 = i2 + 2;
+        virtualinvoke r14.<java.lang.String: int indexOf(java.lang.String,int)>("$$", $i9);
+
+     label7:
+        $r20 = virtualinvoke r14.<java.lang.String: java.lang.String substring(int,int)>(0, i7);
+        $i11 = i7 + 2;
+        r21 = virtualinvoke r14.<java.lang.String: java.lang.String substring(int,int)>($i11, i2);
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setName(java.lang.String)>($r20);
+        r22 = new java.util.ArrayList;
+        specialinvoke r22.<java.util.ArrayList: void <init>()>();
+        virtualinvoke r22.<java.util.ArrayList: boolean add(java.lang.Object)>(r21);
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setSinger(java.util.ArrayList)>(r22);
+        virtualinvoke r3.<com.ophone.MiniPlayer.provider.Song: void setAlbum(java.lang.String)>("");
+        goto label4;
+    }
+
+    public java.util.ArrayList analyseTheSonglistGoogle(java.io.InputStream) throws java.lang.Exception
+    {
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler r0;
+        java.io.InputStream r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        return null;
+    }
+
+    public java.util.ArrayList parseSongSource(java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException, java.io.IOException
+    {
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler r0;
+        java.io.InputStream r1;
+        javax.xml.parsers.DocumentBuilderFactory $r2;
+        java.util.ArrayList r3;
+        org.w3c.dom.NodeList r4, r13;
+        java.lang.String r5, r6, r7, r9, $r16, $r17, r19, $r24, r26, $r28, $r31;
+        int i0, $i1, i2, $i3, $i4, $i5, $i6;
+        org.w3c.dom.Node r8, $r14, $r25;
+        javax.xml.parsers.DocumentBuilder $r10;
+        org.w3c.dom.Document $r11;
+        org.w3c.dom.Element $r12;
+        java.lang.StringBuilder $r15, $r18, $r20, $r21, $r22, $r23, $r27, $r29, $r30;
+        boolean $z0, $z2, $z3, $z4;
+        short $s8;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        $r2 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>();
+        $r10 = virtualinvoke $r2.<javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilder newDocumentBuilder()>();
+        $r11 = virtualinvoke $r10.<javax.xml.parsers.DocumentBuilder: org.w3c.dom.Document parse(java.io.InputStream)>(r1);
+        $r12 = interfaceinvoke $r11.<org.w3c.dom.Document: org.w3c.dom.Element getDocumentElement()>();
+        r13 = interfaceinvoke $r12.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("url");
+        r3 = new java.util.ArrayList;
+        $i1 = interfaceinvoke r13.<org.w3c.dom.NodeList: int getLength()>();
+        specialinvoke r3.<java.util.ArrayList: void <init>(int)>($i1);
+        i2 = 0;
+
+     label0:
+        $i3 = interfaceinvoke r13.<org.w3c.dom.NodeList: int getLength()>();
+        if i2 < $i3 goto label1;
+
+        return r3;
+
+     label1:
+        $r14 = interfaceinvoke r13.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i2);
+        r4 = interfaceinvoke $r14.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>();
+        r5 = null;
+        r6 = null;
+        r7 = null;
+        i0 = 0;
+
+     label2:
+        $i4 = interfaceinvoke r4.<org.w3c.dom.NodeList: int getLength()>();
+        if i0 < $i4 goto label4;
+
+        $r15 = new java.lang.StringBuilder;
+        $i5 = virtualinvoke r5.<java.lang.String: int lastIndexOf(int)>(47);
+        $i6 = 1 + $i5;
+        $r16 = virtualinvoke r5.<java.lang.String: java.lang.String substring(int,int)>(0, $i6);
+        $r17 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r16);
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>($r17);
+        $r18 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r6);
+        r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+        $z0 = virtualinvoke r7.<java.lang.String: boolean equals(java.lang.Object)>("1");
+        if $z0 == 0 goto label3;
+
+        virtualinvoke r3.<java.util.ArrayList: boolean add(java.lang.Object)>(r19);
+        $r20 = new java.lang.StringBuilder;
+        specialinvoke $r20.<java.lang.StringBuilder: void <init>(java.lang.String)>("source");
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i2);
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+        $r23 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r19);
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("source:add", $r24);
+
+     label3:
+        i2 = i2 + 1;
+        goto label0;
+
+     label4:
+        r8 = interfaceinvoke r4.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i0);
+        $s8 = interfaceinvoke r8.<org.w3c.dom.Node: short getNodeType()>();
+        if $s8 != 1 goto label5;
+
+        r9 = interfaceinvoke r8.<org.w3c.dom.Node: java.lang.String getNodeName()>();
+        $r25 = interfaceinvoke r8.<org.w3c.dom.Node: org.w3c.dom.Node getFirstChild()>();
+        r26 = interfaceinvoke $r25.<org.w3c.dom.Node: java.lang.String getNodeValue()>();
+        $r27 = new java.lang.StringBuilder;
+        $r28 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r9);
+        specialinvoke $r27.<java.lang.StringBuilder: void <init>(java.lang.String)>($r28);
+        $r29 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+        $r30 = virtualinvoke $r29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r26);
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("debug", $r31);
+        $z2 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>("encode");
+        if $z2 == 0 goto label6;
+
+        r5 = r26;
+
+     label5:
+        i0 = i0 + 1;
+        goto label2;
+
+     label6:
+        $z3 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>("decode");
+        if $z3 == 0 goto label7;
+
+        r6 = r26;
+        goto label5;
+
+     label7:
+        $z4 = virtualinvoke r9.<java.lang.String: boolean equals(java.lang.Object)>("type");
+        if $z4 == 0 goto label5;
+
+        r7 = r26;
+        goto label5;
+    }
+
+    public java.util.Map parseSongSourceGoogle(java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException, java.io.IOException
+    {
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler r0;
+        java.io.InputStream r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        return null;
+    }
+}

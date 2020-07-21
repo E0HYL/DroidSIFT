@@ -1,0 +1,226 @@
+class com.hp.hpl.sparta.BuildDocument extends java.lang.Object implements com.hp.hpl.sparta.DocumentSource, com.hp.hpl.sparta.ParseHandler
+{
+    private com.hp.hpl.sparta.Element currentElement_;
+    private final com.hp.hpl.sparta.Document doc_;
+    private final com.hp.hpl.sparta.ParseLog log_;
+    private com.hp.hpl.sparta.ParseSource parseSource_;
+
+    public void <init>()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        specialinvoke r0.<com.hp.hpl.sparta.BuildDocument: void <init>(com.hp.hpl.sparta.ParseLog)>(null);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseLog)
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.ParseLog r1, r3;
+        com.hp.hpl.sparta.Document $r2;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseLog;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_> = null;
+        $r2 = new com.hp.hpl.sparta.Document;
+        specialinvoke $r2.<com.hp.hpl.sparta.Document: void <init>()>();
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document doc_> = $r2;
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_> = null;
+        if r1 != null goto label1;
+
+        r3 = <com.hp.hpl.sparta.ParseSource: com.hp.hpl.sparta.ParseLog DEFAULT_LOG>;
+
+     label0:
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseLog log_> = r3;
+        return;
+
+     label1:
+        r3 = r1;
+        goto label0;
+    }
+
+    public void characters(char[], int, int)
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        char[] r1;
+        int i0, i1;
+        com.hp.hpl.sparta.Element r2;
+        com.hp.hpl.sparta.Node $r3, $r4;
+        boolean $z0;
+        com.hp.hpl.sparta.Text $r5, $r6;
+        java.lang.String $r7;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        r1 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r2 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_>;
+        $r3 = virtualinvoke r2.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node getLastChild()>();
+        $z0 = $r3 instanceof com.hp.hpl.sparta.Text;
+        if $z0 == 0 goto label0;
+
+        $r4 = virtualinvoke r2.<com.hp.hpl.sparta.Element: com.hp.hpl.sparta.Node getLastChild()>();
+        $r5 = (com.hp.hpl.sparta.Text) $r4;
+        virtualinvoke $r5.<com.hp.hpl.sparta.Text: void appendData(char[],int,int)>(r1, i0, i1);
+        return;
+
+     label0:
+        $r6 = new com.hp.hpl.sparta.Text;
+        $r7 = new java.lang.String;
+        specialinvoke $r7.<java.lang.String: void <init>(char[],int,int)>(r1, i0, i1);
+        specialinvoke $r6.<com.hp.hpl.sparta.Text: void <init>(java.lang.String)>($r7);
+        virtualinvoke r2.<com.hp.hpl.sparta.Element: void appendChildNoChecking(com.hp.hpl.sparta.Node)>($r6);
+        return;
+    }
+
+    public void endDocument()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        return;
+    }
+
+    public void endElement(com.hp.hpl.sparta.Element)
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.Element r1, $r2, $r3;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        r1 := @parameter0: com.hp.hpl.sparta.Element;
+        $r2 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_>;
+        $r3 = virtualinvoke $r2.<com.hp.hpl.sparta.Node: com.hp.hpl.sparta.Element getParentNode()>();
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_> = $r3;
+        return;
+    }
+
+    public com.hp.hpl.sparta.Document getDocument()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.Document $r1;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        $r1 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document doc_>;
+        return $r1;
+    }
+
+    public int getLineNumber()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.ParseSource $r1, $r2;
+        int $i0;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        $r1 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        if $r1 == null goto label0;
+
+        $r2 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        $i0 = interfaceinvoke $r2.<com.hp.hpl.sparta.ParseSource: int getLineNumber()>();
+        return $i0;
+
+     label0:
+        return -1;
+    }
+
+    public com.hp.hpl.sparta.ParseSource getParseSource()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.ParseSource $r1;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        $r1 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        return $r1;
+    }
+
+    public java.lang.String getSystemId()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.ParseSource $r1, $r2;
+        java.lang.String $r3;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        $r1 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        if $r1 == null goto label0;
+
+        $r2 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        $r3 = interfaceinvoke $r2.<com.hp.hpl.sparta.ParseSource: java.lang.String getSystemId()>();
+        return $r3;
+
+     label0:
+        return null;
+    }
+
+    public void setParseSource(com.hp.hpl.sparta.ParseSource)
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.ParseSource r1;
+        com.hp.hpl.sparta.Document $r2;
+        java.lang.String $r3;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseSource;
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_> = r1;
+        $r2 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document doc_>;
+        $r3 = interfaceinvoke r1.<com.hp.hpl.sparta.ParseSource: java.lang.String toString()>();
+        virtualinvoke $r2.<com.hp.hpl.sparta.Document: void setSystemId(java.lang.String)>($r3);
+        return;
+    }
+
+    public void startDocument()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        return;
+    }
+
+    public void startElement(com.hp.hpl.sparta.Element)
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.Element r1, $r2, $r4;
+        com.hp.hpl.sparta.Document $r3;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        r1 := @parameter0: com.hp.hpl.sparta.Element;
+        $r2 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_>;
+        if $r2 != null goto label1;
+
+        $r3 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Document doc_>;
+        virtualinvoke $r3.<com.hp.hpl.sparta.Document: void setDocumentElement(com.hp.hpl.sparta.Element)>(r1);
+
+     label0:
+        r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_> = r1;
+        return;
+
+     label1:
+        $r4 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.Element currentElement_>;
+        virtualinvoke $r4.<com.hp.hpl.sparta.Element: void appendChild(com.hp.hpl.sparta.Node)>(r1);
+        goto label0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.BuildDocument r0;
+        com.hp.hpl.sparta.ParseSource $r1, $r4;
+        java.lang.StringBuffer $r2, $r3, $r6;
+        java.lang.String $r5, $r7;
+
+        r0 := @this: com.hp.hpl.sparta.BuildDocument;
+        $r1 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        if $r1 == null goto label0;
+
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("BuildDoc: ");
+        $r4 = r0.<com.hp.hpl.sparta.BuildDocument: com.hp.hpl.sparta.ParseSource parseSource_>;
+        $r5 = interfaceinvoke $r4.<com.hp.hpl.sparta.ParseSource: java.lang.String toString()>();
+        $r6 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r5);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r7;
+
+     label0:
+        return null;
+    }
+}

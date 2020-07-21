@@ -1,0 +1,9 @@
+public interface  com.hp.hpl.sparta.Sparta$Cache extends java.lang.Object
+{
+
+    public abstract java.lang.Object get(java.lang.Object);
+
+    public abstract java.lang.Object put(java.lang.Object, java.lang.Object);
+
+    public abstract int size();
+}

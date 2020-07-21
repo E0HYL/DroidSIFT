@@ -1,0 +1,237 @@
+public abstract class com.ophone.MiniPlayer.IPlayback$Stub extends android.os.Binder implements com.ophone.MiniPlayer.IPlayback
+{
+    private static final java.lang.String DESCRIPTOR;
+    static final int TRANSACTION_getAlbum;
+    static final int TRANSACTION_getArtist;
+    static final int TRANSACTION_getDuration;
+    static final int TRANSACTION_getId;
+    static final int TRANSACTION_getStatus;
+    static final int TRANSACTION_getTime;
+    static final int TRANSACTION_getTitle;
+    static final int TRANSACTION_getlyricurlgoogle;
+    static final int TRANSACTION_getlyricurllocal;
+    static final int TRANSACTION_isPlaying;
+    static final int TRANSACTION_next;
+    static final int TRANSACTION_pause;
+    static final int TRANSACTION_previous;
+    static final int TRANSACTION_release;
+    static final int TRANSACTION_seek;
+    static final int TRANSACTION_start;
+    static final int TRANSACTION_stop;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.IPlayback$Stub r0;
+
+        r0 := @this: com.ophone.MiniPlayer.IPlayback$Stub;
+        specialinvoke r0.<android.os.Binder: void <init>()>();
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void attachInterface(android.os.IInterface,java.lang.String)>(r0, "com.ophone.MiniPlayer.IPlayback");
+        return;
+    }
+
+    public static com.ophone.MiniPlayer.IPlayback asInterface(android.os.IBinder)
+    {
+        android.os.IBinder r0;
+        android.os.IInterface r1;
+        boolean $z0;
+        com.ophone.MiniPlayer.IPlayback $r2;
+        com.ophone.MiniPlayer.IPlayback$Stub$Proxy $r3;
+
+        r0 := @parameter0: android.os.IBinder;
+        if r0 != null goto label0;
+
+        return null;
+
+     label0:
+        r1 = interfaceinvoke r0.<android.os.IBinder: android.os.IInterface queryLocalInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        if r1 == null goto label1;
+
+        $z0 = r1 instanceof com.ophone.MiniPlayer.IPlayback;
+        if $z0 == 0 goto label1;
+
+        $r2 = (com.ophone.MiniPlayer.IPlayback) r1;
+        return $r2;
+
+     label1:
+        $r3 = new com.ophone.MiniPlayer.IPlayback$Stub$Proxy;
+        specialinvoke $r3.<com.ophone.MiniPlayer.IPlayback$Stub$Proxy: void <init>(android.os.IBinder)>(r0);
+        return $r3;
+    }
+
+    public android.os.IBinder asBinder()
+    {
+        com.ophone.MiniPlayer.IPlayback$Stub r0;
+
+        r0 := @this: com.ophone.MiniPlayer.IPlayback$Stub;
+        return r0;
+    }
+
+    public boolean onTransact(int, android.os.Parcel, android.os.Parcel, int) throws android.os.RemoteException
+    {
+        com.ophone.MiniPlayer.IPlayback$Stub r0;
+        int i0, i1, $i2, $i3, $i4, $i6;
+        android.os.Parcel r1, r2;
+        boolean $z0, $z1;
+        java.lang.String $r3, $r4, $r6, $r7, $r8;
+        java.util.List $r5;
+        byte b5;
+
+        r0 := @this: com.ophone.MiniPlayer.IPlayback$Stub;
+        i0 := @parameter0: int;
+        r1 := @parameter1: android.os.Parcel;
+        r2 := @parameter2: android.os.Parcel;
+        i1 := @parameter3: int;
+        lookupswitch(i0)
+        {
+            case 1: goto label2;
+            case 2: goto label3;
+            case 3: goto label4;
+            case 4: goto label5;
+            case 5: goto label6;
+            case 6: goto label7;
+            case 7: goto label8;
+            case 8: goto label9;
+            case 9: goto label10;
+            case 10: goto label11;
+            case 11: goto label12;
+            case 12: goto label13;
+            case 13: goto label14;
+            case 14: goto label15;
+            case 15: goto label18;
+            case 16: goto label19;
+            case 17: goto label20;
+            case 1598968902: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        $z0 = specialinvoke r0.<android.os.Binder: boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)>(i0, r1, r2, i1);
+        return $z0;
+
+     label1:
+        virtualinvoke r2.<android.os.Parcel: void writeString(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        return 1;
+
+     label2:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void start()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label3:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void pause()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label4:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void stop()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label5:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void release()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label6:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void previous()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label7:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void next()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label8:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $r3 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: java.lang.String getId()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeString(java.lang.String)>($r3);
+        return 1;
+
+     label9:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $r4 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: java.lang.String getTitle()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeString(java.lang.String)>($r4);
+        return 1;
+
+     label10:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $r5 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: java.util.List getArtist()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeStringList(java.util.List)>($r5);
+        return 1;
+
+     label11:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $r6 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: java.lang.String getAlbum()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeString(java.lang.String)>($r6);
+        return 1;
+
+     label12:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $i2 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: int getDuration()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeInt(int)>($i2);
+        return 1;
+
+     label13:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $i3 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: int getTime()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeInt(int)>($i3);
+        return 1;
+
+     label14:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $i4 = virtualinvoke r1.<android.os.Parcel: int readInt()>();
+        virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: void seek(int)>($i4);
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        return 1;
+
+     label15:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $z1 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: boolean isPlaying()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        if $z1 == 0 goto label17;
+
+        b5 = 1;
+
+     label16:
+        virtualinvoke r2.<android.os.Parcel: void writeInt(int)>(b5);
+        return 1;
+
+     label17:
+        b5 = 0;
+        goto label16;
+
+     label18:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $i6 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: int getStatus()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeInt(int)>($i6);
+        return 1;
+
+     label19:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $r7 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: java.lang.String getlyricurlgoogle()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeString(java.lang.String)>($r7);
+        return 1;
+
+     label20:
+        virtualinvoke r1.<android.os.Parcel: void enforceInterface(java.lang.String)>("com.ophone.MiniPlayer.IPlayback");
+        $r8 = virtualinvoke r0.<com.ophone.MiniPlayer.IPlayback$Stub: java.lang.String getlyricurllocal()>();
+        virtualinvoke r2.<android.os.Parcel: void writeNoException()>();
+        virtualinvoke r2.<android.os.Parcel: void writeString(java.lang.String)>($r8);
+        return 1;
+    }
+}

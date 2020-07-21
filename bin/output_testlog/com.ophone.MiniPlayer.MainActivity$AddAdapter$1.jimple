@@ -1,0 +1,198 @@
+class com.ophone.MiniPlayer.MainActivity$AddAdapter$1 extends java.lang.Object implements android.view.View$OnTouchListener
+{
+    final com.ophone.MiniPlayer.MainActivity$AddAdapter this$1;
+    private final com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem val$item;
+    private final int val$pos;
+    private final android.widget.TextView val$textView;
+
+    void <init>(com.ophone.MiniPlayer.MainActivity$AddAdapter, android.widget.TextView, com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem, int)
+    {
+        com.ophone.MiniPlayer.MainActivity$AddAdapter$1 r0;
+        com.ophone.MiniPlayer.MainActivity$AddAdapter r1;
+        android.widget.TextView r2;
+        com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem r3;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.MainActivity$AddAdapter$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.MainActivity$AddAdapter;
+        r2 := @parameter1: android.widget.TextView;
+        r3 := @parameter2: com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem;
+        i0 := @parameter3: int;
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1> = r1;
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: android.widget.TextView val$textView> = r2;
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem val$item> = r3;
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: int val$pos> = i0;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public boolean onTouch(android.view.View, android.view.MotionEvent)
+    {
+        com.ophone.MiniPlayer.MainActivity$AddAdapter$1 r0;
+        android.view.View r1, $r29;
+        android.view.MotionEvent r2;
+        int $i0, $i1, $i2, $i3, i4;
+        android.widget.TextView $r3, $r6, $r7, $r10;
+        com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem $r4, $r8;
+        android.graphics.drawable.Drawable $r5, $r9;
+        com.ophone.MiniPlayer.MainActivity$AddAdapter $r11, $r15, $r18, $r21, $r26, $r38, $r40, $r43, $r45, $r48, $r50, $r53, $r55, $r58, $r60;
+        com.ophone.MiniPlayer.MainActivity $r12, $r16, $r19, $r22, $r27, $r39, $r41, $r44, $r46, $r49, $r51, $r54, $r56, $r59, $r61;
+        java.lang.Integer[] $r13;
+        java.lang.Integer $r14;
+        android.content.Intent $r17, r37, r42, r47, r52, r57;
+        android.content.SharedPreferences $r23;
+        android.content.SharedPreferences$Editor $r24, $r33;
+        android.graphics.Rect r25;
+        android.view.Window $r28;
+        java.lang.StringBuilder $r30, $r31;
+        java.lang.String $r32;
+        java.io.File r34, r35;
+        boolean $z1, $z3;
+        java.io.IOException $r36;
+
+        r0 := @this: com.ophone.MiniPlayer.MainActivity$AddAdapter$1;
+        r1 := @parameter0: android.view.View;
+        r2 := @parameter1: android.view.MotionEvent;
+        $i0 = virtualinvoke r2.<android.view.MotionEvent: int getAction()>();
+        if $i0 != 0 goto label1;
+
+        $r3 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: android.widget.TextView val$textView>;
+        $r4 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem val$item>;
+        $r5 = $r4.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: android.graphics.drawable.Drawable touchimage>;
+        virtualinvoke $r3.<android.widget.TextView: void setCompoundDrawablesWithIntrinsicBounds(android.graphics.drawable.Drawable,android.graphics.drawable.Drawable,android.graphics.drawable.Drawable,android.graphics.drawable.Drawable)>(null, $r5, null, null);
+        $r6 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: android.widget.TextView val$textView>;
+        virtualinvoke $r6.<android.widget.TextView: void setTextColor(int)>(-65536);
+
+     label0:
+        return 1;
+
+     label1:
+        $i1 = virtualinvoke r2.<android.view.MotionEvent: int getAction()>();
+        if $i1 != 1 goto label0;
+
+        $r7 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: android.widget.TextView val$textView>;
+        $r8 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem val$item>;
+        $r9 = $r8.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: android.graphics.drawable.Drawable image>;
+        virtualinvoke $r7.<android.widget.TextView: void setCompoundDrawablesWithIntrinsicBounds(android.graphics.drawable.Drawable,android.graphics.drawable.Drawable,android.graphics.drawable.Drawable,android.graphics.drawable.Drawable)>(null, $r9, null, null);
+        $r10 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: android.widget.TextView val$textView>;
+        virtualinvoke $r10.<android.widget.TextView: void setTextColor(int)>(-1);
+        $r11 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r12 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r11);
+        $r13 = staticinvoke <com.ophone.MiniPlayer.MainActivity: java.lang.Integer[] access$0(com.ophone.MiniPlayer.MainActivity)>($r12);
+        $i2 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: int val$pos>;
+        $r14 = $r13[$i2];
+        $i3 = virtualinvoke $r14.<java.lang.Integer: int intValue()>();
+        tableswitch($i3)
+        {
+            case 2131034173: goto label7;
+            case 2131034174: goto label8;
+            case 2131034175: goto label9;
+            case 2131034176: goto label10;
+            case 2131034177: goto label11;
+            default: goto label2;
+        };
+
+     label2:
+        $r15 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r16 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r15);
+        $r17 = new android.content.Intent;
+        $r18 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r19 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r18);
+        specialinvoke $r17.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r19, class "com/ophone/MiniPlayer/MyPlayerService");
+        virtualinvoke $r16.<com.ophone.MiniPlayer.MainActivity: android.content.ComponentName startService(android.content.Intent)>($r17);
+        $r21 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r22 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r21);
+        $r23 = staticinvoke <com.ophone.MiniPlayer.MainActivity: android.content.SharedPreferences access$1(com.ophone.MiniPlayer.MainActivity)>($r22);
+        $r24 = interfaceinvoke $r23.<android.content.SharedPreferences: android.content.SharedPreferences$Editor edit()>();
+        r25 = new android.graphics.Rect;
+        specialinvoke r25.<android.graphics.Rect: void <init>()>();
+        $r26 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r27 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r26);
+        $r28 = virtualinvoke $r27.<com.ophone.MiniPlayer.MainActivity: android.view.Window getWindow()>();
+        $r29 = virtualinvoke $r28.<android.view.Window: android.view.View getDecorView()>();
+        virtualinvoke $r29.<android.view.View: void getWindowVisibleDisplayFrame(android.graphics.Rect)>(r25);
+        i4 = r25.<android.graphics.Rect: int top>;
+        $r30 = new java.lang.StringBuilder;
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>("statusBarHeight=");
+        $r31 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i4);
+        $r32 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("debug", $r32);
+        $r33 = interfaceinvoke $r24.<android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putInt(java.lang.String,int)>("statusBarHeight", i4);
+        interfaceinvoke $r33.<android.content.SharedPreferences$Editor: boolean commit()>();
+        r34 = new java.io.File;
+        specialinvoke r34.<java.io.File: void <init>(java.lang.String)>("\\sdcard\\myplayer\\playlist");
+        $z1 = virtualinvoke r34.<java.io.File: boolean exists()>();
+        if $z1 != 0 goto label3;
+
+        virtualinvoke r34.<java.io.File: boolean mkdir()>();
+
+     label3:
+        r35 = new java.io.File;
+        specialinvoke r35.<java.io.File: void <init>(java.io.File,java.lang.String)>(r34, "defaultplaylist.txt");
+        $z3 = virtualinvoke r35.<java.io.File: boolean exists()>();
+        if $z3 != 0 goto label0;
+
+     label4:
+        virtualinvoke r35.<java.io.File: boolean createNewFile()>();
+
+     label5:
+        goto label0;
+
+     label6:
+        $r36 := @caughtexception;
+        virtualinvoke $r36.<java.io.IOException: void printStackTrace()>();
+        goto label0;
+
+     label7:
+        r37 = new android.content.Intent;
+        $r38 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r39 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r38);
+        specialinvoke r37.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r39, class "com/ophone/MiniPlayer/MusicFeedActivity");
+        $r40 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r41 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r40);
+        virtualinvoke $r41.<com.ophone.MiniPlayer.MainActivity: void startActivity(android.content.Intent)>(r37);
+        goto label2;
+
+     label8:
+        r42 = new android.content.Intent;
+        $r43 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r44 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r43);
+        specialinvoke r42.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r44, class "com/ophone/MiniPlayer/MusicActivity");
+        $r45 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r46 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r45);
+        virtualinvoke $r46.<com.ophone.MiniPlayer.MainActivity: void startActivity(android.content.Intent)>(r42);
+        goto label2;
+
+     label9:
+        r47 = new android.content.Intent;
+        $r48 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r49 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r48);
+        specialinvoke r47.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r49, class "com/ophone/MiniPlayer/PlayingListActivity");
+        $r50 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r51 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r50);
+        virtualinvoke $r51.<com.ophone.MiniPlayer.MainActivity: void startActivity(android.content.Intent)>(r47);
+        goto label2;
+
+     label10:
+        r52 = new android.content.Intent;
+        $r53 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r54 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r53);
+        specialinvoke r52.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r54, class "com/ophone/MiniPlayer/lyricsactivity");
+        $r55 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r56 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r55);
+        virtualinvoke $r56.<com.ophone.MiniPlayer.MainActivity: void startActivity(android.content.Intent)>(r52);
+        goto label2;
+
+     label11:
+        r57 = new android.content.Intent;
+        $r58 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r59 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r58);
+        specialinvoke r57.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r59, class "com/ophone/MiniPlayer/Search");
+        $r60 = r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$1: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1>;
+        $r61 = staticinvoke <com.ophone.MiniPlayer.MainActivity$AddAdapter: com.ophone.MiniPlayer.MainActivity access$0(com.ophone.MiniPlayer.MainActivity$AddAdapter)>($r60);
+        virtualinvoke $r61.<com.ophone.MiniPlayer.MainActivity: void startActivity(android.content.Intent)>(r57);
+        goto label2;
+
+        catch java.io.IOException from label4 to label5 with label6;
+    }
+}

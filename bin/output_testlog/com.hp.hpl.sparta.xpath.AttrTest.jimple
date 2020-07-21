@@ -1,0 +1,61 @@
+public class com.hp.hpl.sparta.xpath.AttrTest extends com.hp.hpl.sparta.xpath.NodeTest
+{
+    private final java.lang.String attrName_;
+
+    void <init>(java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.AttrTest r0;
+        java.lang.String r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrTest;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.NodeTest: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.AttrTest: java.lang.String attrName_> = r1;
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.Visitor)
+    {
+        com.hp.hpl.sparta.xpath.AttrTest r0;
+        com.hp.hpl.sparta.xpath.Visitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrTest;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.Visitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.NodeTestVisitor: void visit(com.hp.hpl.sparta.xpath.AttrTest)>(r0);
+        return;
+    }
+
+    public java.lang.String getAttrName()
+    {
+        com.hp.hpl.sparta.xpath.AttrTest r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrTest;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.AttrTest: java.lang.String attrName_>;
+        return $r1;
+    }
+
+    public boolean isStringValue()
+    {
+        com.hp.hpl.sparta.xpath.AttrTest r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrTest;
+        return 1;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.AttrTest r0;
+        java.lang.StringBuffer $r1, $r2, $r4;
+        java.lang.String $r3, $r5;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrTest;
+        $r1 = new java.lang.StringBuffer;
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>()>();
+        $r2 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("@");
+        $r3 = r0.<com.hp.hpl.sparta.xpath.AttrTest: java.lang.String attrName_>;
+        $r4 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r3);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r5;
+    }
+}

@@ -1,0 +1,206 @@
+class com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter extends android.widget.SimpleAdapter
+{
+    private android.content.Context ctx;
+    private android.view.LayoutInflater mInflater;
+    java.util.Map map;
+    final com.ophone.MiniPlayer.MusicActivity this$0;
+
+    public void <init>(com.ophone.MiniPlayer.MusicActivity, android.content.Context, java.util.List, int, java.lang.String[], int[])
+    {
+        com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter r0;
+        com.ophone.MiniPlayer.MusicActivity r1;
+        android.content.Context r2;
+        java.util.List r3;
+        int i0, i1, $i2;
+        java.lang.String[] r4;
+        int[] r5;
+        java.util.HashMap $r6;
+        android.view.LayoutInflater $r7;
+        java.util.Map $r8;
+        java.lang.Integer $r9;
+        java.lang.Boolean $r10;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter;
+        r1 := @parameter0: com.ophone.MiniPlayer.MusicActivity;
+        r2 := @parameter1: android.content.Context;
+        r3 := @parameter2: java.util.List;
+        i0 := @parameter3: int;
+        r4 := @parameter4: java.lang.String[];
+        r5 := @parameter5: int[];
+        r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0> = r1;
+        specialinvoke r0.<android.widget.SimpleAdapter: void <init>(android.content.Context,java.util.List,int,java.lang.String[],int[])>(r2, r3, i0, r4, r5);
+        $r6 = new java.util.HashMap;
+        specialinvoke $r6.<java.util.HashMap: void <init>()>();
+        r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: java.util.Map map> = $r6;
+        i1 = 0;
+
+     label0:
+        $i2 = interfaceinvoke r3.<java.util.List: int size()>();
+        if i1 < $i2 goto label1;
+
+        $r7 = staticinvoke <android.view.LayoutInflater: android.view.LayoutInflater 'from'(android.content.Context)>(r2);
+        r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: android.view.LayoutInflater mInflater> = $r7;
+        return;
+
+     label1:
+        $r8 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: java.util.Map map>;
+        $r9 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+        $r10 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>(0);
+        interfaceinvoke $r8.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>($r9, $r10);
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    static com.ophone.MiniPlayer.MusicActivity access$0(com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter)
+    {
+        com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter r0;
+        com.ophone.MiniPlayer.MusicActivity $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter;
+        $r1 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        return $r1;
+    }
+
+    public android.view.View getView(int, android.view.View, android.view.ViewGroup)
+    {
+        com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter r0;
+        int i0;
+        android.view.View r1, $r8, $r12, $r16, $r20, $r24, $r28;
+        android.view.ViewGroup r2;
+        android.view.LayoutInflater $r3;
+        com.ophone.MiniPlayer.MusicActivity $r4, $r6, $r10, $r14, $r18, $r22, $r26, $r30, $r32, $r36, $r39, $r42, $r48, $r51, $r57, $r62, $r65, $r71, $r78, $r82;
+        com.ophone.MiniPlayer.MusicActivity$ViewHolder $r5, $r7, $r11, $r15, $r19, $r23, $r27, $r31, $r37, $r40, $r49, $r63, $r72, $r79, $r84;
+        android.widget.ImageView $r9, $r29, $r38;
+        android.widget.TextView $r13, $r17, $r21, $r41, $r50, $r64;
+        android.widget.CheckBox $r25, $r73, $r80;
+        android.content.res.Resources $r33;
+        android.graphics.Bitmap $r34;
+        android.graphics.drawable.Drawable r35;
+        java.util.List $r43, $r52, $r58, $r66;
+        java.lang.Object $r44, $r46, $r53, $r55, $r59, $r61, $r67, $r69, $r76, $r83;
+        java.util.Map $r45, $r54, $r60, $r68, $r74;
+        java.lang.String $r47, $r56, $r70;
+        java.lang.Integer $r75;
+        java.lang.Boolean $r77;
+        boolean $z0;
+        com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter$1 $r81;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter;
+        i0 := @parameter0: int;
+        r1 := @parameter1: android.view.View;
+        r2 := @parameter2: android.view.ViewGroup;
+        if r1 != null goto label2;
+
+        $r3 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: android.view.LayoutInflater mInflater>;
+        r1 = virtualinvoke $r3.<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup)>(2130903060, null);
+        $r4 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r5 = new com.ophone.MiniPlayer.MusicActivity$ViewHolder;
+        specialinvoke $r5.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: void <init>()>();
+        $r4.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder> = $r5;
+        $r6 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r7 = $r6.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r8 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230773);
+        $r9 = (android.widget.ImageView) $r8;
+        $r7.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.ImageView itemIcon> = $r9;
+        $r10 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r11 = $r10.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r12 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230774);
+        $r13 = (android.widget.TextView) $r12;
+        $r11.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.TextView itemTitle> = $r13;
+        $r14 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r15 = $r14.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r16 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230737);
+        $r17 = (android.widget.TextView) $r16;
+        $r15.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.TextView itemArtist> = $r17;
+        $r18 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r19 = $r18.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r20 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230776);
+        $r21 = (android.widget.TextView) $r20;
+        $r19.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.TextView itemDuration> = $r21;
+        $r22 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r23 = $r22.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r24 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230775);
+        $r25 = (android.widget.CheckBox) $r24;
+        $r23.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.CheckBox itemcheck> = $r25;
+        $r26 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r27 = $r26.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r28 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230777);
+        $r29 = (android.widget.ImageView) $r28;
+        $r27.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.ImageView Icon> = $r29;
+        $r30 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r31 = $r30.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        virtualinvoke r1.<android.view.View: void setTag(java.lang.Object)>($r31);
+
+     label0:
+        $r32 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r33 = virtualinvoke $r32.<com.ophone.MiniPlayer.MusicActivity: android.content.res.Resources getResources()>();
+        $r34 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>($r33, 2130837523);
+        r35 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r34, 24, 24);
+        $r36 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r37 = $r36.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r38 = $r37.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.ImageView itemIcon>;
+        virtualinvoke $r38.<android.widget.ImageView: void setBackgroundDrawable(android.graphics.drawable.Drawable)>(r35);
+        $r39 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r40 = $r39.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r41 = $r40.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.TextView itemTitle>;
+        $r42 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r43 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.util.List access$3(com.ophone.MiniPlayer.MusicActivity)>($r42);
+        $r44 = interfaceinvoke $r43.<java.util.List: java.lang.Object get(int)>(i0);
+        $r45 = (java.util.Map) $r44;
+        $r46 = interfaceinvoke $r45.<java.util.Map: java.lang.Object get(java.lang.Object)>("name");
+        $r47 = virtualinvoke $r46.<java.lang.Object: java.lang.String toString()>();
+        virtualinvoke $r41.<android.widget.TextView: void setText(java.lang.CharSequence)>($r47);
+        $r48 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r49 = $r48.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r50 = $r49.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.TextView itemArtist>;
+        $r51 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r52 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.util.List access$3(com.ophone.MiniPlayer.MusicActivity)>($r51);
+        $r53 = interfaceinvoke $r52.<java.util.List: java.lang.Object get(int)>(i0);
+        $r54 = (java.util.Map) $r53;
+        $r55 = interfaceinvoke $r54.<java.util.Map: java.lang.Object get(java.lang.Object)>("singer");
+        $r56 = virtualinvoke $r55.<java.lang.Object: java.lang.String toString()>();
+        virtualinvoke $r50.<android.widget.TextView: void setText(java.lang.CharSequence)>($r56);
+        $r57 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r58 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.util.List access$3(com.ophone.MiniPlayer.MusicActivity)>($r57);
+        $r59 = interfaceinvoke $r58.<java.util.List: java.lang.Object get(int)>(i0);
+        $r60 = (java.util.Map) $r59;
+        $r61 = interfaceinvoke $r60.<java.util.Map: java.lang.Object get(java.lang.Object)>("duration");
+        if $r61 == null goto label1;
+
+        $r62 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r63 = $r62.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r64 = $r63.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.TextView itemDuration>;
+        $r65 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r66 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.util.List access$3(com.ophone.MiniPlayer.MusicActivity)>($r65);
+        $r67 = interfaceinvoke $r66.<java.util.List: java.lang.Object get(int)>(i0);
+        $r68 = (java.util.Map) $r67;
+        $r69 = interfaceinvoke $r68.<java.util.Map: java.lang.Object get(java.lang.Object)>("duration");
+        $r70 = virtualinvoke $r69.<java.lang.Object: java.lang.String toString()>();
+        virtualinvoke $r64.<android.widget.TextView: void setText(java.lang.CharSequence)>($r70);
+
+     label1:
+        $r71 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r72 = $r71.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r73 = $r72.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.CheckBox itemcheck>;
+        $r74 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: java.util.Map map>;
+        $r75 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+        $r76 = interfaceinvoke $r74.<java.util.Map: java.lang.Object get(java.lang.Object)>($r75);
+        $r77 = (java.lang.Boolean) $r76;
+        $z0 = virtualinvoke $r77.<java.lang.Boolean: boolean booleanValue()>();
+        virtualinvoke $r73.<android.widget.CheckBox: void setChecked(boolean)>($z0);
+        $r78 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r79 = $r78.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder>;
+        $r80 = $r79.<com.ophone.MiniPlayer.MusicActivity$ViewHolder: android.widget.CheckBox itemcheck>;
+        $r81 = new com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter$1;
+        specialinvoke $r81.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter$1: void <init>(com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter,int)>(r0, i0);
+        virtualinvoke $r80.<android.widget.CheckBox: void setOnClickListener(android.view.View$OnClickListener)>($r81);
+        return r1;
+
+     label2:
+        $r82 = r0.<com.ophone.MiniPlayer.MusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r83 = virtualinvoke r1.<android.view.View: java.lang.Object getTag()>();
+        $r84 = (com.ophone.MiniPlayer.MusicActivity$ViewHolder) $r83;
+        $r82.<com.ophone.MiniPlayer.MusicActivity: com.ophone.MiniPlayer.MusicActivity$ViewHolder holder> = $r84;
+        goto label0;
+    }
+}

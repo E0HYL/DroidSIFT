@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog14.gxl">
+<node id="1">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#exists</string></attr>
+<attr name="functionPrototype"><string>$z0 = virtualinvoke r2.(java.io.File: boolean exists())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#mkdir</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r2.(java.io.File: boolean mkdir())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r2.(java.io.File: void (init)(java.lang.String))($r3)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="3" to="1">
+</edge>
+<edge from="3" to="2">
+</edge>
+</graph>
+</gxl>

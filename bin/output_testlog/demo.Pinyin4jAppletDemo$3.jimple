@@ -1,0 +1,52 @@
+final class demo.Pinyin4jAppletDemo$3 extends java.lang.Object implements java.awt.event.ActionListener
+{
+    private final demo.Pinyin4jAppletDemo this$0;
+
+    void <init>(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo$3 r0;
+        demo.Pinyin4jAppletDemo r1;
+
+        r0 := @this: demo.Pinyin4jAppletDemo$3;
+        r1 := @parameter0: demo.Pinyin4jAppletDemo;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo$3: demo.Pinyin4jAppletDemo this$0> = r1;
+        return;
+    }
+
+    public void actionPerformed(java.awt.event.ActionEvent)
+    {
+        demo.Pinyin4jAppletDemo$3 r0;
+        java.awt.event.ActionEvent r1;
+        demo.Pinyin4jAppletDemo $r2, $r5, $r9, $r11, $r13;
+        java.lang.String[] $r3;
+        java.lang.String $r4, $r8;
+        javax.swing.JComboBox $r6, $r10, $r12, $r14;
+        java.lang.Object $r7;
+
+        r0 := @this: demo.Pinyin4jAppletDemo$3;
+        r1 := @parameter0: java.awt.event.ActionEvent;
+        $r2 = r0.<demo.Pinyin4jAppletDemo$3: demo.Pinyin4jAppletDemo this$0>;
+        $r3 = $r2.<demo.Pinyin4jAppletDemo: java.lang.String[] toneTypes>;
+        $r4 = $r3[2];
+        $r5 = r0.<demo.Pinyin4jAppletDemo$3: demo.Pinyin4jAppletDemo this$0>;
+        $r6 = staticinvoke <demo.Pinyin4jAppletDemo: javax.swing.JComboBox access$100(demo.Pinyin4jAppletDemo)>($r5);
+        $r7 = virtualinvoke $r6.<javax.swing.JComboBox: java.lang.Object getSelectedItem()>();
+        $r8 = (java.lang.String) $r7;
+        if $r4 != $r8 goto label0;
+
+        $r9 = r0.<demo.Pinyin4jAppletDemo$3: demo.Pinyin4jAppletDemo this$0>;
+        $r10 = staticinvoke <demo.Pinyin4jAppletDemo: javax.swing.JComboBox access$200(demo.Pinyin4jAppletDemo)>($r9);
+        virtualinvoke $r10.<javax.swing.JComboBox: void setSelectedIndex(int)>(2);
+        $r11 = r0.<demo.Pinyin4jAppletDemo$3: demo.Pinyin4jAppletDemo this$0>;
+        $r12 = staticinvoke <demo.Pinyin4jAppletDemo: javax.swing.JComboBox access$200(demo.Pinyin4jAppletDemo)>($r11);
+        virtualinvoke $r12.<javax.swing.JComboBox: void setEnabled(boolean)>(0);
+        return;
+
+     label0:
+        $r13 = r0.<demo.Pinyin4jAppletDemo$3: demo.Pinyin4jAppletDemo this$0>;
+        $r14 = staticinvoke <demo.Pinyin4jAppletDemo: javax.swing.JComboBox access$200(demo.Pinyin4jAppletDemo)>($r13);
+        virtualinvoke $r14.<javax.swing.JComboBox: void setEnabled(boolean)>(1);
+        return;
+    }
+}

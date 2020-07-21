@@ -1,0 +1,97 @@
+class com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4 extends java.lang.Object implements android.media.MediaPlayer$OnCompletionListener
+{
+    final com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1;
+
+    void <init>(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4 r0;
+        com.ophone.MiniPlayer.MyPlayerService$CommandReceiver r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onCompletion(android.media.MediaPlayer)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4 r0;
+        android.media.MediaPlayer r1;
+        int i0, i1, i2, $i3;
+        com.ophone.MiniPlayer.MyPlayerService$CommandReceiver $r2, $r5, $r7, $r12, $r15, $r17, $r19, $r21, $r24, $r28;
+        com.ophone.MiniPlayer.MyPlayerService $r3, $r6, $r8, $r13, $r16, $r18, $r20, $r22, $r25, $r29;
+        java.util.ArrayList $r4, $r9, $r30;
+        java.lang.Object $r10, $r31;
+        com.ophone.MiniPlayer.provider.Song $r11, $r14, $r23, $r26, $r32;
+        java.lang.String $r27, $r33;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4;
+        r1 := @parameter0: android.media.MediaPlayer;
+        $r2 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r3 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r2);
+        $r4 = $r3.<com.ophone.MiniPlayer.MyPlayerService: java.util.ArrayList songlist>;
+        i2 = virtualinvoke $r4.<java.util.ArrayList: int size()>();
+        i0 = 0;
+        if i2 <= 0 goto label1;
+
+        i1 = 0;
+
+     label0:
+        i0 = 0;
+        if i1 < i2 goto label3;
+
+     label1:
+        $r5 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r6 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r5);
+        $r7 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r8 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r7);
+        $r9 = $r8.<com.ophone.MiniPlayer.MyPlayerService: java.util.ArrayList songlist>;
+        $r10 = virtualinvoke $r9.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r11 = (com.ophone.MiniPlayer.provider.Song) $r10;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$6(com.ophone.MiniPlayer.MyPlayerService,com.ophone.MiniPlayer.provider.Song)>($r6, $r11);
+        $r12 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r13 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r12);
+        $r14 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: com.ophone.MiniPlayer.provider.Song access$7(com.ophone.MiniPlayer.MyPlayerService)>($r13);
+        if $r14 == null goto label2;
+
+        $r15 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r16 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r15);
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$8(com.ophone.MiniPlayer.MyPlayerService)>($r16);
+
+     label2:
+        $r17 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r18 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r17);
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$12(com.ophone.MiniPlayer.MyPlayerService)>($r18);
+        $r19 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r20 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r19);
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$10(com.ophone.MiniPlayer.MyPlayerService)>($r20);
+        return;
+
+     label3:
+        $r21 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r22 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r21);
+        $r23 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: com.ophone.MiniPlayer.provider.Song access$7(com.ophone.MiniPlayer.MyPlayerService)>($r22);
+        if $r23 == null goto label4;
+
+        $r24 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r25 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r24);
+        $r26 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: com.ophone.MiniPlayer.provider.Song access$7(com.ophone.MiniPlayer.MyPlayerService)>($r25);
+        $r27 = virtualinvoke $r26.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $r28 = r0.<com.ophone.MiniPlayer.MyPlayerService$CommandReceiver$4: com.ophone.MiniPlayer.MyPlayerService$CommandReceiver this$1>;
+        $r29 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService$CommandReceiver: com.ophone.MiniPlayer.MyPlayerService access$0(com.ophone.MiniPlayer.MyPlayerService$CommandReceiver)>($r28);
+        $r30 = $r29.<com.ophone.MiniPlayer.MyPlayerService: java.util.ArrayList songlist>;
+        $r31 = virtualinvoke $r30.<java.util.ArrayList: java.lang.Object get(int)>(i1);
+        $r32 = (com.ophone.MiniPlayer.provider.Song) $r31;
+        $r33 = virtualinvoke $r32.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $i3 = virtualinvoke $r27.<java.lang.String: int compareTo(java.lang.String)>($r33);
+        if $i3 != 0 goto label4;
+
+        i0 = i1;
+        goto label1;
+
+     label4:
+        i1 = i1 + 1;
+        goto label0;
+    }
+}

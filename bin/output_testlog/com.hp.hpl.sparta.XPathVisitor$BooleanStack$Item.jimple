@@ -1,0 +1,19 @@
+class com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item extends java.lang.Object
+{
+    final java.lang.Boolean bool;
+    final com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item prev;
+
+    void <init>(java.lang.Boolean, com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item)
+    {
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item r0, r2;
+        java.lang.Boolean r1;
+
+        r0 := @this: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item;
+        r1 := @parameter0: java.lang.Boolean;
+        r2 := @parameter1: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item: java.lang.Boolean bool> = r1;
+        r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item prev> = r2;
+        return;
+    }
+}

@@ -1,0 +1,63 @@
+class net.sourceforge.pinyin4j.ResourceHelper extends java.lang.Object
+{
+    static java.lang.Class class$net$sourceforge$pinyin4j$ResourceHelper;
+
+    void <init>()
+    {
+        net.sourceforge.pinyin4j.ResourceHelper r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.ResourceHelper;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    static java.lang.Class class$(java.lang.String)
+    {
+        java.lang.String r0, r3;
+        java.lang.Class r1;
+        java.lang.ClassNotFoundException $r2;
+        java.lang.NoClassDefFoundError $r4;
+
+        r0 := @parameter0: java.lang.String;
+
+     label0:
+        r1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(r0);
+
+     label1:
+        return r1;
+
+     label2:
+        $r2 := @caughtexception;
+        r3 = virtualinvoke $r2.<java.lang.ClassNotFoundException: java.lang.String getMessage()>();
+        $r4 = new java.lang.NoClassDefFoundError;
+        specialinvoke $r4.<java.lang.NoClassDefFoundError: void <init>(java.lang.String)>(r3);
+        throw $r4;
+
+        catch java.lang.ClassNotFoundException from label0 to label1 with label2;
+    }
+
+    static java.io.BufferedInputStream getResourceInputStream(java.lang.String)
+    {
+        java.lang.String r0;
+        java.lang.Class $r1, r2;
+        java.io.BufferedInputStream $r3;
+        java.io.InputStream $r4;
+
+        r0 := @parameter0: java.lang.String;
+        $r1 = <net.sourceforge.pinyin4j.ResourceHelper: java.lang.Class class$net$sourceforge$pinyin4j$ResourceHelper>;
+        if $r1 != null goto label1;
+
+        r2 = staticinvoke <net.sourceforge.pinyin4j.ResourceHelper: java.lang.Class class$(java.lang.String)>("net.sourceforge.pinyin4j.ResourceHelper");
+        <net.sourceforge.pinyin4j.ResourceHelper: java.lang.Class class$net$sourceforge$pinyin4j$ResourceHelper> = r2;
+
+     label0:
+        $r3 = new java.io.BufferedInputStream;
+        $r4 = virtualinvoke r2.<java.lang.Class: java.io.InputStream getResourceAsStream(java.lang.String)>(r0);
+        specialinvoke $r3.<java.io.BufferedInputStream: void <init>(java.io.InputStream)>($r4);
+        return $r3;
+
+     label1:
+        r2 = <net.sourceforge.pinyin4j.ResourceHelper: java.lang.Class class$net$sourceforge$pinyin4j$ResourceHelper>;
+        goto label0;
+    }
+}

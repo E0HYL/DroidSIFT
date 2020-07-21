@@ -1,0 +1,120 @@
+public class com.xxx.yyy.MyTools extends java.lang.Object
+{
+    public static final boolean DEBUG;
+
+    public void <init>()
+    {
+        com.xxx.yyy.MyTools r0;
+
+        r0 := @this: com.xxx.yyy.MyTools;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static void ShowToast(java.lang.String, android.content.Context)
+    {
+        java.lang.String r0;
+        android.content.Context r1;
+        android.widget.Toast $r2;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: android.content.Context;
+        $r2 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>(r1, r0, 0);
+        virtualinvoke $r2.<android.widget.Toast: void show()>();
+        return;
+    }
+
+    public static void WriteLog(java.lang.String)
+    {
+        java.lang.String r0;
+
+        r0 := @parameter0: java.lang.String;
+        staticinvoke <com.xxx.yyy.MyTools: void WriteLog(java.lang.String,java.lang.String)>("Demo", r0);
+        return;
+    }
+
+    public static void WriteLog(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.String;
+        staticinvoke <android.util.Log: int d(java.lang.String,java.lang.String)>(r0, r1);
+        return;
+    }
+
+    private static java.lang.String getNowDate()
+    {
+        java.util.Date r0;
+        java.text.SimpleDateFormat $r1;
+        java.lang.String $r2;
+
+        r0 = new java.util.Date;
+        specialinvoke r0.<java.util.Date: void <init>()>();
+        $r1 = new java.text.SimpleDateFormat;
+        specialinvoke $r1.<java.text.SimpleDateFormat: void <init>(java.lang.String)>("yyyy-MM-dd HH:mm:ss");
+        $r2 = virtualinvoke $r1.<java.text.SimpleDateFormat: java.lang.String format(java.util.Date)>(r0);
+        return $r2;
+    }
+
+    private static void writefile(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1, $r7, $r8, $r11;
+        java.io.File r2;
+        java.io.FileWriter $r3, $r13;
+        boolean $z0;
+        java.io.BufferedWriter $r4, r5, $r12;
+        java.lang.StringBuilder $r6, $r9, $r10;
+        java.io.IOException $r14, r15;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.String;
+
+     label0:
+        r2 = new java.io.File;
+        specialinvoke r2.<java.io.File: void <init>(java.lang.String)>(r1);
+        $z0 = virtualinvoke r2.<java.io.File: boolean exists()>();
+        if $z0 != 0 goto label3;
+
+        virtualinvoke r2.<java.io.File: boolean createNewFile()>();
+        $r4 = new java.io.BufferedWriter;
+        $r3 = new java.io.FileWriter;
+        specialinvoke $r3.<java.io.FileWriter: void <init>(java.io.File)>(r2);
+        specialinvoke $r4.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r3);
+        r5 = $r4;
+
+     label1:
+        $r6 = new java.lang.StringBuilder;
+        $r7 = staticinvoke <com.xxx.yyy.MyTools: java.lang.String getNowDate()>();
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r7);
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+        $r9 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r0);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke r5.<java.io.BufferedWriter: void write(java.lang.String)>($r11);
+        virtualinvoke r5.<java.io.BufferedWriter: void write(java.lang.String)>("\r\n");
+        virtualinvoke r5.<java.io.BufferedWriter: void close()>();
+
+     label2:
+        return;
+
+     label3:
+        $r12 = new java.io.BufferedWriter;
+        $r13 = new java.io.FileWriter;
+        specialinvoke $r13.<java.io.FileWriter: void <init>(java.io.File,boolean)>(r2, 1);
+        specialinvoke $r12.<java.io.BufferedWriter: void <init>(java.io.Writer)>($r13);
+        r5 = $r12;
+
+     label4:
+        goto label1;
+
+     label5:
+        $r14 := @caughtexception;
+        r15 = $r14;
+        return;
+
+        catch java.io.IOException from label0 to label1 with label5;
+        catch java.io.IOException from label1 to label2 with label5;
+        catch java.io.IOException from label3 to label4 with label5;
+    }
+}

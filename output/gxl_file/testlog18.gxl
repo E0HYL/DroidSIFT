@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog18.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#delete</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r1.(java.io.File: boolean delete())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r1.(java.io.File: void (init)(java.io.File,java.lang.String))($r4, $r8)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#getAbsolutePath</string></attr>
+<attr name="functionPrototype"><string>$r9 = virtualinvoke r1.(java.io.File: java.lang.String getAbsolutePath())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="1">
+</edge>
+</graph>
+</gxl>

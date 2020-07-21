@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/top" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="18.0px" android:id="@id/artist" android:paddingLeft="5.0px" android:paddingTop="15.0px" android:paddingBottom="5.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <TextView android:textSize="18.0px" android:id="@id/album" android:padding="5.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/artist" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <RelativeLayout android:id="@id/bar" android:paddingLeft="5.0px" android:paddingTop="20.0px" android:paddingRight="5.0px" android:layout_width="fill_parent" android:layout_height="80.0px"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <SeekBar android:id="@id/progress" android:layout_width="fill_parent" android:layout_height="28.0px" android:layout_alignParentLeft="true" style="?android:attr/progressBarStyleHorizontal" />
+        <TextView android:id="@id/current" android:padding="2.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/progress" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true"
+          xmlns:android="http://schemas.android.com/apk/res/android" />
+        <TextView android:id="@id/total" android:padding="2.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
+          xmlns:android="http://schemas.android.com/apk/res/android" />
+    </RelativeLayout>
+    <LinearLayout android:gravity="center_horizontal" android:id="@id/buttons" android:padding="5.0px" android:layout_width="fill_parent" android:layout_height="wrap_content"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <Button android:id="@id/pre" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pre" />
+        <Button android:id="@id/play" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pause" />
+        <Button android:id="@id/stop" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/stop" />
+        <Button android:id="@id/next" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/next" />
+    </LinearLayout>
+</LinearLayout>

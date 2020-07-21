@@ -1,0 +1,103 @@
+public class com.ophone.MiniPlayer.AsyncImageLoader extends java.lang.Object
+{
+    private java.util.HashMap imageCache;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.AsyncImageLoader r0;
+        java.util.HashMap $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.AsyncImageLoader;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r1 = new java.util.HashMap;
+        specialinvoke $r1.<java.util.HashMap: void <init>()>();
+        r0.<com.ophone.MiniPlayer.AsyncImageLoader: java.util.HashMap imageCache> = $r1;
+        return;
+    }
+
+    static java.util.HashMap access$0(com.ophone.MiniPlayer.AsyncImageLoader)
+    {
+        com.ophone.MiniPlayer.AsyncImageLoader r0;
+        java.util.HashMap $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.AsyncImageLoader;
+        $r1 = r0.<com.ophone.MiniPlayer.AsyncImageLoader: java.util.HashMap imageCache>;
+        return $r1;
+    }
+
+    public static android.graphics.drawable.Drawable loadImageFromUrl(java.lang.String)
+    {
+        java.lang.String r0;
+        java.net.URL $r1;
+        java.lang.Object $r2;
+        java.io.InputStream r3;
+        android.graphics.drawable.Drawable $r4;
+        java.net.MalformedURLException $r5;
+        java.io.IOException $r6;
+
+        r0 := @parameter0: java.lang.String;
+
+     label0:
+        $r1 = new java.net.URL;
+        specialinvoke $r1.<java.net.URL: void <init>(java.lang.String)>(r0);
+        $r2 = virtualinvoke $r1.<java.net.URL: java.lang.Object getContent()>();
+        r3 = (java.io.InputStream) $r2;
+
+     label1:
+        $r4 = staticinvoke <android.graphics.drawable.Drawable: android.graphics.drawable.Drawable createFromStream(java.io.InputStream,java.lang.String)>(r3, "src");
+        return $r4;
+
+     label2:
+        $r5 := @caughtexception;
+        virtualinvoke $r5.<java.net.MalformedURLException: void printStackTrace()>();
+        r3 = null;
+        goto label1;
+
+     label3:
+        $r6 := @caughtexception;
+        virtualinvoke $r6.<java.io.IOException: void printStackTrace()>();
+        r3 = null;
+        goto label1;
+
+        catch java.net.MalformedURLException from label0 to label1 with label2;
+        catch java.io.IOException from label0 to label1 with label3;
+    }
+
+    public android.graphics.drawable.Drawable loadDrawable(java.lang.String, com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback)
+    {
+        com.ophone.MiniPlayer.AsyncImageLoader r0;
+        java.lang.String r1;
+        com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback r2;
+        android.graphics.drawable.Drawable r3;
+        com.ophone.MiniPlayer.AsyncImageLoader$1 $r4;
+        java.util.HashMap $r5, $r6;
+        boolean $z0;
+        java.lang.Object $r7, $r9;
+        java.lang.ref.SoftReference $r8;
+        com.ophone.MiniPlayer.AsyncImageLoader$2 $r10;
+
+        r0 := @this: com.ophone.MiniPlayer.AsyncImageLoader;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback;
+        $r5 = r0.<com.ophone.MiniPlayer.AsyncImageLoader: java.util.HashMap imageCache>;
+        $z0 = virtualinvoke $r5.<java.util.HashMap: boolean containsKey(java.lang.Object)>(r1);
+        if $z0 == 0 goto label0;
+
+        $r6 = r0.<com.ophone.MiniPlayer.AsyncImageLoader: java.util.HashMap imageCache>;
+        $r7 = virtualinvoke $r6.<java.util.HashMap: java.lang.Object get(java.lang.Object)>(r1);
+        $r8 = (java.lang.ref.SoftReference) $r7;
+        $r9 = virtualinvoke $r8.<java.lang.ref.SoftReference: java.lang.Object get()>();
+        r3 = (android.graphics.drawable.Drawable) $r9;
+        if r3 == null goto label0;
+
+        return r3;
+
+     label0:
+        $r10 = new com.ophone.MiniPlayer.AsyncImageLoader$2;
+        $r4 = new com.ophone.MiniPlayer.AsyncImageLoader$1;
+        specialinvoke $r4.<com.ophone.MiniPlayer.AsyncImageLoader$1: void <init>(com.ophone.MiniPlayer.AsyncImageLoader,com.ophone.MiniPlayer.AsyncImageLoader$ImageCallback,java.lang.String)>(r0, r2, r1);
+        specialinvoke $r10.<com.ophone.MiniPlayer.AsyncImageLoader$2: void <init>(com.ophone.MiniPlayer.AsyncImageLoader,java.lang.String,android.os.Handler)>(r0, r1, $r4);
+        virtualinvoke $r10.<com.ophone.MiniPlayer.AsyncImageLoader$2: void start()>();
+        return null;
+    }
+}

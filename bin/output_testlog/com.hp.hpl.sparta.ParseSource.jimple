@@ -1,0 +1,27 @@
+public interface  com.hp.hpl.sparta.ParseSource extends java.lang.Object
+{
+    public static final com.hp.hpl.sparta.ParseLog DEFAULT_LOG;
+    public static final int MAXLOOKAHEAD;
+
+    static void <clinit>()
+    {
+        com.hp.hpl.sparta.DefaultLog $r0;
+        java.lang.String $r1;
+        int $i0, $i1;
+
+        $r0 = new com.hp.hpl.sparta.DefaultLog;
+        specialinvoke $r0.<com.hp.hpl.sparta.DefaultLog: void <init>()>();
+        <com.hp.hpl.sparta.ParseSource: com.hp.hpl.sparta.ParseLog DEFAULT_LOG> = $r0;
+        $r1 = "<?xml version=\"1.0\" encoding=\"\"";
+        $i0 = virtualinvoke $r1.<java.lang.String: int length()>();
+        $i1 = 40 + $i0;
+        <com.hp.hpl.sparta.ParseSource: int MAXLOOKAHEAD> = $i1;
+        return;
+    }
+
+    public abstract int getLineNumber();
+
+    public abstract java.lang.String getSystemId();
+
+    public abstract java.lang.String toString();
+}

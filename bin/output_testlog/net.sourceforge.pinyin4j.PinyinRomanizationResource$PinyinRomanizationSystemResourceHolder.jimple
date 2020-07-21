@@ -1,0 +1,23 @@
+class net.sourceforge.pinyin4j.PinyinRomanizationResource$PinyinRomanizationSystemResourceHolder extends java.lang.Object
+{
+    static final net.sourceforge.pinyin4j.PinyinRomanizationResource theInstance;
+
+    static void <clinit>()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource $r0;
+
+        $r0 = new net.sourceforge.pinyin4j.PinyinRomanizationResource;
+        specialinvoke $r0.<net.sourceforge.pinyin4j.PinyinRomanizationResource: void <init>(net.sourceforge.pinyin4j.PinyinRomanizationResource$1)>(null);
+        <net.sourceforge.pinyin4j.PinyinRomanizationResource$PinyinRomanizationSystemResourceHolder: net.sourceforge.pinyin4j.PinyinRomanizationResource theInstance> = $r0;
+        return;
+    }
+
+    private void <init>()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource$PinyinRomanizationSystemResourceHolder r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationResource$PinyinRomanizationSystemResourceHolder;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

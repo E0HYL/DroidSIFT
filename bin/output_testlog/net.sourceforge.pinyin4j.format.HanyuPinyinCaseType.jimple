@@ -1,0 +1,52 @@
+public class net.sourceforge.pinyin4j.format.HanyuPinyinCaseType extends java.lang.Object
+{
+    public static final net.sourceforge.pinyin4j.format.HanyuPinyinCaseType LOWERCASE;
+    public static final net.sourceforge.pinyin4j.format.HanyuPinyinCaseType UPPERCASE;
+    protected java.lang.String name;
+
+    static void <clinit>()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType $r0, $r1;
+
+        $r0 = new net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+        specialinvoke $r0.<net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: void <init>(java.lang.String)>("UPPERCASE");
+        <net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType UPPERCASE> = $r0;
+        $r1 = new net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+        specialinvoke $r1.<net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: void <init>(java.lang.String)>("LOWERCASE");
+        <net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType LOWERCASE> = $r1;
+        return;
+    }
+
+    protected void <init>(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType r0;
+        java.lang.String r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        virtualinvoke r0.<net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: void setName(java.lang.String)>(r1);
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType r0;
+        java.lang.String $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+        $r1 = r0.<net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: java.lang.String name>;
+        return $r1;
+    }
+
+    protected void setName(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType r0;
+        java.lang.String r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+        r1 := @parameter0: java.lang.String;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: java.lang.String name> = r1;
+        return;
+    }
+}

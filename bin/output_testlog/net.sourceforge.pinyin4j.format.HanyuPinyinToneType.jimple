@@ -1,0 +1,56 @@
+public class net.sourceforge.pinyin4j.format.HanyuPinyinToneType extends java.lang.Object
+{
+    public static final net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITHOUT_TONE;
+    public static final net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_MARK;
+    public static final net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_NUMBER;
+    protected java.lang.String name;
+
+    static void <clinit>()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType $r0, $r1, $r2;
+
+        $r0 = new net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        specialinvoke $r0.<net.sourceforge.pinyin4j.format.HanyuPinyinToneType: void <init>(java.lang.String)>("WITH_TONE_NUMBER");
+        <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_NUMBER> = $r0;
+        $r1 = new net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        specialinvoke $r1.<net.sourceforge.pinyin4j.format.HanyuPinyinToneType: void <init>(java.lang.String)>("WITHOUT_TONE");
+        <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITHOUT_TONE> = $r1;
+        $r2 = new net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        specialinvoke $r2.<net.sourceforge.pinyin4j.format.HanyuPinyinToneType: void <init>(java.lang.String)>("WITH_TONE_MARK");
+        <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_MARK> = $r2;
+        return;
+    }
+
+    protected void <init>(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType r0;
+        java.lang.String r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        virtualinvoke r0.<net.sourceforge.pinyin4j.format.HanyuPinyinToneType: void setName(java.lang.String)>(r1);
+        return;
+    }
+
+    public java.lang.String getName()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType r0;
+        java.lang.String $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        $r1 = r0.<net.sourceforge.pinyin4j.format.HanyuPinyinToneType: java.lang.String name>;
+        return $r1;
+    }
+
+    protected void setName(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType r0;
+        java.lang.String r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        r1 := @parameter0: java.lang.String;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinToneType: java.lang.String name> = r1;
+        return;
+    }
+}

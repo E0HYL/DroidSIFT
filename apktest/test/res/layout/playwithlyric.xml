@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res/com.ophone.MiniPlayer">
+    <LinearLayout android:id="@id/LinearLayout01" android:layout_width="fill_parent" android:layout_height="40.0px">
+        <TextView android:textSize="15.0px" android:textStyle="normal" android:textColor="#ffffffff" android:textColorHighlight="#ffff9200" android:gravity="center" android:id="@id/songname" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/LinearLayout02" android:layout_width="fill_parent" android:layout_height="28.0px">
+        <TextView android:gravity="center" android:id="@id/artist" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@id/LinearLayout05" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.ophone.MiniPlayer.MyView android:id="@id/myview" android:layout_width="fill_parent" android:layout_height="wrap_content" app:textColor="#ffffffff" app:textSize="15.0dip" app:imgBackground="@drawable/transparence" app:textPaddingLeft="40.0dip" app:textPaddingTop="40.0dip" />
+    </LinearLayout>
+    <LinearLayout android:gravity="bottom" android:orientation="vertical" android:id="@id/LinearLayout04" android:background="@drawable/gray" android:padding="5.0px" android:layout_width="fill_parent" android:layout_height="110.0px">
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:id="@id/buttons" android:padding="5.0px" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <TextView android:textColor="@drawable/white" android:layout_gravity="bottom" android:id="@id/current" android:padding="2.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0px" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="210.0px" android:layout_height="wrap_content" android:layout_marginTop="30.0px">
+                <LinearLayout android:gravity="center" android:layout_width="70.0px" android:layout_height="wrap_content">
+                    <Button android:id="@id/pre" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pre" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center" android:layout_width="70.0px" android:layout_height="wrap_content">
+                    <Button android:id="@id/play" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/play" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center" android:layout_width="70.0px" android:layout_height="wrap_content">
+                    <Button android:id="@id/next" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/next" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView android:textColor="@drawable/white" android:layout_gravity="bottom" android:id="@id/total" android:padding="2.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0px" />
+        </LinearLayout>
+        <SeekBar android:id="@id/progress" android:layout_width="fill_parent" android:layout_height="28.0px" style="?android:attr/progressBarStyleHorizontal" />
+    </LinearLayout>
+</LinearLayout>

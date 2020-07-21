@@ -1,0 +1,42 @@
+public class com.hp.hpl.sparta.EncodingMismatchException extends com.hp.hpl.sparta.ParseException
+{
+    private java.lang.String declaredEncoding_;
+
+    void <init>(java.lang.String, java.lang.String, java.lang.String)
+    {
+        com.hp.hpl.sparta.EncodingMismatchException r0;
+        java.lang.String r1, r2, r3, $r10;
+        int $i0, $i1;
+        char $c2;
+        java.lang.StringBuffer $r4, $r5, $r6, $r7, $r8, $r9;
+
+        r0 := @this: com.hp.hpl.sparta.EncodingMismatchException;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: java.lang.String;
+        $i0 = virtualinvoke r2.<java.lang.String: int length()>();
+        $i1 = $i0 - 1;
+        $c2 = virtualinvoke r2.<java.lang.String: char charAt(int)>($i1);
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("encoding \'");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\' declared instead of of ");
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r3);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" as expected");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,int,int,java.lang.String,java.lang.String)>(r1, 0, $c2, r2, $r10);
+        r0.<com.hp.hpl.sparta.EncodingMismatchException: java.lang.String declaredEncoding_> = r2;
+        return;
+    }
+
+    java.lang.String getDeclaredEncoding()
+    {
+        com.hp.hpl.sparta.EncodingMismatchException r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.EncodingMismatchException;
+        $r1 = r0.<com.hp.hpl.sparta.EncodingMismatchException: java.lang.String declaredEncoding_>;
+        return $r1;
+    }
+}

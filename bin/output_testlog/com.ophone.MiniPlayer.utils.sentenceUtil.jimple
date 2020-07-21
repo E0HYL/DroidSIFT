@@ -1,0 +1,109 @@
+public class com.ophone.MiniPlayer.utils.sentenceUtil extends java.lang.Object
+{
+    private static java.awt.Color lyricHilight;
+    private java.awt.Color lyricForeground;
+
+    static void <clinit>()
+    {
+        java.awt.Color $r0;
+
+        $r0 = new java.awt.Color;
+        specialinvoke $r0.<java.awt.Color: void <init>(int,int,int)>(0, 244, 245);
+        <com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color lyricHilight> = $r0;
+        return;
+    }
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.utils.sentenceUtil r0;
+        java.awt.Color $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.sentenceUtil;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r1 = new java.awt.Color;
+        specialinvoke $r1.<java.awt.Color: void <init>(int,int,int)>(100, 100, 100);
+        r0.<com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color lyricForeground> = $r1;
+        return;
+    }
+
+    public static java.awt.Color getGradientColor(java.awt.Color, java.awt.Color, float)
+    {
+        java.awt.Color r0, r1, $r2;
+        float f0, $f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8, $f9, $f10, $f11, $f12;
+        int i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, i8, $i9, $i10, $i11, $i12, $i13, $i14;
+
+        r0 := @parameter0: java.awt.Color;
+        r1 := @parameter1: java.awt.Color;
+        f0 := @parameter2: float;
+        $r2 = new java.awt.Color;
+        $i1 = virtualinvoke r1.<java.awt.Color: int getRed()>();
+        $i2 = virtualinvoke r0.<java.awt.Color: int getRed()>();
+        $i3 = $i1 - $i2;
+        $i4 = virtualinvoke r1.<java.awt.Color: int getGreen()>();
+        $i5 = virtualinvoke r0.<java.awt.Color: int getGreen()>();
+        i0 = $i4 - $i5;
+        $i6 = virtualinvoke r1.<java.awt.Color: int getBlue()>();
+        $i7 = virtualinvoke r0.<java.awt.Color: int getBlue()>();
+        i8 = $i6 - $i7;
+        $f1 = (float) $i3;
+        $f2 = f0 * $f1;
+        $i9 = virtualinvoke r0.<java.awt.Color: int getRed()>();
+        $f3 = (float) $i9;
+        $f4 = $f2 + $f3;
+        $i10 = (int) $f4;
+        $i11 = virtualinvoke r0.<java.awt.Color: int getGreen()>();
+        $f5 = (float) $i11;
+        $f6 = (float) i0;
+        $f7 = f0 * $f6;
+        $f8 = $f5 + $f7;
+        $i12 = (int) $f8;
+        $i13 = virtualinvoke r0.<java.awt.Color: int getBlue()>();
+        $f9 = (float) $i13;
+        $f10 = (float) i8;
+        $f11 = f0 * $f10;
+        $f12 = $f9 + $f11;
+        $i14 = (int) $f12;
+        specialinvoke $r2.<java.awt.Color: void <init>(int,int,int)>($i10, $i12, $i14);
+        return $r2;
+    }
+
+    public static java.awt.Color getLyricHilight()
+    {
+        java.awt.Color $r0;
+
+        $r0 = <com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color lyricHilight>;
+        return $r0;
+    }
+
+    public java.awt.Color getLyricForeground()
+    {
+        com.ophone.MiniPlayer.utils.sentenceUtil r0;
+        java.awt.Color $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.sentenceUtil;
+        $r1 = r0.<com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color lyricForeground>;
+        return $r1;
+    }
+
+    public void setLyricForeground(java.awt.Color)
+    {
+        com.ophone.MiniPlayer.utils.sentenceUtil r0;
+        java.awt.Color r1;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.sentenceUtil;
+        r1 := @parameter0: java.awt.Color;
+        r0.<com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color lyricForeground> = r1;
+        return;
+    }
+
+    public void setLyricHilight(java.awt.Color)
+    {
+        com.ophone.MiniPlayer.utils.sentenceUtil r0;
+        java.awt.Color r1;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.sentenceUtil;
+        r1 := @parameter0: java.awt.Color;
+        <com.ophone.MiniPlayer.utils.sentenceUtil: java.awt.Color lyricHilight> = r1;
+        return;
+    }
+}

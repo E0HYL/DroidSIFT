@@ -1,0 +1,42 @@
+public class com.hp.hpl.sparta.xpath.TextExistsExpr extends com.hp.hpl.sparta.xpath.BooleanExpr
+{
+    static final com.hp.hpl.sparta.xpath.TextExistsExpr INSTANCE;
+
+    static void <clinit>()
+    {
+        com.hp.hpl.sparta.xpath.TextExistsExpr $r0;
+
+        $r0 = new com.hp.hpl.sparta.xpath.TextExistsExpr;
+        specialinvoke $r0.<com.hp.hpl.sparta.xpath.TextExistsExpr: void <init>()>();
+        <com.hp.hpl.sparta.xpath.TextExistsExpr: com.hp.hpl.sparta.xpath.TextExistsExpr INSTANCE> = $r0;
+        return;
+    }
+
+    private void <init>()
+    {
+        com.hp.hpl.sparta.xpath.TextExistsExpr r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TextExistsExpr;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.BooleanExpr: void <init>()>();
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.BooleanExprVisitor) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.TextExistsExpr r0;
+        com.hp.hpl.sparta.xpath.BooleanExprVisitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TextExistsExpr;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.BooleanExprVisitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.BooleanExprVisitor: void visit(com.hp.hpl.sparta.xpath.TextExistsExpr)>(r0);
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.TextExistsExpr r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TextExistsExpr;
+        return "[text()]";
+    }
+}

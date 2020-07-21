@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog7.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#openConnection</string></attr>
+<attr name="functionPrototype"><string>r10 = virtualinvoke r9.(java.net.URL: java.net.URLConnection openConnection())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke $r8.(java.net.URL: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getStringExtra</string></attr>
+<attr name="functionPrototype"><string>$r10 = virtualinvoke r2.(android.content.Intent: java.lang.String getStringExtra(java.lang.String))("lyricurlgoogle")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getIntExtra</string></attr>
+<attr name="functionPrototype"><string>$i0 = virtualinvoke r2.(android.content.Intent: int getIntExtra(java.lang.String,int))("status", -1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getSerializableExtra</string></attr>
+<attr name="functionPrototype"><string>$r5 = virtualinvoke r2.(android.content.Intent: java.io.Serializable getSerializableExtra(java.lang.String))("artist")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="6">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getStringExtra</string></attr>
+<attr name="functionPrototype"><string>$r8 = virtualinvoke r2.(android.content.Intent: java.lang.String getStringExtra(java.lang.String))("songname")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="7">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>queryLocalInterface</string></attr>
+<attr name="functionPrototype"><string>r1 = interfaceinvoke r0.(android.os.IBinder: android.os.IInterface queryLocalInterface(java.lang.String))("com.ophone.MiniPlayer.IPlayback")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="2">
+</edge>
+<edge from="4" to="3">
+</edge>
+<edge from="5" to="3">
+</edge>
+<edge from="6" to="3">
+</edge>
+<edge from="7" to="2">
+</edge>
+<edge from="7" to="7">
+</edge>
+</graph>
+</gxl>

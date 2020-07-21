@@ -1,0 +1,100 @@
+class com.ophone.MiniPlayer.OnlineMusicActivity$3 extends java.lang.Thread
+{
+    final com.ophone.MiniPlayer.OnlineMusicActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.OnlineMusicActivity)
+    {
+        com.ophone.MiniPlayer.OnlineMusicActivity$3 r0;
+        com.ophone.MiniPlayer.OnlineMusicActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.OnlineMusicActivity$3;
+        r1 := @parameter0: com.ophone.MiniPlayer.OnlineMusicActivity;
+        r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0> = r1;
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.OnlineMusicActivity$3 r0;
+        int i0, $i2, $i3, $i5, $i6, $i7, $i8;
+        com.ophone.MiniPlayer.OnlineMusicActivity $r1, $r3, $r5, $r6, $r9, $r11, $r16, $r19, $r21, $r23, $r25, $r27, $r29, $r30;
+        java.lang.Integer $r2, $r4, $r7, $r22, $r24, $r26, $r28, $r31;
+        java.util.ArrayList $r8, $r10, $r12, $r32;
+        java.lang.StringBuilder $r13, $r14;
+        java.lang.String $r15;
+        android.os.Handler $r17, $r20;
+        android.os.Message r18;
+
+        r0 := @this: com.ophone.MiniPlayer.OnlineMusicActivity$3;
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", "thread run");
+        $r1 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r2 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r1);
+        $i2 = virtualinvoke $r2.<java.lang.Integer: int intValue()>();
+        if $i2 == 2131034189 goto label0;
+
+        $r3 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r4 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r3);
+        $i3 = virtualinvoke $r4.<java.lang.Integer: int intValue()>();
+        if $i3 != 2131034188 goto label3;
+
+     label0:
+        $r5 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r6 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r7 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r6);
+        $r8 = staticinvoke <com.ophone.MiniPlayer.provider.SongManager: java.util.ArrayList getSongList(java.lang.Integer)>($r7);
+        staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: void access$11(com.ophone.MiniPlayer.OnlineMusicActivity,java.util.ArrayList)>($r5, $r8);
+
+     label1:
+        $r9 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r10 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$4(com.ophone.MiniPlayer.OnlineMusicActivity)>($r9);
+        if $r10 == null goto label2;
+
+        $r11 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r12 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$4(com.ophone.MiniPlayer.OnlineMusicActivity)>($r11);
+        i0 = virtualinvoke $r12.<java.util.ArrayList: int size()>();
+        $r13 = new java.lang.StringBuilder;
+        specialinvoke $r13.<java.lang.StringBuilder: void <init>(java.lang.String)>("get songlist size:");
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r15);
+
+     label2:
+        $r16 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r17 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: android.os.Handler access$12(com.ophone.MiniPlayer.OnlineMusicActivity)>($r16);
+        r18 = virtualinvoke $r17.<android.os.Handler: android.os.Message obtainMessage(int)>(1);
+        $r19 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r20 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: android.os.Handler access$12(com.ophone.MiniPlayer.OnlineMusicActivity)>($r19);
+        virtualinvoke $r20.<android.os.Handler: boolean sendMessage(android.os.Message)>(r18);
+        return;
+
+     label3:
+        $r21 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r22 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r21);
+        $i5 = virtualinvoke $r22.<java.lang.Integer: int intValue()>();
+        if $i5 == 2131034185 goto label4;
+
+        $r23 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r24 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r23);
+        $i6 = virtualinvoke $r24.<java.lang.Integer: int intValue()>();
+        if $i6 == 2131034184 goto label4;
+
+        $r25 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r26 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r25);
+        $i7 = virtualinvoke $r26.<java.lang.Integer: int intValue()>();
+        if $i7 == 2131034186 goto label4;
+
+        $r27 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r28 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r27);
+        $i8 = virtualinvoke $r28.<java.lang.Integer: int intValue()>();
+        if $i8 != 2131034187 goto label1;
+
+     label4:
+        $r29 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r30 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$3: com.ophone.MiniPlayer.OnlineMusicActivity this$0>;
+        $r31 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.lang.Integer access$5(com.ophone.MiniPlayer.OnlineMusicActivity)>($r30);
+        $r32 = staticinvoke <com.ophone.MiniPlayer.provider.SongManager: java.util.ArrayList getSongListGoogle(java.lang.Integer)>($r31);
+        staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: void access$11(com.ophone.MiniPlayer.OnlineMusicActivity,java.util.ArrayList)>($r29, $r32);
+        goto label1;
+    }
+}

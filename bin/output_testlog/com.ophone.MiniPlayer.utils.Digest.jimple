@@ -1,0 +1,94 @@
+public class com.ophone.MiniPlayer.utils.Digest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.utils.Digest r0;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.Digest;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public java.lang.String byte2hex(byte[])
+    {
+        com.ophone.MiniPlayer.utils.Digest r0;
+        byte[] r1;
+        int i0, $i1, $i4;
+        java.lang.String r2, r3, $r4, $r6, $r10;
+        byte $b2;
+        short $s3;
+        java.lang.StringBuilder $r5, $r7, $r8, $r9, $r11;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.Digest;
+        r1 := @parameter0: byte[];
+        r3 = "";
+        i0 = 0;
+
+     label0:
+        $i1 = lengthof r1;
+        if i0 < $i1 goto label1;
+
+        $r4 = virtualinvoke r3.<java.lang.String: java.lang.String toLowerCase()>();
+        return $r4;
+
+     label1:
+        $b2 = r1[i0];
+        $s3 = 255 & $b2;
+        r2 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>($s3);
+        $i4 = virtualinvoke r2.<java.lang.String: int length()>();
+        if $i4 != 1 goto label3;
+
+        $r5 = new java.lang.StringBuilder;
+        $r6 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>($r6);
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("0");
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+        r3 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        $r9 = new java.lang.StringBuilder;
+        $r10 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>(r3);
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>($r10);
+        $r11 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+        r3 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+        goto label2;
+    }
+
+    public java.lang.String testDigest(java.lang.String)
+    {
+        com.ophone.MiniPlayer.utils.Digest r0;
+        java.lang.String r1, $r6;
+        byte[] r2, $r4, r5;
+        java.security.MessageDigest $r3;
+        java.security.NoSuchAlgorithmException $r7;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.Digest;
+        r1 := @parameter0: java.lang.String;
+        r2 = (byte[]) null;
+
+     label0:
+        $r3 = staticinvoke <java.security.MessageDigest: java.security.MessageDigest getInstance(java.lang.String)>("MD5");
+        $r4 = virtualinvoke r1.<java.lang.String: byte[] getBytes()>();
+        virtualinvoke $r3.<java.security.MessageDigest: void update(byte[])>($r4);
+        r5 = virtualinvoke $r3.<java.security.MessageDigest: byte[] digest()>();
+
+     label1:
+        r2 = r5;
+
+     label2:
+        $r6 = virtualinvoke r0.<com.ophone.MiniPlayer.utils.Digest: java.lang.String byte2hex(byte[])>(r2);
+        return $r6;
+
+     label3:
+        $r7 := @caughtexception;
+        virtualinvoke $r7.<java.security.NoSuchAlgorithmException: void printStackTrace()>();
+        goto label2;
+
+        catch java.security.NoSuchAlgorithmException from label0 to label1 with label3;
+    }
+}

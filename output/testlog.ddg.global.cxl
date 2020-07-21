@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<GraphCollection>
+<graphs>
+<print file="testlog1.gxl"/>
+<!--9-->
+<print file="testlog2.gxl"/>
+<!--29-->
+<print file="testlog3.gxl"/>
+<!--8-->
+<print file="testlog4.gxl"/>
+<!--5-->
+<print file="testlog5.gxl"/>
+<!--5-->
+<print file="testlog6.gxl"/>
+<!--9-->
+<print file="testlog7.gxl"/>
+<!--7-->
+<print file="testlog8.gxl"/>
+<!--65-->
+<print file="testlog9.gxl"/>
+<!--3-->
+<print file="testlog10.gxl"/>
+<!--3-->
+<print file="testlog11.gxl"/>
+<!--3-->
+<print file="testlog12.gxl"/>
+<!--3-->
+<print file="testlog13.gxl"/>
+<!--15-->
+<print file="testlog14.gxl"/>
+<!--3-->
+<print file="testlog15.gxl"/>
+<!--48-->
+<print file="testlog16.gxl"/>
+<!--9-->
+<print file="testlog17.gxl"/>
+<!--5-->
+<print file="testlog18.gxl"/>
+<!--3-->
+<print file="testlog19.gxl"/>
+<!--3-->
+<print file="testlog20.gxl"/>
+<!--8-->
+<print file="testlog21.gxl"/>
+<!--4-->
+<print file="testlog22.gxl"/>
+<!--32-->
+<print file="testlog23.gxl"/>
+<!--8-->
+<print file="testlog24.gxl"/>
+<!--3-->
+<print file="testlog25.gxl"/>
+<!--3-->
+<print file="testlog26.gxl"/>
+<!--3-->
+<print file="testlog27.gxl"/>
+<!--6-->
+<print file="testlog28.gxl"/>
+<!--17-->
+<print file="testlog29.gxl"/>
+<!--4-->
+<print file="testlog30.gxl"/>
+<!--6-->
+<print file="testlog31.gxl"/>
+<!--7-->
+</graphs>
+</GraphCollection>

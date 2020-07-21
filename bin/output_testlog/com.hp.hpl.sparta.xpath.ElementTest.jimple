@@ -1,0 +1,56 @@
+public class com.hp.hpl.sparta.xpath.ElementTest extends com.hp.hpl.sparta.xpath.NodeTest
+{
+    private final java.lang.String tagName_;
+
+    void <init>(java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.ElementTest r0;
+        java.lang.String r1, $r2;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ElementTest;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.NodeTest: void <init>()>();
+        $r2 = staticinvoke <com.hp.hpl.sparta.Sparta: java.lang.String intern(java.lang.String)>(r1);
+        r0.<com.hp.hpl.sparta.xpath.ElementTest: java.lang.String tagName_> = $r2;
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.Visitor)
+    {
+        com.hp.hpl.sparta.xpath.ElementTest r0;
+        com.hp.hpl.sparta.xpath.Visitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ElementTest;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.Visitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.NodeTestVisitor: void visit(com.hp.hpl.sparta.xpath.ElementTest)>(r0);
+        return;
+    }
+
+    public java.lang.String getTagName()
+    {
+        com.hp.hpl.sparta.xpath.ElementTest r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ElementTest;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.ElementTest: java.lang.String tagName_>;
+        return $r1;
+    }
+
+    public boolean isStringValue()
+    {
+        com.hp.hpl.sparta.xpath.ElementTest r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ElementTest;
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.ElementTest r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ElementTest;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.ElementTest: java.lang.String tagName_>;
+        return $r1;
+    }
+}

@@ -1,0 +1,946 @@
+public class com.ophone.MiniPlayer.provider.SongManager extends java.lang.Object
+{
+    private static final java.lang.String TAG;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.SongManager r0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.SongManager;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static java.util.ArrayList getSongList(java.lang.Integer)
+    {
+        java.lang.Integer r0;
+        java.util.ArrayList r1, r10;
+        org.apache.http.impl.client.DefaultHttpClient r2;
+        org.apache.http.client.methods.HttpGet r3, r4;
+        java.lang.String $r5, $r15, $r24, $r33, $r40;
+        org.apache.http.HttpResponse $r6;
+        org.apache.http.HttpEntity r7;
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler $r8;
+        java.io.InputStream $r9;
+        org.apache.http.conn.ClientConnectionManager $r11, $r20, $r29, $r36;
+        java.lang.StringBuilder $r12, $r14, $r21, $r23, $r30, $r32, $r37, $r39;
+        java.net.URI $r13, $r22, $r31, $r38;
+        java.lang.IllegalStateException $r16, r17;
+        org.apache.http.client.ClientProtocolException $r18, r19, $r43;
+        java.lang.Exception $r25, r26;
+        java.io.IOException $r27, r28, $r42;
+        java.lang.Throwable $r34, r35, $r41;
+
+        r0 := @parameter0: java.lang.Integer;
+        r1 = null;
+        r2 = new org.apache.http.impl.client.DefaultHttpClient;
+        specialinvoke r2.<org.apache.http.impl.client.DefaultHttpClient: void <init>()>();
+        r3 = null;
+
+     label0:
+        r4 = new org.apache.http.client.methods.HttpGet;
+        $r5 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        specialinvoke r4.<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>($r5);
+
+     label1:
+        $r6 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest)>(r4);
+        r7 = interfaceinvoke $r6.<org.apache.http.HttpResponse: org.apache.http.HttpEntity getEntity()>();
+
+     label2:
+        r1 = null;
+        if r7 == null goto label6;
+
+     label3:
+        $r8 = new com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        specialinvoke $r8.<com.ophone.MiniPlayer.provider.BaiduXmlHandler: void <init>()>();
+        $r9 = interfaceinvoke r7.<org.apache.http.HttpEntity: java.io.InputStream getContent()>();
+        r10 = virtualinvoke $r8.<com.ophone.MiniPlayer.provider.XmlHandler: java.util.ArrayList analyseTheSonglist(java.io.InputStream)>($r9);
+
+     label4:
+        r1 = r10;
+
+     label5:
+        interfaceinvoke r7.<org.apache.http.HttpEntity: void consumeContent()>();
+
+     label6:
+        $r11 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r11.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label7;
+
+        $r12 = new java.lang.StringBuilder;
+        specialinvoke $r12.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r13 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r14 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r13);
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r15);
+
+     label7:
+        return r1;
+
+     label8:
+        $r16 := @caughtexception;
+        r17 = $r16;
+
+     label9:
+        virtualinvoke r17.<java.lang.IllegalStateException: void printStackTrace()>();
+
+     label10:
+        r1 = null;
+        goto label5;
+
+     label11:
+        $r18 := @caughtexception;
+        r19 = $r18;
+        r3 = r4;
+
+     label12:
+        virtualinvoke r19.<org.apache.http.client.ClientProtocolException: void printStackTrace()>();
+
+     label13:
+        $r20 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r20.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label7;
+
+        $r21 = new java.lang.StringBuilder;
+        specialinvoke $r21.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r22 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r23 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r22);
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r24);
+        return r1;
+
+     label14:
+        $r25 := @caughtexception;
+        r26 = $r25;
+
+     label15:
+        virtualinvoke r26.<java.lang.Exception: void printStackTrace()>();
+
+     label16:
+        r1 = null;
+        goto label5;
+
+     label17:
+        $r27 := @caughtexception;
+        r28 = $r27;
+        r3 = r4;
+
+     label18:
+        virtualinvoke r28.<java.io.IOException: void printStackTrace()>();
+
+     label19:
+        $r29 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r29.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label7;
+
+        $r30 = new java.lang.StringBuilder;
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r31 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r32 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r31);
+        $r33 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r33);
+        return r1;
+
+     label20:
+        $r34 := @caughtexception;
+        r35 = $r34;
+
+     label21:
+        $r36 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r36.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label22;
+
+        $r37 = new java.lang.StringBuilder;
+        specialinvoke $r37.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r38 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r38);
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r40);
+
+     label22:
+        throw r35;
+
+     label23:
+        $r41 := @caughtexception;
+        r35 = $r41;
+        r3 = r4;
+        goto label21;
+
+     label24:
+        $r42 := @caughtexception;
+        r28 = $r42;
+        r3 = null;
+        r1 = null;
+        goto label18;
+
+     label25:
+        $r43 := @caughtexception;
+        r19 = $r43;
+        r3 = null;
+        r1 = null;
+        goto label12;
+
+        catch org.apache.http.client.ClientProtocolException from label0 to label1 with label25;
+        catch java.io.IOException from label0 to label1 with label24;
+        catch java.lang.Throwable from label0 to label1 with label20;
+        catch org.apache.http.client.ClientProtocolException from label1 to label2 with label11;
+        catch java.io.IOException from label1 to label2 with label17;
+        catch java.lang.Throwable from label1 to label2 with label23;
+        catch java.lang.IllegalStateException from label3 to label4 with label8;
+        catch java.lang.Exception from label3 to label4 with label14;
+        catch org.apache.http.client.ClientProtocolException from label3 to label4 with label11;
+        catch java.io.IOException from label3 to label4 with label17;
+        catch java.lang.Throwable from label3 to label4 with label23;
+        catch org.apache.http.client.ClientProtocolException from label5 to label6 with label11;
+        catch java.io.IOException from label5 to label6 with label17;
+        catch java.lang.Throwable from label5 to label6 with label23;
+        catch org.apache.http.client.ClientProtocolException from label9 to label10 with label11;
+        catch java.io.IOException from label9 to label10 with label17;
+        catch java.lang.Throwable from label9 to label10 with label23;
+        catch java.lang.Throwable from label12 to label13 with label20;
+        catch org.apache.http.client.ClientProtocolException from label15 to label16 with label11;
+        catch java.io.IOException from label15 to label16 with label17;
+        catch java.lang.Throwable from label15 to label16 with label23;
+        catch java.lang.Throwable from label18 to label19 with label20;
+    }
+
+    public static java.util.ArrayList getSongListGoogle(java.lang.Integer)
+    {
+        java.lang.Integer r0;
+        java.util.ArrayList r1;
+        org.apache.http.impl.client.DefaultHttpClient r2;
+        org.apache.http.client.methods.HttpGet r3, r5;
+        java.lang.StringBuilder $r4, $r7, $r10, $r12, r15, $r17, $r23, $r25, $r32, $r34, $r41, $r43, $r48, $r50;
+        java.lang.String $r6, $r8, $r9, $r11, $r13, $r18, $r26, $r35, $r44, $r51;
+        org.apache.http.HttpResponse $r14;
+        org.apache.http.StatusLine r16;
+        org.apache.http.HttpEntity r19;
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler $r20;
+        java.io.InputStream $r21;
+        org.apache.http.conn.ClientConnectionManager $r22, $r31, $r40, $r47;
+        java.net.URI $r24, $r33, $r42, $r49;
+        java.lang.IllegalStateException $r27, r28;
+        org.apache.http.client.ClientProtocolException $r29, r30, $r54;
+        java.lang.Exception $r36, r37;
+        java.io.IOException $r38, r39, $r53;
+        java.lang.Throwable $r45, r46, $r52;
+
+        r0 := @parameter0: java.lang.Integer;
+        r1 = null;
+        r2 = new org.apache.http.impl.client.DefaultHttpClient;
+        specialinvoke r2.<org.apache.http.impl.client.DefaultHttpClient: void <init>()>();
+        r3 = null;
+
+     label0:
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("httpUriRequest:");
+        $r6 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r8);
+        r5 = new org.apache.http.client.methods.HttpGet;
+        $r9 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        specialinvoke r5.<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>($r9);
+
+     label1:
+        $r10 = new java.lang.StringBuilder;
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection start:");
+        $r11 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r13);
+        $r14 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest)>(r5);
+        r15 = new java.lang.StringBuilder;
+        specialinvoke r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection established:");
+        r16 = interfaceinvoke $r14.<org.apache.http.HttpResponse: org.apache.http.StatusLine getStatusLine()>();
+        $r17 = virtualinvoke r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r16);
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r18);
+        r19 = interfaceinvoke $r14.<org.apache.http.HttpResponse: org.apache.http.HttpEntity getEntity()>();
+
+     label2:
+        r1 = null;
+        if r19 == null goto label5;
+
+     label3:
+        $r20 = new com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        specialinvoke $r20.<com.ophone.MiniPlayer.provider.GoogleXmlHandler: void <init>()>();
+        $r21 = interfaceinvoke r19.<org.apache.http.HttpEntity: java.io.InputStream getContent()>();
+        r1 = virtualinvoke $r20.<com.ophone.MiniPlayer.provider.XmlHandler: java.util.ArrayList analyseTheSonglistGoogle(java.io.InputStream)>($r21);
+        virtualinvoke r1.<java.util.ArrayList: int size()>();
+
+     label4:
+        interfaceinvoke r19.<org.apache.http.HttpEntity: void consumeContent()>();
+
+     label5:
+        $r22 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r22.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r5 == null goto label6;
+
+        $r23 = new java.lang.StringBuilder;
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r24 = interfaceinvoke r5.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r24);
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r26);
+
+     label6:
+        return r1;
+
+     label7:
+        $r27 := @caughtexception;
+        r28 = $r27;
+
+     label8:
+        virtualinvoke r28.<java.lang.IllegalStateException: void printStackTrace()>();
+
+     label9:
+        goto label4;
+
+     label10:
+        $r29 := @caughtexception;
+        r30 = $r29;
+        r3 = r5;
+
+     label11:
+        virtualinvoke r30.<org.apache.http.client.ClientProtocolException: void printStackTrace()>();
+
+     label12:
+        $r31 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r31.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label6;
+
+        $r32 = new java.lang.StringBuilder;
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r33 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r33);
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r35);
+        return r1;
+
+     label13:
+        $r36 := @caughtexception;
+        r37 = $r36;
+
+     label14:
+        virtualinvoke r37.<java.lang.Exception: void printStackTrace()>();
+
+     label15:
+        goto label4;
+
+     label16:
+        $r38 := @caughtexception;
+        r39 = $r38;
+        r3 = r5;
+
+     label17:
+        virtualinvoke r39.<java.io.IOException: void printStackTrace()>();
+
+     label18:
+        $r40 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r40.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label6;
+
+        $r41 = new java.lang.StringBuilder;
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r42 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r43 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r42);
+        $r44 = virtualinvoke $r43.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r44);
+        return r1;
+
+     label19:
+        $r45 := @caughtexception;
+        r46 = $r45;
+
+     label20:
+        $r47 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r47.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label21;
+
+        $r48 = new java.lang.StringBuilder;
+        specialinvoke $r48.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r49 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r49);
+        $r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r51);
+
+     label21:
+        throw r46;
+
+     label22:
+        $r52 := @caughtexception;
+        r46 = $r52;
+        r3 = r5;
+        goto label20;
+
+     label23:
+        $r53 := @caughtexception;
+        r39 = $r53;
+        r3 = null;
+        r1 = null;
+        goto label17;
+
+     label24:
+        $r54 := @caughtexception;
+        r30 = $r54;
+        r3 = null;
+        r1 = null;
+        goto label11;
+
+        catch org.apache.http.client.ClientProtocolException from label0 to label1 with label24;
+        catch java.io.IOException from label0 to label1 with label23;
+        catch java.lang.Throwable from label0 to label1 with label19;
+        catch org.apache.http.client.ClientProtocolException from label1 to label2 with label10;
+        catch java.io.IOException from label1 to label2 with label16;
+        catch java.lang.Throwable from label1 to label2 with label22;
+        catch java.lang.IllegalStateException from label3 to label4 with label7;
+        catch java.lang.Exception from label3 to label4 with label13;
+        catch org.apache.http.client.ClientProtocolException from label3 to label4 with label10;
+        catch java.io.IOException from label3 to label4 with label16;
+        catch java.lang.Throwable from label3 to label4 with label22;
+        catch org.apache.http.client.ClientProtocolException from label4 to label5 with label10;
+        catch java.io.IOException from label4 to label5 with label16;
+        catch java.lang.Throwable from label4 to label5 with label22;
+        catch org.apache.http.client.ClientProtocolException from label8 to label9 with label10;
+        catch java.io.IOException from label8 to label9 with label16;
+        catch java.lang.Throwable from label8 to label9 with label22;
+        catch java.lang.Throwable from label11 to label12 with label19;
+        catch org.apache.http.client.ClientProtocolException from label14 to label15 with label10;
+        catch java.io.IOException from label14 to label15 with label16;
+        catch java.lang.Throwable from label14 to label15 with label22;
+        catch java.lang.Throwable from label17 to label18 with label19;
+    }
+
+    public static java.util.ArrayList getSongSource(java.lang.Integer, com.ophone.MiniPlayer.provider.Song)
+    {
+        java.lang.Integer r0;
+        com.ophone.MiniPlayer.provider.Song r1;
+        org.apache.http.impl.client.DefaultHttpClient r2;
+        org.apache.http.client.methods.HttpGet r3, r5;
+        java.lang.StringBuilder $r4, $r7, $r10, $r12, r15, $r17, $r25, $r27, $r32, $r34, $r39, $r41, $r46, $r48, $r53, $r55, $r60, $r62, $r67, $r69;
+        java.lang.String $r6, $r8, $r9, $r11, $r13, $r18, $r28, $r35, $r42, $r49, $r56, $r63, $r70;
+        org.apache.http.HttpResponse $r14;
+        org.apache.http.StatusLine r16;
+        org.apache.http.HttpEntity r19;
+        java.util.ArrayList r20, r23;
+        com.ophone.MiniPlayer.provider.BaiduXmlHandler $r21;
+        java.io.InputStream $r22;
+        org.apache.http.conn.ClientConnectionManager $r24, $r31, $r38, $r45, $r52, $r59, $r66;
+        java.net.URI $r26, $r33, $r40, $r47, $r54, $r61, $r68;
+        java.io.UnsupportedEncodingException $r29, r30, $r76;
+        java.net.MalformedURLException $r36, r37, $r75;
+        java.io.IOException $r43, r44, $r74;
+        javax.xml.parsers.ParserConfigurationException $r50, r51, $r73;
+        org.xml.sax.SAXException $r57, r58, $r72;
+        java.lang.Throwable $r64, r65, $r71;
+
+        r0 := @parameter0: java.lang.Integer;
+        r1 := @parameter1: com.ophone.MiniPlayer.provider.Song;
+        r2 = new org.apache.http.impl.client.DefaultHttpClient;
+        specialinvoke r2.<org.apache.http.impl.client.DefaultHttpClient: void <init>()>();
+        r3 = null;
+
+     label0:
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("getSongSourceGoogle httpUriRequest:");
+        $r6 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        $r7 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r8);
+        r5 = new org.apache.http.client.methods.HttpGet;
+        $r9 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicItemFeed(java.lang.Integer,com.ophone.MiniPlayer.provider.Song)>(r0, r1);
+        specialinvoke r5.<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>($r9);
+
+     label1:
+        $r10 = new java.lang.StringBuilder;
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>("getSongSourceGoogle connection start:");
+        $r11 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r13);
+        $r14 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest)>(r5);
+        r15 = new java.lang.StringBuilder;
+        specialinvoke r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("getSongSourceGoogle connection established:");
+        r16 = interfaceinvoke $r14.<org.apache.http.HttpResponse: org.apache.http.StatusLine getStatusLine()>();
+        $r17 = virtualinvoke r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r16);
+        $r18 = virtualinvoke $r17.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r18);
+        r19 = interfaceinvoke $r14.<org.apache.http.HttpResponse: org.apache.http.HttpEntity getEntity()>();
+
+     label2:
+        r20 = null;
+        if r19 == null goto label5;
+
+     label3:
+        $r21 = new com.ophone.MiniPlayer.provider.BaiduXmlHandler;
+        specialinvoke $r21.<com.ophone.MiniPlayer.provider.BaiduXmlHandler: void <init>()>();
+        $r22 = interfaceinvoke r19.<org.apache.http.HttpEntity: java.io.InputStream getContent()>();
+        r23 = virtualinvoke $r21.<com.ophone.MiniPlayer.provider.XmlHandler: java.util.ArrayList parseSongSource(java.io.InputStream)>($r22);
+
+     label4:
+        r20 = r23;
+
+     label5:
+        $r24 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r24.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r5 == null goto label6;
+
+        $r25 = new java.lang.StringBuilder;
+        specialinvoke $r25.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r26 = interfaceinvoke r5.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r27 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r26);
+        $r28 = virtualinvoke $r27.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r28);
+
+     label6:
+        return r20;
+
+     label7:
+        $r29 := @caughtexception;
+        r30 = $r29;
+
+     label8:
+        virtualinvoke r30.<java.io.UnsupportedEncodingException: void printStackTrace()>();
+
+     label9:
+        $r31 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r31.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        r20 = null;
+        if r3 == null goto label6;
+
+        $r32 = new java.lang.StringBuilder;
+        specialinvoke $r32.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r33 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r34 = virtualinvoke $r32.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r33);
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r35);
+        return null;
+
+     label10:
+        $r36 := @caughtexception;
+        r37 = $r36;
+
+     label11:
+        virtualinvoke r37.<java.net.MalformedURLException: void printStackTrace()>();
+
+     label12:
+        $r38 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r38.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        r20 = null;
+        if r3 == null goto label6;
+
+        $r39 = new java.lang.StringBuilder;
+        specialinvoke $r39.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r40 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r41 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r40);
+        $r42 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r42);
+        return null;
+
+     label13:
+        $r43 := @caughtexception;
+        r44 = $r43;
+
+     label14:
+        virtualinvoke r44.<java.io.IOException: void printStackTrace()>();
+
+     label15:
+        $r45 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r45.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        r20 = null;
+        if r3 == null goto label6;
+
+        $r46 = new java.lang.StringBuilder;
+        specialinvoke $r46.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r47 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r48 = virtualinvoke $r46.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r47);
+        $r49 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r49);
+        return null;
+
+     label16:
+        $r50 := @caughtexception;
+        r51 = $r50;
+
+     label17:
+        virtualinvoke r51.<javax.xml.parsers.ParserConfigurationException: void printStackTrace()>();
+
+     label18:
+        $r52 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r52.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        r20 = null;
+        if r3 == null goto label6;
+
+        $r53 = new java.lang.StringBuilder;
+        specialinvoke $r53.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r54 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r55 = virtualinvoke $r53.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r54);
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r56);
+        return null;
+
+     label19:
+        $r57 := @caughtexception;
+        r58 = $r57;
+
+     label20:
+        virtualinvoke r58.<org.xml.sax.SAXException: void printStackTrace()>();
+
+     label21:
+        $r59 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r59.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        r20 = null;
+        if r3 == null goto label6;
+
+        $r60 = new java.lang.StringBuilder;
+        specialinvoke $r60.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r61 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r62 = virtualinvoke $r60.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r61);
+        $r63 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r63);
+        return null;
+
+     label22:
+        $r64 := @caughtexception;
+        r65 = $r64;
+
+     label23:
+        $r66 = interfaceinvoke r2.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r66.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r3 == null goto label24;
+
+        $r67 = new java.lang.StringBuilder;
+        specialinvoke $r67.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r68 = interfaceinvoke r3.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r69 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r68);
+        $r70 = virtualinvoke $r69.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r70);
+
+     label24:
+        throw r65;
+
+     label25:
+        $r71 := @caughtexception;
+        r65 = $r71;
+        r3 = r5;
+        goto label23;
+
+     label26:
+        $r72 := @caughtexception;
+        r58 = $r72;
+        r3 = r5;
+        goto label20;
+
+     label27:
+        $r73 := @caughtexception;
+        r51 = $r73;
+        r3 = r5;
+        goto label17;
+
+     label28:
+        $r74 := @caughtexception;
+        r44 = $r74;
+        r3 = r5;
+        goto label14;
+
+     label29:
+        $r75 := @caughtexception;
+        r37 = $r75;
+        r3 = r5;
+        goto label11;
+
+     label30:
+        $r76 := @caughtexception;
+        r30 = $r76;
+        r3 = r5;
+        goto label8;
+
+        catch java.io.UnsupportedEncodingException from label0 to label1 with label7;
+        catch java.net.MalformedURLException from label0 to label1 with label10;
+        catch java.io.IOException from label0 to label1 with label13;
+        catch javax.xml.parsers.ParserConfigurationException from label0 to label1 with label16;
+        catch org.xml.sax.SAXException from label0 to label1 with label19;
+        catch java.lang.Throwable from label0 to label1 with label22;
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label30;
+        catch java.net.MalformedURLException from label1 to label2 with label29;
+        catch java.io.IOException from label1 to label2 with label28;
+        catch javax.xml.parsers.ParserConfigurationException from label1 to label2 with label27;
+        catch org.xml.sax.SAXException from label1 to label2 with label26;
+        catch java.lang.Throwable from label1 to label2 with label25;
+        catch java.io.UnsupportedEncodingException from label3 to label4 with label30;
+        catch java.net.MalformedURLException from label3 to label4 with label29;
+        catch java.io.IOException from label3 to label4 with label28;
+        catch javax.xml.parsers.ParserConfigurationException from label3 to label4 with label27;
+        catch org.xml.sax.SAXException from label3 to label4 with label26;
+        catch java.lang.Throwable from label3 to label4 with label25;
+        catch java.lang.Throwable from label8 to label9 with label22;
+        catch java.lang.Throwable from label11 to label12 with label22;
+        catch java.lang.Throwable from label14 to label15 with label22;
+        catch java.lang.Throwable from label17 to label18 with label22;
+        catch java.lang.Throwable from label20 to label21 with label22;
+    }
+
+    public static java.util.Map getSongSourceGoogle(java.lang.Integer, com.ophone.MiniPlayer.provider.Song)
+    {
+        java.lang.Integer r0;
+        com.ophone.MiniPlayer.provider.Song r1;
+        java.util.Map r2;
+        org.apache.http.impl.client.DefaultHttpClient r3;
+        org.apache.http.client.methods.HttpGet r4, r6;
+        java.lang.StringBuilder $r5, $r8, $r11, $r13, r16, $r18, $r24, $r26, $r31, $r33, $r38, $r40, $r45, $r47, $r52, $r54, $r59, $r61, $r66, $r68;
+        java.lang.String $r7, $r9, $r10, $r12, $r14, $r19, $r27, $r34, $r41, $r48, $r55, $r62, $r69;
+        org.apache.http.HttpResponse $r15;
+        org.apache.http.StatusLine r17;
+        org.apache.http.HttpEntity r20;
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler $r21;
+        java.io.InputStream $r22;
+        org.apache.http.conn.ClientConnectionManager $r23, $r30, $r37, $r44, $r51, $r58, $r65;
+        java.net.URI $r25, $r32, $r39, $r46, $r53, $r60, $r67;
+        java.io.UnsupportedEncodingException $r28, r29, $r75;
+        java.net.MalformedURLException $r35, r36, $r74;
+        java.io.IOException $r42, r43, $r73;
+        javax.xml.parsers.ParserConfigurationException $r49, r50, $r72;
+        org.xml.sax.SAXException $r56, r57, $r71;
+        java.lang.Throwable $r63, r64, $r70;
+
+        r0 := @parameter0: java.lang.Integer;
+        r1 := @parameter1: com.ophone.MiniPlayer.provider.Song;
+        r2 = null;
+        r3 = new org.apache.http.impl.client.DefaultHttpClient;
+        specialinvoke r3.<org.apache.http.impl.client.DefaultHttpClient: void <init>()>();
+        r4 = null;
+
+     label0:
+        $r5 = new java.lang.StringBuilder;
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("getSongSourceGoogle httpUriRequest:");
+        $r7 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        $r8 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r7);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r9);
+        r6 = new org.apache.http.client.methods.HttpGet;
+        $r10 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicItemFeed(java.lang.Integer,com.ophone.MiniPlayer.provider.Song)>(r0, r1);
+        specialinvoke r6.<org.apache.http.client.methods.HttpGet: void <init>(java.lang.String)>($r10);
+
+     label1:
+        $r11 = new java.lang.StringBuilder;
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("getSongSourceGoogle connection start:");
+        $r12 = staticinvoke <com.ophone.MiniPlayer.provider.FeedUrl: java.lang.String getMusicBoxFeed(java.lang.Integer)>(r0);
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r14);
+        $r15 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest)>(r6);
+        r16 = new java.lang.StringBuilder;
+        specialinvoke r16.<java.lang.StringBuilder: void <init>(java.lang.String)>("getSongSourceGoogle connection established:");
+        r17 = interfaceinvoke $r15.<org.apache.http.HttpResponse: org.apache.http.StatusLine getStatusLine()>();
+        $r18 = virtualinvoke r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>(r17);
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r19);
+        r20 = interfaceinvoke $r15.<org.apache.http.HttpResponse: org.apache.http.HttpEntity getEntity()>();
+
+     label2:
+        r2 = null;
+        if r20 == null goto label4;
+
+     label3:
+        $r21 = new com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        specialinvoke $r21.<com.ophone.MiniPlayer.provider.GoogleXmlHandler: void <init>()>();
+        $r22 = interfaceinvoke r20.<org.apache.http.HttpEntity: java.io.InputStream getContent()>();
+        r2 = virtualinvoke $r21.<com.ophone.MiniPlayer.provider.XmlHandler: java.util.Map parseSongSourceGoogle(java.io.InputStream)>($r22);
+        interfaceinvoke r2.<java.util.Map: int size()>();
+
+     label4:
+        $r23 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r23.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r6 == null goto label5;
+
+        $r24 = new java.lang.StringBuilder;
+        specialinvoke $r24.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r25 = interfaceinvoke r6.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r26 = virtualinvoke $r24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r25);
+        $r27 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r27);
+
+     label5:
+        return r2;
+
+     label6:
+        $r28 := @caughtexception;
+        r29 = $r28;
+
+     label7:
+        virtualinvoke r29.<java.io.UnsupportedEncodingException: void printStackTrace()>();
+
+     label8:
+        $r30 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r30.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label5;
+
+        $r31 = new java.lang.StringBuilder;
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r32 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r32);
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r34);
+        return r2;
+
+     label9:
+        $r35 := @caughtexception;
+        r36 = $r35;
+
+     label10:
+        virtualinvoke r36.<java.net.MalformedURLException: void printStackTrace()>();
+
+     label11:
+        $r37 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r37.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label5;
+
+        $r38 = new java.lang.StringBuilder;
+        specialinvoke $r38.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r39 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r40 = virtualinvoke $r38.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r39);
+        $r41 = virtualinvoke $r40.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r41);
+        return r2;
+
+     label12:
+        $r42 := @caughtexception;
+        r43 = $r42;
+
+     label13:
+        virtualinvoke r43.<java.io.IOException: void printStackTrace()>();
+
+     label14:
+        $r44 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r44.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label5;
+
+        $r45 = new java.lang.StringBuilder;
+        specialinvoke $r45.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r46 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r47 = virtualinvoke $r45.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r46);
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r48);
+        return r2;
+
+     label15:
+        $r49 := @caughtexception;
+        r50 = $r49;
+
+     label16:
+        virtualinvoke r50.<javax.xml.parsers.ParserConfigurationException: void printStackTrace()>();
+
+     label17:
+        $r51 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r51.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label5;
+
+        $r52 = new java.lang.StringBuilder;
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r53 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r54 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r53);
+        $r55 = virtualinvoke $r54.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r55);
+        return r2;
+
+     label18:
+        $r56 := @caughtexception;
+        r57 = $r56;
+
+     label19:
+        virtualinvoke r57.<org.xml.sax.SAXException: void printStackTrace()>();
+
+     label20:
+        $r58 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r58.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label5;
+
+        $r59 = new java.lang.StringBuilder;
+        specialinvoke $r59.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r60 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r61 = virtualinvoke $r59.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r60);
+        $r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r62);
+        return r2;
+
+     label21:
+        $r63 := @caughtexception;
+        r64 = $r63;
+
+     label22:
+        $r65 = interfaceinvoke r3.<org.apache.http.client.HttpClient: org.apache.http.conn.ClientConnectionManager getConnectionManager()>();
+        interfaceinvoke $r65.<org.apache.http.conn.ClientConnectionManager: void shutdown()>();
+        if r4 == null goto label23;
+
+        $r66 = new java.lang.StringBuilder;
+        specialinvoke $r66.<java.lang.StringBuilder: void <init>(java.lang.String)>("connection closed:");
+        $r67 = interfaceinvoke r4.<org.apache.http.client.methods.HttpUriRequest: java.net.URI getURI()>();
+        $r68 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r67);
+        $r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r69);
+
+     label23:
+        throw r64;
+
+     label24:
+        $r70 := @caughtexception;
+        r64 = $r70;
+        r4 = r6;
+        goto label22;
+
+     label25:
+        $r71 := @caughtexception;
+        r57 = $r71;
+        r4 = r6;
+        goto label19;
+
+     label26:
+        $r72 := @caughtexception;
+        r50 = $r72;
+        r4 = r6;
+        goto label16;
+
+     label27:
+        $r73 := @caughtexception;
+        r43 = $r73;
+        r4 = r6;
+        goto label13;
+
+     label28:
+        $r74 := @caughtexception;
+        r36 = $r74;
+        r4 = r6;
+        goto label10;
+
+     label29:
+        $r75 := @caughtexception;
+        r29 = $r75;
+        r4 = r6;
+        goto label7;
+
+        catch java.io.UnsupportedEncodingException from label0 to label1 with label6;
+        catch java.net.MalformedURLException from label0 to label1 with label9;
+        catch java.io.IOException from label0 to label1 with label12;
+        catch javax.xml.parsers.ParserConfigurationException from label0 to label1 with label15;
+        catch org.xml.sax.SAXException from label0 to label1 with label18;
+        catch java.lang.Throwable from label0 to label1 with label21;
+        catch java.io.UnsupportedEncodingException from label1 to label2 with label29;
+        catch java.net.MalformedURLException from label1 to label2 with label28;
+        catch java.io.IOException from label1 to label2 with label27;
+        catch javax.xml.parsers.ParserConfigurationException from label1 to label2 with label26;
+        catch org.xml.sax.SAXException from label1 to label2 with label25;
+        catch java.lang.Throwable from label1 to label2 with label24;
+        catch java.io.UnsupportedEncodingException from label3 to label4 with label29;
+        catch java.net.MalformedURLException from label3 to label4 with label28;
+        catch java.io.IOException from label3 to label4 with label27;
+        catch javax.xml.parsers.ParserConfigurationException from label3 to label4 with label26;
+        catch org.xml.sax.SAXException from label3 to label4 with label25;
+        catch java.lang.Throwable from label3 to label4 with label24;
+        catch java.lang.Throwable from label7 to label8 with label21;
+        catch java.lang.Throwable from label10 to label11 with label21;
+        catch java.lang.Throwable from label13 to label14 with label21;
+        catch java.lang.Throwable from label16 to label17 with label21;
+        catch java.lang.Throwable from label19 to label20 with label21;
+    }
+}

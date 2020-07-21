@@ -1,0 +1,270 @@
+public class net.sourceforge.pinyin4j.PinyinHelper extends java.lang.Object
+{
+
+    private void <init>()
+    {
+        net.sourceforge.pinyin4j.PinyinHelper r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinHelper;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    private static java.lang.String[] convertToGwoyeuRomatzyhStringArray(char)
+    {
+        char c0;
+        java.lang.String[] r0, r1;
+        int i1, $i2, $i3;
+        java.lang.String $r2, $r3;
+
+        c0 := @parameter0: char;
+        r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] getUnformattedHanyuPinyinStringArray(char)>(c0);
+        if r1 == null goto label2;
+
+        $i2 = lengthof r1;
+        r0 = newarray (java.lang.String)[$i2];
+        i1 = 0;
+
+     label0:
+        $i3 = lengthof r1;
+        if i1 >= $i3 goto label1;
+
+        $r2 = r1[i1];
+        $r3 = staticinvoke <net.sourceforge.pinyin4j.GwoyeuRomatzyhTranslator: java.lang.String convertHanyuPinyinToGwoyeuRomatzyh(java.lang.String)>($r2);
+        r0[i1] = $r3;
+        i1 = i1 + 1;
+        goto label0;
+
+     label1:
+        return r0;
+
+     label2:
+        return null;
+    }
+
+    private static java.lang.String[] convertToTargetPinyinStringArray(char, net.sourceforge.pinyin4j.PinyinRomanizationType)
+    {
+        char c0;
+        net.sourceforge.pinyin4j.PinyinRomanizationType r0, $r4;
+        java.lang.String[] r1, r2;
+        int i1, $i2, $i3;
+        java.lang.String $r3, $r5;
+
+        c0 := @parameter0: char;
+        r0 := @parameter1: net.sourceforge.pinyin4j.PinyinRomanizationType;
+        r2 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] getUnformattedHanyuPinyinStringArray(char)>(c0);
+        if r2 == null goto label2;
+
+        $i2 = lengthof r2;
+        r1 = newarray (java.lang.String)[$i2];
+        i1 = 0;
+
+     label0:
+        $i3 = lengthof r2;
+        if i1 >= $i3 goto label1;
+
+        $r3 = r2[i1];
+        $r4 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType HANYU_PINYIN>;
+        $r5 = staticinvoke <net.sourceforge.pinyin4j.PinyinRomanizationTranslator: java.lang.String convertRomanizationSystem(java.lang.String,net.sourceforge.pinyin4j.PinyinRomanizationType,net.sourceforge.pinyin4j.PinyinRomanizationType)>($r3, $r4, r0);
+        r1[i1] = $r5;
+        i1 = i1 + 1;
+        goto label0;
+
+     label1:
+        return r1;
+
+     label2:
+        return null;
+    }
+
+    private static java.lang.String getFirstHanyuPinyinString(char, net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat) throws net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination
+    {
+        char c0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        java.lang.String[] r1;
+        int $i1;
+        java.lang.String $r2;
+
+        c0 := @parameter0: char;
+        r0 := @parameter1: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] getFormattedHanyuPinyinStringArray(char,net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat)>(c0, r0);
+        if r1 == null goto label0;
+
+        $i1 = lengthof r1;
+        if $i1 <= 0 goto label0;
+
+        $r2 = r1[0];
+        return $r2;
+
+     label0:
+        return null;
+    }
+
+    private static java.lang.String[] getFormattedHanyuPinyinStringArray(char, net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat) throws net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination
+    {
+        char c0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        int i1, $i2;
+        java.lang.String[] r1;
+        java.lang.String $r2, $r3;
+
+        c0 := @parameter0: char;
+        r0 := @parameter1: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] getUnformattedHanyuPinyinStringArray(char)>(c0);
+        if r1 == null goto label1;
+
+        i1 = 0;
+
+     label0:
+        $i2 = lengthof r1;
+        if i1 >= $i2 goto label2;
+
+        $r2 = r1[i1];
+        $r3 = staticinvoke <net.sourceforge.pinyin4j.PinyinFormatter: java.lang.String formatHanyuPinyin(java.lang.String,net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat)>($r2, r0);
+        r1[i1] = $r3;
+        i1 = i1 + 1;
+        goto label0;
+
+     label1:
+        r1 = null;
+
+     label2:
+        return r1;
+    }
+
+    private static java.lang.String[] getUnformattedHanyuPinyinStringArray(char)
+    {
+        char c0;
+        net.sourceforge.pinyin4j.ChineseToPinyinResource $r0;
+        java.lang.String[] $r1;
+
+        c0 := @parameter0: char;
+        $r0 = staticinvoke <net.sourceforge.pinyin4j.ChineseToPinyinResource: net.sourceforge.pinyin4j.ChineseToPinyinResource getInstance()>();
+        $r1 = virtualinvoke $r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.lang.String[] getHanyuPinyinStringArray(char)>(c0);
+        return $r1;
+    }
+
+    public static java.lang.String[] toGwoyeuRomatzyhStringArray(char)
+    {
+        char c0;
+        java.lang.String[] $r0;
+
+        c0 := @parameter0: char;
+        $r0 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] convertToGwoyeuRomatzyhStringArray(char)>(c0);
+        return $r0;
+    }
+
+    public static java.lang.String toHanyuPinyinString(java.lang.String, net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat, java.lang.String) throws net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination
+    {
+        java.lang.String r0, r2, r4, $r8;
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r1;
+        java.lang.StringBuffer r3;
+        int i0, $i1, $i3, $i4;
+        char $c2, $c5;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        r2 := @parameter2: java.lang.String;
+        r3 = new java.lang.StringBuffer;
+        specialinvoke r3.<java.lang.StringBuffer: void <init>()>();
+        i0 = 0;
+
+     label0:
+        $i1 = virtualinvoke r0.<java.lang.String: int length()>();
+        if i0 >= $i1 goto label3;
+
+        $c2 = virtualinvoke r0.<java.lang.String: char charAt(int)>(i0);
+        r4 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String getFirstHanyuPinyinString(char,net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat)>($c2, r1);
+        if r4 == null goto label2;
+
+        virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r4);
+        $i3 = virtualinvoke r0.<java.lang.String: int length()>();
+        $i4 = $i3 - 1;
+        if i0 == $i4 goto label1;
+
+        virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+
+     label1:
+        i0 = i0 + 1;
+        goto label0;
+
+     label2:
+        $c5 = virtualinvoke r0.<java.lang.String: char charAt(int)>(i0);
+        virtualinvoke r3.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c5);
+        goto label1;
+
+     label3:
+        $r8 = virtualinvoke r3.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r8;
+    }
+
+    public static java.lang.String[] toHanyuPinyinStringArray(char)
+    {
+        char c0;
+        java.lang.String[] $r0;
+
+        c0 := @parameter0: char;
+        $r0 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] getUnformattedHanyuPinyinStringArray(char)>(c0);
+        return $r0;
+    }
+
+    public static java.lang.String[] toHanyuPinyinStringArray(char, net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat) throws net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination
+    {
+        char c0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        java.lang.String[] $r1;
+
+        c0 := @parameter0: char;
+        r0 := @parameter1: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        $r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] getFormattedHanyuPinyinStringArray(char,net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat)>(c0, r0);
+        return $r1;
+    }
+
+    public static java.lang.String[] toMPS2PinyinStringArray(char)
+    {
+        char c0;
+        net.sourceforge.pinyin4j.PinyinRomanizationType $r0;
+        java.lang.String[] $r1;
+
+        c0 := @parameter0: char;
+        $r0 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType MPS2_PINYIN>;
+        $r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] convertToTargetPinyinStringArray(char,net.sourceforge.pinyin4j.PinyinRomanizationType)>(c0, $r0);
+        return $r1;
+    }
+
+    public static java.lang.String[] toTongyongPinyinStringArray(char)
+    {
+        char c0;
+        net.sourceforge.pinyin4j.PinyinRomanizationType $r0;
+        java.lang.String[] $r1;
+
+        c0 := @parameter0: char;
+        $r0 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType TONGYONG_PINYIN>;
+        $r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] convertToTargetPinyinStringArray(char,net.sourceforge.pinyin4j.PinyinRomanizationType)>(c0, $r0);
+        return $r1;
+    }
+
+    public static java.lang.String[] toWadeGilesPinyinStringArray(char)
+    {
+        char c0;
+        net.sourceforge.pinyin4j.PinyinRomanizationType $r0;
+        java.lang.String[] $r1;
+
+        c0 := @parameter0: char;
+        $r0 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType WADEGILES_PINYIN>;
+        $r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] convertToTargetPinyinStringArray(char,net.sourceforge.pinyin4j.PinyinRomanizationType)>(c0, $r0);
+        return $r1;
+    }
+
+    public static java.lang.String[] toYalePinyinStringArray(char)
+    {
+        char c0;
+        net.sourceforge.pinyin4j.PinyinRomanizationType $r0;
+        java.lang.String[] $r1;
+
+        c0 := @parameter0: char;
+        $r0 = <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType YALE_PINYIN>;
+        $r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] convertToTargetPinyinStringArray(char,net.sourceforge.pinyin4j.PinyinRomanizationType)>(c0, $r0);
+        return $r1;
+    }
+}

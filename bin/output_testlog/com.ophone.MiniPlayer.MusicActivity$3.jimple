@@ -1,0 +1,33 @@
+class com.ophone.MiniPlayer.MusicActivity$3 extends java.lang.Thread
+{
+    final com.ophone.MiniPlayer.MusicActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.MusicActivity)
+    {
+        com.ophone.MiniPlayer.MusicActivity$3 r0;
+        com.ophone.MiniPlayer.MusicActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$3;
+        r1 := @parameter0: com.ophone.MiniPlayer.MusicActivity;
+        r0.<com.ophone.MiniPlayer.MusicActivity$3: com.ophone.MiniPlayer.MusicActivity this$0> = r1;
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.MusicActivity$3 r0;
+        android.os.Message r1;
+        com.ophone.MiniPlayer.MusicActivity $r2, $r4;
+        android.os.Handler $r3, $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$3;
+        $r2 = r0.<com.ophone.MiniPlayer.MusicActivity$3: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r3 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: android.os.Handler access$10(com.ophone.MiniPlayer.MusicActivity)>($r2);
+        r1 = virtualinvoke $r3.<android.os.Handler: android.os.Message obtainMessage(int)>(1);
+        $r4 = r0.<com.ophone.MiniPlayer.MusicActivity$3: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r5 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: android.os.Handler access$10(com.ophone.MiniPlayer.MusicActivity)>($r4);
+        virtualinvoke $r5.<android.os.Handler: boolean sendMessage(android.os.Message)>(r1);
+        return;
+    }
+}

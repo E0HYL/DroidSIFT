@@ -1,0 +1,295 @@
+public class com.ophone.MiniPlayer.provider.GoogleXmlHandler extends com.ophone.MiniPlayer.provider.XmlHandler
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler r0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        specialinvoke r0.<com.ophone.MiniPlayer.provider.XmlHandler: void <init>()>();
+        return;
+    }
+
+    public java.util.ArrayList analyseTheSonglist(java.io.InputStream) throws java.lang.Exception
+    {
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler r0;
+        java.io.InputStream r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        return null;
+    }
+
+    public java.util.ArrayList analyseTheSonglistGoogle(java.io.InputStream) throws java.lang.Exception
+    {
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler r0;
+        java.io.InputStream r1;
+        int i0, i1, $i2, $i4;
+        org.w3c.dom.NodeList r2, r13;
+        java.util.ArrayList r3, r8;
+        com.ophone.MiniPlayer.provider.Song r4;
+        org.w3c.dom.Node r5, $r14, $r15, $r16;
+        java.lang.String r6, r7;
+        javax.xml.parsers.DocumentBuilderFactory $r9;
+        javax.xml.parsers.DocumentBuilder $r10;
+        org.w3c.dom.Document $r11;
+        org.w3c.dom.Element $r12;
+        short $s5;
+        boolean $z1, $z2, $z3, $z5, $z6, $z7, $z8, $z9, $z10, $z11, $z12, $z13, $z14, $z15, $z16, $z17, $z18, $z19;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        r8 = new java.util.ArrayList;
+        specialinvoke r8.<java.util.ArrayList: void <init>()>();
+        $r9 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>();
+        $r10 = virtualinvoke $r9.<javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilder newDocumentBuilder()>();
+        $r11 = virtualinvoke $r10.<javax.xml.parsers.DocumentBuilder: org.w3c.dom.Document parse(java.io.InputStream)>(r1);
+        $r12 = interfaceinvoke $r11.<org.w3c.dom.Document: org.w3c.dom.Element getDocumentElement()>();
+        r13 = interfaceinvoke $r12.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("song");
+        i0 = 0;
+
+     label0:
+        $i2 = interfaceinvoke r13.<org.w3c.dom.NodeList: int getLength()>();
+        if i0 < $i2 goto label1;
+
+        return r8;
+
+     label1:
+        $r14 = interfaceinvoke r13.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i0);
+        r2 = interfaceinvoke $r14.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>();
+        r3 = new java.util.ArrayList;
+        specialinvoke r3.<java.util.ArrayList: void <init>()>();
+        r4 = new com.ophone.MiniPlayer.provider.Song;
+        specialinvoke r4.<com.ophone.MiniPlayer.provider.Song: void <init>()>();
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setTaggoogle(boolean)>(1);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setTagbaidu(boolean)>(0);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setTag(boolean)>(1);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setTagImage(boolean)>(0);
+        interfaceinvoke r2.<org.w3c.dom.NodeList: int getLength()>();
+        i1 = 0;
+
+     label2:
+        $i4 = interfaceinvoke r2.<org.w3c.dom.NodeList: int getLength()>();
+        if i1 < $i4 goto label3;
+
+        virtualinvoke r8.<java.util.ArrayList: boolean add(java.lang.Object)>(r4);
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        r5 = interfaceinvoke r2.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i1);
+        $s5 = interfaceinvoke r5.<org.w3c.dom.Node: short getNodeType()>();
+        if $s5 != 1 goto label5;
+
+        r6 = interfaceinvoke r5.<org.w3c.dom.Node: java.lang.String getNodeName()>();
+        $r15 = interfaceinvoke r5.<org.w3c.dom.Node: org.w3c.dom.Node getFirstChild()>();
+        if $r15 == null goto label6;
+
+        $r16 = interfaceinvoke r5.<org.w3c.dom.Node: org.w3c.dom.Node getFirstChild()>();
+        r7 = interfaceinvoke $r16.<org.w3c.dom.Node: java.lang.String getNodeValue()>();
+
+     label4:
+        $z1 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("id");
+        if $z1 == 0 goto label7;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setId(java.lang.String)>(r7);
+
+     label5:
+        i1 = i1 + 1;
+        goto label2;
+
+     label6:
+        r7 = "";
+        goto label4;
+
+     label7:
+        $z2 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("name");
+        if $z2 == 0 goto label8;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setName(java.lang.String)>(r7);
+        goto label5;
+
+     label8:
+        $z3 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("artist");
+        if $z3 == 0 goto label9;
+
+        virtualinvoke r3.<java.util.ArrayList: boolean add(java.lang.Object)>(r7);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setSinger(java.util.ArrayList)>(r3);
+        goto label5;
+
+     label9:
+        $z5 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("artistId");
+        if $z5 == 0 goto label10;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setArtistId(java.lang.String)>(r7);
+        goto label5;
+
+     label10:
+        $z6 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("album");
+        if $z6 == 0 goto label11;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setAlbum(java.lang.String)>(r7);
+        goto label5;
+
+     label11:
+        $z7 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("duration");
+        if $z7 == 0 goto label12;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setDuration(java.lang.String)>(r7);
+        goto label5;
+
+     label12:
+        $z8 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("canBeDownloaded");
+        if $z8 == 0 goto label13;
+
+        $z9 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>(r7);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setCanBeDownloaded(boolean)>($z9);
+        goto label5;
+
+     label13:
+        $z10 = virtualinvoke r5.<java.lang.Object: boolean equals(java.lang.Object)>("hasFullLyrics");
+        if $z10 == 0 goto label14;
+
+        $z11 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>(r7);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setHasFullLyrics(boolean)>($z11);
+        goto label5;
+
+     label14:
+        $z12 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("canBeStreamed");
+        if $z12 == 0 goto label15;
+
+        $z13 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>(r7);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setCanBeStreamed(boolean)>($z13);
+        goto label5;
+
+     label15:
+        $z14 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("ringtoneUrl");
+        if $z14 == 0 goto label16;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setRingtoneUrl(java.lang.String)>(r7);
+        goto label5;
+
+     label16:
+        $z15 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("albumId");
+        if $z15 == 0 goto label17;
+
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setAlbumId(java.lang.String)>(r7);
+        goto label5;
+
+     label17:
+        $z16 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("hasSimilarSongs");
+        if $z16 == 0 goto label18;
+
+        $z17 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>(r7);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setHasSimilarSongs(boolean)>($z17);
+        goto label5;
+
+     label18:
+        $z18 = virtualinvoke r6.<java.lang.String: boolean equals(java.lang.Object)>("hasRecommendation");
+        if $z18 == 0 goto label5;
+
+        $z19 = staticinvoke <java.lang.Boolean: boolean parseBoolean(java.lang.String)>(r7);
+        virtualinvoke r4.<com.ophone.MiniPlayer.provider.Song: void setHasRecommendation(boolean)>($z19);
+        goto label5;
+    }
+
+    public java.util.ArrayList parseSongSource(java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException, java.io.IOException
+    {
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler r0;
+        java.io.InputStream r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        return null;
+    }
+
+    public java.util.Map parseSongSourceGoogle(java.io.InputStream) throws javax.xml.parsers.ParserConfigurationException, org.xml.sax.SAXException, java.io.IOException
+    {
+        com.ophone.MiniPlayer.provider.GoogleXmlHandler r0;
+        java.io.InputStream r1;
+        javax.xml.parsers.DocumentBuilderFactory $r2;
+        int i0, i1, $i2, $i3;
+        java.util.HashMap r3, $r10, r11;
+        org.w3c.dom.Node r4, $r12, $r14, $r15;
+        java.lang.String r5, r16;
+        javax.xml.parsers.DocumentBuilder $r6;
+        org.w3c.dom.Document $r7;
+        org.w3c.dom.Element $r8;
+        org.w3c.dom.NodeList r9, r13;
+        short $s4;
+        boolean $z0, $z1, $z2;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.GoogleXmlHandler;
+        r1 := @parameter0: java.io.InputStream;
+        $r2 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>();
+        $r6 = virtualinvoke $r2.<javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilder newDocumentBuilder()>();
+        $r7 = virtualinvoke $r6.<javax.xml.parsers.DocumentBuilder: org.w3c.dom.Document parse(java.io.InputStream)>(r1);
+        $r8 = interfaceinvoke $r7.<org.w3c.dom.Document: org.w3c.dom.Element getDocumentElement()>();
+        r9 = interfaceinvoke $r8.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("songStreaming");
+        $r10 = new java.util.HashMap;
+        specialinvoke $r10.<java.util.HashMap: void <init>()>();
+        r11 = $r10;
+        i0 = 0;
+
+     label0:
+        $i2 = interfaceinvoke r9.<org.w3c.dom.NodeList: int getLength()>();
+        if i0 < $i2 goto label1;
+
+        return r11;
+
+     label1:
+        $r12 = interfaceinvoke r9.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i0);
+        r13 = interfaceinvoke $r12.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>();
+        r3 = new java.util.HashMap;
+        specialinvoke r3.<java.util.HashMap: void <init>()>();
+        i1 = 0;
+
+     label2:
+        $i3 = interfaceinvoke r13.<org.w3c.dom.NodeList: int getLength()>();
+        if i1 < $i3 goto label3;
+
+        r11 = r3;
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        r4 = interfaceinvoke r13.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i1);
+        $s4 = interfaceinvoke r4.<org.w3c.dom.Node: short getNodeType()>();
+        if $s4 != 1 goto label5;
+
+        r5 = interfaceinvoke r4.<org.w3c.dom.Node: java.lang.String getNodeName()>();
+        $r14 = interfaceinvoke r4.<org.w3c.dom.Node: org.w3c.dom.Node getFirstChild()>();
+        if $r14 == null goto label6;
+
+        $r15 = interfaceinvoke r4.<org.w3c.dom.Node: org.w3c.dom.Node getFirstChild()>();
+        r16 = interfaceinvoke $r15.<org.w3c.dom.Node: java.lang.String getNodeValue()>();
+
+     label4:
+        $z0 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>("songUrl");
+        if $z0 == 0 goto label7;
+
+        interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("source", r16);
+
+     label5:
+        i1 = i1 + 1;
+        goto label2;
+
+     label6:
+        r16 = "";
+        goto label4;
+
+     label7:
+        $z1 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>("albumThumbnailLink");
+        if $z1 == 0 goto label8;
+
+        interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("albumThumbnailLink", r16);
+        goto label5;
+
+     label8:
+        $z2 = virtualinvoke r5.<java.lang.String: boolean equals(java.lang.Object)>("lyricsUrl");
+        if $z2 == 0 goto label5;
+
+        interfaceinvoke r3.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("lyricsUrl", r16);
+        goto label5;
+    }
+}

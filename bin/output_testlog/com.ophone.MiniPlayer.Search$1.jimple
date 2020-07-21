@@ -1,0 +1,64 @@
+class com.ophone.MiniPlayer.Search$1 extends java.lang.Object implements android.view.View$OnClickListener
+{
+    final com.ophone.MiniPlayer.Search this$0;
+
+    void <init>(com.ophone.MiniPlayer.Search)
+    {
+        com.ophone.MiniPlayer.Search$1 r0;
+        com.ophone.MiniPlayer.Search r1;
+
+        r0 := @this: com.ophone.MiniPlayer.Search$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.Search;
+        r0.<com.ophone.MiniPlayer.Search$1: com.ophone.MiniPlayer.Search this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onClick(android.view.View)
+    {
+        com.ophone.MiniPlayer.Search$1 r0;
+        android.view.View r1;
+        android.content.Intent r2;
+        java.lang.StringBuilder $r3, $r13;
+        com.ophone.MiniPlayer.Search $r4, $r9, $r10, $r16;
+        android.widget.EditText $r5;
+        android.text.Editable $r6;
+        java.lang.String r7, r8, $r11, $r12, $r14;
+        android.net.Uri $r15;
+        java.io.UnsupportedEncodingException $r17;
+
+        r0 := @this: com.ophone.MiniPlayer.Search$1;
+        r1 := @parameter0: android.view.View;
+        $r4 = r0.<com.ophone.MiniPlayer.Search$1: com.ophone.MiniPlayer.Search this$0>;
+        $r5 = $r4.<com.ophone.MiniPlayer.Search: android.widget.EditText ev>;
+        $r6 = virtualinvoke $r5.<android.widget.EditText: android.text.Editable getText()>();
+        r7 = interfaceinvoke $r6.<android.text.Editable: java.lang.String toString()>();
+
+     label0:
+        r8 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>(r7, "gbk");
+        $r9 = r0.<com.ophone.MiniPlayer.Search$1: com.ophone.MiniPlayer.Search this$0>;
+        $r9.<com.ophone.MiniPlayer.Search: java.lang.String urlbaidu> = "http://mp3.baidu.com/m?f=ms&rf=idx&tn=baidump3&ct=134217728&lf=&rn=&lm=0&word=";
+        r2 = new android.content.Intent;
+        $r3 = new java.lang.StringBuilder;
+        $r10 = r0.<com.ophone.MiniPlayer.Search$1: com.ophone.MiniPlayer.Search this$0>;
+        $r11 = $r10.<com.ophone.MiniPlayer.Search: java.lang.String urlbaidu>;
+        $r12 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r11);
+        specialinvoke $r3.<java.lang.StringBuilder: void <init>(java.lang.String)>($r12);
+        $r13 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r8);
+        $r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r15 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($r14);
+        specialinvoke r2.<android.content.Intent: void <init>(java.lang.String,android.net.Uri)>("android.intent.action.VIEW", $r15);
+        $r16 = r0.<com.ophone.MiniPlayer.Search$1: com.ophone.MiniPlayer.Search this$0>;
+        virtualinvoke $r16.<com.ophone.MiniPlayer.Search: void startActivity(android.content.Intent)>(r2);
+
+     label1:
+        return;
+
+     label2:
+        $r17 := @caughtexception;
+        virtualinvoke $r17.<java.io.UnsupportedEncodingException: void printStackTrace()>();
+        return;
+
+        catch java.io.UnsupportedEncodingException from label0 to label1 with label2;
+    }
+}

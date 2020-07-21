@@ -1,0 +1,237 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android)
+
+Name: res/drawable/menubar.png
+SHA1-Digest: EglFdu1w5NjM5XXjv592qUTmS7w=
+
+Name: res/drawable/searchengine_icon_default.png
+SHA1-Digest: 6LMph8En8N0ATT+dyetOnbluPmw=
+
+Name: res/layout/my_photo_selector.xml
+SHA1-Digest: h4U3ht2Yf7416vmC8AJiNPMCGHs=
+
+Name: res/layout/main1.xml
+SHA1-Digest: BFILujMFPhF0ArnkENcPV0OS5jg=
+
+Name: res/drawable/repeatcancel.png
+SHA1-Digest: ONy7ljN31j+sjLWAhTrxVon+C7o=
+
+Name: res/layout/item_menu.xml
+SHA1-Digest: IHOMxYImC6/MWil1FFgqWXGJuII=
+
+Name: res/drawable/save.png
+SHA1-Digest: ofGDT/+kfOZoeK0kL7TxTOWAJTE=
+
+Name: res/drawable/search.png
+SHA1-Digest: lXosq+EZpkmw0KzzeXcbffoycKA=
+
+Name: res/layout/popwindow.xml
+SHA1-Digest: uJQxmDfOaTcx3pPuQHkX+IyjXz4=
+
+Name: res/drawable/check.png
+SHA1-Digest: n3+RwUlW7wsfYMM6ogEp6B2yqqo=
+
+Name: res/layout/feeds_list.xml
+SHA1-Digest: 7F88su4Fb+luN1HmTaqez4B8DMk=
+
+Name: res/menu/context_menu_online.xml
+SHA1-Digest: Z82Giwrvq/mGPGCzanYUhYN90VM=
+
+Name: res/layout/playwithlyric.xml
+SHA1-Digest: vlP6QhorTDFuGIOT4Jdl1Dekikw=
+
+Name: res/layout/onlinesongs_list.xml
+SHA1-Digest: RuUU6ilYvSRw4HKujW3fdCjryB4=
+
+Name: res/layout/griditem.xml
+SHA1-Digest: 4bvJAQMz7YV6hFS9M4x5+NMCCtY=
+
+Name: res/drawable/playing.png
+SHA1-Digest: SrgXuNgilsOOhwoOYsXijzhKfP0=
+
+Name: res/drawable/addselectedsong.png
+SHA1-Digest: a9YzWszQaGspZby5xzwAtNFCQUU=
+
+Name: res/layout/playlistsongs.xml
+SHA1-Digest: 84ERbYsaHauK3cbQczqeBpo7mVw=
+
+Name: res/drawable/google_mp3.gif
+SHA1-Digest: pbOCV7/ZUJgBj4Yfy2oaTyJimuE=
+
+Name: res/menu/context_menu_local.xml
+SHA1-Digest: mN5wFSElkj2KrtfdsJDyAnWJUYw=
+
+Name: res/drawable/album.png
+SHA1-Digest: 5bxChFPp3JH3tR1iSFRHbSjHbd8=
+
+Name: res/drawable/randomcancel.png
+SHA1-Digest: 7ifFgnwBlvU3qPZVbw/vMj25xEc=
+
+Name: pinyindb/pinyin_mapping.xml
+SHA1-Digest: JhFa/00VWw+Wrqd7VdypGEYziPc=
+
+Name: res/drawable/ic_audiolist.png
+SHA1-Digest: gaCapwKkJf4wlUSb4V6nZmvkfCA=
+
+Name: res/drawable/playingpicture.png
+SHA1-Digest: 095E/PbSNJ68DiCE+2J0zwa9/eA=
+
+Name: res/drawable/songname.png
+SHA1-Digest: C49x2F7QR6uf6McAsbIIQH5hLIM=
+
+Name: res/layout/songs_list.xml
+SHA1-Digest: UVuzHin3FoShFko5amUBPIXI288=
+
+Name: res/layout/main.xml
+SHA1-Digest: VwXDPubvnIy5CDQJeXogPsTgFV4=
+
+Name: res/layout/fullscreen_loading_indicator.xml
+SHA1-Digest: Y8CiJNxnK/prIo7iPFtjIUj7j1I=
+
+Name: res/drawable/uncheck.png
+SHA1-Digest: cRjrj0f/e6dGwv5ou/GAI6DQZa8=
+
+Name: res/menu/context_menu.xml
+SHA1-Digest: RSPc3c+iTJrBKRPcp0rxUR61IAE=
+
+Name: res/layout/login.xml
+SHA1-Digest: 694A7wXdTuwFKqpS067Ux55a9So=
+
+Name: pinyindb/unicode_to_hanyu_pinyin.txt
+SHA1-Digest: VsW4H4V79T+KZVjmtv09g6HXq/A=
+
+Name: res/layout/playlistfilename.xml
+SHA1-Digest: jIJnMlV59xRC0x6aCXKYXDyvGN8=
+
+Name: res/drawable/local_audiogray.png
+SHA1-Digest: L1mWD92N0QnRONCP+bMf4tGPOIs=
+
+Name: res/drawable/online_audio.png
+SHA1-Digest: VifGoSauFMKgoSOCexCXO6sm5N8=
+
+Name: res/drawable/exit.png
+SHA1-Digest: RsVOnpMBsI+uZ6FFxnnkUvgAeYA=
+
+Name: res/drawable/index.png
+SHA1-Digest: 3eWz1QwKTz8RRiw0tPNttzi5xtE=
+
+Name: res/drawable/online_audiogray.png
+SHA1-Digest: /6cx9bxQiMeP9rQsAH2CLZQfpIA=
+
+Name: res/drawable/cmcc_list_music.png
+SHA1-Digest: sc+s6tRNWXZs6xmSlp4rcAqL4Jw=
+
+Name: resources.arsc
+SHA1-Digest: hSEP6Ct4BwaImvG4imP3CB9oPaE=
+
+Name: res/drawable/playlist.png
+SHA1-Digest: vM+ZUQCKW47Mgs8Q9LZyZO1XL+E=
+
+Name: res/drawable/playinggray.png
+SHA1-Digest: jezOWDTejr77wlTtWzSMhMmsKRM=
+
+Name: res/drawable/addallsong.png
+SHA1-Digest: g3xEjdTBd+QMtUVMdgEppVCcsoI=
+
+Name: res/drawable/local_audio.png
+SHA1-Digest: 61bspiif9UgkKa5cYzSlHx9aiAU=
+
+Name: res/layout/songs.xml
+SHA1-Digest: IGvosWnpFDaCkjZPxm+jaAlMIKo=
+
+Name: res/drawable/nextsong.png
+SHA1-Digest: cVbgvnfAMe69VP3dxOSX9qEanFY=
+
+Name: res/drawable/baidu_mp3.gif
+SHA1-Digest: kjYvyb7h3+U9HHzVCvlJy0k7w8E=
+
+Name: AndroidManifest.xml
+SHA1-Digest: Cu4rnQ108aSaMS+HgEtLkHqKVJg=
+
+Name: res/layout/playing.xml
+SHA1-Digest: 4SnB3Ep6SKx12mJaFSStMtcD4kY=
+
+Name: res/drawable/stat_sample.png
+SHA1-Digest: TLZDf/EiHJL/5TukUG1wnhY6iDw=
+
+Name: res/drawable/backgroundcolor.png
+SHA1-Digest: G5orfLDulStD911F/LGwWPHy9hM=
+
+Name: res/drawable/mainmenu.png
+SHA1-Digest: gd5ibDbf3oEx0l5sOyMD251h8VE=
+
+Name: res/drawable/navi_baidu.png
+SHA1-Digest: Gl/5a0FAL6LFJVIMaC3w0KESWmI=
+
+Name: res/drawable/searchgray.png
+SHA1-Digest: cu//+DbAqjJANvNC5Ap1Ecl0loo=
+
+Name: res/drawable/music_scan.png
+SHA1-Digest: G6EnxDdDd6qhwDy8Y88dgeRTbiA=
+
+Name: res/layout/search.xml
+SHA1-Digest: GbRm90UgBVH4/R0j2IkOeN3eGoo=
+
+Name: res/layout/baseline_1.xml
+SHA1-Digest: XENdDikPVkn8BgEYMm3BhElX4jw=
+
+Name: pinyindb/pinyin_gwoyeu_mapping.xml
+SHA1-Digest: zOXgdBvcrFpkkBcbF2gURP/KoOA=
+
+Name: res/drawable/clear_playlist.png
+SHA1-Digest: u6dzjtVj2ouI0mhRgsxOTPvJLI4=
+
+Name: res/drawable/play.png
+SHA1-Digest: to9lNeeJqi34ixOVlIGZVsjDEoE=
+
+Name: res/drawable/playlistgray.png
+SHA1-Digest: TLAwWk3rXsltK2cnwM5ZsIzUFes=
+
+Name: res/drawable/notification.png
+SHA1-Digest: IO8ghwPhljALpVm4T+orcyTmWMk=
+
+Name: res/drawable/cmcc_playing.png
+SHA1-Digest: AplOgSAbImQj0sPG0YL8K8RY8Qg=
+
+Name: classes.dex
+SHA1-Digest: 75hnEB0XW5wOCUgiRiVen4cLR/o=
+
+Name: res/drawable/pause.png
+SHA1-Digest: 4yJs+tW2/2Xga0T6xLGI7o+h0F8=
+
+Name: res/drawable/repeatcurrentsong.png
+SHA1-Digest: HHiMt/4oTblIcDj3Qyoc6Hq+ux0=
+
+Name: res/layout/onlinesongs.xml
+SHA1-Digest: HqF0LlQlazfNRdWrSGnZqy0Mm8I=
+
+Name: res/drawable/artist.png
+SHA1-Digest: aoATxgKhzX9Ttl7GFPTSlhwWMoE=
+
+Name: res/drawable/icon.png
+SHA1-Digest: dpuyGb+MiH8eOqhpM5jp8AdAn5g=
+
+Name: res/drawable/presong.png
+SHA1-Digest: Bje7vknEdB3jZg49FkeOAk3CPgc=
+
+Name: res/drawable/flower.png
+SHA1-Digest: eijsLUPSHYG5o41TPQtAfDlePV4=
+
+Name: res/drawable/jump.png
+SHA1-Digest: 8VlXCRDQdcYPIkbtaVzcew9iAuo=
+
+Name: res/layout/feeds.xml
+SHA1-Digest: o6vYfVDup9vjV9zZpUWU6fq+cxA=
+
+Name: res/drawable/randomopen.png
+SHA1-Digest: YyD/0DD/OfiL1trF5YxkivkIMVY=
+
+Name: res/drawable/sample_1.jpg
+SHA1-Digest: oPHRZAOjBF/tgwk7SKLChNsKgko=
+
+Name: res/layout/playlistsongs_list.xml
+SHA1-Digest: UBux1wU/buvieuduZEqWRiIXx1A=
+
+Name: res/drawable/repeatallsong.png
+SHA1-Digest: uPBpeTAivSYXJkd5V5rf1508GkE=
+

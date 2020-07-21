@@ -1,0 +1,47 @@
+public class com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem extends java.lang.Object
+{
+    public final android.graphics.drawable.Drawable image;
+    public final java.lang.CharSequence text;
+    final com.ophone.MiniPlayer.MainActivity$AddAdapter this$1;
+    public final android.graphics.drawable.Drawable touchimage;
+
+    public void <init>(com.ophone.MiniPlayer.MainActivity$AddAdapter, android.content.res.Resources, int, int, int)
+    {
+        com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem r0;
+        com.ophone.MiniPlayer.MainActivity$AddAdapter r1;
+        android.content.res.Resources r2;
+        int i0, i1, i2;
+        java.lang.String $r3;
+        android.graphics.drawable.Drawable $r4, $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem;
+        r1 := @parameter0: com.ophone.MiniPlayer.MainActivity$AddAdapter;
+        r2 := @parameter1: android.content.res.Resources;
+        i0 := @parameter2: int;
+        i1 := @parameter3: int;
+        i2 := @parameter4: int;
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: com.ophone.MiniPlayer.MainActivity$AddAdapter this$1> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r3 = virtualinvoke r2.<android.content.res.Resources: java.lang.String getString(int)>(i0);
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: java.lang.CharSequence text> = $r3;
+        if i1 == -1 goto label1;
+
+        $r4 = virtualinvoke r2.<android.content.res.Resources: android.graphics.drawable.Drawable getDrawable(int)>(i1);
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: android.graphics.drawable.Drawable image> = $r4;
+
+     label0:
+        if i2 == -1 goto label2;
+
+        $r5 = virtualinvoke r2.<android.content.res.Resources: android.graphics.drawable.Drawable getDrawable(int)>(i2);
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: android.graphics.drawable.Drawable touchimage> = $r5;
+        return;
+
+     label1:
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: android.graphics.drawable.Drawable image> = null;
+        goto label0;
+
+     label2:
+        r0.<com.ophone.MiniPlayer.MainActivity$AddAdapter$ListItem: android.graphics.drawable.Drawable touchimage> = null;
+        return;
+    }
+}

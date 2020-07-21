@@ -1,0 +1,5 @@
+public interface  com.hp.hpl.sparta.Sparta$CacheFactory extends java.lang.Object
+{
+
+    public abstract com.hp.hpl.sparta.Sparta$Cache create();
+}

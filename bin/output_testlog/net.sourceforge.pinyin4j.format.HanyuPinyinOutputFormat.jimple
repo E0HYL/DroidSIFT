@@ -1,0 +1,96 @@
+public final class net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat extends java.lang.Object
+{
+    private net.sourceforge.pinyin4j.format.HanyuPinyinCaseType caseType;
+    private net.sourceforge.pinyin4j.format.HanyuPinyinToneType toneType;
+    private net.sourceforge.pinyin4j.format.HanyuPinyinVCharType vCharType;
+
+    public void <init>()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        virtualinvoke r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: void restoreDefault()>();
+        return;
+    }
+
+    public net.sourceforge.pinyin4j.format.HanyuPinyinCaseType getCaseType()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        $r1 = r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType caseType>;
+        return $r1;
+    }
+
+    public net.sourceforge.pinyin4j.format.HanyuPinyinToneType getToneType()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        $r1 = r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinToneType toneType>;
+        return $r1;
+    }
+
+    public net.sourceforge.pinyin4j.format.HanyuPinyinVCharType getVCharType()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinVCharType $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        $r1 = r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType vCharType>;
+        return $r1;
+    }
+
+    public void restoreDefault()
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinVCharType $r1;
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType $r2;
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType $r3;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        $r1 = <net.sourceforge.pinyin4j.format.HanyuPinyinVCharType: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType WITH_U_AND_COLON>;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType vCharType> = $r1;
+        $r2 = <net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType LOWERCASE>;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType caseType> = $r2;
+        $r3 = <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_NUMBER>;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinToneType toneType> = $r3;
+        return;
+    }
+
+    public void setCaseType(net.sourceforge.pinyin4j.format.HanyuPinyinCaseType)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        r1 := @parameter0: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType caseType> = r1;
+        return;
+    }
+
+    public void setToneType(net.sourceforge.pinyin4j.format.HanyuPinyinToneType)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        r1 := @parameter0: net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinToneType toneType> = r1;
+        return;
+    }
+
+    public void setVCharType(net.sourceforge.pinyin4j.format.HanyuPinyinVCharType)
+    {
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r0;
+        net.sourceforge.pinyin4j.format.HanyuPinyinVCharType r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        r1 := @parameter0: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+        r0.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType vCharType> = r1;
+        return;
+    }
+}

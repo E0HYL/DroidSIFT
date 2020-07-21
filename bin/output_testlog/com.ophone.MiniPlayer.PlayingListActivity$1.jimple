@@ -1,0 +1,88 @@
+class com.ophone.MiniPlayer.PlayingListActivity$1 extends android.os.Handler
+{
+    final com.ophone.MiniPlayer.PlayingListActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$1 r0;
+        com.ophone.MiniPlayer.PlayingListActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0> = r1;
+        specialinvoke r0.<android.os.Handler: void <init>()>();
+        return;
+    }
+
+    public void handleMessage(android.os.Message)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$1 r0;
+        android.os.Message r1;
+        int[] r2;
+        int $i0;
+        com.ophone.MiniPlayer.PlayingListActivity $r3, $r4, $r7, $r9, $r11, $r12, $r13, $r16, $r17, $r19, $r21;
+        android.view.View $r5;
+        android.widget.LinearLayout $r6, $r8;
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter $r10, $r18;
+        java.util.List $r14;
+        java.lang.String[] r15;
+        java.util.ArrayList $r20;
+        boolean $z0;
+        android.widget.Toast $r22;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$1;
+        r1 := @parameter0: android.os.Message;
+        $i0 = r1.<android.os.Message: int what>;
+        tableswitch($i0)
+        {
+            case 1: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        return;
+
+     label1:
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r4 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r5 = virtualinvoke $r4.<com.ophone.MiniPlayer.PlayingListActivity: android.view.View findViewById(int)>(2131230723);
+        $r6 = (android.widget.LinearLayout) $r5;
+        $r3.<com.ophone.MiniPlayer.PlayingListActivity: android.widget.LinearLayout mLoadingLayout> = $r6;
+        $r7 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r8 = $r7.<com.ophone.MiniPlayer.PlayingListActivity: android.widget.LinearLayout mLoadingLayout>;
+        virtualinvoke $r8.<android.widget.LinearLayout: void setVisibility(int)>(8);
+        $r9 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r10 = new com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter;
+        $r11 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r12 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r13 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r14 = virtualinvoke $r13.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List getAdapterMap()>();
+        r15 = newarray (java.lang.String)[5];
+        r15[0] = "imageurl";
+        r15[1] = "counter";
+        r15[2] = "name";
+        r15[3] = "singer";
+        r15[4] = "duration";
+        r2 = newarray (int)[4];
+        r2[0] = 2131230759;
+        r2[1] = 2131230760;
+        r2[2] = 2131230761;
+        r2[3] = 2131230763;
+        specialinvoke $r10.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: void <init>(com.ophone.MiniPlayer.PlayingListActivity,android.content.Context,java.util.List,int,java.lang.String[],int[])>($r11, $r12, $r14, 2130903055, r15, r2);
+        $r9.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter> = $r10;
+        $r16 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r17 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r18 = $r17.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r16.<com.ophone.MiniPlayer.PlayingListActivity: void setListAdapter(android.widget.ListAdapter)>($r18);
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", "if(songlist==null)");
+        $r19 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r20 = $r19.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $z0 = virtualinvoke $r20.<java.util.ArrayList: boolean isEmpty()>();
+        if $z0 == 0 goto label0;
+
+        $r21 = r0.<com.ophone.MiniPlayer.PlayingListActivity$1: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r22 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>($r21, 2131034200, 0);
+        virtualinvoke $r22.<android.widget.Toast: void show()>();
+        return;
+    }
+}

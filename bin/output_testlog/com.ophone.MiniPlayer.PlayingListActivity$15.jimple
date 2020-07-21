@@ -1,0 +1,51 @@
+class com.ophone.MiniPlayer.PlayingListActivity$15 extends java.lang.Object implements java.lang.Runnable
+{
+    final com.ophone.MiniPlayer.PlayingListActivity this$0;
+    private final java.lang.String val$strPath;
+
+    void <init>(com.ophone.MiniPlayer.PlayingListActivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$15 r0;
+        com.ophone.MiniPlayer.PlayingListActivity r1;
+        java.lang.String r2;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$15;
+        r1 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r2 := @parameter1: java.lang.String;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$15: com.ophone.MiniPlayer.PlayingListActivity this$0> = r1;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$15: java.lang.String val$strPath> = r2;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$15 r0;
+        com.ophone.MiniPlayer.PlayingListActivity $r1, $r3;
+        java.lang.String $r2, $r7;
+        android.widget.Toast $r4;
+        java.lang.Exception $r5, r6;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$15;
+
+     label0:
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity$15: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r2 = r0.<com.ophone.MiniPlayer.PlayingListActivity$15: java.lang.String val$strPath>;
+        staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: void access$16(com.ophone.MiniPlayer.PlayingListActivity,java.lang.String)>($r1, $r2);
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity$15: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r4 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>($r3, 2131034214, 0);
+        virtualinvoke $r4.<android.widget.Toast: void show()>();
+
+     label1:
+        return;
+
+     label2:
+        $r5 := @caughtexception;
+        r6 = $r5;
+        $r7 = virtualinvoke r6.<java.lang.Exception: java.lang.String getMessage()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>("OnlinePlayer", $r7, r6);
+        return;
+
+        catch java.lang.Exception from label0 to label1 with label2;
+    }
+}

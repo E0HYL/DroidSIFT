@@ -1,0 +1,86 @@
+public final class com.xxx.yyy.APNMatchTools extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.xxx.yyy.APNMatchTools r0;
+
+        r0 := @this: com.xxx.yyy.APNMatchTools;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static java.lang.String matchAPN(java.lang.String)
+    {
+        java.lang.String r0, $r1, r2, $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14;
+        boolean $z0, $z1, $z2, $z3, $z4, $z5, $z6, $z7;
+
+        r0 := @parameter0: java.lang.String;
+        $r1 = "";
+        $z0 = virtualinvoke $r1.<java.lang.String: boolean equals(java.lang.Object)>(r0);
+        if $z0 != 0 goto label0;
+
+        if r0 != null goto label1;
+
+     label0:
+        return "";
+
+     label1:
+        r2 = virtualinvoke r0.<java.lang.String: java.lang.String toLowerCase()>();
+        $r3 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String CMNET>;
+        $z1 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>($r3);
+        if $z1 == 0 goto label2;
+
+        $r4 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String CMNET>;
+        return $r4;
+
+     label2:
+        $r5 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String CMWAP>;
+        $z2 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>($r5);
+        if $z2 == 0 goto label3;
+
+        $r6 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String CMWAP>;
+        return $r6;
+
+     label3:
+        $r7 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String GNET_3>;
+        $z3 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>($r7);
+        if $z3 == 0 goto label4;
+
+        $r8 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String GNET_3>;
+        return $r8;
+
+     label4:
+        $r9 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String GWAP_3>;
+        $z4 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>($r9);
+        if $z4 == 0 goto label5;
+
+        $r10 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String GWAP_3>;
+        return $r10;
+
+     label5:
+        $r11 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String UNINET>;
+        $z5 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>($r11);
+        if $z5 == 0 goto label6;
+
+        $r12 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String UNINET>;
+        return $r12;
+
+     label6:
+        $r13 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String UNIWAP>;
+        $z6 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>($r13);
+        if $z6 == 0 goto label7;
+
+        $r14 = <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String UNIWAP>;
+        return $r14;
+
+     label7:
+        $z7 = virtualinvoke r2.<java.lang.String: boolean startsWith(java.lang.String)>("default");
+        if $z7 == 0 goto label8;
+
+        return "default";
+
+     label8:
+        return "";
+    }
+}

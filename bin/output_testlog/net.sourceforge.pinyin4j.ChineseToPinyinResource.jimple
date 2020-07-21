@@ -1,0 +1,164 @@
+class net.sourceforge.pinyin4j.ChineseToPinyinResource extends java.lang.Object
+{
+    private java.util.Properties unicodeToHanyuPinyinTable;
+
+    private void <init>()
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.util.Properties unicodeToHanyuPinyinTable> = null;
+        specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: void initializeResource()>();
+        return;
+    }
+
+    void <init>(net.sourceforge.pinyin4j.ChineseToPinyinResource$1)
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        net.sourceforge.pinyin4j.ChineseToPinyinResource$1 r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        r1 := @parameter0: net.sourceforge.pinyin4j.ChineseToPinyinResource$1;
+        specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: void <init>()>();
+        return;
+    }
+
+    private java.lang.String getHanyuPinyinRecordFromChar(char)
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        char c0;
+        java.lang.String $r1, r2, r4;
+        java.util.Properties $r3;
+        boolean $z0;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        c0 := @parameter0: char;
+        $r1 = staticinvoke <java.lang.Integer: java.lang.String toHexString(int)>(c0);
+        r2 = virtualinvoke $r1.<java.lang.String: java.lang.String toUpperCase()>();
+        $r3 = specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.util.Properties getUnicodeToHanyuPinyinTable()>();
+        r4 = virtualinvoke $r3.<java.util.Properties: java.lang.String getProperty(java.lang.String)>(r2);
+        $z0 = specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: boolean isValidRecord(java.lang.String)>(r4);
+        if $z0 == 0 goto label0;
+
+        return r4;
+
+     label0:
+        return null;
+    }
+
+    static net.sourceforge.pinyin4j.ChineseToPinyinResource getInstance()
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource $r0;
+
+        $r0 = <net.sourceforge.pinyin4j.ChineseToPinyinResource$ChineseToPinyinResourceHolder: net.sourceforge.pinyin4j.ChineseToPinyinResource theInstance>;
+        return $r0;
+    }
+
+    private java.util.Properties getUnicodeToHanyuPinyinTable()
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        java.util.Properties $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        $r1 = r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.util.Properties unicodeToHanyuPinyinTable>;
+        return $r1;
+    }
+
+    private void initializeResource()
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        java.util.Properties $r1, $r2;
+        java.io.BufferedInputStream $r3;
+        java.io.FileNotFoundException $r4;
+        java.io.IOException $r5;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+
+     label0:
+        $r1 = new java.util.Properties;
+        specialinvoke $r1.<java.util.Properties: void <init>()>();
+        specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: void setUnicodeToHanyuPinyinTable(java.util.Properties)>($r1);
+        $r2 = specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.util.Properties getUnicodeToHanyuPinyinTable()>();
+        $r3 = staticinvoke <net.sourceforge.pinyin4j.ResourceHelper: java.io.BufferedInputStream getResourceInputStream(java.lang.String)>("/pinyindb/unicode_to_hanyu_pinyin.txt");
+        virtualinvoke $r2.<java.util.Properties: void load(java.io.InputStream)>($r3);
+
+     label1:
+        return;
+
+     label2:
+        $r4 := @caughtexception;
+        virtualinvoke $r4.<java.io.FileNotFoundException: void printStackTrace()>();
+        return;
+
+     label3:
+        $r5 := @caughtexception;
+        virtualinvoke $r5.<java.io.IOException: void printStackTrace()>();
+        return;
+
+        catch java.io.FileNotFoundException from label0 to label1 with label2;
+        catch java.io.IOException from label0 to label1 with label3;
+    }
+
+    private boolean isValidRecord(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        java.lang.String r1;
+        boolean $z0, $z1, $z2;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        r1 := @parameter0: java.lang.String;
+        if r1 == null goto label0;
+
+        $z0 = virtualinvoke r1.<java.lang.String: boolean equals(java.lang.Object)>("(none0)");
+        if $z0 != 0 goto label0;
+
+        $z1 = virtualinvoke r1.<java.lang.String: boolean startsWith(java.lang.String)>("(");
+        if $z1 == 0 goto label0;
+
+        $z2 = virtualinvoke r1.<java.lang.String: boolean endsWith(java.lang.String)>(")");
+        if $z2 == 0 goto label0;
+
+        return 1;
+
+     label0:
+        return 0;
+    }
+
+    private void setUnicodeToHanyuPinyinTable(java.util.Properties)
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        java.util.Properties r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        r1 := @parameter0: java.util.Properties;
+        r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.util.Properties unicodeToHanyuPinyinTable> = r1;
+        return;
+    }
+
+    java.lang.String[] getHanyuPinyinStringArray(char)
+    {
+        net.sourceforge.pinyin4j.ChineseToPinyinResource r0;
+        char c0;
+        java.lang.String r1, $r2, $r3;
+        int $i1, i2, $i3, $i4;
+        java.lang.String[] $r4;
+
+        r0 := @this: net.sourceforge.pinyin4j.ChineseToPinyinResource;
+        c0 := @parameter0: char;
+        r1 = specialinvoke r0.<net.sourceforge.pinyin4j.ChineseToPinyinResource: java.lang.String getHanyuPinyinRecordFromChar(char)>(c0);
+        if r1 == null goto label0;
+
+        $i1 = virtualinvoke r1.<java.lang.String: int indexOf(java.lang.String)>("(");
+        i2 = virtualinvoke r1.<java.lang.String: int lastIndexOf(java.lang.String)>(")");
+        $r2 = "(";
+        $i3 = virtualinvoke $r2.<java.lang.String: int length()>();
+        $i4 = $i1 + $i3;
+        $r3 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>($i4, i2);
+        $r4 = virtualinvoke $r3.<java.lang.String: java.lang.String[] split(java.lang.String)>(",");
+        return $r4;
+
+     label0:
+        return null;
+    }
+}

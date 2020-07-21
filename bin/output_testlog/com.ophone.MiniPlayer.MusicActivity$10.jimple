@@ -1,0 +1,52 @@
+class com.ophone.MiniPlayer.MusicActivity$10 extends java.lang.Object implements java.lang.Runnable
+{
+    final com.ophone.MiniPlayer.MusicActivity this$0;
+    private final java.lang.String val$strPath;
+
+    void <init>(com.ophone.MiniPlayer.MusicActivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.MusicActivity$10 r0;
+        com.ophone.MiniPlayer.MusicActivity r1;
+        java.lang.String r2;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$10;
+        r1 := @parameter0: com.ophone.MiniPlayer.MusicActivity;
+        r2 := @parameter1: java.lang.String;
+        r0.<com.ophone.MiniPlayer.MusicActivity$10: com.ophone.MiniPlayer.MusicActivity this$0> = r1;
+        r0.<com.ophone.MiniPlayer.MusicActivity$10: java.lang.String val$strPath> = r2;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.MusicActivity$10 r0;
+        com.ophone.MiniPlayer.MusicActivity $r1, $r3, $r4;
+        java.lang.String $r2, $r8;
+        java.io.File $r5;
+        java.lang.Exception $r6, r7;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$10;
+
+     label0:
+        $r1 = r0.<com.ophone.MiniPlayer.MusicActivity$10: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r2 = r0.<com.ophone.MiniPlayer.MusicActivity$10: java.lang.String val$strPath>;
+        staticinvoke <com.ophone.MiniPlayer.MusicActivity: void access$16(com.ophone.MiniPlayer.MusicActivity,java.lang.String)>($r1, $r2);
+        $r3 = r0.<com.ophone.MiniPlayer.MusicActivity$10: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r4 = r0.<com.ophone.MiniPlayer.MusicActivity$10: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r5 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.io.File access$17(com.ophone.MiniPlayer.MusicActivity)>($r4);
+        virtualinvoke $r3.<com.ophone.MiniPlayer.MusicActivity: void setMyRingtone(java.io.File)>($r5);
+
+     label1:
+        return;
+
+     label2:
+        $r6 := @caughtexception;
+        r7 = $r6;
+        $r8 = virtualinvoke r7.<java.lang.Exception: java.lang.String getMessage()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>("OnlinePlayer", $r8, r7);
+        return;
+
+        catch java.lang.Exception from label0 to label1 with label2;
+    }
+}

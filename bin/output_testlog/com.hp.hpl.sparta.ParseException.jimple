@@ -1,0 +1,316 @@
+public class com.hp.hpl.sparta.ParseException extends java.lang.Exception
+{
+    private java.lang.Throwable cause_;
+    private int lineNumber_;
+
+    public void <init>(com.hp.hpl.sparta.ParseCharStream, char, char)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseCharStream r1;
+        char c0, c1;
+        java.lang.StringBuffer $r2, $r3, $r4, $r5, $r6, $r7;
+        java.lang.String $r8;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseCharStream;
+        c0 := @parameter1: char;
+        c1 := @parameter2: char;
+        $r2 = new java.lang.StringBuffer;
+        specialinvoke $r2.<java.lang.StringBuffer: void <init>()>();
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("got \'");
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c0);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\' instead of expected \'");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c1);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'");
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(com.hp.hpl.sparta.ParseCharStream,java.lang.String)>(r1, $r8);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseCharStream, char, java.lang.String)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseCharStream r1;
+        char c0;
+        java.lang.String r2, $r9;
+        java.lang.StringBuffer $r3, $r4, $r5, $r6, $r7, $r8;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseCharStream;
+        c0 := @parameter1: char;
+        r2 := @parameter2: java.lang.String;
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("got \'");
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c0);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\' instead of ");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" as expected");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(com.hp.hpl.sparta.ParseCharStream,java.lang.String)>(r1, $r9);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseCharStream, char, char[])
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseCharStream r1;
+        char c0;
+        char[] r2;
+        java.lang.StringBuffer $r3, $r4, $r5, $r6, $r8;
+        java.lang.String $r7, $r9;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseCharStream;
+        c0 := @parameter1: char;
+        r2 := @parameter2: char[];
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("got \'");
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c0);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\' instead of ");
+        $r7 = staticinvoke <com.hp.hpl.sparta.ParseException: java.lang.String toString(char[])>(r2);
+        $r8 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r7);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(com.hp.hpl.sparta.ParseCharStream,java.lang.String)>(r1, $r9);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseCharStream, java.lang.String)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseCharStream r1;
+        java.lang.String r2, $r4, $r5;
+        com.hp.hpl.sparta.ParseLog $r3;
+        int $i0, $i1;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseCharStream;
+        r2 := @parameter1: java.lang.String;
+        $r3 = virtualinvoke r1.<com.hp.hpl.sparta.ParseCharStream: com.hp.hpl.sparta.ParseLog getLog()>();
+        $r4 = virtualinvoke r1.<com.hp.hpl.sparta.ParseCharStream: java.lang.String getSystemId()>();
+        $i0 = virtualinvoke r1.<com.hp.hpl.sparta.ParseCharStream: int getLineNumber()>();
+        $i1 = virtualinvoke r1.<com.hp.hpl.sparta.ParseCharStream: int getLastCharRead()>();
+        $r5 = virtualinvoke r1.<com.hp.hpl.sparta.ParseCharStream: java.lang.String getHistory()>();
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(com.hp.hpl.sparta.ParseLog,java.lang.String,int,int,java.lang.String,java.lang.String)>($r3, $r4, $i0, $i1, $r5, r2);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseCharStream, java.lang.String, java.lang.String)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseCharStream r1;
+        java.lang.String r2, r3, $r10;
+        java.lang.StringBuffer $r4, $r5, $r6, $r7, $r8, $r9;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseCharStream;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: java.lang.String;
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("got \"");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\" instead of \"");
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r3);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\" as expected");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(com.hp.hpl.sparta.ParseCharStream,java.lang.String)>(r1, $r10);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseCharStream, java.lang.String, char[])
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseCharStream r1;
+        java.lang.String r2, $r4;
+        char[] r3;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseCharStream;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: char[];
+        $r4 = new java.lang.String;
+        specialinvoke $r4.<java.lang.String: void <init>(char[])>(r3);
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(com.hp.hpl.sparta.ParseCharStream,java.lang.String,java.lang.String)>(r1, r2, $r4);
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.ParseLog, java.lang.String, int, int, java.lang.String, java.lang.String)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        com.hp.hpl.sparta.ParseLog r1;
+        java.lang.String r2, r3, r4;
+        int i0, i1;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: com.hp.hpl.sparta.ParseLog;
+        r2 := @parameter1: java.lang.String;
+        i0 := @parameter2: int;
+        i1 := @parameter3: int;
+        r3 := @parameter4: java.lang.String;
+        r4 := @parameter5: java.lang.String;
+        specialinvoke r0.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,int,int,java.lang.String,java.lang.String)>(r2, i0, i1, r3, r4);
+        interfaceinvoke r1.<com.hp.hpl.sparta.ParseLog: void error(java.lang.String,java.lang.String,int)>(r4, r2, i0);
+        return;
+    }
+
+    public void <init>(java.lang.String)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        java.lang.String r1;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<java.lang.Exception: void <init>(java.lang.String)>(r1);
+        r0.<com.hp.hpl.sparta.ParseException: int lineNumber_> = -1;
+        r0.<com.hp.hpl.sparta.ParseException: java.lang.Throwable cause_> = null;
+        return;
+    }
+
+    public void <init>(java.lang.String, int, int, java.lang.String, java.lang.String)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        java.lang.String r1, r2, r3, $r4;
+        int i0, i1;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r2 := @parameter3: java.lang.String;
+        r3 := @parameter4: java.lang.String;
+        $r4 = staticinvoke <com.hp.hpl.sparta.ParseException: java.lang.String toMessage(java.lang.String,int,int,java.lang.String,java.lang.String)>(r1, i0, i1, r2, r3);
+        specialinvoke r0.<java.lang.Exception: void <init>(java.lang.String)>($r4);
+        r0.<com.hp.hpl.sparta.ParseException: int lineNumber_> = -1;
+        r0.<com.hp.hpl.sparta.ParseException: java.lang.Throwable cause_> = null;
+        r0.<com.hp.hpl.sparta.ParseException: int lineNumber_> = i0;
+        return;
+    }
+
+    public void <init>(java.lang.String, java.lang.Throwable)
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        java.lang.String r1, $r7;
+        java.lang.Throwable r2;
+        java.lang.StringBuffer $r3, $r4, $r5, $r6;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.Throwable;
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" ");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<java.lang.Exception: void <init>(java.lang.String)>($r7);
+        r0.<com.hp.hpl.sparta.ParseException: int lineNumber_> = -1;
+        r0.<com.hp.hpl.sparta.ParseException: java.lang.Throwable cause_> = null;
+        r0.<com.hp.hpl.sparta.ParseException: java.lang.Throwable cause_> = r2;
+        return;
+    }
+
+    static java.lang.String charRepr(int)
+    {
+        int i0;
+        java.lang.StringBuffer $r0, $r1, $r2;
+        char $c1;
+        java.lang.String $r3;
+
+        i0 := @parameter0: int;
+        if i0 != -1 goto label0;
+
+        return "EOF";
+
+     label0:
+        $r0 = new java.lang.StringBuffer;
+        specialinvoke $r0.<java.lang.StringBuffer: void <init>()>();
+        $r1 = virtualinvoke $r0.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("");
+        $c1 = (char) i0;
+        $r2 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c1);
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r3;
+    }
+
+    private static java.lang.String toMessage(java.lang.String, int, int, java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1, r2, $r10, $r14;
+        int i0, i1;
+        java.lang.StringBuffer $r3, $r4, $r5, $r6, $r7, $r8, $r9, $r11, $r12, $r13;
+
+        r0 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        r1 := @parameter3: java.lang.String;
+        r2 := @parameter4: java.lang.String;
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r0);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("(");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(i0);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("): \n");
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\nLast character read was \'");
+        $r10 = staticinvoke <com.hp.hpl.sparta.ParseException: java.lang.String charRepr(int)>(i1);
+        $r11 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r10);
+        $r12 = virtualinvoke $r11.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\'\n");
+        $r13 = virtualinvoke $r12.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r14 = virtualinvoke $r13.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r14;
+    }
+
+    private static java.lang.String toString(char[])
+    {
+        char[] r0;
+        java.lang.StringBuffer r1, $r4, $r5, $r6;
+        int i0, $i2;
+        char $c1, $c3;
+        java.lang.String $r3, $r7;
+
+        r0 := @parameter0: char[];
+        r1 = new java.lang.StringBuffer;
+        specialinvoke r1.<java.lang.StringBuffer: void <init>()>();
+        $c1 = r0[0];
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c1);
+        i0 = 1;
+
+     label0:
+        $i2 = lengthof r0;
+        if i0 < $i2 goto label1;
+
+        $r3 = virtualinvoke r1.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r3;
+
+     label1:
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("or ");
+        $c3 = r0[i0];
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c3);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r7);
+        i0 = i0 + 1;
+        goto label0;
+    }
+
+    public java.lang.Throwable getCause()
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        java.lang.Throwable $r1;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        $r1 = r0.<com.hp.hpl.sparta.ParseException: java.lang.Throwable cause_>;
+        return $r1;
+    }
+
+    public int getLineNumber()
+    {
+        com.hp.hpl.sparta.ParseException r0;
+        int $i0;
+
+        r0 := @this: com.hp.hpl.sparta.ParseException;
+        $i0 = r0.<com.hp.hpl.sparta.ParseException: int lineNumber_>;
+        return $i0;
+    }
+}

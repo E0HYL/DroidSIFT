@@ -1,0 +1,397 @@
+public class com.ophone.MiniPlayer.MyView extends android.view.View
+{
+    public static final java.lang.String TAG;
+    private static final int V_SPACE;
+    private int height;
+    private android.content.Context mContext;
+    private android.graphics.Paint mPaint;
+    private java.lang.String mStr;
+    private long pos;
+    private java.util.List sentencelist;
+    private int width;
+
+    public void <init>(android.content.Context, android.util.AttributeSet)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        android.content.Context r1;
+        android.util.AttributeSet r2;
+        android.graphics.Paint $r3;
+        java.util.ArrayList $r4;
+        int[] $r5;
+        android.content.res.TypedArray r6;
+        int i0, $i1, $i2, $i3;
+        float $f0, $f1, $f2;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: android.util.AttributeSet;
+        specialinvoke r0.<android.view.View: void <init>(android.content.Context,android.util.AttributeSet)>(r1, r2);
+        $r3 = new android.graphics.Paint;
+        specialinvoke $r3.<android.graphics.Paint: void <init>()>();
+        r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint> = $r3;
+        r0.<com.ophone.MiniPlayer.MyView: java.lang.String mStr> = null;
+        r0.<com.ophone.MiniPlayer.MyView: long pos> = 0L;
+        $r4 = new java.util.ArrayList;
+        specialinvoke $r4.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist> = $r4;
+        r0.<com.ophone.MiniPlayer.MyView: android.content.Context mContext> = r1;
+        specialinvoke r0.<com.ophone.MiniPlayer.MyView: void initMyView()>();
+        $r5 = <com.ophone.MiniPlayer.R$styleable: int[] MyView>;
+        r6 = virtualinvoke r1.<android.content.Context: android.content.res.TypedArray obtainStyledAttributes(android.util.AttributeSet,int[])>(r2, $r5);
+        i0 = virtualinvoke r6.<android.content.res.TypedArray: int getResourceId(int,int)>(2, 0);
+        if i0 == 0 goto label0;
+
+        virtualinvoke r0.<com.ophone.MiniPlayer.MyView: void setBackgroundResource(int)>(i0);
+
+     label0:
+        $i1 = virtualinvoke r6.<android.content.res.TypedArray: int getColor(int,int)>(0, -1);
+        specialinvoke r0.<com.ophone.MiniPlayer.MyView: void setTextColor(int)>($i1);
+        $f0 = virtualinvoke r6.<android.content.res.TypedArray: float getDimension(int,float)>(1, 36.0F);
+        specialinvoke r0.<com.ophone.MiniPlayer.MyView: void setTextSize(float)>($f0);
+        $f1 = virtualinvoke r6.<android.content.res.TypedArray: float getDimension(int,float)>(3, 41.0F);
+        $f2 = virtualinvoke r6.<android.content.res.TypedArray: float getDimension(int,float)>(4, 21.0F);
+        specialinvoke r0.<com.ophone.MiniPlayer.MyView: void setPaddings(float,float)>($f1, $f2);
+        $i2 = virtualinvoke r0.<com.ophone.MiniPlayer.MyView: int getHeight()>();
+        r0.<com.ophone.MiniPlayer.MyView: int height> = $i2;
+        $i3 = virtualinvoke r0.<com.ophone.MiniPlayer.MyView: int getWidth()>();
+        r0.<com.ophone.MiniPlayer.MyView: int width> = $i3;
+        return;
+    }
+
+    private void drawKaraoke(com.ophone.MiniPlayer.provider.Sentence, int, int, long, android.graphics.Canvas)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        com.ophone.MiniPlayer.provider.Sentence r1;
+        int i0, i1;
+        long l2;
+        android.graphics.Canvas r2;
+        android.graphics.Paint r3;
+        java.lang.String $r4, $r5;
+        float $f0, $f1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        r1 := @parameter0: com.ophone.MiniPlayer.provider.Sentence;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        l2 := @parameter3: long;
+        r2 := @parameter4: android.graphics.Canvas;
+        r3 = new android.graphics.Paint;
+        specialinvoke r3.<android.graphics.Paint: void <init>()>();
+        virtualinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: int getContentWidth(android.graphics.Paint)>(r3);
+        virtualinvoke r3.<android.graphics.Paint: void setColor(int)>(-256);
+        virtualinvoke r3.<android.graphics.Paint: void setTextSize(float)>(15.0F);
+        $r4 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        if $r4 == null goto label0;
+
+        $r5 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $f0 = (float) i0;
+        $f1 = (float) i1;
+        virtualinvoke r2.<android.graphics.Canvas: void drawText(java.lang.String,float,float,android.graphics.Paint)>($r5, $f0, $f1, r3);
+
+     label0:
+        return;
+    }
+
+    private int getNowSentenceIndex(long)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        long l0;
+        int i1, $i2;
+        java.util.List $r1, $r2;
+        java.lang.Object $r3;
+        com.ophone.MiniPlayer.provider.Sentence $r4;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        l0 := @parameter0: long;
+        i1 = 0;
+
+     label0:
+        $r1 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $i2 = interfaceinvoke $r1.<java.util.List: int size()>();
+        if i1 < $i2 goto label1;
+
+        return -1;
+
+     label1:
+        $r2 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i1);
+        $r4 = (com.ophone.MiniPlayer.provider.Sentence) $r3;
+        $z0 = virtualinvoke $r4.<com.ophone.MiniPlayer.provider.Sentence: boolean isInTime(long)>(l0);
+        if $z0 == 0 goto label2;
+
+        return i1;
+
+     label2:
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    private int getSentenceX(android.graphics.Paint, com.ophone.MiniPlayer.provider.Sentence)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        android.graphics.Paint r1;
+        com.ophone.MiniPlayer.provider.Sentence r2;
+        int $i0, $i1, $i2, $i3;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        r1 := @parameter0: android.graphics.Paint;
+        r2 := @parameter1: com.ophone.MiniPlayer.provider.Sentence;
+        $i0 = r0.<com.ophone.MiniPlayer.MyView: int width>;
+        $i1 = virtualinvoke r2.<com.ophone.MiniPlayer.provider.Sentence: int getContentWidth(android.graphics.Paint)>(r1);
+        $i2 = $i0 - $i1;
+        $i3 = $i2 / 2;
+        return $i3;
+    }
+
+    private void initMyView()
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        android.graphics.Paint $r1, $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        $r1 = new android.graphics.Paint;
+        specialinvoke $r1.<android.graphics.Paint: void <init>()>();
+        r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint> = $r1;
+        $r2 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        virtualinvoke $r2.<android.graphics.Paint: void setColor(int)>(-1);
+        return;
+    }
+
+    private void setPaddings(float, float)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        float f0, f1;
+        int $i0, $i1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        f0 := @parameter0: float;
+        f1 := @parameter1: float;
+        $i0 = (int) f0;
+        $i1 = (int) f1;
+        virtualinvoke r0.<com.ophone.MiniPlayer.MyView: void setPadding(int,int,int,int)>($i0, $i1, 0, 0);
+        return;
+    }
+
+    private void setTextColor(int)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        int i0;
+        android.graphics.Paint $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        i0 := @parameter0: int;
+        $r1 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        virtualinvoke $r1.<android.graphics.Paint: void setColor(int)>(-5588020);
+        return;
+    }
+
+    private void setTextSize(float)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        float f0;
+        android.graphics.Paint $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        f0 := @parameter0: float;
+        $r1 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        virtualinvoke $r1.<android.graphics.Paint: void setTextSize(float)>(f0);
+        return;
+    }
+
+    public int getMaxWidth(android.graphics.Paint)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        android.graphics.Paint r1;
+        int i0, i1;
+        java.util.List $r2;
+        java.util.Iterator r3;
+        boolean $z0;
+        java.lang.Object $r4;
+        com.ophone.MiniPlayer.provider.Sentence $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        r1 := @parameter0: android.graphics.Paint;
+        i0 = 0;
+        $r2 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        r3 = interfaceinvoke $r2.<java.util.List: java.util.Iterator iterator()>();
+
+     label0:
+        $z0 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+        if $z0 != 0 goto label1;
+
+        return i0;
+
+     label1:
+        $r4 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+        $r5 = (com.ophone.MiniPlayer.provider.Sentence) $r4;
+        i1 = virtualinvoke $r5.<com.ophone.MiniPlayer.provider.Sentence: int getContentWidth(android.graphics.Paint)>(r1);
+        if i1 <= i0 goto label0;
+
+        i0 = i1;
+        goto label0;
+    }
+
+    protected void onDraw(android.graphics.Canvas)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        android.graphics.Canvas r1;
+        com.ophone.MiniPlayer.provider.Sentence r2, r3, r4, r20;
+        float f0, $f1, $f2, $f3, $f4, $f5;
+        long l0;
+        int i1, i2, $i3, $i4, $i5, $i6, $i7, i8, i9, $i10, $i11, $i12, $i13, $i14, $i15, i16, i17, i18, $i19, i20, $i21, $i22, $i23, i24, $i25, $i26, $i27, $i28;
+        java.util.List $r5, $r6, $r12, $r17, $r18, $r26;
+        java.lang.Object $r7, $r13, $r19, $r27;
+        android.graphics.Paint $r8, $r9, $r11, $r14, $r15, $r16, $r21, $r22, $r25, $r28, $r29, $r30, $r33;
+        java.lang.String $r10, $r23, $r24, $r31, $r32;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        r1 := @parameter0: android.graphics.Canvas;
+        specialinvoke r0.<android.view.View: void onDraw(android.graphics.Canvas)>(r1);
+        $r5 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $i3 = interfaceinvoke $r5.<java.util.List: int size()>();
+        if $i3 != 1 goto label1;
+
+        $r6 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $r7 = interfaceinvoke $r6.<java.util.List: java.lang.Object get(int)>(0);
+        r2 = (com.ophone.MiniPlayer.provider.Sentence) $r7;
+        $r8 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i4 = specialinvoke r0.<com.ophone.MiniPlayer.MyView: int getSentenceX(android.graphics.Paint,com.ophone.MiniPlayer.provider.Sentence)>($r8, r2);
+        $i5 = r0.<com.ophone.MiniPlayer.MyView: int height>;
+        $r9 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i6 = virtualinvoke r2.<com.ophone.MiniPlayer.provider.Sentence: int getContentHeight(android.graphics.Paint)>($r9);
+        $i7 = $i5 - $i6;
+        i8 = $i7 / 2;
+        f0 = (float) $i4;
+        $r10 = virtualinvoke r2.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $f1 = (float) i8;
+        $r11 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        virtualinvoke r1.<android.graphics.Canvas: void drawText(java.lang.String,float,float,android.graphics.Paint)>($r10, f0, $f1, $r11);
+
+     label0:
+        return;
+
+     label1:
+        l0 = r0.<com.ophone.MiniPlayer.MyView: long pos>;
+        i9 = specialinvoke r0.<com.ophone.MiniPlayer.MyView: int getNowSentenceIndex(long)>(l0);
+        if i9 == -1 goto label0;
+
+        $r12 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $r13 = interfaceinvoke $r12.<java.util.List: java.lang.Object get(int)>(i9);
+        r3 = (com.ophone.MiniPlayer.provider.Sentence) $r13;
+        $i10 = r0.<com.ophone.MiniPlayer.MyView: int height>;
+        $r14 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i11 = virtualinvoke r3.<com.ophone.MiniPlayer.provider.Sentence: int getContentHeight(android.graphics.Paint)>($r14);
+        $i12 = $i10 + $i11;
+        $i13 = $i12 / 2;
+        $r15 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i14 = virtualinvoke r3.<com.ophone.MiniPlayer.provider.Sentence: int getVIncrease(android.graphics.Paint,long)>($r15, l0);
+        i1 = $i13 - $i14;
+        $r16 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i15 = specialinvoke r0.<com.ophone.MiniPlayer.MyView: int getSentenceX(android.graphics.Paint,com.ophone.MiniPlayer.provider.Sentence)>($r16, r3);
+        specialinvoke r0.<com.ophone.MiniPlayer.MyView: void drawKaraoke(com.ophone.MiniPlayer.provider.Sentence,int,int,long,android.graphics.Canvas)>(r3, $i15, i1, l0, r1);
+        i16 = i1;
+        i2 = i9 - 1;
+
+     label2:
+        if i2 >= 0 goto label6;
+
+     label3:
+        i17 = i1;
+        i18 = i9 + 1;
+
+     label4:
+        $r17 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $i19 = interfaceinvoke $r17.<java.util.List: int size()>();
+        if i18 >= $i19 goto label0;
+
+        $r18 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $r19 = interfaceinvoke $r18.<java.util.List: java.lang.Object get(int)>(i18);
+        r20 = (com.ophone.MiniPlayer.provider.Sentence) $r19;
+        $r21 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        i20 = specialinvoke r0.<com.ophone.MiniPlayer.MyView: int getSentenceX(android.graphics.Paint,com.ophone.MiniPlayer.provider.Sentence)>($r21, r20);
+        $r22 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i21 = virtualinvoke r20.<com.ophone.MiniPlayer.provider.Sentence: int getContentHeight(android.graphics.Paint)>($r22);
+        $i22 = i17 + $i21;
+        i17 = -10 + $i22;
+        $i23 = r0.<com.ophone.MiniPlayer.MyView: int height>;
+        if i17 > $i23 goto label0;
+
+        $r23 = virtualinvoke r20.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        if $r23 == null goto label5;
+
+        $r24 = virtualinvoke r20.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $f2 = (float) i20;
+        $f3 = (float) i17;
+        $r25 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        virtualinvoke r1.<android.graphics.Canvas: void drawText(java.lang.String,float,float,android.graphics.Paint)>($r24, $f2, $f3, $r25);
+
+     label5:
+        i18 = i18 + 1;
+        goto label4;
+
+     label6:
+        $r26 = r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist>;
+        $r27 = interfaceinvoke $r26.<java.util.List: java.lang.Object get(int)>(i2);
+        r4 = (com.ophone.MiniPlayer.provider.Sentence) $r27;
+        $r28 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        i24 = specialinvoke r0.<com.ophone.MiniPlayer.MyView: int getSentenceX(android.graphics.Paint,com.ophone.MiniPlayer.provider.Sentence)>($r28, r4);
+        $r29 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i25 = virtualinvoke r4.<com.ophone.MiniPlayer.provider.Sentence: int getContentHeight(android.graphics.Paint)>($r29);
+        $i26 = i16 - $i25;
+        i16 = $i26 + 10;
+        $r30 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        $i27 = virtualinvoke r4.<com.ophone.MiniPlayer.provider.Sentence: int getContentHeight(android.graphics.Paint)>($r30);
+        $i28 = i16 + $i27;
+        if $i28 < 0 goto label3;
+
+        $r31 = virtualinvoke r4.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        if $r31 == null goto label7;
+
+        $r32 = virtualinvoke r4.<com.ophone.MiniPlayer.provider.Sentence: java.lang.String getContent()>();
+        $f4 = (float) i24;
+        $f5 = (float) i16;
+        $r33 = r0.<com.ophone.MiniPlayer.MyView: android.graphics.Paint mPaint>;
+        virtualinvoke r1.<android.graphics.Canvas: void drawText(java.lang.String,float,float,android.graphics.Paint)>($r32, $f4, $f5, $r33);
+
+     label7:
+        i2 = i2 + -1;
+        goto label2;
+    }
+
+    public void setHeight(int)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        i0 := @parameter0: int;
+        r0.<com.ophone.MiniPlayer.MyView: int height> = i0;
+        return;
+    }
+
+    void setText(long, java.util.List)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        long l0;
+        java.util.List r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        l0 := @parameter0: long;
+        r1 := @parameter1: java.util.List;
+        r0.<com.ophone.MiniPlayer.MyView: long pos> = l0;
+        r0.<com.ophone.MiniPlayer.MyView: java.util.List sentencelist> = r1;
+        return;
+    }
+
+    public void setWidth(int)
+    {
+        com.ophone.MiniPlayer.MyView r0;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.MyView;
+        i0 := @parameter0: int;
+        r0.<com.ophone.MiniPlayer.MyView: int width> = i0;
+        return;
+    }
+}

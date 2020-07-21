@@ -1,0 +1,17 @@
+public interface  com.hp.hpl.sparta.ParseHandler extends java.lang.Object
+{
+
+    public abstract void characters(char[], int, int) throws com.hp.hpl.sparta.ParseException;
+
+    public abstract void endDocument() throws com.hp.hpl.sparta.ParseException;
+
+    public abstract void endElement(com.hp.hpl.sparta.Element) throws com.hp.hpl.sparta.ParseException;
+
+    public abstract com.hp.hpl.sparta.ParseSource getParseSource();
+
+    public abstract void setParseSource(com.hp.hpl.sparta.ParseSource);
+
+    public abstract void startDocument() throws com.hp.hpl.sparta.ParseException;
+
+    public abstract void startElement(com.hp.hpl.sparta.Element) throws com.hp.hpl.sparta.ParseException;
+}

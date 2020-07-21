@@ -1,0 +1,120 @@
+class com.ophone.MiniPlayer.StreamingMediaPlayer$2 extends java.lang.Object implements java.lang.Runnable
+{
+    final com.ophone.MiniPlayer.StreamingMediaPlayer this$0;
+    private final java.io.File val$f;
+
+    void <init>(com.ophone.MiniPlayer.StreamingMediaPlayer, java.io.File)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2 r0;
+        com.ophone.MiniPlayer.StreamingMediaPlayer r1;
+        java.io.File r2;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer$2;
+        r1 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer;
+        r2 := @parameter1: java.io.File;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer this$0> = r1;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: java.io.File val$f> = r2;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    static com.ophone.MiniPlayer.StreamingMediaPlayer access$0(com.ophone.MiniPlayer.StreamingMediaPlayer$2)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2 r0;
+        com.ophone.MiniPlayer.StreamingMediaPlayer $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer$2;
+        $r1 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer this$0>;
+        return $r1;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2 r0;
+        android.media.MediaPlayer r1;
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2$1 $r2;
+        java.io.FileInputStream $r3;
+        java.io.File $r4, $r7, $r15;
+        java.io.FileDescriptor $r5;
+        java.lang.StringBuilder $r6, $r8, $r14, $r16;
+        java.lang.String $r9, $r17, r20, r22;
+        com.ophone.MiniPlayer.StreamingMediaPlayer $r10, $r11, $r13, $r18;
+        boolean $z0, $z2;
+        java.util.Vector $r12;
+        java.lang.IllegalStateException $r19;
+        java.io.IOException $r21;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer$2;
+        r1 = new android.media.MediaPlayer;
+        specialinvoke r1.<android.media.MediaPlayer: void <init>()>();
+
+     label0:
+        $r2 = new com.ophone.MiniPlayer.StreamingMediaPlayer$2$1;
+        specialinvoke $r2.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: void <init>(com.ophone.MiniPlayer.StreamingMediaPlayer$2)>(r0);
+        $r3 = new java.io.FileInputStream;
+        $r4 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: java.io.File val$f>;
+        specialinvoke $r3.<java.io.FileInputStream: void <init>(java.io.File)>($r4);
+        $r5 = virtualinvoke $r3.<java.io.FileInputStream: java.io.FileDescriptor getFD()>();
+        virtualinvoke r1.<android.media.MediaPlayer: void setDataSource(java.io.FileDescriptor)>($r5);
+        virtualinvoke r1.<android.media.MediaPlayer: void setAudioStreamType(int)>(3);
+        virtualinvoke r1.<android.media.MediaPlayer: void setOnCompletionListener(android.media.MediaPlayer$OnCompletionListener)>($r2);
+        $r6 = new java.lang.StringBuilder;
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("Prepare Media Player ");
+        $r7 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: java.io.File val$f>;
+        $r8 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r7);
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("setupplayer", $r9);
+        $r10 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer this$0>;
+        $z0 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: boolean access$2(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r10);
+        if $z0 != 0 goto label3;
+
+        virtualinvoke r1.<android.media.MediaPlayer: void prepare()>();
+
+     label1:
+        $r11 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer this$0>;
+        $r12 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector access$0(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r11);
+        virtualinvoke $r12.<java.util.Vector: boolean add(java.lang.Object)>(r1);
+        $r13 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer this$0>;
+        $z2 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: boolean access$2(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r13);
+        if $z2 != 0 goto label7;
+
+        $r14 = new java.lang.StringBuilder;
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>("Start Media Player ");
+        $r15 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: java.io.File val$f>;
+        $r16 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r15);
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("setupplayer", $r17);
+        $r18 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer this$0>;
+        staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: void access$3(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r18);
+
+     label2:
+        return;
+
+     label3:
+        virtualinvoke r1.<android.media.MediaPlayer: void prepareAsync()>();
+
+     label4:
+        goto label1;
+
+     label5:
+        $r19 := @caughtexception;
+        r20 = virtualinvoke $r19.<java.lang.IllegalStateException: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("setupplayer", r20);
+        return;
+
+     label6:
+        $r21 := @caughtexception;
+        r22 = virtualinvoke $r21.<java.io.IOException: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("setupplayer", r22);
+
+     label7:
+        return;
+
+        catch java.lang.IllegalStateException from label0 to label1 with label5;
+        catch java.io.IOException from label0 to label1 with label6;
+        catch java.lang.IllegalStateException from label1 to label2 with label5;
+        catch java.io.IOException from label1 to label2 with label6;
+        catch java.lang.IllegalStateException from label3 to label4 with label5;
+        catch java.io.IOException from label3 to label4 with label6;
+    }
+}

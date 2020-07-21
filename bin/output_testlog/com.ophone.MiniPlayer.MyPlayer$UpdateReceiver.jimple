@@ -1,0 +1,215 @@
+public class com.ophone.MiniPlayer.MyPlayer$UpdateReceiver extends android.content.BroadcastReceiver
+{
+    final com.ophone.MiniPlayer.MyPlayer this$0;
+
+    public void <init>(com.ophone.MiniPlayer.MyPlayer)
+    {
+        com.ophone.MiniPlayer.MyPlayer$UpdateReceiver r0;
+        com.ophone.MiniPlayer.MyPlayer r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayer$UpdateReceiver;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayer;
+        r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0> = r1;
+        specialinvoke r0.<android.content.BroadcastReceiver: void <init>()>();
+        return;
+    }
+
+    public void onReceive(android.content.Context, android.content.Intent)
+    {
+        com.ophone.MiniPlayer.MyPlayer$UpdateReceiver r0;
+        android.content.Context r1;
+        android.content.Intent r2;
+        com.ophone.MiniPlayer.MyPlayer $r3, $r4, $r7, $r9, $r11, $r13, $r14, $r16, $r17, $r19, $r20, $r21, $r22, $r23, $r24, $r25, $r27, $r29, $r31, $r33, $r35, $r37, $r38, $r39, $r40, $r41, $r42, $r43, $r44, $r46, $r48, $r50, $r52;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10;
+        java.io.Serializable $r5;
+        java.util.ArrayList $r6;
+        java.lang.String $r8, $r10;
+        java.util.List $r12, $r15;
+        android.widget.Button $r18, $r26, $r28, $r30, $r32, $r34, $r36, $r45, $r47, $r49, $r51, $r53;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayer$UpdateReceiver;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: android.content.Intent;
+        $r3 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i0 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("status", -1);
+        $r3.<com.ophone.MiniPlayer.MyPlayer: int status> = $i0;
+        $r4 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r5 = virtualinvoke r2.<android.content.Intent: java.io.Serializable getSerializableExtra(java.lang.String)>("artist");
+        $r6 = (java.util.ArrayList) $r5;
+        $r4.<com.ophone.MiniPlayer.MyPlayer: java.util.List _artist> = $r6;
+        $r7 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r8 = virtualinvoke r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("album");
+        $r7.<com.ophone.MiniPlayer.MyPlayer: java.lang.String _album> = $r8;
+        $r9 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r10 = virtualinvoke r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("songname");
+        $r9.<com.ophone.MiniPlayer.MyPlayer: java.lang.String _songname> = $r10;
+        $r11 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r12 = $r11.<com.ophone.MiniPlayer.MyPlayer: java.util.List _artist>;
+        if $r12 == null goto label0;
+
+        $r13 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r14 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r15 = $r14.<com.ophone.MiniPlayer.MyPlayer: java.util.List _artist>;
+        $i1 = interfaceinvoke $r15.<java.util.List: int size()>();
+        $r13.<com.ophone.MiniPlayer.MyPlayer: int _artistcount> = $i1;
+
+     label0:
+        $r16 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i2 = $r16.<com.ophone.MiniPlayer.MyPlayer: int status>;
+        lookupswitch($i2)
+        {
+            case 100: goto label2;
+            case 101: goto label10;
+            case 103: goto label1;
+            case 104: goto label1;
+            case 111: goto label12;
+            case 115: goto label11;
+            default: goto label1;
+        };
+
+     label1:
+        return;
+
+     label2:
+        $r17 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r18 = $r17.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button playpausebn>;
+        virtualinvoke $r18.<android.widget.Button: void setBackgroundResource(int)>(2130837531);
+        $r19 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayer: void access$3(com.ophone.MiniPlayer.MyPlayer)>($r19);
+        $r20 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i3 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("flagrepeat", -1);
+        $r20.<com.ophone.MiniPlayer.MyPlayer: int flagrepeatr> = $i3;
+        $r21 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i4 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("flagrandom", -1);
+        $r21.<com.ophone.MiniPlayer.MyPlayer: int flagrandomr> = $i4;
+        $r22 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayer: void access$4(com.ophone.MiniPlayer.MyPlayer)>($r22);
+        $r23 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i5 = $r23.<com.ophone.MiniPlayer.MyPlayer: int flagrepeatr>;
+        tableswitch($i5)
+        {
+            case 0: goto label6;
+            case 1: goto label7;
+            case 2: goto label8;
+            default: goto label3;
+        };
+
+     label3:
+        $r24 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i6 = $r24.<com.ophone.MiniPlayer.MyPlayer: int flagrandomr>;
+        tableswitch($i6)
+        {
+            case 10: goto label5;
+            case 11: goto label9;
+            default: goto label4;
+        };
+
+     label4:
+        return;
+
+     label5:
+        $r25 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r26 = $r25.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button randombn>;
+        virtualinvoke $r26.<android.widget.Button: void setBackgroundResource(int)>(2130837540);
+        return;
+
+     label6:
+        $r27 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r28 = $r27.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button repeatbn>;
+        virtualinvoke $r28.<android.widget.Button: void setBackgroundResource(int)>(2130837541);
+        goto label3;
+
+     label7:
+        $r29 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r30 = $r29.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button repeatbn>;
+        virtualinvoke $r30.<android.widget.Button: void setBackgroundResource(int)>(2130837543);
+        goto label3;
+
+     label8:
+        $r31 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r32 = $r31.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button repeatbn>;
+        virtualinvoke $r32.<android.widget.Button: void setBackgroundResource(int)>(2130837542);
+        goto label3;
+
+     label9:
+        $r33 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r34 = $r33.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button randombn>;
+        virtualinvoke $r34.<android.widget.Button: void setBackgroundResource(int)>(2130837539);
+        return;
+
+     label10:
+        $r35 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r36 = $r35.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button playpausebn>;
+        virtualinvoke $r36.<android.widget.Button: void setBackgroundResource(int)>(2130837532);
+        return;
+
+     label11:
+        $r37 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        virtualinvoke $r37.<com.ophone.MiniPlayer.MyPlayer: void showDialog(int)>(4);
+        return;
+
+     label12:
+        $r38 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayer: void access$3(com.ophone.MiniPlayer.MyPlayer)>($r38);
+        $r39 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i7 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("flagrepeat", -1);
+        $r39.<com.ophone.MiniPlayer.MyPlayer: int flagrepeatr> = $i7;
+        $r40 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i8 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("flagrandom", -1);
+        $r40.<com.ophone.MiniPlayer.MyPlayer: int flagrandomr> = $i8;
+        $r41 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayer: void access$4(com.ophone.MiniPlayer.MyPlayer)>($r41);
+        $r42 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i9 = $r42.<com.ophone.MiniPlayer.MyPlayer: int flagrepeatr>;
+        tableswitch($i9)
+        {
+            case 0: goto label16;
+            case 1: goto label17;
+            case 2: goto label18;
+            default: goto label13;
+        };
+
+     label13:
+        $r43 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $i10 = $r43.<com.ophone.MiniPlayer.MyPlayer: int flagrandomr>;
+        tableswitch($i10)
+        {
+            case 10: goto label15;
+            case 11: goto label19;
+            default: goto label14;
+        };
+
+     label14:
+        return;
+
+     label15:
+        $r44 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r45 = $r44.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button randombn>;
+        virtualinvoke $r45.<android.widget.Button: void setBackgroundResource(int)>(2130837540);
+        return;
+
+     label16:
+        $r46 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r47 = $r46.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button repeatbn>;
+        virtualinvoke $r47.<android.widget.Button: void setBackgroundResource(int)>(2130837541);
+        goto label13;
+
+     label17:
+        $r48 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r49 = $r48.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button repeatbn>;
+        virtualinvoke $r49.<android.widget.Button: void setBackgroundResource(int)>(2130837543);
+        goto label13;
+
+     label18:
+        $r50 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r51 = $r50.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button repeatbn>;
+        virtualinvoke $r51.<android.widget.Button: void setBackgroundResource(int)>(2130837542);
+        goto label13;
+
+     label19:
+        $r52 = r0.<com.ophone.MiniPlayer.MyPlayer$UpdateReceiver: com.ophone.MiniPlayer.MyPlayer this$0>;
+        $r53 = $r52.<com.ophone.MiniPlayer.MyPlayer: android.widget.Button randombn>;
+        virtualinvoke $r53.<android.widget.Button: void setBackgroundResource(int)>(2130837539);
+        return;
+    }
+}

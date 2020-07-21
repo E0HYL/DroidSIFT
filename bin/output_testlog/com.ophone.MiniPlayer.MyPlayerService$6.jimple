@@ -1,0 +1,59 @@
+class com.ophone.MiniPlayer.MyPlayerService$6 extends java.lang.Object implements java.lang.Runnable
+{
+    final com.ophone.MiniPlayer.MyPlayerService this$0;
+    private final java.lang.String val$strPath;
+    private final java.lang.String val$strURLlrc;
+
+    void <init>(com.ophone.MiniPlayer.MyPlayerService, java.lang.String, java.lang.String)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$6 r0;
+        com.ophone.MiniPlayer.MyPlayerService r1;
+        java.lang.String r2, r3;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$6;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayerService;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: java.lang.String;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$6: com.ophone.MiniPlayer.MyPlayerService this$0> = r1;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$6: java.lang.String val$strPath> = r2;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$6: java.lang.String val$strURLlrc> = r3;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.MyPlayerService$6 r0;
+        android.os.Message r1;
+        com.ophone.MiniPlayer.MyPlayerService $r2, $r5, $r7;
+        java.lang.String $r3, $r4, $r11;
+        android.os.Handler $r6, $r8;
+        java.lang.Exception $r9, r10;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$6;
+
+     label0:
+        $r2 = r0.<com.ophone.MiniPlayer.MyPlayerService$6: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r3 = r0.<com.ophone.MiniPlayer.MyPlayerService$6: java.lang.String val$strPath>;
+        $r4 = r0.<com.ophone.MiniPlayer.MyPlayerService$6: java.lang.String val$strURLlrc>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$29(com.ophone.MiniPlayer.MyPlayerService,java.lang.String,java.lang.String)>($r2, $r3, $r4);
+        $r5 = r0.<com.ophone.MiniPlayer.MyPlayerService$6: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r6 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: android.os.Handler access$30(com.ophone.MiniPlayer.MyPlayerService)>($r5);
+        r1 = virtualinvoke $r6.<android.os.Handler: android.os.Message obtainMessage(int)>(0);
+        $r7 = r0.<com.ophone.MiniPlayer.MyPlayerService$6: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r8 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: android.os.Handler access$30(com.ophone.MiniPlayer.MyPlayerService)>($r7);
+        virtualinvoke $r8.<android.os.Handler: boolean sendMessage(android.os.Message)>(r1);
+
+     label1:
+        return;
+
+     label2:
+        $r9 := @caughtexception;
+        r10 = $r9;
+        $r11 = virtualinvoke r10.<java.lang.Exception: java.lang.String getMessage()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>("MyPlayer", $r11, r10);
+        return;
+
+        catch java.lang.Exception from label0 to label1 with label2;
+    }
+}

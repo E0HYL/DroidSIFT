@@ -1,0 +1,38 @@
+class com.ophone.MiniPlayer.PlayingListActivity$14 extends java.lang.Object implements android.content.DialogInterface$OnClickListener
+{
+    final com.ophone.MiniPlayer.PlayingListActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$14 r0;
+        com.ophone.MiniPlayer.PlayingListActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$14;
+        r1 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$14: com.ophone.MiniPlayer.PlayingListActivity this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onClick(android.content.DialogInterface, int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$14 r0;
+        android.content.DialogInterface r1;
+        int i0, $i1;
+        com.ophone.MiniPlayer.PlayingListActivity $r2, $r3, $r5;
+        java.lang.String[] $r4;
+        java.lang.String $r6;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$14;
+        r1 := @parameter0: android.content.DialogInterface;
+        i0 := @parameter1: int;
+        $r2 = r0.<com.ophone.MiniPlayer.PlayingListActivity$14: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity$14: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r4 = $r3.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st>;
+        $r5 = r0.<com.ophone.MiniPlayer.PlayingListActivity$14: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $i1 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: int access$14(com.ophone.MiniPlayer.PlayingListActivity)>($r5);
+        $r6 = $r4[$i1];
+        staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: void access$15(com.ophone.MiniPlayer.PlayingListActivity,java.lang.String)>($r2, $r6);
+        return;
+    }
+}

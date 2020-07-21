@@ -1,0 +1,42 @@
+public class com.ophone.MiniPlayer.provider.Song$Source extends java.lang.Object implements java.io.Serializable
+{
+    private java.util.ArrayList links;
+    final com.ophone.MiniPlayer.provider.Song this$0;
+
+    public void <init>(com.ophone.MiniPlayer.provider.Song)
+    {
+        com.ophone.MiniPlayer.provider.Song$Source r0;
+        com.ophone.MiniPlayer.provider.Song r1;
+        java.util.ArrayList $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song$Source;
+        r1 := @parameter0: com.ophone.MiniPlayer.provider.Song;
+        r0.<com.ophone.MiniPlayer.provider.Song$Source: com.ophone.MiniPlayer.provider.Song this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r2 = new java.util.ArrayList;
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.provider.Song$Source: java.util.ArrayList links> = $r2;
+        return;
+    }
+
+    public java.util.ArrayList getLinks()
+    {
+        com.ophone.MiniPlayer.provider.Song$Source r0;
+        java.util.ArrayList $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song$Source;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song$Source: java.util.ArrayList links>;
+        return $r1;
+    }
+
+    public void setLinks(java.util.ArrayList)
+    {
+        com.ophone.MiniPlayer.provider.Song$Source r0;
+        java.util.ArrayList r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song$Source;
+        r1 := @parameter0: java.util.ArrayList;
+        r0.<com.ophone.MiniPlayer.provider.Song$Source: java.util.ArrayList links> = r1;
+        return;
+    }
+}

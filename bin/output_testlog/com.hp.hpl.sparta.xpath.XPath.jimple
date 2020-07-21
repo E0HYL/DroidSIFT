@@ -1,0 +1,492 @@
+public class com.hp.hpl.sparta.xpath.XPath extends java.lang.Object
+{
+    private static final int ASSERTION;
+    private static java.util.Hashtable cache_;
+    private boolean absolute_;
+    private java.util.Stack steps_;
+    private java.lang.String string_;
+
+    static void <clinit>()
+    {
+        java.util.Hashtable $r0;
+
+        $r0 = new java.util.Hashtable;
+        specialinvoke $r0.<java.util.Hashtable: void <init>()>();
+        <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_> = $r0;
+        return;
+    }
+
+    private void <init>(java.lang.String) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.lang.String r1;
+        java.io.InputStreamReader $r2;
+        java.io.ByteArrayInputStream $r3;
+        byte[] $r4;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        r1 := @parameter0: java.lang.String;
+        $r2 = new java.io.InputStreamReader;
+        $r3 = new java.io.ByteArrayInputStream;
+        $r4 = virtualinvoke r1.<java.lang.String: byte[] getBytes()>();
+        specialinvoke $r3.<java.io.ByteArrayInputStream: void <init>(byte[])>($r4);
+        specialinvoke $r2.<java.io.InputStreamReader: void <init>(java.io.InputStream)>($r3);
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.XPath: void <init>(java.lang.String,java.io.Reader)>(r1, $r2);
+        return;
+    }
+
+    private void <init>(java.lang.String, java.io.Reader) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.lang.String r1;
+        java.io.Reader r2;
+        java.util.Stack $r3, $r5, $r12;
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r4;
+        int $i0, $i1, $i3, $i4, $i5;
+        boolean z0, z1;
+        com.hp.hpl.sparta.xpath.Step $r6, $r13;
+        com.hp.hpl.sparta.xpath.XPathException $r8, $r11;
+        java.io.IOException $r9, r10;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.io.Reader;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r3 = new java.util.Stack;
+        specialinvoke $r3.<java.util.Stack: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_> = $r3;
+
+     label0:
+        r0.<com.hp.hpl.sparta.xpath.XPath: java.lang.String string_> = r1;
+        r4 = new com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        specialinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void <init>(java.io.Reader)>(r2);
+        virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void ordinaryChar(char)>(47);
+        virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void ordinaryChar(char)>(46);
+        virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void wordChars(char,char)>(58, 58);
+        virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void wordChars(char,char)>(95, 95);
+        $i0 = virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i0 != 47 goto label6;
+
+        r0.<com.hp.hpl.sparta.xpath.XPath: boolean absolute_> = 1;
+        $i1 = virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i1 != 47 goto label5;
+
+        virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+
+     label1:
+        z0 = 1;
+
+     label2:
+        $r5 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r6 = new com.hp.hpl.sparta.xpath.Step;
+        specialinvoke $r6.<com.hp.hpl.sparta.xpath.Step: void <init>(com.hp.hpl.sparta.xpath.XPath,boolean,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)>(r0, z0, r4);
+        virtualinvoke $r5.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r6);
+
+     label3:
+        $i3 = r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i3 == 47 goto label8;
+
+        $i4 = r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i4 == -1 goto label13;
+
+        $r8 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r8.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer,java.lang.String)>(r0, "at end of XPATH expression", r4, "end of expression");
+        throw $r8;
+
+     label4:
+        $r9 := @caughtexception;
+        r10 = $r9;
+        $r11 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r11.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.Exception)>(r0, r10);
+        throw $r11;
+
+     label5:
+        z0 = 0;
+        goto label2;
+
+     label6:
+        r0.<com.hp.hpl.sparta.xpath.XPath: boolean absolute_> = 0;
+
+     label7:
+        z0 = 0;
+        goto label2;
+
+     label8:
+        $i5 = virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i5 != 47 goto label12;
+
+        virtualinvoke r4.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+
+     label9:
+        z1 = 1;
+
+     label10:
+        $r12 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r13 = new com.hp.hpl.sparta.xpath.Step;
+        specialinvoke $r13.<com.hp.hpl.sparta.xpath.Step: void <init>(com.hp.hpl.sparta.xpath.XPath,boolean,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)>(r0, z1, r4);
+        virtualinvoke $r12.<java.util.Stack: java.lang.Object push(java.lang.Object)>($r13);
+
+     label11:
+        goto label3;
+
+     label12:
+        z1 = 0;
+        goto label10;
+
+     label13:
+        return;
+
+        catch java.io.IOException from label0 to label1 with label4;
+        catch java.io.IOException from label2 to label3 with label4;
+        catch java.io.IOException from label3 to label4 with label4;
+        catch java.io.IOException from label6 to label7 with label4;
+        catch java.io.IOException from label8 to label9 with label4;
+        catch java.io.IOException from label10 to label11 with label4;
+    }
+
+    private void <init>(boolean, com.hp.hpl.sparta.xpath.Step[])
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        boolean z0;
+        com.hp.hpl.sparta.xpath.Step[] r1;
+        java.util.Stack $r2, $r3;
+        int i0, $i1;
+        com.hp.hpl.sparta.xpath.Step $r4;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        z0 := @parameter0: boolean;
+        r1 := @parameter1: com.hp.hpl.sparta.xpath.Step[];
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r2 = new java.util.Stack;
+        specialinvoke $r2.<java.util.Stack: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_> = $r2;
+        i0 = 0;
+
+     label0:
+        $i1 = lengthof r1;
+        if i0 < $i1 goto label1;
+
+        r0.<com.hp.hpl.sparta.xpath.XPath: boolean absolute_> = z0;
+        r0.<com.hp.hpl.sparta.xpath.XPath: java.lang.String string_> = null;
+        return;
+
+     label1:
+        $r3 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r4 = r1[i0];
+        virtualinvoke $r3.<java.util.Vector: void addElement(java.lang.Object)>($r4);
+        i0 = i0 + 1;
+        goto label0;
+    }
+
+    private java.lang.String generateString()
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.lang.StringBuffer r1;
+        java.util.Enumeration r2;
+        boolean z0, $z1, $z2, $z3;
+        com.hp.hpl.sparta.xpath.Step r3;
+        java.util.Stack $r4;
+        java.lang.String $r5, $r9;
+        java.lang.Object $r6;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        r1 = new java.lang.StringBuffer;
+        specialinvoke r1.<java.lang.StringBuffer: void <init>()>();
+        $r4 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        r2 = virtualinvoke $r4.<java.util.Vector: java.util.Enumeration elements()>();
+        z0 = 1;
+
+     label0:
+        $z1 = interfaceinvoke r2.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z1 != 0 goto label1;
+
+        $r5 = virtualinvoke r1.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r5;
+
+     label1:
+        $r6 = interfaceinvoke r2.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r3 = (com.hp.hpl.sparta.xpath.Step) $r6;
+        if z0 == 0 goto label2;
+
+        $z2 = r0.<com.hp.hpl.sparta.xpath.XPath: boolean absolute_>;
+        if $z2 == 0 goto label3;
+
+     label2:
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(47);
+        $z3 = virtualinvoke r3.<com.hp.hpl.sparta.xpath.Step: boolean isMultiLevel()>();
+        if $z3 == 0 goto label3;
+
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(47);
+
+     label3:
+        $r9 = virtualinvoke r3.<com.hp.hpl.sparta.xpath.Step: java.lang.String toString()>();
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r9);
+        z0 = 0;
+        goto label0;
+    }
+
+    public static com.hp.hpl.sparta.xpath.XPath get(java.lang.String) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        java.lang.String r0;
+        java.util.Hashtable r1, $r4, $r6;
+        com.hp.hpl.sparta.xpath.XPath r2, r3;
+        java.lang.Object $r5;
+        java.lang.Throwable $r8, r9;
+
+        r0 := @parameter0: java.lang.String;
+        r1 = <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_>;
+        entermonitor r1;
+
+     label0:
+        $r4 = <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_>;
+        $r5 = virtualinvoke $r4.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r0);
+        r2 = (com.hp.hpl.sparta.xpath.XPath) $r5;
+
+     label1:
+        if r2 != null goto label3;
+
+     label2:
+        r3 = new com.hp.hpl.sparta.xpath.XPath;
+        specialinvoke r3.<com.hp.hpl.sparta.xpath.XPath: void <init>(java.lang.String)>(r0);
+        r2 = r3;
+        $r6 = <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_>;
+        virtualinvoke $r6.<java.util.Hashtable: java.lang.Object put(java.lang.Object,java.lang.Object)>(r0, r3);
+
+     label3:
+        exitmonitor r1;
+
+     label4:
+        return r2;
+
+     label5:
+        $r8 := @caughtexception;
+        r9 = $r8;
+
+     label6:
+        exitmonitor r1;
+
+     label7:
+        throw r9;
+
+        catch java.lang.Throwable from label0 to label1 with label5;
+        catch java.lang.Throwable from label2 to label3 with label5;
+        catch java.lang.Throwable from label3 to label4 with label5;
+        catch java.lang.Throwable from label6 to label7 with label5;
+    }
+
+    public static com.hp.hpl.sparta.xpath.XPath get(boolean, com.hp.hpl.sparta.xpath.Step[])
+    {
+        boolean z0;
+        com.hp.hpl.sparta.xpath.Step[] r0;
+        com.hp.hpl.sparta.xpath.XPath r1, r2;
+        java.lang.String r3;
+        java.util.Hashtable r4, $r5, $r7;
+        java.lang.Object $r6;
+        java.lang.Throwable $r9, r10;
+
+        z0 := @parameter0: boolean;
+        r0 := @parameter1: com.hp.hpl.sparta.xpath.Step[];
+        r1 = new com.hp.hpl.sparta.xpath.XPath;
+        specialinvoke r1.<com.hp.hpl.sparta.xpath.XPath: void <init>(boolean,com.hp.hpl.sparta.xpath.Step[])>(z0, r0);
+        r3 = virtualinvoke r1.<com.hp.hpl.sparta.xpath.XPath: java.lang.String toString()>();
+        r4 = <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_>;
+        entermonitor r4;
+
+     label0:
+        $r5 = <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_>;
+        $r6 = virtualinvoke $r5.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r3);
+        r2 = (com.hp.hpl.sparta.xpath.XPath) $r6;
+
+     label1:
+        if r2 != null goto label4;
+
+     label2:
+        $r7 = <com.hp.hpl.sparta.xpath.XPath: java.util.Hashtable cache_>;
+        virtualinvoke $r7.<java.util.Hashtable: java.lang.Object put(java.lang.Object,java.lang.Object)>(r3, r1);
+        exitmonitor r4;
+
+     label3:
+        return r1;
+
+     label4:
+        exitmonitor r4;
+
+     label5:
+        return r2;
+
+     label6:
+        $r9 := @caughtexception;
+        r10 = $r9;
+
+     label7:
+        exitmonitor r4;
+
+     label8:
+        throw r10;
+
+        catch java.lang.Throwable from label0 to label1 with label6;
+        catch java.lang.Throwable from label2 to label3 with label6;
+        catch java.lang.Throwable from label4 to label5 with label6;
+        catch java.lang.Throwable from label7 to label8 with label6;
+    }
+
+    public static boolean isStringValue(java.lang.String) throws com.hp.hpl.sparta.xpath.XPathException, java.io.IOException
+    {
+        java.lang.String r0;
+        com.hp.hpl.sparta.xpath.XPath $r1;
+        boolean $z0;
+
+        r0 := @parameter0: java.lang.String;
+        $r1 = staticinvoke <com.hp.hpl.sparta.xpath.XPath: com.hp.hpl.sparta.xpath.XPath get(java.lang.String)>(r0);
+        $z0 = virtualinvoke $r1.<com.hp.hpl.sparta.xpath.XPath: boolean isStringValue()>();
+        return $z0;
+    }
+
+    public java.lang.Object clone()
+    {
+        com.hp.hpl.sparta.xpath.XPath r0, $r5;
+        com.hp.hpl.sparta.xpath.Step[] r1;
+        java.util.Enumeration r2;
+        int i0, $i1, $i2;
+        java.util.Stack $r3, $r4;
+        boolean $z0;
+        java.lang.Object $r6;
+        com.hp.hpl.sparta.xpath.Step $r7;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $r3 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $i1 = virtualinvoke $r3.<java.util.Vector: int size()>();
+        r1 = newarray (com.hp.hpl.sparta.xpath.Step)[$i1];
+        $r4 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        r2 = virtualinvoke $r4.<java.util.Vector: java.util.Enumeration elements()>();
+        i0 = 0;
+
+     label0:
+        $i2 = lengthof r1;
+        if i0 < $i2 goto label1;
+
+        $r5 = new com.hp.hpl.sparta.xpath.XPath;
+        $z0 = r0.<com.hp.hpl.sparta.xpath.XPath: boolean absolute_>;
+        specialinvoke $r5.<com.hp.hpl.sparta.xpath.XPath: void <init>(boolean,com.hp.hpl.sparta.xpath.Step[])>($z0, r1);
+        return $r5;
+
+     label1:
+        $r6 = interfaceinvoke r2.<java.util.Enumeration: java.lang.Object nextElement()>();
+        $r7 = (com.hp.hpl.sparta.xpath.Step) $r6;
+        r1[i0] = $r7;
+        i0 = i0 + 1;
+        goto label0;
+    }
+
+    public java.lang.String getIndexingAttrName() throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        com.hp.hpl.sparta.xpath.BooleanExpr r1;
+        java.util.Stack $r2;
+        java.lang.Object $r3;
+        com.hp.hpl.sparta.xpath.Step $r4;
+        boolean $z0;
+        com.hp.hpl.sparta.xpath.XPathException $r5;
+        com.hp.hpl.sparta.xpath.AttrExistsExpr $r6;
+        java.lang.String $r7;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $r2 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r3 = virtualinvoke $r2.<java.util.Stack: java.lang.Object peek()>();
+        $r4 = (com.hp.hpl.sparta.xpath.Step) $r3;
+        r1 = virtualinvoke $r4.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr getPredicate()>();
+        $z0 = r1 instanceof com.hp.hpl.sparta.xpath.AttrExistsExpr;
+        if $z0 != 0 goto label0;
+
+        $r5 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r5.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String)>(r0, "has no indexing attribute name (must end with predicate of the form [@attrName]");
+        throw $r5;
+
+     label0:
+        $r6 = (com.hp.hpl.sparta.xpath.AttrExistsExpr) r1;
+        $r7 = virtualinvoke $r6.<com.hp.hpl.sparta.xpath.AttrExpr: java.lang.String getAttrName()>();
+        return $r7;
+    }
+
+    public java.lang.String getIndexingAttrNameOfEquals() throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.util.Stack $r1;
+        java.lang.Object $r2;
+        com.hp.hpl.sparta.xpath.Step $r3;
+        com.hp.hpl.sparta.xpath.BooleanExpr r4;
+        boolean $z0;
+        com.hp.hpl.sparta.xpath.AttrEqualsExpr $r5;
+        java.lang.String $r6;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r2 = virtualinvoke $r1.<java.util.Stack: java.lang.Object peek()>();
+        $r3 = (com.hp.hpl.sparta.xpath.Step) $r2;
+        r4 = virtualinvoke $r3.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr getPredicate()>();
+        $z0 = r4 instanceof com.hp.hpl.sparta.xpath.AttrEqualsExpr;
+        if $z0 == 0 goto label0;
+
+        $r5 = (com.hp.hpl.sparta.xpath.AttrEqualsExpr) r4;
+        $r6 = virtualinvoke $r5.<com.hp.hpl.sparta.xpath.AttrExpr: java.lang.String getAttrName()>();
+        return $r6;
+
+     label0:
+        return null;
+    }
+
+    public java.util.Enumeration getSteps()
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.util.Stack $r1;
+        java.util.Enumeration $r2;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r2 = virtualinvoke $r1.<java.util.Vector: java.util.Enumeration elements()>();
+        return $r2;
+    }
+
+    public boolean isAbsolute()
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        boolean $z0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $z0 = r0.<com.hp.hpl.sparta.xpath.XPath: boolean absolute_>;
+        return $z0;
+    }
+
+    public boolean isStringValue()
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.util.Stack $r1;
+        java.lang.Object $r2;
+        com.hp.hpl.sparta.xpath.Step $r3;
+        boolean $z0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.XPath: java.util.Stack steps_>;
+        $r2 = virtualinvoke $r1.<java.util.Stack: java.lang.Object peek()>();
+        $r3 = (com.hp.hpl.sparta.xpath.Step) $r2;
+        $z0 = virtualinvoke $r3.<com.hp.hpl.sparta.xpath.Step: boolean isStringValue()>();
+        return $z0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.XPath r0;
+        java.lang.String $r1, $r2, $r3;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPath;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.XPath: java.lang.String string_>;
+        if $r1 != null goto label0;
+
+        $r2 = specialinvoke r0.<com.hp.hpl.sparta.xpath.XPath: java.lang.String generateString()>();
+        r0.<com.hp.hpl.sparta.xpath.XPath: java.lang.String string_> = $r2;
+
+     label0:
+        $r3 = r0.<com.hp.hpl.sparta.xpath.XPath: java.lang.String string_>;
+        return $r3;
+    }
+}

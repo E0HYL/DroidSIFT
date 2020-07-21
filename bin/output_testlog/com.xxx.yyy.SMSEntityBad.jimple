@@ -1,0 +1,118 @@
+public class com.xxx.yyy.SMSEntityBad extends java.lang.Object
+{
+    static final java.lang.String[] ALL_COLUMNS;
+    static final java.lang.String FLAG;
+    static final java.lang.String ID;
+    static final java.lang.String KEYWORD;
+    static final java.lang.String TYPE;
+    private int flag;
+    private long id;
+    private java.lang.String keyword;
+    private int type;
+
+    static void <clinit>()
+    {
+        java.lang.String[] r0;
+
+        r0 = newarray (java.lang.String)[4];
+        r0[0] = "id";
+        r0[1] = "keyword";
+        r0[2] = "type";
+        r0[3] = "flag";
+        <com.xxx.yyy.SMSEntityBad: java.lang.String[] ALL_COLUMNS> = r0;
+        return;
+    }
+
+    public void <init>()
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public int getFlag()
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        $i0 = r0.<com.xxx.yyy.SMSEntityBad: int flag>;
+        return $i0;
+    }
+
+    public long getId()
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        long $l0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        $l0 = r0.<com.xxx.yyy.SMSEntityBad: long id>;
+        return $l0;
+    }
+
+    public java.lang.String getKeyWord()
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        $r1 = r0.<com.xxx.yyy.SMSEntityBad: java.lang.String keyword>;
+        return $r1;
+    }
+
+    public int getType()
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        $i0 = r0.<com.xxx.yyy.SMSEntityBad: int type>;
+        return $i0;
+    }
+
+    public void setFlag(int)
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        int i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        i0 := @parameter0: int;
+        r0.<com.xxx.yyy.SMSEntityBad: int flag> = i0;
+        return;
+    }
+
+    public void setId(long)
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        long l0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        l0 := @parameter0: long;
+        r0.<com.xxx.yyy.SMSEntityBad: long id> = l0;
+        return;
+    }
+
+    public void setKeyWord(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntityBad: java.lang.String keyword> = r1;
+        return;
+    }
+
+    public void setType(int)
+    {
+        com.xxx.yyy.SMSEntityBad r0;
+        int i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntityBad;
+        i0 := @parameter0: int;
+        r0.<com.xxx.yyy.SMSEntityBad: int type> = i0;
+        return;
+    }
+}

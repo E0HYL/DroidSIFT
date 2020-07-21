@@ -1,0 +1,15 @@
+public final class com.ophone.MiniPlayer.R$menu extends java.lang.Object
+{
+    public static final int context_menu;
+    public static final int context_menu_local;
+    public static final int context_menu_online;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$menu r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$menu;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

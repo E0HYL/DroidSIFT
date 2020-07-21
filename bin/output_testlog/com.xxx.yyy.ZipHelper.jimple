@@ -1,0 +1,922 @@
+public final class com.xxx.yyy.ZipHelper extends java.lang.Object
+{
+    public static final int[] DISTANCE_CODE;
+    public static final int[] LENGTH_CODE;
+
+    static void <clinit>()
+    {
+        int[] r0, r1;
+
+        r0 = newarray (int)[58];
+        r0[1] = 3;
+        r0[3] = 4;
+        r0[5] = 5;
+        r0[7] = 6;
+        r0[9] = 7;
+        r0[11] = 8;
+        r0[13] = 9;
+        r0[15] = 10;
+        r0[16] = 1;
+        r0[17] = 11;
+        r0[18] = 1;
+        r0[19] = 13;
+        r0[20] = 1;
+        r0[21] = 15;
+        r0[22] = 1;
+        r0[23] = 17;
+        r0[24] = 2;
+        r0[25] = 19;
+        r0[26] = 2;
+        r0[27] = 23;
+        r0[28] = 2;
+        r0[29] = 27;
+        r0[30] = 2;
+        r0[31] = 31;
+        r0[32] = 3;
+        r0[33] = 35;
+        r0[34] = 3;
+        r0[35] = 43;
+        r0[36] = 3;
+        r0[37] = 51;
+        r0[38] = 3;
+        r0[39] = 59;
+        r0[40] = 4;
+        r0[41] = 67;
+        r0[42] = 4;
+        r0[43] = 83;
+        r0[44] = 4;
+        r0[45] = 99;
+        r0[46] = 4;
+        r0[47] = 115;
+        r0[48] = 5;
+        r0[49] = 131;
+        r0[50] = 5;
+        r0[51] = 163;
+        r0[52] = 5;
+        r0[53] = 195;
+        r0[54] = 5;
+        r0[55] = 227;
+        r0[57] = 258;
+        <com.xxx.yyy.ZipHelper: int[] LENGTH_CODE> = r0;
+        r1 = newarray (int)[60];
+        r1[1] = 1;
+        r1[3] = 2;
+        r1[5] = 3;
+        r1[7] = 4;
+        r1[8] = 1;
+        r1[9] = 5;
+        r1[10] = 1;
+        r1[11] = 7;
+        r1[12] = 2;
+        r1[13] = 9;
+        r1[14] = 2;
+        r1[15] = 13;
+        r1[16] = 3;
+        r1[17] = 17;
+        r1[18] = 3;
+        r1[19] = 25;
+        r1[20] = 4;
+        r1[21] = 33;
+        r1[22] = 4;
+        r1[23] = 49;
+        r1[24] = 5;
+        r1[25] = 65;
+        r1[26] = 5;
+        r1[27] = 97;
+        r1[28] = 6;
+        r1[29] = 129;
+        r1[30] = 6;
+        r1[31] = 193;
+        r1[32] = 7;
+        r1[33] = 257;
+        r1[34] = 7;
+        r1[35] = 385;
+        r1[36] = 8;
+        r1[37] = 513;
+        r1[38] = 8;
+        r1[39] = 769;
+        r1[40] = 9;
+        r1[41] = 1025;
+        r1[42] = 9;
+        r1[43] = 1537;
+        r1[44] = 10;
+        r1[45] = 2049;
+        r1[46] = 10;
+        r1[47] = 3073;
+        r1[48] = 11;
+        r1[49] = 4097;
+        r1[50] = 11;
+        r1[51] = 6145;
+        r1[52] = 12;
+        r1[53] = 8193;
+        r1[54] = 12;
+        r1[55] = 12289;
+        r1[56] = 13;
+        r1[57] = 16385;
+        r1[58] = 13;
+        r1[59] = 24577;
+        <com.xxx.yyy.ZipHelper: int[] DISTANCE_CODE> = r1;
+        return;
+    }
+
+    public void <init>()
+    {
+        com.xxx.yyy.ZipHelper r0;
+
+        r0 := @this: com.xxx.yyy.ZipHelper;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static final void convertTable2Tree(int[], byte[], int[], short[])
+    {
+        int[] r0, r2;
+        byte[] r1;
+        short[] r3;
+        int i0, $i4, $i6, $i9, $i10, $i11, $i12, $i14, $i15, $i17, $i18, $i19, $i20, $i22, $i23, $i24, $i25, $i26, $i27, $i28;
+        short s1, s2, s3, s5, $s13, $s16, $s21;
+        byte $b7, $b8;
+        java.io.PrintStream $r4;
+
+        r0 := @parameter0: int[];
+        r1 := @parameter1: byte[];
+        r2 := @parameter2: int[];
+        r3 := @parameter3: short[];
+        i0 = 0;
+
+     label0:
+        $i4 = lengthof r3;
+        if i0 < $i4 goto label2;
+
+        s5 = 1;
+        s1 = 0;
+
+     label1:
+        $i6 = lengthof r0;
+        if s1 < $i6 goto label3;
+
+        return;
+
+     label2:
+        r3[i0] = 0;
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        $b7 = r1[s1];
+        if $b7 == 0 goto label6;
+
+        s2 = 0;
+        s3 = 0;
+
+     label4:
+        $b8 = r1[s1];
+        if s3 < $b8 goto label7;
+
+        if s2 >= 0 goto label5;
+
+        $r4 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r4.<java.io.PrintStream: void println(java.lang.String)>("error pointer=-1");
+
+     label5:
+        $i9 = s2 * 2;
+        r3[$i9] = -1;
+        $i10 = s2 * 2;
+        $i11 = 1 + $i10;
+        $i12 = r2[s1];
+        $s13 = (short) $i12;
+        r3[$i11] = $s13;
+
+     label6:
+        $i14 = s1 + 1;
+        s1 = (short) $i14;
+        goto label1;
+
+     label7:
+        $i15 = s2 * 2;
+        $s16 = r3[$i15];
+        if $s16 != 0 goto label8;
+
+        $i17 = s2 * 2;
+        r3[$i17] = s5;
+        $i18 = s2 * 2;
+        $i19 = 1 + $i18;
+        $i20 = s5 + 1;
+        $s21 = (short) $i20;
+        $i22 = $s21 + 1;
+        s5 = (short) $i22;
+        r3[$i19] = $s21;
+
+     label8:
+        $i23 = s2 * 2;
+        $i24 = r0[s1];
+        $i25 = $i24 >>> s3;
+        $i26 = 1 & $i25;
+        $i27 = $i23 + $i26;
+        s2 = r3[$i27];
+        $i28 = s3 + 1;
+        s3 = (short) $i28;
+        goto label4;
+    }
+
+    public static final int crc32(int[], int, byte[], int, int)
+    {
+        int[] r0;
+        int i0, i1, i2, i3, $i4, i5, $i6, $i7, $i9, $i10, $i11, $i12;
+        byte[] r1;
+        byte $b8;
+
+        r0 := @parameter0: int[];
+        i0 := @parameter1: int;
+        r1 := @parameter2: byte[];
+        i1 := @parameter3: int;
+        i2 := @parameter4: int;
+        $i4 = r0[2];
+        if $i4 != 0 goto label0;
+
+        staticinvoke <com.xxx.yyy.ZipHelper: void initCrc32Table(int[])>(r0);
+
+     label0:
+        i5 = i0 ^ -1;
+        i3 = 0;
+
+     label1:
+        if i3 < i2 goto label2;
+
+        $i6 = i5 ^ -1;
+        return $i6;
+
+     label2:
+        $i7 = i3 + i1;
+        $b8 = r1[$i7];
+        $i9 = i5 ^ $b8;
+        $i10 = 255 & $i9;
+        $i11 = r0[$i10];
+        $i12 = i5 >>> 8;
+        i5 = $i11 ^ $i12;
+        i3 = i3 + 1;
+        goto label1;
+    }
+
+    public static final int deHuffNext(long[], short[]) throws java.io.IOException
+    {
+        long[] r0;
+        short[] r1;
+        short s0, $s4, $s7;
+        long $l1, $l9, $l10, $l13, $l14, $l15, $l16;
+        byte $b2;
+        java.io.PrintStream $r2;
+        int $i3, $i5, $i6, $i8, $i11, $i12;
+        java.io.IOException $r3;
+
+        r0 := @parameter0: long[];
+        r1 := @parameter1: short[];
+        $l1 = r0[1];
+        $b2 = $l1 cmp 15L;
+        if $b2 >= 0 goto label0;
+
+        $r2 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r2.<java.io.PrintStream: void println(java.lang.String)>("smallCodebuffer is too small");
+
+     label0:
+        s0 = 0;
+
+     label1:
+        $i3 = s0 * 2;
+        $s4 = r1[$i3];
+        if $s4 != -1 goto label2;
+
+        $i5 = s0 * 2;
+        $i6 = 1 + $i5;
+        $s7 = r1[$i6];
+        return $s7;
+
+     label2:
+        $i8 = s0 * 2;
+        $l9 = r0[0];
+        $l10 = 1L & $l9;
+        $i11 = (int) $l10;
+        $i12 = $i8 + $i11;
+        s0 = r1[$i12];
+        $l13 = r0[0];
+        $l14 = $l13 >>> 1;
+        r0[0] = $l14;
+        $l15 = r0[1];
+        $l16 = $l15 - 1L;
+        r0[1] = $l16;
+        if s0 != 0 goto label1;
+
+        $r3 = new java.io.IOException;
+        specialinvoke $r3.<java.io.IOException: void <init>(java.lang.String)>("5");
+        throw $r3;
+    }
+
+    public static final int encodeCode(int[], int)
+    {
+        int[] r0;
+        int i0, i1, $i2, $i3, $i4, $i5, $i6, $i7;
+
+        r0 := @parameter0: int[];
+        i0 := @parameter1: int;
+        i1 = 0;
+
+     label0:
+        $i2 = lengthof r0;
+        $i3 = $i2 >> 1;
+        if i1 >= $i3 goto label1;
+
+        $i4 = i1 << 1;
+        $i5 = 1 + $i4;
+        $i6 = r0[$i5];
+        if i0 >= $i6 goto label2;
+
+     label1:
+        $i7 = i1 - 1;
+        return $i7;
+
+     label2:
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    public static final void genFixedTree(int[], byte[], int[], byte[])
+    {
+        int[] r0, r2;
+        byte[] r1, r3;
+        int i0, i1, i2, i3, i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11;
+
+        r0 := @parameter0: int[];
+        r1 := @parameter1: byte[];
+        r2 := @parameter2: int[];
+        r3 := @parameter3: byte[];
+        i0 = 0;
+
+     label0:
+        if i0 <= 143 goto label5;
+
+        i1 = 144;
+
+     label1:
+        if i1 <= 255 goto label6;
+
+        i2 = 256;
+
+     label2:
+        if i2 <= 279 goto label7;
+
+        i3 = 280;
+
+     label3:
+        if i3 < 286 goto label8;
+
+        staticinvoke <com.xxx.yyy.ZipHelper: void revHuffTree(int[],byte[])>(r0, r1);
+        i4 = 0;
+
+     label4:
+        $i5 = lengthof r2;
+        if i4 < $i5 goto label9;
+
+        staticinvoke <com.xxx.yyy.ZipHelper: void revHuffTree(int[],byte[])>(r2, r3);
+        return;
+
+     label5:
+        $i6 = i0 + 48;
+        r0[i0] = $i6;
+        r1[i0] = 8;
+        i0 = i0 + 1;
+        goto label0;
+
+     label6:
+        $i7 = i1 + 400;
+        $i8 = $i7 - 144;
+        r0[i1] = $i8;
+        r1[i1] = 9;
+        i1 = i1 + 1;
+        goto label1;
+
+     label7:
+        $i9 = i2 - 256;
+        r0[i2] = $i9;
+        r1[i2] = 7;
+        i2 = i2 + 1;
+        goto label2;
+
+     label8:
+        $i10 = i3 + 192;
+        $i11 = $i10 - 280;
+        r0[i3] = $i11;
+        r1[i3] = 8;
+        i3 = i3 + 1;
+        goto label3;
+
+     label9:
+        r2[i4] = i4;
+        r3[i4] = 5;
+        i4 = i4 + 1;
+        goto label4;
+    }
+
+    public static final void genHuffTree(int[], byte[])
+    {
+        int[] r0, r2;
+        byte[] r1;
+        byte b0, b10, b11, b18;
+        int i1, i2, i3, $i4, i5, $i6, i7, i8, $i9, $i13, $i15, $i17, $i19, $i20, $i21;
+        short[] r3;
+        short $s12, s14, $s16;
+
+        r0 := @parameter0: int[];
+        r1 := @parameter1: byte[];
+        b0 = 0;
+        i1 = 0;
+
+     label0:
+        $i4 = lengthof r1;
+        if i1 < $i4 goto label4;
+
+        i5 = b0 + 1;
+        r3 = newarray (short)[i5];
+        i2 = 0;
+
+     label1:
+        $i6 = lengthof r1;
+        if i2 < $i6 goto label7;
+
+        i7 = 0;
+        r2 = newarray (int)[i5];
+        r3[0] = 0;
+        i3 = 1;
+
+     label2:
+        if i3 < i5 goto label8;
+
+        i8 = 0;
+
+     label3:
+        $i9 = lengthof r0;
+        if i8 < $i9 goto label9;
+
+        return;
+
+     label4:
+        b10 = r1[i1];
+        if b0 <= b10 goto label6;
+
+     label5:
+        i1 = i1 + 1;
+        goto label0;
+
+     label6:
+        b0 = b10;
+        goto label5;
+
+     label7:
+        b11 = r1[i2];
+        $s12 = r3[b11];
+        $i13 = 1 + $s12;
+        s14 = (short) $i13;
+        r3[b11] = s14;
+        i2 = i2 + 1;
+        goto label1;
+
+     label8:
+        $i15 = i3 - 1;
+        $s16 = r3[$i15];
+        $i17 = i7 + $s16;
+        i7 = $i17 << 1;
+        r2[i3] = i7;
+        i3 = i3 + 1;
+        goto label2;
+
+     label9:
+        b18 = r1[i8];
+        if b18 == 0 goto label10;
+
+        $i19 = r2[b18];
+        r0[i8] = $i19;
+        $i20 = r2[b18];
+        $i21 = 1 + $i20;
+        r2[b18] = $i21;
+
+     label10:
+        i8 = i8 + 1;
+        goto label3;
+    }
+
+    public static final void genTreeLength(int[], byte[], int)
+    {
+        int[] r0, r2, r3;
+        byte[] r1;
+        int i0, i2, i3, i4, $i5, $i6, $i7, $i8, $i9, i10, $i11, $i12, i13, i14, $i15, i17, $i18, i19, i20, $i21, i22, $i23, $i24, $i25, $i26, $i27, $i28, $i29, $i30, $i31, $i32, i33, i34, $i35, $i36, $i37, $i39, $i41, $i42, $i44, i48, $i49, i53, i54, i55, $i56, $i59, $i61, $i65, i67;
+        short s1, s16, s57, s58, $s72, $s75;
+        short[] r4;
+        byte $b38, $b40, $b43, $b45, $b46, $b47, $b50, $b51, $b52, $b60, $b62, $b63, $b64, $b66, $b68, $b69, $b70, $b71, $b73, $b74, $b76, $b77;
+
+        r0 := @parameter0: int[];
+        r1 := @parameter1: byte[];
+        i0 := @parameter2: int;
+        $i5 = lengthof r0;
+        r2 = newarray (int)[$i5];
+        $i6 = lengthof r0;
+        r3 = newarray (int)[$i6];
+        s1 = 0;
+
+     label0:
+        $i7 = lengthof r0;
+        if s1 < $i7 goto label8;
+
+     label1:
+        $i8 = r2[0];
+        $i9 = r2[1];
+        if $i8 >= $i9 goto label11;
+
+        i10 = 1;
+        i2 = 0;
+
+     label2:
+        i3 = 2;
+
+     label3:
+        $i11 = lengthof r0;
+        if i3 < $i11 goto label12;
+
+        $i12 = r2[i10];
+        if $i12 != 2147483647 goto label15;
+
+        i13 = 0;
+        i14 = 0;
+
+     label4:
+        $i15 = lengthof r1;
+        if i14 < $i15 goto label20;
+
+        if i13 == 0 goto label37;
+
+        r4 = newarray (short)[i13];
+        s16 = 0;
+        i17 = 0;
+
+     label5:
+        $i18 = lengthof r1;
+        if s16 < $i18 goto label22;
+
+        i19 = 0;
+        i20 = 0;
+
+     label6:
+        $i21 = lengthof r1;
+        if i19 < $i21 goto label24;
+
+        i22 = i17;
+
+     label7:
+        if i22 != 0 goto label26;
+
+        return;
+
+     label8:
+        $i23 = r0[s1];
+        if $i23 == 0 goto label10;
+
+        $i24 = r0[s1];
+        r2[s1] = $i24;
+
+     label9:
+        r3[s1] = s1;
+        $i25 = s1 + 1;
+        s1 = (short) $i25;
+        goto label0;
+
+     label10:
+        r2[s1] = 2147483647;
+        goto label9;
+
+     label11:
+        i2 = 1;
+        i10 = 0;
+        goto label2;
+
+     label12:
+        $i26 = r2[i3];
+        $i27 = r2[i2];
+        if $i26 >= $i27 goto label14;
+
+        i10 = i2;
+        i2 = i3;
+
+     label13:
+        i3 = i3 + 1;
+        goto label3;
+
+     label14:
+        $i28 = r2[i3];
+        $i29 = r2[i10];
+        if $i28 >= $i29 goto label13;
+
+        i10 = i3;
+        goto label13;
+
+     label15:
+        $i30 = r2[i2];
+        $i31 = r2[i10];
+        $i32 = $i30 + $i31;
+        r2[i2] = $i32;
+        i33 = r3[i10];
+        r2[i10] = 2147483647;
+        i34 = 0;
+
+     label16:
+        $i35 = lengthof r0;
+        if i34 < $i35 goto label17;
+
+        goto label1;
+
+     label17:
+        $i36 = r3[i34];
+        if $i36 != i33 goto label19;
+
+        $i37 = r3[i2];
+        r3[i34] = $i37;
+        $b38 = r1[i34];
+        $i39 = 1 + $b38;
+        $b40 = (byte) $i39;
+        r1[i34] = $b40;
+
+     label18:
+        i34 = i34 + 1;
+        goto label16;
+
+     label19:
+        $i41 = r3[i34];
+        $i42 = r3[i2];
+        if $i41 != $i42 goto label18;
+
+        $b43 = r1[i34];
+        $i44 = 1 + $b43;
+        $b45 = (byte) $i44;
+        r1[i34] = $b45;
+        goto label18;
+
+     label20:
+        $b46 = r1[i14];
+        if $b46 <= i0 goto label21;
+
+        i13 = i13 + 1;
+
+     label21:
+        i14 = i14 + 1;
+        goto label4;
+
+     label22:
+        $b47 = r1[s16];
+        if $b47 <= i0 goto label36;
+
+        i48 = i17 + 1;
+        r4[i17] = s16;
+
+     label23:
+        $i49 = s16 + 1;
+        s16 = (short) $i49;
+        i17 = i48;
+        goto label5;
+
+     label24:
+        $b50 = r1[i19];
+        if $b50 == 0 goto label35;
+
+        $b51 = r1[i20];
+        $b52 = r1[i19];
+        if $b51 <= $b52 goto label35;
+
+        i53 = i19;
+
+     label25:
+        i19 = i19 + 1;
+        i20 = i53;
+        goto label6;
+
+     label26:
+        i54 = i20;
+        i55 = 0;
+
+     label27:
+        $i56 = lengthof r1;
+        if i55 < $i56 goto label29;
+
+        s57 = 0;
+        s58 = 0;
+        i4 = 0;
+
+     label28:
+        $i59 = lengthof r4;
+        if i4 < $i59 goto label31;
+
+        $b60 = r1[i54];
+        $i61 = 1 + $b60;
+        $b62 = (byte) $i61;
+        r1[i54] = $b62;
+        $b63 = r1[i54];
+        r1[s57] = $b63;
+        $b64 = r1[s58];
+        $i65 = $b64 - 1;
+        $b66 = (byte) $i65;
+        r1[s58] = $b66;
+        i67 = i22 - 1;
+        $b68 = r1[s58];
+        if $b68 != i0 goto label34;
+
+        i22 = i67 - 1;
+        goto label7;
+
+     label29:
+        $b69 = r1[i55];
+        if $b69 >= i0 goto label30;
+
+        $b70 = r1[i54];
+        $b71 = r1[i55];
+        if $b70 >= $b71 goto label30;
+
+        i54 = i55;
+
+     label30:
+        i55 = i55 + 1;
+        goto label27;
+
+     label31:
+        $s72 = r4[i4];
+        $b73 = r1[$s72];
+        $b74 = r1[s57];
+        if $b73 <= $b74 goto label33;
+
+        s57 = r4[i4];
+
+     label32:
+        i4 = i4 + 1;
+        goto label28;
+
+     label33:
+        $s75 = r4[i4];
+        $b76 = r1[$s75];
+        $b77 = r1[s57];
+        if $b76 != $b77 goto label32;
+
+        s58 = r4[i4];
+        goto label32;
+
+     label34:
+        i22 = i67;
+        goto label7;
+
+     label35:
+        i53 = i20;
+        goto label25;
+
+     label36:
+        i48 = i17;
+        goto label23;
+
+     label37:
+        return;
+    }
+
+    private static final void initCrc32Table(int[])
+    {
+        int[] r0;
+        int i0, i1, i2, $i3, $i4;
+
+        r0 := @parameter0: int[];
+        i0 = 0;
+
+     label0:
+        if i0 < 256 goto label1;
+
+        return;
+
+     label1:
+        i1 = i0;
+        i2 = 0;
+
+     label2:
+        if i2 < 8 goto label3;
+
+        r0[i0] = i1;
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        $i3 = i1 & 1;
+        if $i3 != 1 goto label5;
+
+        $i4 = i1 >>> 1;
+        i1 = -306674912 ^ $i4;
+
+     label4:
+        i2 = i2 + 1;
+        goto label2;
+
+     label5:
+        i1 = i1 >>> 1;
+        goto label4;
+    }
+
+    public static final void revHuffTree(int[], byte[])
+    {
+        int[] r0;
+        byte[] r1;
+        int i0, i1, i2, i3, $i4, $i6, $i7, $i8, $i9;
+        byte $b5;
+
+        r0 := @parameter0: int[];
+        r1 := @parameter1: byte[];
+        i0 = 0;
+
+     label0:
+        $i4 = lengthof r0;
+        if i0 < $i4 goto label1;
+
+        return;
+
+     label1:
+        i1 = r0[i0];
+        i2 = 0;
+        i3 = 0;
+
+     label2:
+        $b5 = r1[i0];
+        if i3 < $b5 goto label3;
+
+        $i6 = i2 >>> 1;
+        r0[i0] = $i6;
+        i0 = i0 + 1;
+        goto label0;
+
+     label3:
+        $i7 = i1 >>> i3;
+        $i8 = 1 & $i7;
+        $i9 = i2 | $i8;
+        i2 = $i9 << 1;
+        i3 = i3 + 1;
+        goto label2;
+    }
+
+    public static final void skipheader(java.io.InputStream) throws java.io.IOException
+    {
+        java.io.InputStream r0;
+        int i0, $i1, $i2, $i3, $i5, $i6, $i7, $i8, $i9, $i12, $i13, $i14, $i15, $i16;
+        java.io.IOException $r1;
+        long $l10;
+
+        r0 := @parameter0: java.io.InputStream;
+        $i1 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        if $i1 != 31 goto label0;
+
+        $i2 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        if $i2 != 139 goto label0;
+
+        $i3 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        if $i3 == 8 goto label1;
+
+     label0:
+        $r1 = new java.io.IOException;
+        specialinvoke $r1.<java.io.IOException: void <init>(java.lang.String)>("0");
+        throw $r1;
+
+     label1:
+        i0 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        virtualinvoke r0.<java.io.InputStream: long skip(long)>(6L);
+        $i5 = i0 & 4;
+        if $i5 != 4 goto label2;
+
+        $i6 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        $i7 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        $i8 = $i7 << 8;
+        $i9 = $i6 | $i8;
+        $l10 = (long) $i9;
+        virtualinvoke r0.<java.io.InputStream: long skip(long)>($l10);
+
+     label2:
+        $i12 = i0 & 8;
+        if $i12 != 8 goto label4;
+
+     label3:
+        $i13 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        if $i13 != 0 goto label3;
+
+     label4:
+        $i14 = i0 & 16;
+        if $i14 != 16 goto label6;
+
+     label5:
+        $i15 = virtualinvoke r0.<java.io.InputStream: int read()>();
+        if $i15 != 0 goto label5;
+
+     label6:
+        $i16 = i0 & 2;
+        if $i16 != 2 goto label7;
+
+        virtualinvoke r0.<java.io.InputStream: long skip(long)>(2L);
+
+     label7:
+        return;
+    }
+}

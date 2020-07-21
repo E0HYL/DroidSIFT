@@ -1,0 +1,75 @@
+public class com.ophone.MiniPlayer.IntentParam extends java.lang.Object
+{
+    public static final int CMDS_FOURPARAM;
+    public static final int CMDS_SIXPARAM;
+    public static final int CMDS_TWOPARAM;
+    public static final int CMD_ADDALLLOCALSONG;
+    public static final int CMD_ADDSELECTEDSONG;
+    public static final int CMD_CANCELNOTIFICATION;
+    public static final int CMD_CLEARSONGLIST;
+    public static final int CMD_CONTINUE;
+    public static final int CMD_DELETEPLAYLIST;
+    public static final int CMD_DELETESONG;
+    public static final int CMD_GETSONGLIST;
+    public static final int CMD_INIT;
+    public static final int CMD_INITRANDOM;
+    public static final int CMD_INITREPEAT;
+    public static final int CMD_JUDGEPLAY;
+    public static final int CMD_JUDGEPLAYONLINE;
+    public static final int CMD_JUMP;
+    public static final int CMD_NEXT;
+    public static final int CMD_NEXTSONGINFO;
+    public static final int CMD_PAUSE;
+    public static final int CMD_PLAY;
+    public static final int CMD_PREVIOUS;
+    public static final int CMD_RANDOMCLOSE;
+    public static final int CMD_RANDOMOPEN;
+    public static final int CMD_REPEATALLSONG;
+    public static final int CMD_REPEATCANCLE;
+    public static final int CMD_REPEATCURRENTSONG;
+    public static final int CMD_SAVESONGLIST;
+    public static final int CMD_SEEKTIME;
+    public static final int CMD_SELECTFILE;
+    public static final int CMD_SENDISPLAYING;
+    public static final int CMD_SENDSONGLISTSERVICE;
+    public static final int CMD_SENDURLTOSERVICE;
+    public static final int CMD_STOP;
+    public static final int STATUS_CANNOTPLAY;
+    public static final int STATUS_CLEARSONGLIST;
+    public static final int STATUS_DELETEPLAYLIST;
+    public static final int STATUS_DELETESONG;
+    public static final int STATUS_GETSONGLIST;
+    public static final int STATUS_IDLE;
+    public static final int STATUS_IDLEONLINE;
+    public static final int STATUS_INTI;
+    public static final int STATUS_INTIRANDOM;
+    public static final int STATUS_LYRICSYNCHRONOUS;
+    public static final int STATUS_NEXT;
+    public static final int STATUS_NONRANDOM;
+    public static final int STATUS_PAUSED;
+    public static final int STATUS_PLAYING;
+    public static final int STATUS_PREVIOUS;
+    public static final int STATUS_RANDOM;
+    public static final int STATUS_READFROMFILE;
+    public static final int STATUS_REPEAT;
+    public static final int STATUS_REPEATALLSONG;
+    public static final int STATUS_REPEATCANCLE;
+    public static final int STATUS_REPEATCURRENTSONG;
+    public static final int STATUS_SONGISPLAYING;
+    public static final int STATUS_SONGISPLAYINGONLINE;
+    public static final int STATUS_STOPPED;
+    public static final java.lang.String TO_ACTIVITY;
+    public static final java.lang.String TO_ACTIVITY_LOCAL;
+    public static final java.lang.String TO_ACTIVITY_ONLINE;
+    public static final java.lang.String TO_ACTIVITY_SONGLIST;
+    public static final java.lang.String TO_SERVICE;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.IntentParam r0;
+
+        r0 := @this: com.ophone.MiniPlayer.IntentParam;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

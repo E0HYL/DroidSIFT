@@ -1,0 +1,32 @@
+public final class com.ophone.MiniPlayer.R$styleable extends java.lang.Object
+{
+    public static final int[] MyView;
+    public static final int MyView_imgBackground;
+    public static final int MyView_textColor;
+    public static final int MyView_textPaddingLeft;
+    public static final int MyView_textPaddingTop;
+    public static final int MyView_textSize;
+
+    static void <clinit>()
+    {
+        int[] r0;
+
+        r0 = newarray (int)[5];
+        r0[0] = 2130771968;
+        r0[1] = 2130771969;
+        r0[2] = 2130771970;
+        r0[3] = 2130771971;
+        r0[4] = 2130771972;
+        <com.ophone.MiniPlayer.R$styleable: int[] MyView> = r0;
+        return;
+    }
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$styleable r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$styleable;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

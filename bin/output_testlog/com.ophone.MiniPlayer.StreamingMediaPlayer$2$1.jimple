@@ -1,0 +1,81 @@
+class com.ophone.MiniPlayer.StreamingMediaPlayer$2$1 extends java.lang.Object implements android.media.MediaPlayer$OnCompletionListener
+{
+    final com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1;
+
+    void <init>(com.ophone.MiniPlayer.StreamingMediaPlayer$2)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2$1 r0;
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2 r1;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer$2$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.StreamingMediaPlayer$2;
+        r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onCompletion(android.media.MediaPlayer)
+    {
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2$1 r0;
+        android.media.MediaPlayer r1, $r16;
+        java.lang.StringBuilder $r2, $r7;
+        java.lang.String r3, $r8;
+        com.ophone.MiniPlayer.StreamingMediaPlayer$2 $r4, $r9, $r12, $r17, $r20;
+        com.ophone.MiniPlayer.StreamingMediaPlayer $r5, $r10, $r13, $r18, $r21;
+        java.util.Vector $r6, $r11, $r14, $r19;
+        int $i0, $i2;
+        java.lang.Object $r15;
+        java.lang.Exception $r22;
+
+        r0 := @this: com.ophone.MiniPlayer.StreamingMediaPlayer$2$1;
+        r1 := @parameter0: android.media.MediaPlayer;
+        $r2 = new java.lang.StringBuilder;
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("Current size of mediaplayer list: ");
+        $r4 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1>;
+        $r5 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer access$0(com.ophone.MiniPlayer.StreamingMediaPlayer$2)>($r4);
+        $r6 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector access$0(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r5);
+        $i0 = virtualinvoke $r6.<java.util.Vector: int size()>();
+        $r7 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i0);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MediaPlayer.OnCompletionListener", $r8);
+
+     label0:
+        $r9 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1>;
+        $r10 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer access$0(com.ophone.MiniPlayer.StreamingMediaPlayer$2)>($r9);
+        $r11 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector access$0(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r10);
+        $i2 = virtualinvoke $r11.<java.util.Vector: int size()>();
+        if $i2 <= 1 goto label1;
+
+        $r12 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1>;
+        $r13 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer access$0(com.ophone.MiniPlayer.StreamingMediaPlayer$2)>($r12);
+        $r14 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector access$0(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r13);
+        $r15 = virtualinvoke $r14.<java.util.Vector: java.lang.Object get(int)>(1);
+        $r16 = (android.media.MediaPlayer) $r15;
+        virtualinvoke $r16.<android.media.MediaPlayer: void start()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MediaPlayer.OnCompletionListener", "Start new player");
+        virtualinvoke r1.<android.media.MediaPlayer: void release()>();
+        $r17 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1>;
+        $r18 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer access$0(com.ophone.MiniPlayer.StreamingMediaPlayer$2)>($r17);
+        $r19 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: java.util.Vector access$0(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r18);
+        virtualinvoke $r19.<java.util.Vector: boolean remove(java.lang.Object)>(r1);
+        $r20 = r0.<com.ophone.MiniPlayer.StreamingMediaPlayer$2$1: com.ophone.MiniPlayer.StreamingMediaPlayer$2 this$1>;
+        $r21 = staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer$2: com.ophone.MiniPlayer.StreamingMediaPlayer access$0(com.ophone.MiniPlayer.StreamingMediaPlayer$2)>($r20);
+        staticinvoke <com.ophone.MiniPlayer.StreamingMediaPlayer: void access$1(com.ophone.MiniPlayer.StreamingMediaPlayer)>($r21);
+        return;
+
+     label1:
+        staticinvoke <java.lang.Thread: void sleep(long)>(1000L);
+
+     label2:
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("MediaPlayer.OnCompletionListener", "waiting for another mediaplayer");
+        goto label0;
+
+     label3:
+        $r22 := @caughtexception;
+        r3 = virtualinvoke $r22.<java.lang.Exception: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String)>("MediaPlayer.OnCompletionListener", r3);
+        goto label2;
+
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+}

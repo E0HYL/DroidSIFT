@@ -1,0 +1,3 @@
+public interface  com.hp.hpl.sparta.xpath.Visitor extends java.lang.Object implements com.hp.hpl.sparta.xpath.NodeTestVisitor, com.hp.hpl.sparta.xpath.BooleanExprVisitor
+{
+}

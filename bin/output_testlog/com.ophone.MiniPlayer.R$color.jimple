@@ -1,0 +1,16 @@
+public final class com.ophone.MiniPlayer.R$color extends java.lang.Object
+{
+    public static final int solid_blue;
+    public static final int solid_green;
+    public static final int solid_red;
+    public static final int solid_yellow;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$color r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$color;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

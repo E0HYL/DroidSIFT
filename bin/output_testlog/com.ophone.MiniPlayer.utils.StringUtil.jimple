@@ -1,0 +1,66 @@
+public class com.ophone.MiniPlayer.utils.StringUtil extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.utils.StringUtil r0;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.StringUtil;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static java.lang.String timeToString(long)
+    {
+        long l0, l1, $l4, l5;
+        java.lang.StringBuffer r0;
+        java.io.Serializable r1, r8;
+        byte $b2, $b3, $b6;
+        java.lang.StringBuilder $r2, $r3, $r6, $r7;
+        java.lang.String $r10;
+
+        l0 := @parameter0: long;
+        $b2 = l0 cmp 0L;
+        if $b2 >= 0 goto label0;
+
+        return "00:00";
+
+     label0:
+        r0 = new java.lang.StringBuffer;
+        specialinvoke r0.<java.lang.StringBuffer: void <init>()>();
+        l1 = l0 / 60000L;
+        $b3 = l1 cmp 10L;
+        if $b3 >= 0 goto label3;
+
+        $r2 = new java.lang.StringBuilder;
+        specialinvoke $r2.<java.lang.StringBuilder: void <init>(java.lang.String)>("0");
+        $r3 = virtualinvoke $r2.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+        r1 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label1:
+        virtualinvoke r0.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r1);
+        virtualinvoke r0.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(":");
+        $l4 = l0 % 60000L;
+        l5 = $l4 / 1000L;
+        $b6 = l5 cmp 10L;
+        if $b6 >= 0 goto label4;
+
+        $r6 = new java.lang.StringBuilder;
+        specialinvoke $r6.<java.lang.StringBuilder: void <init>(java.lang.String)>("0");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l5);
+        r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+
+     label2:
+        virtualinvoke r0.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r8);
+        $r10 = virtualinvoke r0.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r10;
+
+     label3:
+        r1 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l1);
+        goto label1;
+
+     label4:
+        r8 = staticinvoke <java.lang.Long: java.lang.Long valueOf(long)>(l5);
+        goto label2;
+    }
+}

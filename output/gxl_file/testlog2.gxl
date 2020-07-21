@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog2.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#openConnection</string></attr>
+<attr name="functionPrototype"><string>r4 = virtualinvoke r13.(java.net.URL: java.net.URLConnection openConnection())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>connect</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r4.(java.net.URLConnection: void connect())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#getInputStream</string></attr>
+<attr name="functionPrototype"><string>r16 = virtualinvoke r4.(java.net.URLConnection: java.io.InputStream getInputStream())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>read</string></attr>
+<attr name="functionPrototype"><string>i4 = virtualinvoke r16.(java.io.InputStream: int read(byte[]))(r46)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>close</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r16.(java.io.InputStream: void close())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="6">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#write</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r45.(java.io.FileOutputStream: void write(byte[],int,int))(r46, 0, i4)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="7">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke $r12.(java.net.URL: void (init)(java.lang.String))(r2)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="8">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i7 = virtualinvoke r2.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="9">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>isNetworkUrl</string></attr>
+<attr name="functionPrototype"><string>$z0 = staticinvoke (android.webkit.URLUtil: boolean isNetworkUrl(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="10">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r3.(java.net.URL: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="11">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#openConnection</string></attr>
+<attr name="functionPrototype"><string>r14 = virtualinvoke r3.(java.net.URL: java.net.URLConnection openConnection())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="12">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>connect</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r14.(java.net.URLConnection: void connect())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="13">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#getInputStream</string></attr>
+<attr name="functionPrototype"><string>r15 = virtualinvoke r14.(java.net.URLConnection: java.io.InputStream getInputStream())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="14">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>read</string></attr>
+<attr name="functionPrototype"><string>i3 = virtualinvoke r15.(java.io.InputStream: int read(byte[]))(r43)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="15">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>close</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r15.(java.io.InputStream: void close())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="16">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#write</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r7.(java.io.FileOutputStream: void write(byte[],int,int))(r43, 0, i3)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="17">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i1 = virtualinvoke r1.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="18">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i4 = virtualinvoke r1.(java.lang.String: int lastIndexOf(java.lang.String))("/")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="19">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i6 = virtualinvoke r1.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="20">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getStringExtra</string></attr>
+<attr name="functionPrototype"><string>r311 = virtualinvoke r2.(android.content.Intent: java.lang.String getStringExtra(java.lang.String))("strURL")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="21">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getStringExtra</string></attr>
+<attr name="functionPrototype"><string>r312 = virtualinvoke r2.(android.content.Intent: java.lang.String getStringExtra(java.lang.String))("strURllrc")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="22">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getIntExtra</string></attr>
+<attr name="functionPrototype"><string>$i3 = virtualinvoke r2.(android.content.Intent: int getIntExtra(java.lang.String,int))("cmd", -1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="23">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getStringExtra</string></attr>
+<attr name="functionPrototype"><string>r305 = virtualinvoke r2.(android.content.Intent: java.lang.String getStringExtra(java.lang.String))("playlistname")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="24">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#write</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r15.(java.io.FileOutputStream: void write(byte[]))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="25">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#write</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r13.(java.io.FileOutputStream: void write(byte[]))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="26">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r7.(java.io.FileOutputStream: void (init)(java.io.File))(r6)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="27">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke $r44.(java.io.FileOutputStream: void (init)(java.io.File))(r27)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="28">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r15.(java.io.FileOutputStream: void (init)(java.io.File))($r16)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="29">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r13.(java.io.FileOutputStream: void (init)(java.io.File))($r14)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="1" to="3">
+</edge>
+<edge from="2" to="3">
+</edge>
+<edge from="3" to="4">
+</edge>
+<edge from="3" to="5">
+</edge>
+<edge from="4" to="6">
+</edge>
+<edge from="7" to="1">
+</edge>
+<edge from="8" to="7">
+</edge>
+<edge from="8" to="9">
+</edge>
+<edge from="9" to="10">
+</edge>
+<edge from="10" to="11">
+</edge>
+<edge from="11" to="12">
+</edge>
+<edge from="12" to="13">
+</edge>
+<edge from="13" to="14">
+</edge>
+<edge from="13" to="15">
+</edge>
+<edge from="14" to="16">
+</edge>
+<edge from="17" to="7">
+</edge>
+<edge from="17" to="9">
+</edge>
+<edge from="18" to="7">
+</edge>
+<edge from="18" to="9">
+</edge>
+<edge from="19" to="7">
+</edge>
+<edge from="19" to="9">
+</edge>
+<edge from="20" to="21">
+</edge>
+<edge from="20" to="17">
+</edge>
+<edge from="20" to="18">
+</edge>
+<edge from="20" to="19">
+</edge>
+<edge from="20" to="8">
+</edge>
+<edge from="20" to="7">
+</edge>
+<edge from="20" to="9">
+</edge>
+<edge from="21" to="17">
+</edge>
+<edge from="21" to="18">
+</edge>
+<edge from="21" to="19">
+</edge>
+<edge from="21" to="8">
+</edge>
+<edge from="21" to="7">
+</edge>
+<edge from="21" to="9">
+</edge>
+<edge from="22" to="21">
+</edge>
+<edge from="22" to="20">
+</edge>
+<edge from="22" to="23">
+</edge>
+<edge from="23" to="24">
+</edge>
+<edge from="23" to="25">
+</edge>
+<edge from="26" to="16">
+</edge>
+<edge from="27" to="6">
+</edge>
+<edge from="28" to="24">
+</edge>
+<edge from="29" to="25">
+</edge>
+</graph>
+</gxl>

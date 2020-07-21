@@ -1,0 +1,251 @@
+class com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter extends android.widget.SimpleAdapter
+{
+    private android.content.Context ctx;
+    private android.view.LayoutInflater mInflater;
+    private final android.graphics.drawable.Drawable mNowPlayingOverlay;
+    final com.ophone.MiniPlayer.PlayingListActivity this$0;
+
+    public void <init>(com.ophone.MiniPlayer.PlayingListActivity, android.content.Context, java.util.List, int, java.lang.String[], int[])
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter r0;
+        com.ophone.MiniPlayer.PlayingListActivity r1;
+        android.content.Context r2;
+        java.util.List r3;
+        int i0;
+        java.lang.String[] r4;
+        int[] r5;
+        android.view.LayoutInflater $r6;
+        android.content.res.Resources $r7;
+        android.graphics.drawable.Drawable $r8;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter;
+        r1 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r2 := @parameter1: android.content.Context;
+        r3 := @parameter2: java.util.List;
+        i0 := @parameter3: int;
+        r4 := @parameter4: java.lang.String[];
+        r5 := @parameter5: int[];
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0> = r1;
+        specialinvoke r0.<android.widget.SimpleAdapter: void <init>(android.content.Context,java.util.List,int,java.lang.String[],int[])>(r2, r3, i0, r4, r5);
+        $r6 = staticinvoke <android.view.LayoutInflater: android.view.LayoutInflater 'from'(android.content.Context)>(r2);
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: android.view.LayoutInflater mInflater> = $r6;
+        $r7 = virtualinvoke r2.<android.content.Context: android.content.res.Resources getResources()>();
+        $r8 = virtualinvoke $r7.<android.content.res.Resources: android.graphics.drawable.Drawable getDrawable(int)>(2130837513);
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: android.graphics.drawable.Drawable mNowPlayingOverlay> = $r8;
+        return;
+    }
+
+    public int getCount()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter r0;
+        com.ophone.MiniPlayer.PlayingListActivity $r1;
+        java.util.List $r2;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r2 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)>($r1);
+        $i0 = interfaceinvoke $r2.<java.util.List: int size()>();
+        return $i0;
+    }
+
+    public java.lang.Object getItem(int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter r0;
+        int i0;
+        com.ophone.MiniPlayer.PlayingListActivity $r1;
+        java.util.List $r2;
+        java.lang.Object $r3;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter;
+        i0 := @parameter0: int;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r2 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)>($r1);
+        $r3 = interfaceinvoke $r2.<java.util.List: java.lang.Object get(int)>(i0);
+        return $r3;
+    }
+
+    public long getItemId(int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter r0;
+        int i0;
+        long $l1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter;
+        i0 := @parameter0: int;
+        $l1 = (long) i0;
+        return $l1;
+    }
+
+    public android.view.View getView(int, android.view.View, android.view.ViewGroup)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter r0;
+        int i0, $i1, $i2;
+        android.view.View r1, $r8, $r12, $r16, $r20, $r24;
+        android.view.ViewGroup r2;
+        android.view.LayoutInflater $r3;
+        com.ophone.MiniPlayer.PlayingListActivity $r4, $r6, $r10, $r14, $r18, $r22, $r26, $r28, $r32, $r35, $r38, $r44, $r47, $r53, $r58, $r61, $r67, $r69, $r71, $r73, $r76, $r81, $r85, $r88;
+        com.ophone.MiniPlayer.PlayingListActivity$ViewHolder $r5, $r7, $r11, $r15, $r19, $r23, $r27, $r33, $r36, $r45, $r59, $r82, $r87, $r89;
+        android.widget.TextView $r9, $r13, $r17, $r37, $r46, $r60;
+        android.widget.ImageView $r21, $r25, $r34, $r83, $r90;
+        android.content.res.Resources $r29;
+        android.graphics.Bitmap $r30;
+        android.graphics.drawable.Drawable r31, $r84;
+        java.util.List $r39, $r48, $r54, $r62;
+        java.lang.Object $r40, $r42, $r49, $r51, $r55, $r57, $r63, $r65, $r78, $r86;
+        java.util.Map $r41, $r50, $r56, $r64;
+        java.lang.String $r43, $r52, $r66, $r75, $r80;
+        com.ophone.MiniPlayer.IPlayback $r68, $r70, $r74;
+        boolean $z0;
+        java.util.ArrayList $r72, $r77;
+        com.ophone.MiniPlayer.provider.Song $r79;
+        android.os.RemoteException $r91;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter;
+        i0 := @parameter0: int;
+        r1 := @parameter1: android.view.View;
+        r2 := @parameter2: android.view.ViewGroup;
+        if r1 != null goto label3;
+
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: android.view.LayoutInflater mInflater>;
+        r1 = virtualinvoke $r3.<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup)>(2130903055, null);
+        $r4 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r5 = new com.ophone.MiniPlayer.PlayingListActivity$ViewHolder;
+        specialinvoke $r5.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: void <init>()>();
+        $r4.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder> = $r5;
+        $r6 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r7 = $r6.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r8 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230760);
+        $r9 = (android.widget.TextView) $r8;
+        $r7.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.TextView itemCounter> = $r9;
+        $r10 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r11 = $r10.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r12 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230761);
+        $r13 = (android.widget.TextView) $r12;
+        $r11.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.TextView itemTitle> = $r13;
+        $r14 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r15 = $r14.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r16 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230763);
+        $r17 = (android.widget.TextView) $r16;
+        $r15.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.TextView itemDuration> = $r17;
+        $r18 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r19 = $r18.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r20 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230762);
+        $r21 = (android.widget.ImageView) $r20;
+        $r19.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.ImageView itemIcon> = $r21;
+        $r22 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r23 = $r22.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r24 = virtualinvoke r1.<android.view.View: android.view.View findViewById(int)>(2131230759);
+        $r25 = (android.widget.ImageView) $r24;
+        $r23.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.ImageView Icon> = $r25;
+        $r26 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r27 = $r26.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        virtualinvoke r1.<android.view.View: void setTag(java.lang.Object)>($r27);
+
+     label0:
+        $r28 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r29 = virtualinvoke $r28.<com.ophone.MiniPlayer.PlayingListActivity: android.content.res.Resources getResources()>();
+        $r30 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>($r29, 2130837523);
+        r31 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r30, 24, 24);
+        $r32 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r33 = $r32.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r34 = $r33.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.ImageView Icon>;
+        virtualinvoke $r34.<android.widget.ImageView: void setBackgroundDrawable(android.graphics.drawable.Drawable)>(r31);
+        $r35 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r36 = $r35.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r37 = $r36.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.TextView itemCounter>;
+        $r38 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r39 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)>($r38);
+        $r40 = interfaceinvoke $r39.<java.util.List: java.lang.Object get(int)>(i0);
+        $r41 = (java.util.Map) $r40;
+        $r42 = interfaceinvoke $r41.<java.util.Map: java.lang.Object get(java.lang.Object)>("counter");
+        $r43 = virtualinvoke $r42.<java.lang.Object: java.lang.String toString()>();
+        virtualinvoke $r37.<android.widget.TextView: void setText(java.lang.CharSequence)>($r43);
+        $r44 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r45 = $r44.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r46 = $r45.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.TextView itemTitle>;
+        $r47 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r48 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)>($r47);
+        $r49 = interfaceinvoke $r48.<java.util.List: java.lang.Object get(int)>(i0);
+        $r50 = (java.util.Map) $r49;
+        $r51 = interfaceinvoke $r50.<java.util.Map: java.lang.Object get(java.lang.Object)>("name");
+        $r52 = virtualinvoke $r51.<java.lang.Object: java.lang.String toString()>();
+        virtualinvoke $r46.<android.widget.TextView: void setText(java.lang.CharSequence)>($r52);
+        $r53 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r54 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)>($r53);
+        $r55 = interfaceinvoke $r54.<java.util.List: java.lang.Object get(int)>(i0);
+        $r56 = (java.util.Map) $r55;
+        $r57 = interfaceinvoke $r56.<java.util.Map: java.lang.Object get(java.lang.Object)>("duration");
+        if $r57 == null goto label1;
+
+        $r58 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r59 = $r58.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r60 = $r59.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.TextView itemDuration>;
+        $r61 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r62 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)>($r61);
+        $r63 = interfaceinvoke $r62.<java.util.List: java.lang.Object get(int)>(i0);
+        $r64 = (java.util.Map) $r63;
+        $r65 = interfaceinvoke $r64.<java.util.Map: java.lang.Object get(java.lang.Object)>("duration");
+        $r66 = virtualinvoke $r65.<java.lang.Object: java.lang.String toString()>();
+        virtualinvoke $r60.<android.widget.TextView: void setText(java.lang.CharSequence)>($r66);
+
+     label1:
+        $r67 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r68 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.IPlayback access$3(com.ophone.MiniPlayer.PlayingListActivity)>($r67);
+        if $r68 == null goto label2;
+
+        $r69 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r70 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.IPlayback access$3(com.ophone.MiniPlayer.PlayingListActivity)>($r69);
+        $z0 = interfaceinvoke $r70.<com.ophone.MiniPlayer.IPlayback: boolean isPlaying()>();
+        if $z0 == 0 goto label2;
+
+        $r71 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r72 = $r71.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i1 = virtualinvoke $r72.<java.util.ArrayList: int size()>();
+        if i0 >= $i1 goto label2;
+
+        $r73 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r74 = staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.IPlayback access$3(com.ophone.MiniPlayer.PlayingListActivity)>($r73);
+        $r75 = interfaceinvoke $r74.<com.ophone.MiniPlayer.IPlayback: java.lang.String getTitle()>();
+        $r76 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r77 = $r76.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r78 = virtualinvoke $r77.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r79 = (com.ophone.MiniPlayer.provider.Song) $r78;
+        $r80 = virtualinvoke $r79.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $i2 = virtualinvoke $r75.<java.lang.String: int compareTo(java.lang.String)>($r80);
+        if $i2 != 0 goto label4;
+
+        $r81 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r82 = $r81.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r83 = $r82.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.ImageView itemIcon>;
+        $r84 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: android.graphics.drawable.Drawable mNowPlayingOverlay>;
+        virtualinvoke $r83.<android.widget.ImageView: void setImageDrawable(android.graphics.drawable.Drawable)>($r84);
+
+     label2:
+        return r1;
+
+     label3:
+        $r85 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r86 = virtualinvoke r1.<android.view.View: java.lang.Object getTag()>();
+        $r87 = (com.ophone.MiniPlayer.PlayingListActivity$ViewHolder) $r86;
+        $r85.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder> = $r87;
+        goto label0;
+
+     label4:
+        $r88 = r0.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r89 = $r88.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder>;
+        $r90 = $r89.<com.ophone.MiniPlayer.PlayingListActivity$ViewHolder: android.widget.ImageView itemIcon>;
+        virtualinvoke $r90.<android.widget.ImageView: void setImageDrawable(android.graphics.drawable.Drawable)>(null);
+
+     label5:
+        return r1;
+
+     label6:
+        $r91 := @caughtexception;
+        virtualinvoke $r91.<android.os.RemoteException: void printStackTrace()>();
+        return r1;
+
+        catch android.os.RemoteException from label1 to label2 with label6;
+        catch android.os.RemoteException from label4 to label5 with label6;
+    }
+}

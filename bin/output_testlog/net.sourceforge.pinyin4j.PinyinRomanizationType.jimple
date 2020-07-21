@@ -1,0 +1,68 @@
+class net.sourceforge.pinyin4j.PinyinRomanizationType extends java.lang.Object
+{
+    static final net.sourceforge.pinyin4j.PinyinRomanizationType GWOYEU_ROMATZYH;
+    static final net.sourceforge.pinyin4j.PinyinRomanizationType HANYU_PINYIN;
+    static final net.sourceforge.pinyin4j.PinyinRomanizationType MPS2_PINYIN;
+    static final net.sourceforge.pinyin4j.PinyinRomanizationType TONGYONG_PINYIN;
+    static final net.sourceforge.pinyin4j.PinyinRomanizationType WADEGILES_PINYIN;
+    static final net.sourceforge.pinyin4j.PinyinRomanizationType YALE_PINYIN;
+    protected java.lang.String tagName;
+
+    static void <clinit>()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationType $r0, $r1, $r2, $r3, $r4, $r5;
+
+        $r0 = new net.sourceforge.pinyin4j.PinyinRomanizationType;
+        specialinvoke $r0.<net.sourceforge.pinyin4j.PinyinRomanizationType: void <init>(java.lang.String)>("Hanyu");
+        <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType HANYU_PINYIN> = $r0;
+        $r1 = new net.sourceforge.pinyin4j.PinyinRomanizationType;
+        specialinvoke $r1.<net.sourceforge.pinyin4j.PinyinRomanizationType: void <init>(java.lang.String)>("Wade");
+        <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType WADEGILES_PINYIN> = $r1;
+        $r2 = new net.sourceforge.pinyin4j.PinyinRomanizationType;
+        specialinvoke $r2.<net.sourceforge.pinyin4j.PinyinRomanizationType: void <init>(java.lang.String)>("MPSII");
+        <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType MPS2_PINYIN> = $r2;
+        $r3 = new net.sourceforge.pinyin4j.PinyinRomanizationType;
+        specialinvoke $r3.<net.sourceforge.pinyin4j.PinyinRomanizationType: void <init>(java.lang.String)>("Yale");
+        <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType YALE_PINYIN> = $r3;
+        $r4 = new net.sourceforge.pinyin4j.PinyinRomanizationType;
+        specialinvoke $r4.<net.sourceforge.pinyin4j.PinyinRomanizationType: void <init>(java.lang.String)>("Tongyong");
+        <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType TONGYONG_PINYIN> = $r4;
+        $r5 = new net.sourceforge.pinyin4j.PinyinRomanizationType;
+        specialinvoke $r5.<net.sourceforge.pinyin4j.PinyinRomanizationType: void <init>(java.lang.String)>("Gwoyeu");
+        <net.sourceforge.pinyin4j.PinyinRomanizationType: net.sourceforge.pinyin4j.PinyinRomanizationType GWOYEU_ROMATZYH> = $r5;
+        return;
+    }
+
+    protected void <init>(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationType r0;
+        java.lang.String r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationType;
+        r1 := @parameter0: java.lang.String;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        virtualinvoke r0.<net.sourceforge.pinyin4j.PinyinRomanizationType: void setTagName(java.lang.String)>(r1);
+        return;
+    }
+
+    java.lang.String getTagName()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationType r0;
+        java.lang.String $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationType;
+        $r1 = r0.<net.sourceforge.pinyin4j.PinyinRomanizationType: java.lang.String tagName>;
+        return $r1;
+    }
+
+    protected void setTagName(java.lang.String)
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationType r0;
+        java.lang.String r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationType;
+        r1 := @parameter0: java.lang.String;
+        r0.<net.sourceforge.pinyin4j.PinyinRomanizationType: java.lang.String tagName> = r1;
+        return;
+    }
+}

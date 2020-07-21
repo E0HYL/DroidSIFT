@@ -1,0 +1,1534 @@
+public class com.xxx.yyy.GZipOutputStream extends java.io.OutputStream
+{
+    private static final int HASHMAP_COUNT;
+    private static final int STREAMING;
+    private static final int STREAM_INIT;
+    public static final int TYPE_DEFLATE;
+    public static final int TYPE_GZIP;
+    private int BTYPE;
+    com.xxx.yyy.ZipIntMultShortHashMap[] HM;
+    private int crc32;
+    private int[] crc32Table;
+    private int[] distCount;
+    int[] distHuffCode;
+    byte[] distHuffCodeLength;
+    int[] huffmanCode;
+    byte[] huffmanCodeLength;
+    private int inEnd;
+    private int inStart;
+    private byte[] inputBuffer;
+    private int isize;
+    private boolean lastBlock;
+    private int[] litCount;
+    private boolean lz77active;
+    private int outProcessed;
+    private java.io.OutputStream outStream;
+    private byte[] outputWindow;
+    private byte[] plainDataWindow;
+    private int plainPointer;
+    private int[] smallCodeBuffer;
+    private int status;
+
+    public void <init>(java.io.OutputStream, int, int, int, int) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        java.io.OutputStream r1, $r12, $r13, $r14, $r15, $r17;
+        int i0, i1, i2, i3, $i4, $i5, $i6, i7;
+        com.xxx.yyy.ZipIntMultShortHashMap[] $r2, $r18;
+        int[] $r3, $r5, $r6, $r7;
+        byte[] $r4, $r9, $r11, $r16;
+        java.lang.IllegalArgumentException $r8, $r10;
+        com.xxx.yyy.ZipIntMultShortHashMap $r19;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        r1 := @parameter0: java.io.OutputStream;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        i2 := @parameter3: int;
+        i3 := @parameter4: int;
+        specialinvoke r0.<java.io.OutputStream: void <init>()>();
+        $r2 = newarray (com.xxx.yyy.ZipIntMultShortHashMap)[5];
+        r0.<com.xxx.yyy.GZipOutputStream: com.xxx.yyy.ZipIntMultShortHashMap[] HM> = $r2;
+        $r3 = newarray (int)[256];
+        r0.<com.xxx.yyy.GZipOutputStream: int[] crc32Table> = $r3;
+        r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream> = r1;
+        $i4 = i0 + 300;
+        $r4 = newarray (byte)[$i4];
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer> = $r4;
+        $r5 = newarray (int)[286];
+        r0.<com.xxx.yyy.GZipOutputStream: int[] litCount> = $r5;
+        $r6 = newarray (int)[30];
+        r0.<com.xxx.yyy.GZipOutputStream: int[] distCount> = $r6;
+        $r7 = newarray (int)[2];
+        r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer> = $r7;
+        if i2 <= 32768 goto label0;
+
+        $r8 = new java.lang.IllegalArgumentException;
+        specialinvoke $r8.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("plainWindowSize > 32768");
+        throw $r8;
+
+     label0:
+        if i2 < 100 goto label2;
+
+        $i5 = i2 / 4;
+        $i6 = 4 * $i5;
+        $r9 = newarray (byte)[$i6];
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow> = $r9;
+        r0.<com.xxx.yyy.GZipOutputStream: boolean lz77active> = 1;
+
+     label1:
+        if i3 <= 32768 goto label3;
+
+        $r10 = new java.lang.IllegalArgumentException;
+        specialinvoke $r10.<java.lang.IllegalArgumentException: void <init>(java.lang.String)>("plainWindowSize > 32768");
+        throw $r10;
+
+     label2:
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow> = null;
+        r0.<com.xxx.yyy.GZipOutputStream: boolean lz77active> = 0;
+        goto label1;
+
+     label3:
+        if i3 >= 1024 goto label4;
+
+        if i3 <= 0 goto label4;
+
+        i3 = 1024;
+
+     label4:
+        $r11 = newarray (byte)[i3];
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow> = $r11;
+        if i3 != 0 goto label8;
+
+        r0.<com.xxx.yyy.GZipOutputStream: boolean lastBlock> = 1;
+        r0.<com.xxx.yyy.GZipOutputStream: int BTYPE> = 1;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void newBlock()>();
+        r0.<com.xxx.yyy.GZipOutputStream: int status> = 4;
+
+     label5:
+        i7 = 0;
+
+     label6:
+        if i7 < 4 goto label9;
+
+        if i1 != 1 goto label7;
+
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        virtualinvoke $r12.<java.io.OutputStream: void write(int)>(31);
+        $r13 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        virtualinvoke $r13.<java.io.OutputStream: void write(int)>(139);
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        virtualinvoke $r14.<java.io.OutputStream: void write(int)>(8);
+        $r15 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $r16 = newarray (byte)[6];
+        virtualinvoke $r15.<java.io.OutputStream: void write(byte[])>($r16);
+        $r17 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        virtualinvoke $r17.<java.io.OutputStream: void write(int)>(255);
+
+     label7:
+        return;
+
+     label8:
+        r0.<com.xxx.yyy.GZipOutputStream: int BTYPE> = 2;
+        r0.<com.xxx.yyy.GZipOutputStream: int status> = 0;
+        goto label5;
+
+     label9:
+        $r18 = r0.<com.xxx.yyy.GZipOutputStream: com.xxx.yyy.ZipIntMultShortHashMap[] HM>;
+        $r19 = new com.xxx.yyy.ZipIntMultShortHashMap;
+        specialinvoke $r19.<com.xxx.yyy.ZipIntMultShortHashMap: void <init>(int)>(2048);
+        $r18[i7] = $r19;
+        i7 = i7 + 1;
+        goto label6;
+    }
+
+    private void LZ77(boolean) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        boolean z0, $z1, $z2, $z3;
+        int i0, i1, i2, i3, i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, i26, $i27, $i28, $i30, $i31, $i32, $i33, $i34, $i36, $i37, $i38, $i39, $i41, $i42, $i43, $i44, $i45, $i47, $i48, $i49, $i51, $i52, $i53, $i54, $i55, $i56, $i57, $i58, $i59, $i60, $i61;
+        int[] r1, r2;
+        byte[] $r3, $r4, $r5, $r6, $r7, $r8, $r10, $r12, $r13, $r14, $r15, $r16, $r18;
+        byte $b29, $b35, $b40, $b46;
+        com.xxx.yyy.ZipIntMultShortHashMap[] $r9, $r17;
+        com.xxx.yyy.ZipIntMultShortHashMap $r11, $r19;
+        short $s50;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        z0 := @parameter0: boolean;
+        $i5 = r0.<com.xxx.yyy.GZipOutputStream: int inStart>;
+        if $i5 == 0 goto label0;
+
+        $r3 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i6 = r0.<com.xxx.yyy.GZipOutputStream: int inStart>;
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i7 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i8 = r0.<com.xxx.yyy.GZipOutputStream: int inStart>;
+        $i9 = $i7 - $i8;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>($r3, $i6, $r4, 0, $i9);
+        $i10 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i11 = r0.<com.xxx.yyy.GZipOutputStream: int inStart>;
+        $i12 = $i10 - $i11;
+        r0.<com.xxx.yyy.GZipOutputStream: int inEnd> = $i12;
+        r0.<com.xxx.yyy.GZipOutputStream: int inStart> = 0;
+
+     label0:
+        if z0 == 0 goto label3;
+
+        i0 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+
+     label1:
+        r1 = newarray (int)[2];
+        r2 = newarray (int)[2];
+        i1 = 0;
+
+     label2:
+        if i1 < i0 goto label4;
+
+        r0.<com.xxx.yyy.GZipOutputStream: int inStart> = i1;
+        return;
+
+     label3:
+        $i13 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        i0 = $i13 - 300;
+        goto label1;
+
+     label4:
+        i2 = 1;
+        $z1 = r0.<com.xxx.yyy.GZipOutputStream: boolean lz77active>;
+        i3 = 0;
+        if $z1 == 0 goto label5;
+
+        $i14 = i0 - 2;
+        i3 = 0;
+        if i1 >= $i14 goto label5;
+
+        $z2 = specialinvoke r0.<com.xxx.yyy.GZipOutputStream: boolean search4LZ77(int[],int)>(r1, i1);
+        i3 = 0;
+        if $z2 == 0 goto label5;
+
+        $i15 = r1[1];
+        $i16 = r2[1];
+        if $i15 <= $i16 goto label11;
+
+        $i17 = r1[0];
+        r2[0] = $i17;
+        $i18 = r1[1];
+        r2[1] = $i18;
+
+     label5:
+        if z0 == 0 goto label6;
+
+        $i19 = i0 - i1;
+        if $i19 >= i2 goto label6;
+
+        i2 = i0 - i1;
+
+     label6:
+        if i2 <= 2 goto label12;
+
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void encodePointer(int,int)>(i3, i2);
+
+     label7:
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i20 = lengthof $r5;
+        if $i20 == 0 goto label8;
+
+        $i21 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i22 = 1 + $i21;
+        r0.<com.xxx.yyy.GZipOutputStream: int outProcessed> = $i22;
+        $i23 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i24 = 8 + $i23;
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i25 = lengthof $r6;
+        if $i24 <= $i25 goto label8;
+
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void compileOutput()>();
+
+     label8:
+        $z3 = r0.<com.xxx.yyy.GZipOutputStream: boolean lz77active>;
+        if $z3 == 0 goto label10;
+
+        i26 = 0;
+
+     label9:
+        if i26 < i2 goto label13;
+
+     label10:
+        i1 = i1 + i2;
+        goto label2;
+
+     label11:
+        i3 = r1[0];
+        i2 = r1[1];
+        goto label5;
+
+     label12:
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void encodeChar(int)>(i1);
+        goto label7;
+
+     label13:
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i27 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i28 = i1 + i26;
+        $b29 = $r8[$i28];
+        $r7[$i27] = $b29;
+        $r9 = r0.<com.xxx.yyy.GZipOutputStream: com.xxx.yyy.ZipIntMultShortHashMap[] HM>;
+        $i30 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r10 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i31 = lengthof $r10;
+        $i32 = $i31 / 4;
+        $i33 = $i30 / $i32;
+        $r11 = $r9[$i33];
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i34 = i1 + i26;
+        $b35 = $r12[$i34];
+        $i36 = 128 + $b35;
+        $i37 = $i36 << 16;
+        $r13 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i38 = i1 + i26;
+        $i39 = 1 + $i38;
+        $b40 = $r13[$i39];
+        $i41 = 128 + $b40;
+        $i42 = $i41 << 8;
+        $i43 = $i37 | $i42;
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i44 = i1 + i26;
+        $i45 = 2 + $i44;
+        $b46 = $r14[$i45];
+        $i47 = 128 + $b46;
+        $i48 = $i43 | $i47;
+        $i49 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $s50 = (short) $i49;
+        virtualinvoke $r11.<com.xxx.yyy.ZipIntMultShortHashMap: boolean put(int,short)>($i48, $s50);
+        $i51 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        i4 = 1 + $i51;
+        r0.<com.xxx.yyy.GZipOutputStream: int plainPointer> = i4;
+        $r15 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i52 = lengthof $r15;
+        $i53 = $i52 / 4;
+        $i54 = i4 % $i53;
+        if $i54 != 0 goto label15;
+
+        $i55 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r16 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i56 = lengthof $r16;
+        if $i55 != $i56 goto label14;
+
+        r0.<com.xxx.yyy.GZipOutputStream: int plainPointer> = 0;
+
+     label14:
+        $r17 = r0.<com.xxx.yyy.GZipOutputStream: com.xxx.yyy.ZipIntMultShortHashMap[] HM>;
+        $i57 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r18 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i58 = lengthof $r18;
+        $i59 = $i58 / 4;
+        $i60 = $i57 / $i59;
+        $i61 = $i60 % 4;
+        $r19 = $r17[$i61];
+        virtualinvoke $r19.<com.xxx.yyy.ZipIntMultShortHashMap: void clear()>();
+
+     label15:
+        i26 = i26 + 1;
+        goto label9;
+    }
+
+    private void compileOutput() throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        java.io.PrintStream $r1;
+        int i0, i1, i3, $i4, $i5, $i8, i12, i13, i15, i16, $i18, $i19, $i20, $i22, $i23, $i24, $i25, $i26, $i28, $i29, $i30, $i31, $i33, $i34, $i35, $i37, $i39, $i40, $i42;
+        byte b2, $b6, $b7, $b9, $b10, $b11, $b14, $b17, $b21, $b27, $b32, $b36, $b38, $b41;
+        byte[] $r2, $r4, $r5, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r16, $r19;
+        int[] $r3, $r6, $r15, $r17, $r18, $r20;
+        java.io.IOException $r21;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("  compile Output; new Block");
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void newBlock()>();
+        i0 = 0;
+
+     label0:
+        $i4 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        if i0 < $i4 goto label1;
+
+        r0.<com.xxx.yyy.GZipOutputStream: int outProcessed> = 0;
+        return;
+
+     label1:
+        $r2 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        i1 = $r2[i0];
+        if i1 >= 0 goto label2;
+
+        i1 = i1 + 256;
+
+     label2:
+        if i1 == 255 goto label4;
+
+        $r3 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i5 = $r3[i1];
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b6 = $r4[i1];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i5, $b6);
+
+     label3:
+        i0 = i0 + 1;
+        goto label0;
+
+     label4:
+        if i1 != 255 goto label3;
+
+        i0 = i0 + 1;
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $b7 = $r5[i0];
+        if $b7 != 0 goto label5;
+
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i8 = $r6[255];
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b9 = $r7[255];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i8, $b9);
+        goto label3;
+
+     label5:
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $b10 = $r8[i0];
+        if $b10 <= 0 goto label6;
+
+        $r9 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $b11 = $r9[i0];
+        i12 = 255 + $b11;
+        $r10 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        i13 = i0 + 1;
+        $b14 = $r10[i13];
+        $r11 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        i15 = i13 + 1;
+        b2 = $r11[i15];
+        i16 = i15 + 1;
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $b17 = $r12[i16];
+        $i18 = 256 + $b17;
+        $i19 = 255 & $i18;
+        $r13 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i20 = i16 + 1;
+        $b21 = $r13[$i20];
+        $i22 = 256 + $b21;
+        $i23 = 255 & $i22;
+        $i24 = $i23 << 8;
+        $i25 = $i19 | $i24;
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i26 = i16 + 2;
+        $b27 = $r14[$i26];
+        $i28 = 256 + $b27;
+        $i29 = 255 & $i28;
+        $i30 = $i29 << 16;
+        i3 = $i25 | $i30;
+        $r15 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i31 = $r15[i12];
+        $r16 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b32 = $r16[i12];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i31, $b32);
+        $r17 = <com.xxx.yyy.ZipHelper: int[] LENGTH_CODE>;
+        $i33 = i12 - 257;
+        $i34 = 2 * $i33;
+        $i35 = $r17[$i34];
+        $b36 = (byte) $i35;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($b14, $b36);
+        $r18 = r0.<com.xxx.yyy.GZipOutputStream: int[] distHuffCode>;
+        $i37 = $r18[b2];
+        $r19 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        $b38 = $r19[b2];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i37, $b38);
+        $r20 = <com.xxx.yyy.ZipHelper: int[] DISTANCE_CODE>;
+        $i39 = b2 * 2;
+        $i40 = $r20[$i39];
+        $b41 = (byte) $i40;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>(i3, $b41);
+        $i42 = i16 + 3;
+        i0 = $i42 - 1;
+        goto label3;
+
+     label6:
+        $r21 = new java.io.IOException;
+        specialinvoke $r21.<java.io.IOException: void <init>(java.lang.String)>("illegal code decoded");
+        throw $r21;
+    }
+
+    private void compressTree(byte[], byte[]) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        byte[] r1, r2, r3, r5, r7;
+        int i0, i1, i2, i3, i4, i5, i6, i8, i10, $i11, i12, $i13, i14, $i15, $i16, $i17, i18, $i19, i21, $i22, i23, $i26, $i27, $i29, $i32, $i35, $i39, $i40, $i42, $i44, $i45, $i46, $i47, $i49, $i51, $i52, $i54, i55, $i56, $i57, $i58, $i59, $i60, $i63, $i65, $i66, $i68, $i70, $i71, $i73, $i74, $i77, i78, $i79, $i82, $i87, $i89, $i91;
+        byte $b7, $b9, $b20, $b24, $b25, $b28, $b30, $b31, $b33, $b34, $b36, $b37, $b41, $b43, $b48, b50, b53, $b61, $b62, $b67, $b69, $b72, $b75, b76, $b80, $b81, $b83, $b84, $b85, $b86, $b88, $b90, $b92;
+        int[] r4, r6, r8;
+        java.io.PrintStream $r9, $r13, $r17;
+        java.lang.StringBuilder $r10, $r11, $r14, $r15, $r18, $r19;
+        java.lang.String $r12, $r16, $r20;
+        short s38, s64;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        r1 := @parameter0: byte[];
+        r2 := @parameter1: byte[];
+        i0 = 285;
+        i1 = 29;
+
+     label0:
+        $b7 = r1[i0];
+        if $b7 != 0 goto label1;
+
+        if i0 > 29 goto label11;
+
+     label1:
+        i8 = i0 + 1;
+
+     label2:
+        $b9 = r2[i1];
+        if $b9 != 0 goto label3;
+
+        if i1 > 0 goto label12;
+
+     label3:
+        i10 = i1 + 1;
+        $i11 = i8 + i10;
+        r3 = newarray (byte)[$i11];
+        i2 = 0;
+        i3 = 0;
+
+     label4:
+        if i3 < i8 goto label13;
+
+        i12 = 0;
+
+     label5:
+        if i12 < i10 goto label14;
+
+        r4 = newarray (int)[19];
+        r4[0] = 16;
+        r4[1] = 17;
+        r4[2] = 18;
+        r4[4] = 8;
+        r4[5] = 7;
+        r4[6] = 9;
+        r4[7] = 6;
+        r4[8] = 10;
+        r4[9] = 5;
+        r4[10] = 11;
+        r4[11] = 4;
+        r4[12] = 12;
+        r4[13] = 3;
+        r4[14] = 13;
+        r4[15] = 2;
+        r4[16] = 14;
+        r4[17] = 1;
+        r4[18] = 15;
+        $i13 = i8 + i10;
+        r5 = newarray (byte)[$i13];
+        i14 = 0;
+        r6 = newarray (int)[19];
+        i4 = 0;
+
+     label6:
+        $i15 = lengthof r3;
+        if i4 < $i15 goto label15;
+
+        r7 = newarray (byte)[19];
+        r8 = newarray (int)[19];
+        staticinvoke <com.xxx.yyy.ZipHelper: void genTreeLength(int[],byte[],int)>(r6, r7, 7);
+        staticinvoke <com.xxx.yyy.ZipHelper: void genHuffTree(int[],byte[])>(r8, r7);
+        staticinvoke <com.xxx.yyy.ZipHelper: void revHuffTree(int[],byte[])>(r8, r7);
+        $i16 = i8 - 257;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i16, 5);
+        $i17 = i10 - 1;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i17, 5);
+        i18 = 18;
+
+     label7:
+        $i19 = r4[i18];
+        $b20 = r7[$i19];
+        if $b20 != 0 goto label8;
+
+        if i18 > 0 goto label28;
+
+     label8:
+        i21 = i18 + 1;
+        $i22 = i21 - 4;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i22, 4);
+        i5 = 0;
+
+     label9:
+        if i5 < i21 goto label29;
+
+        $r9 = <java.lang.System: java.io.PrintStream out>;
+        $r10 = new java.lang.StringBuilder;
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>(" HLIT: ");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i8);
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r9.<java.io.PrintStream: void println(java.lang.String)>($r12);
+        $r13 = <java.lang.System: java.io.PrintStream out>;
+        $r14 = new java.lang.StringBuilder;
+        specialinvoke $r14.<java.lang.StringBuilder: void <init>(java.lang.String)>(" HDIST: ");
+        $r15 = virtualinvoke $r14.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i10);
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r13.<java.io.PrintStream: void println(java.lang.String)>($r16);
+        $r17 = <java.lang.System: java.io.PrintStream out>;
+        $r18 = new java.lang.StringBuilder;
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>(" HCLEN: ");
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i21);
+        $r20 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r17.<java.io.PrintStream: void println(java.lang.String)>($r20);
+        i23 = 0;
+
+     label10:
+        if i23 < i14 goto label30;
+
+        return;
+
+     label11:
+        i0 = i0 + -1;
+        goto label0;
+
+     label12:
+        i1 = i1 + -1;
+        goto label2;
+
+     label13:
+        $b24 = r1[i3];
+        r3[i2] = $b24;
+        i2 = i2 + 1;
+        i3 = i3 + 1;
+        goto label4;
+
+     label14:
+        $b25 = r2[i12];
+        r3[i2] = $b25;
+        i2 = i2 + 1;
+        i12 = i12 + 1;
+        goto label5;
+
+     label15:
+        $i26 = i4 + 3;
+        $i27 = lengthof r3;
+        if $i26 >= $i27 goto label27;
+
+        $b28 = r3[i4];
+        $i29 = i4 + 1;
+        $b30 = r3[$i29];
+        if $b28 != $b30 goto label27;
+
+        $b31 = r3[i4];
+        $i32 = i4 + 2;
+        $b33 = r3[$i32];
+        if $b31 != $b33 goto label27;
+
+        $b34 = r3[i4];
+        $i35 = i4 + 3;
+        $b36 = r3[$i35];
+        if $b34 != $b36 goto label27;
+
+        $b37 = r3[i4];
+        if $b37 != 0 goto label23;
+
+        r5[i14] = 0;
+        s38 = 4;
+
+     label16:
+        $i39 = i4 + s38;
+        $i40 = lengthof r3;
+        if $i39 >= $i40 goto label17;
+
+        $b41 = r3[i4];
+        $i42 = i4 + s38;
+        $b43 = r3[$i42];
+        if $b41 != $b43 goto label17;
+
+        if s38 < 139 goto label21;
+
+     label17:
+        if s38 >= 12 goto label22;
+
+        $i44 = i14 + 1;
+        r5[$i44] = 17;
+        $i45 = i14 + 2;
+        $i46 = s38 - 3;
+        $i47 = $i46 - 1;
+        $b48 = (byte) $i47;
+        r5[$i45] = $b48;
+
+     label18:
+        $i49 = s38 - 1;
+        i4 = i4 + $i49;
+
+     label19:
+        b50 = r5[i14];
+        $i51 = r6[b50];
+        i6 = 1 + $i51;
+        r6[b50] = i6;
+        $i52 = i14 + 1;
+        b53 = r5[$i52];
+        $i54 = r6[b53];
+        i55 = 1 + $i54;
+        r6[b53] = i55;
+        i14 = i14 + 2;
+
+     label20:
+        i14 = i14 + 1;
+        i4 = i4 + 1;
+        goto label6;
+
+     label21:
+        $i56 = s38 + 1;
+        s38 = (short) $i56;
+        goto label16;
+
+     label22:
+        $i57 = i14 + 1;
+        r5[$i57] = 18;
+        $i58 = i14 + 2;
+        $i59 = s38 - 11;
+        $i60 = $i59 - 1;
+        $b61 = (byte) $i60;
+        r5[$i58] = $b61;
+        goto label18;
+
+     label23:
+        $b62 = r3[i4];
+        r5[i14] = $b62;
+        $i63 = i14 + 1;
+        r5[$i63] = 16;
+        s64 = 4;
+
+     label24:
+        $i65 = i4 + s64;
+        $i66 = lengthof r3;
+        if $i65 >= $i66 goto label25;
+
+        $b67 = r3[i4];
+        $i68 = i4 + s64;
+        $b69 = r3[$i68];
+        if $b67 != $b69 goto label25;
+
+        if s64 < 7 goto label26;
+
+     label25:
+        $i70 = i14 + 2;
+        $i71 = s64 - 4;
+        $b72 = (byte) $i71;
+        r5[$i70] = $b72;
+        $i73 = s64 - 1;
+        i4 = i4 + $i73;
+        goto label19;
+
+     label26:
+        $i74 = s64 + 1;
+        s64 = (short) $i74;
+        goto label24;
+
+     label27:
+        $b75 = r3[i4];
+        r5[i14] = $b75;
+        b76 = r5[i14];
+        $i77 = r6[b76];
+        i78 = 1 + $i77;
+        r6[b76] = i78;
+        goto label20;
+
+     label28:
+        i18 = i18 + -1;
+        goto label7;
+
+     label29:
+        $i79 = r4[i5];
+        $b80 = r7[$i79];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($b80, 3);
+        i5 = i5 + 1;
+        goto label9;
+
+     label30:
+        $b81 = r5[i23];
+        $i82 = r8[$b81];
+        $b83 = r5[i23];
+        $b84 = r7[$b83];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i82, $b84);
+        $b85 = r5[i23];
+        if $b85 <= 15 goto label32;
+
+        $b86 = r5[i23];
+        tableswitch($b86)
+        {
+            case 16: goto label33;
+            case 17: goto label34;
+            default: goto label31;
+        };
+
+     label31:
+        $i87 = i23 + 1;
+        $b88 = r5[$i87];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($b88, 7);
+        i23 = i23 + 1;
+
+     label32:
+        i23 = i23 + 1;
+        goto label10;
+
+     label33:
+        $i89 = i23 + 1;
+        $b90 = r5[$i89];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($b90, 2);
+        i23 = i23 + 1;
+        goto label32;
+
+     label34:
+        $i91 = i23 + 1;
+        $b92 = r5[$i91];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($b92, 3);
+        i23 = i23 + 1;
+        goto label32;
+    }
+
+    private void encodeChar(int) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int i0, i1, $i3, i4, $i5, $i6, $i7, $i9, $i10, $i11, $i12;
+        byte[] $r1, $r2, $r4, $r5, $r7;
+        byte $b2, $b8, $b13;
+        int[] $r3, $r6;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        i0 := @parameter0: int;
+        $r1 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $b2 = $r1[i0];
+        $i3 = 256 + $b2;
+        i4 = 255 & $i3;
+        $r2 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i5 = lengthof $r2;
+        if $i5 == 0 goto label1;
+
+        $r3 = r0.<com.xxx.yyy.GZipOutputStream: int[] litCount>;
+        $i6 = $r3[i4];
+        i1 = $i6 + 1;
+        $r3[i4] = i1;
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i7 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $b8 = (byte) i4;
+        $r4[$i7] = $b8;
+        if i4 != 255 goto label0;
+
+        $i9 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i10 = 1 + $i9;
+        r0.<com.xxx.yyy.GZipOutputStream: int outProcessed> = $i10;
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i11 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $r5[$i11] = 0;
+
+     label0:
+        return;
+
+     label1:
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i12 = $r6[i4];
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b13 = $r7[i4];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i12, $b13);
+        return;
+    }
+
+    private void encodePointer(int, int) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int i0, i1, i2, $i4, i5, $i6, $i7, $i8, i9, $i10, $i11, $i12, i13, $i14, $i15, $i16, $i17, $i18, $i20, $i21, $i22, $i23, $i25, $i26, $i27, $i29, $i30, $i31, $i32, $i34, $i35, $i36, $i37, $i39, $i40, $i41, i42, $i43, i44, $i45, $i47, $i48, $i49, $i51, $i53, $i54;
+        int[] $r1, $r2, $r3, $r4, $r13, $r14, $r15, $r17, $r18, $r20;
+        byte b3, $b19, $b24, $b28, $b33, $b38, $b46, $b50, $b52, $b55;
+        byte[] $r5, $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r16, $r19;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        $r1 = <com.xxx.yyy.ZipHelper: int[] LENGTH_CODE>;
+        $i4 = staticinvoke <com.xxx.yyy.ZipHelper: int encodeCode(int[],int)>($r1, i1);
+        i5 = $i4 + 257;
+        $i6 = $i4 * 2;
+        i2 = 1 + $i6;
+        $r2 = <com.xxx.yyy.ZipHelper: int[] LENGTH_CODE>;
+        $i7 = $r2[i2];
+        $i8 = i1 - $i7;
+        b3 = (byte) $i8;
+        $r3 = <com.xxx.yyy.ZipHelper: int[] DISTANCE_CODE>;
+        i9 = staticinvoke <com.xxx.yyy.ZipHelper: int encodeCode(int[],int)>($r3, i0);
+        $r4 = <com.xxx.yyy.ZipHelper: int[] DISTANCE_CODE>;
+        $i10 = i9 * 2;
+        $i11 = 1 + $i10;
+        $i12 = $r4[$i11];
+        i13 = i0 - $i12;
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i14 = lengthof $r5;
+        if $i14 == 0 goto label0;
+
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i15 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $r6[$i15] = -1;
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i16 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i17 = 1 + $i16;
+        $i18 = i5 - 255;
+        $b19 = (byte) $i18;
+        $r7[$i17] = $b19;
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i20 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i21 = 2 + $i20;
+        $r8[$i21] = b3;
+        $r9 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i22 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i23 = 3 + $i22;
+        $b24 = (byte) i9;
+        $r9[$i23] = $b24;
+        $r10 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i25 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i26 = 4 + $i25;
+        $i27 = i13 & 255;
+        $b28 = (byte) $i27;
+        $r10[$i26] = $b28;
+        $r11 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i29 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i30 = 5 + $i29;
+        $i31 = i13 >> 8;
+        $i32 = 255 & $i31;
+        $b33 = (byte) $i32;
+        $r11[$i30] = $b33;
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i34 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i35 = 6 + $i34;
+        $i36 = i13 >> 16;
+        $i37 = 255 & $i36;
+        $b38 = (byte) $i37;
+        $r12[$i35] = $b38;
+        $i39 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i40 = 6 + $i39;
+        r0.<com.xxx.yyy.GZipOutputStream: int outProcessed> = $i40;
+        $r13 = r0.<com.xxx.yyy.GZipOutputStream: int[] litCount>;
+        $i41 = $r13[i5];
+        i42 = $i41 + 1;
+        $r13[i5] = i42;
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: int[] distCount>;
+        $i43 = $r14[i9];
+        i44 = $i43 + 1;
+        $r14[i9] = i44;
+        return;
+
+     label0:
+        $r15 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i45 = $r15[i5];
+        $r16 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b46 = $r16[i5];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i45, $b46);
+        $r17 = <com.xxx.yyy.ZipHelper: int[] LENGTH_CODE>;
+        $i47 = i5 - 257;
+        $i48 = 2 * $i47;
+        $i49 = $r17[$i48];
+        $b50 = (byte) $i49;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>(b3, $b50);
+        $r18 = r0.<com.xxx.yyy.GZipOutputStream: int[] distHuffCode>;
+        $i51 = $r18[i9];
+        $r19 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        $b52 = $r19[i9];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i51, $b52);
+        $r20 = <com.xxx.yyy.ZipHelper: int[] DISTANCE_CODE>;
+        $i53 = i9 * 2;
+        $i54 = $r20[$i53];
+        $b55 = (byte) $i54;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>(i13, $b55);
+        return;
+    }
+
+    private void newBlock() throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int i0, $i1, $i2, $i3, $i4, $i6, i7, i8, $i9;
+        boolean $z0;
+        java.io.PrintStream $r1;
+        int[] $r2, $r4, $r6, $r8, $r10, $r12, $r13, $r15, $r17, $r19, $r21, $r23, $r27, $r28, $r29, $r30;
+        byte[] $r3, $r5, $r7, $r9, $r11, $r14, $r16, $r18, $r20, $r22, $r24, $r25, $r26;
+        byte $b5;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        $i1 = r0.<com.xxx.yyy.GZipOutputStream: int status>;
+        if $i1 != 0 goto label3;
+
+        r0.<com.xxx.yyy.GZipOutputStream: int status> = 4;
+
+     label0:
+        $z0 = r0.<com.xxx.yyy.GZipOutputStream: boolean lastBlock>;
+        if $z0 == 0 goto label4;
+
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>(1, 1);
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("final block");
+
+     label1:
+        $i2 = r0.<com.xxx.yyy.GZipOutputStream: int BTYPE>;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i2, 2);
+        $r2 = newarray (int)[286];
+        r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode> = $r2;
+        $r3 = newarray (byte)[286];
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength> = $r3;
+        $r4 = newarray (int)[30];
+        r0.<com.xxx.yyy.GZipOutputStream: int[] distHuffCode> = $r4;
+        $r5 = newarray (byte)[30];
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength> = $r5;
+        $i3 = r0.<com.xxx.yyy.GZipOutputStream: int BTYPE>;
+        if $i3 != 1 goto label5;
+
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: int[] distHuffCode>;
+        $r9 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void genFixedTree(int[],byte[],int[],byte[])>($r6, $r7, $r8, $r9);
+
+     label2:
+        return;
+
+     label3:
+        $r10 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i4 = $r10[256];
+        $r11 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b5 = $r11[256];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i4, $b5);
+        goto label0;
+
+     label4:
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>(0, 1);
+        goto label1;
+
+     label5:
+        $i6 = r0.<com.xxx.yyy.GZipOutputStream: int BTYPE>;
+        if $i6 != 2 goto label2;
+
+        i0 = 0;
+
+     label6:
+        if i0 < 2 goto label9;
+
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: int[] litCount>;
+        $r12[256] = 1;
+        $r13 = r0.<com.xxx.yyy.GZipOutputStream: int[] litCount>;
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void genTreeLength(int[],byte[],int)>($r13, $r14, 15);
+        $r15 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $r16 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void genHuffTree(int[],byte[])>($r15, $r16);
+        $r17 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $r18 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void revHuffTree(int[],byte[])>($r17, $r18);
+        $r19 = r0.<com.xxx.yyy.GZipOutputStream: int[] distCount>;
+        $r20 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void genTreeLength(int[],byte[],int)>($r19, $r20, 15);
+        $r21 = r0.<com.xxx.yyy.GZipOutputStream: int[] distHuffCode>;
+        $r22 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void genHuffTree(int[],byte[])>($r21, $r22);
+        $r23 = r0.<com.xxx.yyy.GZipOutputStream: int[] distHuffCode>;
+        $r24 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        staticinvoke <com.xxx.yyy.ZipHelper: void revHuffTree(int[],byte[])>($r23, $r24);
+        $r25 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $r26 = r0.<com.xxx.yyy.GZipOutputStream: byte[] distHuffCodeLength>;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void compressTree(byte[],byte[])>($r25, $r26);
+        i7 = 0;
+
+     label7:
+        if i7 < 286 goto label11;
+
+        i8 = 0;
+
+     label8:
+        if i8 >= 30 goto label2;
+
+        $r27 = r0.<com.xxx.yyy.GZipOutputStream: int[] distCount>;
+        $r27[i8] = 0;
+        i8 = i8 + 1;
+        goto label8;
+
+     label9:
+        $r28 = r0.<com.xxx.yyy.GZipOutputStream: int[] distCount>;
+        $i9 = $r28[i0];
+        if $i9 != 0 goto label10;
+
+        $r29 = r0.<com.xxx.yyy.GZipOutputStream: int[] distCount>;
+        $r29[i0] = 1;
+
+     label10:
+        i0 = i0 + 1;
+        goto label6;
+
+     label11:
+        $r30 = r0.<com.xxx.yyy.GZipOutputStream: int[] litCount>;
+        $r30[i7] = 0;
+        i7 = i7 + 1;
+        goto label7;
+    }
+
+    private void pushSmallBuffer(int, byte) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int i0, i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, i10, i11, $i12;
+        byte b1;
+        int[] $r1, $r2, $r3, $r4;
+        java.io.OutputStream $r5;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        i0 := @parameter0: int;
+        b1 := @parameter1: byte;
+        $r1 = r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer>;
+        $i3 = $r1[0];
+        $r2 = r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer>;
+        i2 = $r2[1];
+        $i4 = 1 << b1;
+        $i5 = $i4 - 1;
+        $i6 = $i5 << i2;
+        $i7 = -1 ^ $i6;
+        $i8 = $i3 & $i7;
+        $i9 = i0 << i2;
+        i10 = $i8 | $i9;
+        i11 = i2 + b1;
+
+     label0:
+        if i11 >= 8 goto label1;
+
+        $r3 = r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer>;
+        $r3[0] = i10;
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer>;
+        $r4[1] = i11;
+        return;
+
+     label1:
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i12 = i10 & 255;
+        virtualinvoke $r5.<java.io.OutputStream: void write(int)>($i12);
+        i10 = i10 >>> 8;
+        i11 = i11 + -8;
+        goto label0;
+    }
+
+    private boolean search4LZ77(int[], int)
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int[] r1, r2;
+        int i0, i1, $i2, $i4, $i5, $i6, $i8, $i9, $i10, $i11, $i13, $i14, $i16, $i17, $i18, $i19;
+        com.xxx.yyy.ZipIntMultShortHashMap$Element r3;
+        com.xxx.yyy.ZipIntMultShortHashMap[] $r4;
+        com.xxx.yyy.ZipIntMultShortHashMap $r5;
+        byte[] $r6, $r7, $r8;
+        byte $b3, $b7, $b12;
+        short $s15;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        r1 := @parameter0: int[];
+        i0 := @parameter1: int;
+        r2 = newarray (int)[2];
+        r1[1] = 0;
+        i1 = 0;
+
+     label0:
+        if i1 < 4 goto label1;
+
+        $i2 = r1[1];
+        if $i2 == 0 goto label3;
+
+        return 1;
+
+     label1:
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: com.xxx.yyy.ZipIntMultShortHashMap[] HM>;
+        $r5 = $r4[i1];
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $b3 = $r6[i0];
+        $i4 = 128 + $b3;
+        $i5 = $i4 << 16;
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i6 = i0 + 1;
+        $b7 = $r7[$i6];
+        $i8 = 128 + $b7;
+        $i9 = $i8 << 8;
+        $i10 = $i5 | $i9;
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i11 = i0 + 2;
+        $b12 = $r8[$i11];
+        $i13 = 128 + $b12;
+        $i14 = $i10 | $i13;
+        r3 = virtualinvoke $r5.<com.xxx.yyy.ZipIntMultShortHashMap: com.xxx.yyy.ZipIntMultShortHashMap$Element get(int)>($i14);
+        if r3 == null goto label2;
+
+        $s15 = r3.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short size>;
+        if $s15 == 0 goto label2;
+
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void searchHM4LZ77(com.xxx.yyy.ZipIntMultShortHashMap$Element,int[],int)>(r3, r2, i0);
+        $i16 = r2[1];
+        $i17 = r1[1];
+        if $i16 <= $i17 goto label2;
+
+        $i18 = r2[0];
+        r1[0] = $i18;
+        $i19 = r2[1];
+        r1[1] = $i19;
+
+     label2:
+        i1 = i1 + 1;
+        goto label0;
+
+     label3:
+        return 0;
+    }
+
+    private void searchHM4LZ77(com.xxx.yyy.ZipIntMultShortHashMap$Element, int[], int)
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        com.xxx.yyy.ZipIntMultShortHashMap$Element r1;
+        int[] r2;
+        int i0, i1, i2, i3, i4, i5, $i7, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i17, $i19, $i21, $i22, $i23, $i24, $i25, $i29, $i30, $i31, $i33, $i34, $i35, $i36;
+        short $s6, $s8, $s16, $s18, $s20, $s28, $s32;
+        short[] $r3, $r7, $r8, $r9, $r13, $r15;
+        byte[] $r4, $r5, $r6, $r10, $r11, $r12, $r14, $r16;
+        byte $b26, $b27;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        r1 := @parameter0: com.xxx.yyy.ZipIntMultShortHashMap$Element;
+        r2 := @parameter1: int[];
+        i0 := @parameter2: int;
+        i1 = 0;
+        i2 = 0;
+        $s6 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short size>;
+        i3 = $s6 - 1;
+
+     label0:
+        if i3 >= 0 goto label2;
+
+     label1:
+        $i7 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r3 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values>;
+        $s8 = $r3[i1];
+        $i9 = $i7 - $s8;
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i10 = lengthof $r4;
+        $i11 = $i9 + $i10;
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i12 = lengthof $r5;
+        $i13 = $i11 % $i12;
+        r2[0] = $i13;
+        r2[1] = i2;
+        return;
+
+     label2:
+        i4 = 3;
+
+     label3:
+        if i4 >= 258 goto label4;
+
+        $i14 = i0 + i4;
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i15 = lengthof $r6;
+        if $i14 < $i15 goto label6;
+
+     label4:
+        if i4 <= i2 goto label5;
+
+        i1 = i3;
+        i2 = i4;
+        if i4 == 258 goto label1;
+
+     label5:
+        i3 = i3 + -1;
+        goto label0;
+
+     label6:
+        $r7 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values>;
+        $s16 = $r7[i3];
+        $i17 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        if $s16 >= $i17 goto label8;
+
+        $r8 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values>;
+        $s18 = $r8[i3];
+        $i19 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r9 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values>;
+        $s20 = $r9[i3];
+        $i21 = $i19 - $s20;
+        $i22 = i4 % $i21;
+        $i23 = $s18 + $i22;
+        $r10 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i24 = lengthof $r10;
+        i5 = $i23 % $i24;
+
+     label7:
+        $r11 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i25 = i0 + i4;
+        $b26 = $r11[$i25];
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $b27 = $r12[i5];
+        if $b26 != $b27 goto label4;
+
+        i4 = i4 + 1;
+        goto label3;
+
+     label8:
+        $r13 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values>;
+        $s28 = $r13[i3];
+        $i29 = r0.<com.xxx.yyy.GZipOutputStream: int plainPointer>;
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i30 = lengthof $r14;
+        $i31 = $i29 + $i30;
+        $r15 = r1.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values>;
+        $s32 = $r15[i3];
+        $i33 = $i31 - $s32;
+        $i34 = i4 % $i33;
+        $i35 = $s28 + $i34;
+        $r16 = r0.<com.xxx.yyy.GZipOutputStream: byte[] plainDataWindow>;
+        $i36 = lengthof $r16;
+        i5 = $i35 % $i36;
+        goto label7;
+    }
+
+    private void writeFooter() throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int[] $r1, $r4, $r5;
+        int $i0, $i2, $i3, $i4, $i5, $i6, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25, $i26, $i27, $i28, $i29;
+        byte[] $r2;
+        byte $b1, $b7;
+        java.io.PrintStream $r3, $r16;
+        java.io.OutputStream $r6, $r7, $r8, $r9, $r10, $r11, $r12, $r13, $r14, $r15;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        $r1 = r0.<com.xxx.yyy.GZipOutputStream: int[] huffmanCode>;
+        $i0 = $r1[256];
+        $r2 = r0.<com.xxx.yyy.GZipOutputStream: byte[] huffmanCodeLength>;
+        $b1 = $r2[256];
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>($i0, $b1);
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>(" wrote final 256;");
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer>;
+        $i2 = $r4[1];
+        $i3 = 7 & $i2;
+        if $i3 == 0 goto label0;
+
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: int[] smallCodeBuffer>;
+        $i4 = $r5[1];
+        $i5 = 7 & $i4;
+        $i6 = 8 - $i5;
+        $b7 = (byte) $i6;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void pushSmallBuffer(int,byte)>(0, $b7);
+
+     label0:
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i8 = r0.<com.xxx.yyy.GZipOutputStream: int crc32>;
+        $i9 = 255 & $i8;
+        virtualinvoke $r6.<java.io.OutputStream: void write(int)>($i9);
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i10 = r0.<com.xxx.yyy.GZipOutputStream: int crc32>;
+        $i11 = $i10 >>> 8;
+        $i12 = 255 & $i11;
+        virtualinvoke $r7.<java.io.OutputStream: void write(int)>($i12);
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i13 = r0.<com.xxx.yyy.GZipOutputStream: int crc32>;
+        $i14 = $i13 >>> 16;
+        $i15 = 255 & $i14;
+        virtualinvoke $r8.<java.io.OutputStream: void write(int)>($i15);
+        $r9 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i16 = r0.<com.xxx.yyy.GZipOutputStream: int crc32>;
+        $i17 = $i16 >>> 24;
+        $i18 = 255 & $i17;
+        virtualinvoke $r9.<java.io.OutputStream: void write(int)>($i18);
+        $r10 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i19 = r0.<com.xxx.yyy.GZipOutputStream: int isize>;
+        $i20 = 255 & $i19;
+        virtualinvoke $r10.<java.io.OutputStream: void write(int)>($i20);
+        $r11 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i21 = r0.<com.xxx.yyy.GZipOutputStream: int isize>;
+        $i22 = $i21 >>> 8;
+        $i23 = 255 & $i22;
+        virtualinvoke $r11.<java.io.OutputStream: void write(int)>($i23);
+        $r12 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i24 = r0.<com.xxx.yyy.GZipOutputStream: int isize>;
+        $i25 = $i24 >>> 16;
+        $i26 = 255 & $i25;
+        virtualinvoke $r12.<java.io.OutputStream: void write(int)>($i26);
+        $r13 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        $i27 = r0.<com.xxx.yyy.GZipOutputStream: int isize>;
+        $i28 = $i27 >>> 24;
+        $i29 = 255 & $i28;
+        virtualinvoke $r13.<java.io.OutputStream: void write(int)>($i29);
+        $r14 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        virtualinvoke $r14.<java.io.OutputStream: void flush()>();
+        $r15 = r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream>;
+        virtualinvoke $r15.<java.io.OutputStream: void close()>();
+        $r16 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r16.<java.io.PrintStream: void println(java.lang.String)>(" output finished");
+        return;
+    }
+
+    public void close() throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int $i0, $i1, $i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9;
+        byte[] $r1;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        virtualinvoke r0.<com.xxx.yyy.GZipOutputStream: void flush()>();
+        $i0 = r0.<com.xxx.yyy.GZipOutputStream: int BTYPE>;
+        if $i0 != 2 goto label2;
+
+        $i1 = r0.<com.xxx.yyy.GZipOutputStream: int outProcessed>;
+        $i2 = 8 + $i1;
+        $i3 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i4 = r0.<com.xxx.yyy.GZipOutputStream: int inStart>;
+        $i5 = $i3 - $i4;
+        $i6 = 8 * $i5;
+        $i7 = $i6 / 3;
+        $i8 = $i2 + $i7;
+        $r1 = r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow>;
+        $i9 = lengthof $r1;
+        if $i8 <= $i9 goto label0;
+
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void compileOutput()>();
+
+     label0:
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void LZ77(boolean)>(1);
+        r0.<com.xxx.yyy.GZipOutputStream: boolean lastBlock> = 1;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void compileOutput()>();
+
+     label1:
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void writeFooter()>();
+        r0.<com.xxx.yyy.GZipOutputStream: java.io.OutputStream outStream> = null;
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] outputWindow> = null;
+        r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer> = null;
+        r0.<com.xxx.yyy.GZipOutputStream: int[] litCount> = null;
+        return;
+
+     label2:
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void LZ77(boolean)>(1);
+        goto label1;
+    }
+
+    public void flush() throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void LZ77(boolean)>(0);
+        return;
+    }
+
+    public void write(int) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        int i0, i1, $i2, $i3, $i4, $i6, $i7, $i9, $i10;
+        byte[] $r1, $r2, r3;
+        byte $b5, $b8;
+        int[] $r4;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        i0 := @parameter0: int;
+        $r1 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i2 = lengthof $r1;
+        $i3 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        if $i2 != $i3 goto label0;
+
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void LZ77(boolean)>(0);
+
+     label0:
+        $r2 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i4 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        i1 = $i4 + 1;
+        r0.<com.xxx.yyy.GZipOutputStream: int inEnd> = i1;
+        $b5 = (byte) i0;
+        $r2[$i4] = $b5;
+        $i6 = r0.<com.xxx.yyy.GZipOutputStream: int isize>;
+        $i7 = 1 + $i6;
+        r0.<com.xxx.yyy.GZipOutputStream: int isize> = $i7;
+        r3 = newarray (byte)[1];
+        $b8 = (byte) i0;
+        r3[0] = $b8;
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: int[] crc32Table>;
+        $i9 = r0.<com.xxx.yyy.GZipOutputStream: int crc32>;
+        $i10 = staticinvoke <com.xxx.yyy.ZipHelper: int crc32(int[],int,byte[],int,int)>($r4, $i9, r3, 0, 1);
+        r0.<com.xxx.yyy.GZipOutputStream: int crc32> = $i10;
+        return;
+    }
+
+    public void write(byte[]) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        byte[] r1;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        r1 := @parameter0: byte[];
+        $i0 = lengthof r1;
+        virtualinvoke r0.<com.xxx.yyy.GZipOutputStream: void write(byte[],int,int)>(r1, 0, $i0);
+        return;
+    }
+
+    public void write(byte[], int, int) throws java.io.IOException
+    {
+        com.xxx.yyy.GZipOutputStream r0;
+        byte[] r1, $r3, $r4, $r5, $r6, $r7, $r8;
+        int i0, i1, i2, $i3, $i4, $i5, $i6, $i7, $i8, $i9, $i10, $i11, $i12, $i13, $i14, $i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24, $i25;
+        int[] $r2;
+
+        r0 := @this: com.xxx.yyy.GZipOutputStream;
+        r1 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        i2 = 0;
+        $r2 = r0.<com.xxx.yyy.GZipOutputStream: int[] crc32Table>;
+        $i3 = r0.<com.xxx.yyy.GZipOutputStream: int crc32>;
+        $i4 = staticinvoke <com.xxx.yyy.ZipHelper: int crc32(int[],int,byte[],int,int)>($r2, $i3, r1, i0, i1);
+        r0.<com.xxx.yyy.GZipOutputStream: int crc32> = $i4;
+        $i5 = r0.<com.xxx.yyy.GZipOutputStream: int isize>;
+        $i6 = i1 + $i5;
+        r0.<com.xxx.yyy.GZipOutputStream: int isize> = $i6;
+
+     label0:
+        if i2 != i1 goto label1;
+
+        return;
+
+     label1:
+        $r3 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i7 = lengthof $r3;
+        $i8 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i9 = $i7 - $i8;
+        $i10 = i1 - i2;
+        if $i9 < $i10 goto label3;
+
+        $i11 = i2 + i0;
+        $r4 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i12 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i13 = i1 - i2;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, $i11, $r4, $i12, $i13);
+        $i14 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i15 = i1 - i2;
+        $i16 = $i14 + $i15;
+        r0.<com.xxx.yyy.GZipOutputStream: int inEnd> = $i16;
+        i2 = i1;
+
+     label2:
+        specialinvoke r0.<com.xxx.yyy.GZipOutputStream: void LZ77(boolean)>(0);
+        goto label0;
+
+     label3:
+        $i17 = i2 + i0;
+        $r5 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i18 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $r6 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i19 = lengthof $r6;
+        $i20 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i21 = $i19 - $i20;
+        staticinvoke <java.lang.System: void arraycopy(java.lang.Object,int,java.lang.Object,int,int)>(r1, $i17, $r5, $i18, $i21);
+        $r7 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i22 = lengthof $r7;
+        $i23 = r0.<com.xxx.yyy.GZipOutputStream: int inEnd>;
+        $i24 = $i22 - $i23;
+        i2 = i2 + $i24;
+        $r8 = r0.<com.xxx.yyy.GZipOutputStream: byte[] inputBuffer>;
+        $i25 = lengthof $r8;
+        r0.<com.xxx.yyy.GZipOutputStream: int inEnd> = $i25;
+        goto label2;
+    }
+}

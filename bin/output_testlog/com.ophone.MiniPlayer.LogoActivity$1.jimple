@@ -1,0 +1,89 @@
+class com.ophone.MiniPlayer.LogoActivity$1 extends java.lang.Thread
+{
+    final com.ophone.MiniPlayer.LogoActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.LogoActivity)
+    {
+        com.ophone.MiniPlayer.LogoActivity$1 r0;
+        com.ophone.MiniPlayer.LogoActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.LogoActivity$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.LogoActivity;
+        r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0> = r1;
+        specialinvoke r0.<java.lang.Thread: void <init>()>();
+        return;
+    }
+
+    public void run()
+    {
+        com.ophone.MiniPlayer.LogoActivity$1 r0;
+        int i0, i1;
+        com.ophone.MiniPlayer.LogoActivity $r1, $r2, $r4, $r5, $r8, $r10, $r11, $r13, $r15, $r16;
+        android.content.Intent r3, r9, r14;
+        java.lang.InterruptedException $r6, r7;
+        java.lang.Throwable $r12;
+
+        r0 := @this: com.ophone.MiniPlayer.LogoActivity$1;
+        i0 = 0;
+
+     label0:
+        $r1 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        i1 = $r1.<com.ophone.MiniPlayer.LogoActivity: int _splashTime>;
+
+     label1:
+        if i0 < i1 goto label2;
+
+        $r2 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        virtualinvoke $r2.<com.ophone.MiniPlayer.LogoActivity: void finish()>();
+        r3 = new android.content.Intent;
+        $r4 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        specialinvoke r3.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r4, class "com/ophone/MiniPlayer/MainActivity");
+        $r5 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        virtualinvoke $r5.<com.ophone.MiniPlayer.LogoActivity: void startActivity(android.content.Intent)>(r3);
+        virtualinvoke r0.<com.ophone.MiniPlayer.LogoActivity$1: void stop()>();
+        return;
+
+     label2:
+        staticinvoke <com.ophone.MiniPlayer.LogoActivity$1: void sleep(long)>(100L);
+
+     label3:
+        i0 = i0 + 100;
+        goto label0;
+
+     label4:
+        $r6 := @caughtexception;
+        r7 = $r6;
+
+     label5:
+        virtualinvoke r7.<java.lang.InterruptedException: void printStackTrace()>();
+
+     label6:
+        $r8 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        virtualinvoke $r8.<com.ophone.MiniPlayer.LogoActivity: void finish()>();
+        r9 = new android.content.Intent;
+        $r10 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        specialinvoke r9.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r10, class "com/ophone/MiniPlayer/MainActivity");
+        $r11 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        virtualinvoke $r11.<com.ophone.MiniPlayer.LogoActivity: void startActivity(android.content.Intent)>(r9);
+        virtualinvoke r0.<com.ophone.MiniPlayer.LogoActivity$1: void stop()>();
+        return;
+
+     label7:
+        $r12 := @caughtexception;
+        $r13 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        virtualinvoke $r13.<com.ophone.MiniPlayer.LogoActivity: void finish()>();
+        r14 = new android.content.Intent;
+        $r15 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        specialinvoke r14.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r15, class "com/ophone/MiniPlayer/MainActivity");
+        $r16 = r0.<com.ophone.MiniPlayer.LogoActivity$1: com.ophone.MiniPlayer.LogoActivity this$0>;
+        virtualinvoke $r16.<com.ophone.MiniPlayer.LogoActivity: void startActivity(android.content.Intent)>(r14);
+        virtualinvoke r0.<com.ophone.MiniPlayer.LogoActivity$1: void stop()>();
+        throw $r12;
+
+        catch java.lang.InterruptedException from label0 to label1 with label4;
+        catch java.lang.Throwable from label0 to label1 with label7;
+        catch java.lang.InterruptedException from label2 to label3 with label4;
+        catch java.lang.Throwable from label2 to label3 with label7;
+        catch java.lang.Throwable from label5 to label6 with label7;
+    }
+}

@@ -1,0 +1,67 @@
+public class com.hp.hpl.sparta.Sparta extends java.lang.Object
+{
+    private static com.hp.hpl.sparta.Sparta$CacheFactory cacheFactory_;
+    private static com.hp.hpl.sparta.Sparta$Internment internment_;
+
+    static void <clinit>()
+    {
+        com.hp.hpl.sparta.Sparta$1 $r0;
+        com.hp.hpl.sparta.Sparta$2 $r1;
+
+        $r0 = new com.hp.hpl.sparta.Sparta$1;
+        specialinvoke $r0.<com.hp.hpl.sparta.Sparta$1: void <init>()>();
+        <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$Internment internment_> = $r0;
+        $r1 = new com.hp.hpl.sparta.Sparta$2;
+        specialinvoke $r1.<com.hp.hpl.sparta.Sparta$2: void <init>()>();
+        <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$CacheFactory cacheFactory_> = $r1;
+        return;
+    }
+
+    public void <init>()
+    {
+        com.hp.hpl.sparta.Sparta r0;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static java.lang.String intern(java.lang.String)
+    {
+        java.lang.String r0, $r2;
+        com.hp.hpl.sparta.Sparta$Internment $r1;
+
+        r0 := @parameter0: java.lang.String;
+        $r1 = <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$Internment internment_>;
+        $r2 = interfaceinvoke $r1.<com.hp.hpl.sparta.Sparta$Internment: java.lang.String intern(java.lang.String)>(r0);
+        return $r2;
+    }
+
+    static com.hp.hpl.sparta.Sparta$Cache newCache()
+    {
+        com.hp.hpl.sparta.Sparta$CacheFactory $r0;
+        com.hp.hpl.sparta.Sparta$Cache $r1;
+
+        $r0 = <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$CacheFactory cacheFactory_>;
+        $r1 = interfaceinvoke $r0.<com.hp.hpl.sparta.Sparta$CacheFactory: com.hp.hpl.sparta.Sparta$Cache create()>();
+        return $r1;
+    }
+
+    public static void setCacheFactory(com.hp.hpl.sparta.Sparta$CacheFactory)
+    {
+        com.hp.hpl.sparta.Sparta$CacheFactory r0;
+
+        r0 := @parameter0: com.hp.hpl.sparta.Sparta$CacheFactory;
+        <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$CacheFactory cacheFactory_> = r0;
+        return;
+    }
+
+    public static void setInternment(com.hp.hpl.sparta.Sparta$Internment)
+    {
+        com.hp.hpl.sparta.Sparta$Internment r0;
+
+        r0 := @parameter0: com.hp.hpl.sparta.Sparta$Internment;
+        <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$Internment internment_> = r0;
+        return;
+    }
+}

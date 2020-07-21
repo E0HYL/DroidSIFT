@@ -1,0 +1,71 @@
+public final class com.ophone.MiniPlayer.R$drawable extends java.lang.Object
+{
+    public static final int addallsong;
+    public static final int addselectedsong;
+    public static final int album;
+    public static final int artist;
+    public static final int backgroundcolor;
+    public static final int baidu_mp3;
+    public static final int black;
+    public static final int blue;
+    public static final int check;
+    public static final int clear_playlist;
+    public static final int cmcc_list_music;
+    public static final int cmcc_playing;
+    public static final int exit;
+    public static final int flower;
+    public static final int google_mp3;
+    public static final int gray;
+    public static final int green;
+    public static final int ic_audiolist;
+    public static final int icon;
+    public static final int index;
+    public static final int jump;
+    public static final int local_audio;
+    public static final int local_audiogray;
+    public static final int mainmenu;
+    public static final int menubar;
+    public static final int music_scan;
+    public static final int navi_baidu;
+    public static final int nextsong;
+    public static final int notification;
+    public static final int online_audio;
+    public static final int online_audiogray;
+    public static final int pause;
+    public static final int play;
+    public static final int playing;
+    public static final int playinggray;
+    public static final int playingpicture;
+    public static final int playlist;
+    public static final int playlistgray;
+    public static final int presong;
+    public static final int randomcancel;
+    public static final int randomopen;
+    public static final int red;
+    public static final int repeatallsong;
+    public static final int repeatcancel;
+    public static final int repeatcurrentsong;
+    public static final int sample_1;
+    public static final int save;
+    public static final int screen_background_black;
+    public static final int search;
+    public static final int searchengine_icon_default;
+    public static final int searchgray;
+    public static final int songname;
+    public static final int stat_sample;
+    public static final int translucent_background;
+    public static final int transparence;
+    public static final int transparent_background;
+    public static final int uncheck;
+    public static final int white;
+    public static final int yellow;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$drawable r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$drawable;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

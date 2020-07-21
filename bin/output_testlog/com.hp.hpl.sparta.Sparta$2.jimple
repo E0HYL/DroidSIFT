@@ -1,0 +1,23 @@
+class com.hp.hpl.sparta.Sparta$2 extends java.lang.Object implements com.hp.hpl.sparta.Sparta$CacheFactory
+{
+
+    void <init>()
+    {
+        com.hp.hpl.sparta.Sparta$2 r0;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta$2;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public com.hp.hpl.sparta.Sparta$Cache create()
+    {
+        com.hp.hpl.sparta.Sparta$2 r0;
+        com.hp.hpl.sparta.Sparta$HashtableCache $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta$2;
+        $r1 = new com.hp.hpl.sparta.Sparta$HashtableCache;
+        specialinvoke $r1.<com.hp.hpl.sparta.Sparta$HashtableCache: void <init>(com.hp.hpl.sparta.Sparta$1)>(null);
+        return $r1;
+    }
+}

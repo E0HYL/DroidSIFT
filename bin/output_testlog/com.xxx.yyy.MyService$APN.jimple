@@ -1,0 +1,15 @@
+public class com.xxx.yyy.MyService$APN extends java.lang.Object
+{
+    java.lang.String apn;
+    java.lang.String id;
+    java.lang.String type;
+
+    public void <init>()
+    {
+        com.xxx.yyy.MyService$APN r0;
+
+        r0 := @this: com.xxx.yyy.MyService$APN;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

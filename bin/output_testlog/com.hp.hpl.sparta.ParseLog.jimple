@@ -1,0 +1,9 @@
+public interface  com.hp.hpl.sparta.ParseLog extends java.lang.Object
+{
+
+    public abstract void error(java.lang.String, java.lang.String, int);
+
+    public abstract void note(java.lang.String, java.lang.String, int);
+
+    public abstract void warning(java.lang.String, java.lang.String, int);
+}

@@ -1,0 +1,1298 @@
+public class com.ophone.MiniPlayer.PlayingListActivity extends android.app.ListActivity
+{
+    private static final int MSG_XMLPARSE_END;
+    private static final int OPTION_ITEM_CLEAR;
+    private static final int OPTION_ITEM_DELETEPLAYLIST;
+    private static final int OPTION_ITEM_LOCALSONG;
+    private static final int OPTION_ITEM_ONLINESONG;
+    private static final int OPTION_ITEM_PLAYING;
+    private static final int OPTION_ITEM_SAVE;
+    private static final int OPTION_ITEM_SHOWPLAYLIST;
+    private static final int OPTION_ITEM_SORTALPHABET;
+    private static final int OPTION_ITEM_SORTDATE;
+    private static final int OPTION_ITEM_SORTLISTENMOST;
+    private static final int SHOW_CLEAR_DIALOG;
+    private static final int SHOW_DELETEPLAYLIST_DIALOG;
+    private static final int SHOW_DELETE_DIALOG;
+    private static final int SHOW_DOWNLOAD_DIALOG;
+    private static final int SHOW_PROGRESS_DIALOG;
+    private static final int SHOW_SAVE_DIALOG;
+    private static final int SHOW_SHOWPLAYLIST_DIALOG;
+    private static final java.lang.String TAG;
+    android.widget.ArrayAdapter adapter;
+    private int chooseItem;
+    private int chooseItem1;
+    private android.content.ServiceConnection connection;
+    private java.lang.String currentFilePath;
+    private java.lang.String currentTempFilePath;
+    private java.lang.String fileEx;
+    private java.lang.String fileNa;
+    public java.util.ArrayList filelist;
+    private android.os.Handler handler;
+    com.ophone.MiniPlayer.PlayingListActivity$ViewHolder holder;
+    private java.util.List list;
+    private com.ophone.MiniPlayer.Loadimageurl liu;
+    android.widget.LinearLayout mLoadingLayout;
+    private android.widget.ListView myListView;
+    private java.io.File myTempFileringtone;
+    private int pos;
+    private java.lang.Integer rString;
+    com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver receiver;
+    private com.ophone.MiniPlayer.IPlayback service;
+    com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter;
+    private com.ophone.MiniPlayer.provider.Song song;
+    public java.util.ArrayList songlist;
+    java.lang.String[] st;
+    private int status;
+    private java.lang.String strURL;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        com.ophone.MiniPlayer.Loadimageurl $r1;
+        java.util.ArrayList $r2, $r3, $r4;
+        com.ophone.MiniPlayer.PlayingListActivity$1 $r5;
+        com.ophone.MiniPlayer.PlayingListActivity$2 $r6;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        specialinvoke r0.<android.app.ListActivity: void <init>()>();
+        $r1 = new com.ophone.MiniPlayer.Loadimageurl;
+        specialinvoke $r1.<com.ophone.MiniPlayer.Loadimageurl: void <init>()>();
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.Loadimageurl liu> = $r1;
+        $r2 = new java.util.ArrayList;
+        specialinvoke $r2.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist> = $r2;
+        $r3 = new java.util.ArrayList;
+        specialinvoke $r3.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList filelist> = $r3;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem> = 0;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem1> = 0;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.provider.Song song> = null;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int status> = 0;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String strURL> = "";
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String fileEx> = "";
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String fileNa> = "";
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String currentFilePath> = "";
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String currentTempFilePath> = "";
+        $r4 = new java.util.ArrayList;
+        specialinvoke $r4.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List list> = $r4;
+        $r5 = new com.ophone.MiniPlayer.PlayingListActivity$1;
+        specialinvoke $r5.<com.ophone.MiniPlayer.PlayingListActivity$1: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: android.os.Handler handler> = $r5;
+        $r6 = new com.ophone.MiniPlayer.PlayingListActivity$2;
+        specialinvoke $r6.<com.ophone.MiniPlayer.PlayingListActivity$2: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.ServiceConnection connection> = $r6;
+        return;
+    }
+
+    private void SendClearSongList()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.content.Intent r1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 14);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    private void SendGetSongList()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.content.Intent r1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 6);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    private void SendSonglisttoService()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.content.Intent r1;
+        java.util.ArrayList $r3;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 25);
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("songlist", $r3);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    private void SenddeleteSong()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.content.Intent r1;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 = new android.content.Intent;
+        specialinvoke r1.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        $i0 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int pos>;
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("pos", $i0);
+        virtualinvoke r1.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 21);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r1);
+        return;
+    }
+
+    private void SendsaveSonglist(java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+        android.content.Intent r2;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: java.lang.String;
+        r2 = new android.content.Intent;
+        specialinvoke r2.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("playlistname", r1);
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 23);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r2);
+        return;
+    }
+
+    static void access$0(com.ophone.MiniPlayer.PlayingListActivity, com.ophone.MiniPlayer.IPlayback)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        com.ophone.MiniPlayer.IPlayback r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter1: com.ophone.MiniPlayer.IPlayback;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.IPlayback service> = r1;
+        return;
+    }
+
+    static java.util.List access$1(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.util.List $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List list>;
+        return $r1;
+    }
+
+    static void access$10(com.ophone.MiniPlayer.PlayingListActivity, int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        i0 := @parameter1: int;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem> = i0;
+        return;
+    }
+
+    static int access$11(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int $i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $i0 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem>;
+        return $i0;
+    }
+
+    static void access$12(com.ophone.MiniPlayer.PlayingListActivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter1: java.lang.String;
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void senddeleteplaylist(java.lang.String)>(r1);
+        return;
+    }
+
+    static void access$13(com.ophone.MiniPlayer.PlayingListActivity, int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        i0 := @parameter1: int;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem1> = i0;
+        return;
+    }
+
+    static int access$14(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int $i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $i0 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem1>;
+        return $i0;
+    }
+
+    static void access$15(com.ophone.MiniPlayer.PlayingListActivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter1: java.lang.String;
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendselectfiletoservice(java.lang.String)>(r1);
+        return;
+    }
+
+    static void access$16(com.ophone.MiniPlayer.PlayingListActivity, java.lang.String) throws java.lang.Exception
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter1: java.lang.String;
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void getDataSource(java.lang.String)>(r1);
+        return;
+    }
+
+    static com.ophone.MiniPlayer.Loadimageurl access$2(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        com.ophone.MiniPlayer.Loadimageurl $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.Loadimageurl liu>;
+        return $r1;
+    }
+
+    static com.ophone.MiniPlayer.IPlayback access$3(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        com.ophone.MiniPlayer.IPlayback $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.IPlayback service>;
+        return $r1;
+    }
+
+    static void access$4(com.ophone.MiniPlayer.PlayingListActivity, int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        i0 := @parameter1: int;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int status> = i0;
+        return;
+    }
+
+    static int access$5(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int $i0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $i0 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int status>;
+        return $i0;
+    }
+
+    static android.os.Handler access$6(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.os.Handler $r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity: android.os.Handler handler>;
+        return $r1;
+    }
+
+    static void access$7(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void SendClearSongList()>();
+        return;
+    }
+
+    static void access$8(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void SenddeleteSong()>();
+        return;
+    }
+
+    static void access$9(com.ophone.MiniPlayer.PlayingListActivity, java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+
+        r0 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter1: java.lang.String;
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void SendsaveSonglist(java.lang.String)>(r1);
+        return;
+    }
+
+    private void getDataSource(java.lang.String) throws java.lang.Exception
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1, $r9, $r11, $r13, $r15, $r17, $r19, $r24, $r26;
+        java.io.File r2, $r14;
+        java.io.FileOutputStream r3;
+        boolean $z0;
+        android.widget.Toast $r4;
+        java.net.URL $r5;
+        java.net.URLConnection $r6;
+        java.io.InputStream r7;
+        java.lang.RuntimeException $r8;
+        java.lang.StringBuilder $r10, $r12, $r16, $r18, $r23, $r25;
+        byte[] r20;
+        int i1;
+        java.lang.Exception $r21, r22;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: java.lang.String;
+        $z0 = staticinvoke <android.webkit.URLUtil: boolean isNetworkUrl(java.lang.String)>(r1);
+        if $z0 != 0 goto label0;
+
+        $r4 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>(r0, 2131034203, 0);
+        virtualinvoke $r4.<android.widget.Toast: void show()>();
+        return;
+
+     label0:
+        $r5 = new java.net.URL;
+        specialinvoke $r5.<java.net.URL: void <init>(java.lang.String)>(r1);
+        $r6 = virtualinvoke $r5.<java.net.URL: java.net.URLConnection openConnection()>();
+        virtualinvoke $r6.<java.net.URLConnection: void connect()>();
+        r7 = virtualinvoke $r6.<java.net.URLConnection: java.io.InputStream getInputStream()>();
+        if r7 != null goto label1;
+
+        $r8 = new java.lang.RuntimeException;
+        specialinvoke $r8.<java.lang.RuntimeException: void <init>(java.lang.String)>("stream is null");
+        throw $r8;
+
+     label1:
+        $r9 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String fileNa>;
+        $r10 = new java.lang.StringBuilder;
+        specialinvoke $r10.<java.lang.StringBuilder: void <init>(java.lang.String)>(".");
+        $r11 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String fileEx>;
+        $r12 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r11);
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r14 = new java.io.File;
+        specialinvoke $r14.<java.io.File: void <init>(java.lang.String)>("\\sdcard\\yy\\tmp");
+        r2 = staticinvoke <java.io.File: java.io.File createTempFile(java.lang.String,java.lang.String,java.io.File)>($r9, $r13, $r14);
+        $r15 = virtualinvoke r2.<java.io.File: java.lang.String getAbsolutePath()>();
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String currentTempFilePath> = $r15;
+        $r16 = new java.lang.StringBuilder;
+        specialinvoke $r16.<java.lang.StringBuilder: void <init>(java.lang.String)>(" currentTempFilePath = ");
+        $r17 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String currentTempFilePath>;
+        $r18 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r17);
+        $r19 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r19);
+        r3 = new java.io.FileOutputStream;
+        specialinvoke r3.<java.io.FileOutputStream: void <init>(java.io.File)>(r2);
+        r20 = newarray (byte)[128];
+
+     label2:
+        i1 = virtualinvoke r7.<java.io.InputStream: int read(byte[])>(r20);
+        if i1 > 0 goto label6;
+
+     label3:
+        virtualinvoke r3.<java.io.FileOutputStream: void close()>();
+        virtualinvoke r7.<java.io.InputStream: void close()>();
+
+     label4:
+        return;
+
+     label5:
+        $r21 := @caughtexception;
+        r22 = $r21;
+        virtualinvoke r22.<java.lang.Exception: void printStackTrace()>();
+        $r23 = new java.lang.StringBuilder;
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("error: ");
+        $r24 = virtualinvoke r22.<java.lang.Exception: java.lang.String getMessage()>();
+        $r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int e(java.lang.String,java.lang.String,java.lang.Throwable)>("OnlinePlayer", $r26, r22);
+        return;
+
+     label6:
+        virtualinvoke r3.<java.io.FileOutputStream: void write(byte[],int,int)>(r20, 0, i1);
+        goto label2;
+
+        catch java.lang.Exception from label3 to label4 with label5;
+    }
+
+    private void getFile(java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1, $r3;
+        com.ophone.MiniPlayer.PlayingListActivity$15 $r2;
+        boolean $z0;
+        java.lang.Thread $r4;
+        java.lang.Exception $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: java.lang.String;
+
+     label0:
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String currentFilePath>;
+        $z0 = virtualinvoke r1.<java.lang.String: boolean equals(java.lang.Object)>($r3);
+        if $z0 == 0 goto label1;
+
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void getDataSource(java.lang.String)>(r1);
+
+     label1:
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String currentFilePath> = r1;
+        $r4 = new java.lang.Thread;
+        $r2 = new com.ophone.MiniPlayer.PlayingListActivity$15;
+        specialinvoke $r2.<com.ophone.MiniPlayer.PlayingListActivity$15: void <init>(com.ophone.MiniPlayer.PlayingListActivity,java.lang.String)>(r0, r1);
+        specialinvoke $r4.<java.lang.Thread: void <init>(java.lang.Runnable)>($r2);
+        virtualinvoke $r4.<java.lang.Thread: void start()>();
+
+     label2:
+        return;
+
+     label3:
+        $r5 := @caughtexception;
+        virtualinvoke $r5.<java.lang.Exception: void printStackTrace()>();
+        return;
+
+        catch java.lang.Exception from label0 to label1 with label3;
+        catch java.lang.Exception from label1 to label2 with label3;
+    }
+
+    private java.lang.String[] getFilelist(java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1, $r7, r8;
+        java.io.File r2, $r6;
+        int i0, i1, i3;
+        java.io.File[] r3;
+        java.lang.String[] $r4, $r5, $r9;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: java.lang.String;
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", "getFilelist(String url)");
+        r2 = new java.io.File;
+        specialinvoke r2.<java.io.File: void <init>(java.lang.String)>(r1);
+        r3 = (java.io.File[]) null;
+        if r2 == null goto label0;
+
+        r3 = virtualinvoke r2.<java.io.File: java.io.File[] listFiles()>();
+
+     label0:
+        if r3 == null goto label2;
+
+        i0 = lengthof r3;
+        $r4 = newarray (java.lang.String)[i0];
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st> = $r4;
+        i1 = 0;
+
+     label1:
+        if i1 < i0 goto label3;
+
+     label2:
+        $r5 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st>;
+        return $r5;
+
+     label3:
+        $r6 = r3[i1];
+        $r7 = virtualinvoke $r6.<java.io.File: java.lang.String getName()>();
+        i3 = virtualinvoke $r7.<java.lang.String: int lastIndexOf(java.lang.String)>(".");
+        r8 = virtualinvoke $r7.<java.lang.String: java.lang.String substring(int,int)>(0, i3);
+        $r9 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st>;
+        $r9[i1] = r8;
+        i1 = i1 + 1;
+        goto label1;
+    }
+
+    private void senddeleteplaylist(java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+        android.content.Intent r2;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: java.lang.String;
+        r2 = new android.content.Intent;
+        specialinvoke r2.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("deleteplaylist", r1);
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 30);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r2);
+        return;
+    }
+
+    private void sendselectfiletoservice(java.lang.String)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        java.lang.String r1;
+        android.content.Intent r2;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: java.lang.String;
+        r2 = new android.content.Intent;
+        specialinvoke r2.<android.content.Intent: void <init>(java.lang.String)>("com.myplayer.toService");
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)>("filename", r1);
+        virtualinvoke r2.<android.content.Intent: android.content.Intent putExtra(java.lang.String,int)>("cmd", 29);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void sendBroadcast(android.content.Intent)>(r2);
+        return;
+    }
+
+    public java.util.List getAdapterMap()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int i0, i1, $i2, $i4;
+        java.util.HashMap r1;
+        java.util.List $r2, $r8, $r46;
+        java.util.ArrayList $r3, $r5, $r9, $r12, $r19, $r30, $r33, $r37, $r40, $r47, $r52, $r55, $r58, $r61, $r67;
+        java.lang.StringBuilder $r4, $r6, $r18, $r23, $r26, $r34;
+        java.lang.String $r7, $r22, $r24, $r28, $r29, $r35, $r43, $r44, $r64, $r70, $r71;
+        java.lang.Object $r10, $r13, $r20, $r31, $r38, $r41, $r48, $r53, $r56, $r59, $r62, $r68;
+        com.ophone.MiniPlayer.provider.Song $r11, $r14, $r21, $r32, $r39, $r42, $r49, $r54, $r57, $r60, $r63, $r69;
+        boolean $z0, $z1, $z2, $z4, $z5, $z6, $z7;
+        java.lang.Integer $r16;
+        android.content.res.Resources $r27;
+        float $f0, $f1;
+        long $l5, $l6;
+        java.lang.NumberFormatException $r66;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        $r2 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List list>;
+        interfaceinvoke $r2.<java.util.List: void clear()>();
+        i0 = 0;
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        i1 = virtualinvoke $r3.<java.util.ArrayList: int size()>();
+
+     label0:
+        if i0 < i1 goto label1;
+
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("songlist size:");
+        $r5 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i2 = virtualinvoke $r5.<java.util.ArrayList: int size()>();
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r7);
+        $r8 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List list>;
+        return $r8;
+
+     label1:
+        r1 = new java.util.HashMap;
+        specialinvoke r1.<java.util.HashMap: void <init>()>();
+        $r9 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r10 = virtualinvoke $r9.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r11 = (com.ophone.MiniPlayer.provider.Song) $r10;
+        $z0 = virtualinvoke $r11.<com.ophone.MiniPlayer.provider.Song: boolean isTag()>();
+        if $z0 == 0 goto label6;
+
+        $r12 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r13 = virtualinvoke $r12.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r14 = (com.ophone.MiniPlayer.provider.Song) $r13;
+        $z1 = virtualinvoke $r14.<com.ophone.MiniPlayer.provider.Song: boolean isTagbaidu()>();
+        if $z1 == 0 goto label5;
+
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("imageurl", "baidu");
+
+     label2:
+        $i4 = i0 + 1;
+        $r16 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i4);
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("counter", $r16);
+        $r18 = new java.lang.StringBuilder;
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("\u3001");
+        $r19 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r20 = virtualinvoke $r19.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r21 = (com.ophone.MiniPlayer.provider.Song) $r20;
+        $r22 = virtualinvoke $r21.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $r23 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r22);
+        $r24 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.String toString()>();
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("name", $r24);
+        $r26 = new java.lang.StringBuilder;
+        $r27 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.res.Resources getResources()>();
+        $r28 = virtualinvoke $r27.<android.content.res.Resources: java.lang.String getString(int)>(2131034136);
+        $r29 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($r28);
+        specialinvoke $r26.<java.lang.StringBuilder: void <init>(java.lang.String)>($r29);
+        $r30 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r31 = virtualinvoke $r30.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r32 = (com.ophone.MiniPlayer.provider.Song) $r31;
+        $r33 = virtualinvoke $r32.<com.ophone.MiniPlayer.provider.Song: java.util.ArrayList getSinger()>();
+        $r34 = virtualinvoke $r26.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.Object)>($r33);
+        $r35 = virtualinvoke $r34.<java.lang.StringBuilder: java.lang.String toString()>();
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("singer", $r35);
+
+     label3:
+        $r37 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r38 = virtualinvoke $r37.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r39 = (com.ophone.MiniPlayer.provider.Song) $r38;
+        $z2 = virtualinvoke $r39.<com.ophone.MiniPlayer.provider.Song: boolean isTaggoogle()>();
+        if $z2 == 0 goto label7;
+
+        $r40 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r41 = virtualinvoke $r40.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r42 = (com.ophone.MiniPlayer.provider.Song) $r41;
+        $r43 = virtualinvoke $r42.<com.ophone.MiniPlayer.provider.Song: java.lang.String getDuration()>();
+        $f0 = staticinvoke <java.lang.Float: float parseFloat(java.lang.String)>($r43);
+        $f1 = 1000.0F * $f0;
+        $l5 = (long) $f1;
+        $r44 = staticinvoke <com.ophone.MiniPlayer.utils.StringUtil: java.lang.String timeToString(long)>($l5);
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("duration", $r44);
+
+     label4:
+        $r46 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List list>;
+        interfaceinvoke $r46.<java.util.List: boolean add(java.lang.Object)>(r1);
+        i0 = i0 + 1;
+        goto label0;
+
+     label5:
+        $r47 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r48 = virtualinvoke $r47.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r49 = (com.ophone.MiniPlayer.provider.Song) $r48;
+        $z4 = virtualinvoke $r49.<com.ophone.MiniPlayer.provider.Song: boolean isTaggoogle()>();
+        if $z4 == 0 goto label2;
+
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("imageurl", "google");
+        goto label2;
+
+     label6:
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("imageurl", " ");
+        goto label2;
+
+     label7:
+        $r52 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r53 = virtualinvoke $r52.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r54 = (com.ophone.MiniPlayer.provider.Song) $r53;
+        $z5 = virtualinvoke $r54.<com.ophone.MiniPlayer.provider.Song: boolean isTaggoogle()>();
+        if $z5 != 0 goto label4;
+
+        $r55 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r56 = virtualinvoke $r55.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r57 = (com.ophone.MiniPlayer.provider.Song) $r56;
+        $z6 = virtualinvoke $r57.<com.ophone.MiniPlayer.provider.Song: boolean isTagbaidu()>();
+        if $z6 != 0 goto label4;
+
+        $r58 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r59 = virtualinvoke $r58.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r60 = (com.ophone.MiniPlayer.provider.Song) $r59;
+        $z7 = virtualinvoke $r60.<com.ophone.MiniPlayer.provider.Song: boolean isTagfile()>();
+        if $z7 == 0 goto label10;
+
+        $r61 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r62 = virtualinvoke $r61.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r63 = (com.ophone.MiniPlayer.provider.Song) $r62;
+        $r64 = virtualinvoke $r63.<com.ophone.MiniPlayer.provider.Song: java.lang.String getDuration()>();
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("duration", $r64);
+
+     label8:
+        goto label4;
+
+     label9:
+        $r66 := @caughtexception;
+        virtualinvoke $r66.<java.lang.NumberFormatException: void printStackTrace()>();
+        goto label4;
+
+     label10:
+        $r67 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r68 = virtualinvoke $r67.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r69 = (com.ophone.MiniPlayer.provider.Song) $r68;
+        $r70 = virtualinvoke $r69.<com.ophone.MiniPlayer.provider.Song: java.lang.String getDuration()>();
+        $l6 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($r70);
+        $r71 = staticinvoke <com.ophone.MiniPlayer.utils.StringUtil: java.lang.String timeToString(long)>($l6);
+        interfaceinvoke r1.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>("duration", $r71);
+
+     label11:
+        goto label4;
+
+        catch java.lang.NumberFormatException from label3 to label4 with label9;
+        catch java.lang.NumberFormatException from label7 to label8 with label9;
+        catch java.lang.NumberFormatException from label10 to label11 with label9;
+    }
+
+    public java.lang.String[] getfilelist()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int i0, i1;
+        java.util.ArrayList $r1, $r2, $r6;
+        java.lang.String[] $r3, $r4, $r5;
+        java.lang.Object $r7;
+        java.lang.String $r8;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList filelist>;
+        if $r1 == null goto label1;
+
+        $r2 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList filelist>;
+        i0 = virtualinvoke $r2.<java.util.ArrayList: int size()>();
+        $r3 = newarray (java.lang.String)[i0];
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st> = $r3;
+        i1 = 0;
+
+     label0:
+        if i1 < i0 goto label2;
+
+     label1:
+        $r4 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st>;
+        return $r4;
+
+     label2:
+        $r5 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] st>;
+        $r6 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList filelist>;
+        $r7 = virtualinvoke $r6.<java.util.ArrayList: java.lang.Object get(int)>(i1);
+        $r8 = (java.lang.String) $r7;
+        $r5[i1] = $r8;
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    public boolean onContextItemSelected(android.view.MenuItem)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.view.MenuItem r1;
+        android.widget.AdapterView$AdapterContextMenuInfo r2;
+        android.view.ContextMenu$ContextMenuInfo $r3;
+        int $i0, $i2, $i3, $i5;
+        boolean $z0;
+        java.lang.StringBuilder $r4, $r9, $r11, $r12;
+        java.util.ArrayList $r5;
+        java.lang.Object $r6;
+        com.ophone.MiniPlayer.provider.Song $r7;
+        java.lang.String $r8, $r10, $r13;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: android.view.MenuItem;
+        $r3 = interfaceinvoke r1.<android.view.MenuItem: android.view.ContextMenu$ContextMenuInfo getMenuInfo()>();
+        r2 = (android.widget.AdapterView$AdapterContextMenuInfo) $r3;
+        $i0 = interfaceinvoke r1.<android.view.MenuItem: int getItemId()>();
+        tableswitch($i0)
+        {
+            case 2131230778: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        $z0 = specialinvoke r0.<android.app.ListActivity: boolean onContextItemSelected(android.view.MenuItem)>(r1);
+        return $z0;
+
+     label1:
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", "onContextitemSelected");
+        $i2 = r2.<android.widget.AdapterView$AdapterContextMenuInfo: int position>;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: int pos> = $i2;
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("onContextitemSelected song.getName()");
+        $r5 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i3 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int pos>;
+        $r6 = virtualinvoke $r5.<java.util.ArrayList: java.lang.Object get(int)>($i3);
+        $r7 = (com.ophone.MiniPlayer.provider.Song) $r6;
+        $r8 = virtualinvoke $r7.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $r9 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r8);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r10);
+        $r11 = new java.lang.StringBuilder;
+        specialinvoke $r11.<java.lang.StringBuilder: void <init>(java.lang.String)>("info.position");
+        $i5 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int pos>;
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i5);
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r13);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void showDialog(int)>(4);
+        goto label0;
+    }
+
+    public void onCreate(android.os.Bundle)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.os.Bundle r1;
+        com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver $r2, $r4;
+        android.content.IntentFilter r3;
+        android.content.Intent $r6;
+        android.content.ServiceConnection $r7;
+        boolean $z0;
+        java.util.ArrayList $r8;
+        int i0, $i2;
+        java.lang.StringBuilder $r9, $r10;
+        java.lang.String $r11;
+        android.widget.ListView $r12, $r13, $r14;
+        android.content.res.Resources $r15;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: android.os.Bundle;
+        specialinvoke r0.<android.app.ListActivity: void onCreate(android.os.Bundle)>(r1);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void setContentView(int)>(2130903054);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void setTitle(int)>(2131034121);
+        $r2 = new com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver;
+        specialinvoke $r2.<com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver receiver> = $r2;
+        r3 = new android.content.IntentFilter;
+        specialinvoke r3.<android.content.IntentFilter: void <init>()>();
+        virtualinvoke r3.<android.content.IntentFilter: void addAction(java.lang.String)>("com.myplayer.servicetoactivitysonglist");
+        $r4 = r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver receiver>;
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.Intent registerReceiver(android.content.BroadcastReceiver,android.content.IntentFilter)>($r4, r3);
+        $r6 = new android.content.Intent;
+        specialinvoke $r6.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MyPlayerService");
+        $r7 = r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.ServiceConnection connection>;
+        $z0 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: boolean bindService(android.content.Intent,android.content.ServiceConnection,int)>($r6, $r7, 1);
+        if $z0 != 0 goto label0;
+
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void finish()>();
+
+     label0:
+        $r8 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        i0 = virtualinvoke $r8.<java.util.ArrayList: int size()>();
+        $r9 = new java.lang.StringBuilder;
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("SendGetSongList():");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i0);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r11);
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void SendGetSongList()>();
+        $r12 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.widget.ListView getListView()>();
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void registerForContextMenu(android.view.View)>($r12);
+        $r13 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.widget.ListView getListView()>();
+        r0.<com.ophone.MiniPlayer.PlayingListActivity: android.widget.ListView myListView> = $r13;
+        $r14 = r0.<com.ophone.MiniPlayer.PlayingListActivity: android.widget.ListView myListView>;
+        $r15 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.res.Resources getResources()>();
+        $i2 = virtualinvoke $r15.<android.content.res.Resources: int getColor(int)>(2130837558);
+        virtualinvoke $r14.<android.widget.ListView: void setCacheColorHint(int)>($i2);
+        return;
+    }
+
+    public void onCreateContextMenu(android.view.ContextMenu, android.view.View, android.view.ContextMenu$ContextMenuInfo)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.view.ContextMenu r1;
+        android.view.View r2;
+        android.view.ContextMenu$ContextMenuInfo r3;
+        android.view.MenuInflater $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: android.view.ContextMenu;
+        r2 := @parameter1: android.view.View;
+        r3 := @parameter2: android.view.ContextMenu$ContextMenuInfo;
+        interfaceinvoke r1.<android.view.ContextMenu: android.view.ContextMenu setHeaderTitle(int)>(2131034217);
+        $r5 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.view.MenuInflater getMenuInflater()>();
+        virtualinvoke $r5.<android.view.MenuInflater: void inflate(int,android.view.Menu)>(2131165184, r1);
+        return;
+    }
+
+    protected android.app.Dialog onCreateDialog(int)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        int i0;
+        android.app.AlertDialog$Builder $r1, $r2, $r3, $r4, $r6, $r7, $r9, $r11, $r13, $r14, $r16, $r18, $r22, $r23, $r24, $r26, $r28;
+        android.app.AlertDialog $r5, $r12, $r19, $r29;
+        com.ophone.MiniPlayer.PlayingListActivity$3 $r8;
+        com.ophone.MiniPlayer.PlayingListActivity$4 $r10;
+        com.ophone.MiniPlayer.PlayingListActivity$5 $r15;
+        com.ophone.MiniPlayer.PlayingListActivity$6 $r17;
+        android.view.LayoutInflater $r20;
+        android.view.View r21;
+        com.ophone.MiniPlayer.PlayingListActivity$7 $r25;
+        com.ophone.MiniPlayer.PlayingListActivity$8 $r27;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        i0 := @parameter0: int;
+        tableswitch(i0)
+        {
+            case 2: goto label1;
+            case 3: goto label2;
+            case 4: goto label3;
+            case 5: goto label0;
+            case 6: goto label4;
+            default: goto label0;
+        };
+
+     label0:
+        return null;
+
+     label1:
+        $r1 = new android.app.AlertDialog$Builder;
+        specialinvoke $r1.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r2 = virtualinvoke $r1.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setIcon(int)>(17301505);
+        $r3 = virtualinvoke $r2.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034113);
+        $r4 = virtualinvoke $r3.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setMessage(int)>(2131034190);
+        $r5 = virtualinvoke $r4.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        return $r5;
+
+     label2:
+        $r6 = new android.app.AlertDialog$Builder;
+        specialinvoke $r6.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r7 = virtualinvoke $r6.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034152);
+        $r8 = new com.ophone.MiniPlayer.PlayingListActivity$3;
+        specialinvoke $r8.<com.ophone.MiniPlayer.PlayingListActivity$3: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r9 = virtualinvoke $r7.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener)>(2131034194, $r8);
+        $r10 = new com.ophone.MiniPlayer.PlayingListActivity$4;
+        specialinvoke $r10.<com.ophone.MiniPlayer.PlayingListActivity$4: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r11 = virtualinvoke $r9.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener)>(2131034195, $r10);
+        $r12 = virtualinvoke $r11.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        return $r12;
+
+     label3:
+        $r13 = new android.app.AlertDialog$Builder;
+        specialinvoke $r13.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r14 = virtualinvoke $r13.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034126);
+        $r15 = new com.ophone.MiniPlayer.PlayingListActivity$5;
+        specialinvoke $r15.<com.ophone.MiniPlayer.PlayingListActivity$5: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r16 = virtualinvoke $r14.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener)>(2131034194, $r15);
+        $r17 = new com.ophone.MiniPlayer.PlayingListActivity$6;
+        specialinvoke $r17.<com.ophone.MiniPlayer.PlayingListActivity$6: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r18 = virtualinvoke $r16.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener)>(2131034195, $r17);
+        $r19 = virtualinvoke $r18.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        return $r19;
+
+     label4:
+        $r20 = staticinvoke <android.view.LayoutInflater: android.view.LayoutInflater 'from'(android.content.Context)>(r0);
+        r21 = virtualinvoke $r20.<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup)>(2130903053, null);
+        $r22 = new android.app.AlertDialog$Builder;
+        specialinvoke $r22.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r23 = virtualinvoke $r22.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034127);
+        $r24 = virtualinvoke $r23.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setView(android.view.View)>(r21);
+        $r25 = new com.ophone.MiniPlayer.PlayingListActivity$7;
+        specialinvoke $r25.<com.ophone.MiniPlayer.PlayingListActivity$7: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r26 = virtualinvoke $r24.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener)>(2131034194, $r25);
+        $r27 = new com.ophone.MiniPlayer.PlayingListActivity$8;
+        specialinvoke $r27.<com.ophone.MiniPlayer.PlayingListActivity$8: void <init>(com.ophone.MiniPlayer.PlayingListActivity,android.view.View)>(r0, r21);
+        $r28 = virtualinvoke $r26.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener)>(2131034195, $r27);
+        $r29 = virtualinvoke $r28.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        return $r29;
+    }
+
+    public boolean onCreateOptionsMenu(android.view.Menu)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.view.Menu r1;
+        android.graphics.drawable.Drawable r2, r12, r16;
+        android.content.res.Resources r3;
+        android.view.MenuItem $r4, $r6, $r9, $r13, $r17;
+        android.graphics.Bitmap $r8, $r11, $r15;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: android.view.Menu;
+        r3 = virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.res.Resources getResources()>();
+        $r4 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 0, 0, 2131034143);
+        interfaceinvoke $r4.<android.view.MenuItem: android.view.MenuItem setIcon(int)>(2130837511);
+        $r6 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 5, 1, 2131034144);
+        interfaceinvoke $r6.<android.view.MenuItem: android.view.MenuItem setIcon(int)>(2130837545);
+        $r8 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837521);
+        r2 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r8, 48, 48);
+        $r9 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 8, 2, 2131034174);
+        interfaceinvoke $r9.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r2);
+        $r11 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837529);
+        r12 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r11, 48, 48);
+        $r13 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 9, 3, 2131034173);
+        interfaceinvoke $r13.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r12);
+        $r15 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837533);
+        r16 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r15, 48, 48);
+        $r17 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 10, 4, 2131034176);
+        interfaceinvoke $r17.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r16);
+        interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 12, 6, 2131034135);
+        interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 13, 7, 2131034134);
+        interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 14, 8, 2131034219);
+        interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 16, 9, 2131034221);
+        return 1;
+    }
+
+    protected void onDestroy()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.content.ServiceConnection $r1;
+        com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        specialinvoke r0.<android.app.ListActivity: void onDestroy()>();
+        $r1 = r0.<com.ophone.MiniPlayer.PlayingListActivity: android.content.ServiceConnection connection>;
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void unbindService(android.content.ServiceConnection)>($r1);
+        $r2 = r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$UpdateReceiver receiver>;
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void unregisterReceiver(android.content.BroadcastReceiver)>($r2);
+        return;
+    }
+
+    protected void onListItemClick(android.widget.ListView, android.view.View, int, long)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.widget.ListView r1;
+        android.view.View r2;
+        int i0;
+        long l1;
+        android.content.Intent r3;
+        java.util.ArrayList $r4;
+        java.lang.Object $r5;
+        java.io.Serializable $r6;
+        java.lang.Integer $r8;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: android.widget.ListView;
+        r2 := @parameter1: android.view.View;
+        i0 := @parameter2: int;
+        l1 := @parameter3: long;
+        specialinvoke r0.<android.app.ListActivity: void onListItemClick(android.widget.ListView,android.view.View,int,long)>(r1, r2, i0, l1);
+        r3 = new android.content.Intent;
+        specialinvoke r3.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/lyricsactivity");
+        $r4 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r5 = virtualinvoke $r4.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r6 = (java.io.Serializable) $r5;
+        virtualinvoke r3.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("song", $r6);
+        $r8 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.Integer rString>;
+        virtualinvoke r3.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("R.string", $r8);
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void startActivity(android.content.Intent)>(r3);
+        return;
+    }
+
+    public boolean onOptionsItemSelected(android.view.MenuItem)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+        android.view.MenuItem r1;
+        int i0, $i1, i2, $i3, $i4, $i5, $i6, $i8, $i11, $i12, i13, $i14, i15, $i16, $i17, $i18, $i19, $i20, $i21, $i22, $i23, $i24;
+        com.ophone.MiniPlayer.provider.Song r2, $r14, $r17, $r23, $r34, $r38, r42, $r46;
+        com.ophone.MiniPlayer.utils.PinyinComparator r3;
+        android.content.Intent $r4, $r5, $r6;
+        java.util.ArrayList $r7, $r8, $r11, $r12, $r15, $r18, $r20, $r21, $r25, $r27, $r28, $r31, $r32, $r36, $r40, $r43, $r44, $r48;
+        com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter $r10, $r30;
+        java.lang.Object $r13, $r16, $r19, $r22, $r33, $r37, $r41, $r45;
+        long $l7, $l9;
+        byte $b10;
+        java.lang.String $r35, $r39;
+        android.app.AlertDialog$Builder $r50, $r51, $r54, $r56, $r58, $r60, $r61, $r64, $r66, $r68;
+        java.lang.String[] $r52, $r62;
+        com.ophone.MiniPlayer.PlayingListActivity$9 $r53;
+        com.ophone.MiniPlayer.PlayingListActivity$10 $r55;
+        com.ophone.MiniPlayer.PlayingListActivity$11 $r57;
+        android.app.AlertDialog $r59, $r69;
+        com.ophone.MiniPlayer.PlayingListActivity$12 $r63;
+        com.ophone.MiniPlayer.PlayingListActivity$13 $r65;
+        com.ophone.MiniPlayer.PlayingListActivity$14 $r67;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        r1 := @parameter0: android.view.MenuItem;
+        $i1 = interfaceinvoke r1.<android.view.MenuItem: int getItemId()>();
+        tableswitch($i1)
+        {
+            case 0: goto label1;
+            case 1: goto label0;
+            case 2: goto label0;
+            case 3: goto label0;
+            case 4: goto label0;
+            case 5: goto label2;
+            case 6: goto label0;
+            case 7: goto label0;
+            case 8: goto label3;
+            case 9: goto label4;
+            case 10: goto label5;
+            case 11: goto label0;
+            case 12: goto label6;
+            case 13: goto label13;
+            case 14: goto label20;
+            case 15: goto label0;
+            case 16: goto label21;
+            default: goto label0;
+        };
+
+     label0:
+        return 1;
+
+     label1:
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void showDialog(int)>(3);
+        goto label0;
+
+     label2:
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void showDialog(int)>(6);
+        goto label0;
+
+     label3:
+        $r4 = new android.content.Intent;
+        specialinvoke $r4.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MusicActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void startActivity(android.content.Intent)>($r4);
+        goto label0;
+
+     label4:
+        $r5 = new android.content.Intent;
+        specialinvoke $r5.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MusicFeedActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void startActivity(android.content.Intent)>($r5);
+        goto label0;
+
+     label5:
+        $r6 = new android.content.Intent;
+        specialinvoke $r6.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/lyricsactivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void startActivity(android.content.Intent)>($r6);
+        goto label0;
+
+     label6:
+        $r7 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        if $r7 == null goto label8;
+
+        i2 = 0;
+
+     label7:
+        $r8 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i3 = virtualinvoke $r8.<java.util.ArrayList: int size()>();
+        if i2 < $i3 goto label9;
+
+     label8:
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List getAdapterMap()>();
+        $r10 = r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r10.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: void notifyDataSetChanged()>();
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void SendSonglisttoService()>();
+        goto label0;
+
+     label9:
+        i0 = 0;
+
+     label10:
+        $r11 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i4 = virtualinvoke $r11.<java.util.ArrayList: int size()>();
+        $i5 = $i4 - i2;
+        $i6 = $i5 - 1;
+        if i0 < $i6 goto label11;
+
+        i2 = i2 + 1;
+        goto label7;
+
+     label11:
+        $r12 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r13 = virtualinvoke $r12.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        $r14 = (com.ophone.MiniPlayer.provider.Song) $r13;
+        $l7 = virtualinvoke $r14.<com.ophone.MiniPlayer.provider.Song: long getAdddate()>();
+        $r15 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i8 = i0 + 1;
+        $r16 = virtualinvoke $r15.<java.util.ArrayList: java.lang.Object get(int)>($i8);
+        $r17 = (com.ophone.MiniPlayer.provider.Song) $r16;
+        $l9 = virtualinvoke $r17.<com.ophone.MiniPlayer.provider.Song: long getAdddate()>();
+        $b10 = $l7 cmp $l9;
+        if $b10 <= 0 goto label12;
+
+        $r18 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r19 = virtualinvoke $r18.<java.util.ArrayList: java.lang.Object get(int)>(i0);
+        r2 = (com.ophone.MiniPlayer.provider.Song) $r19;
+        $r20 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r21 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i11 = i0 + 1;
+        $r22 = virtualinvoke $r21.<java.util.ArrayList: java.lang.Object get(int)>($i11);
+        $r23 = (com.ophone.MiniPlayer.provider.Song) $r22;
+        virtualinvoke $r20.<java.util.ArrayList: java.lang.Object set(int,java.lang.Object)>(i0, $r23);
+        $r25 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i12 = i0 + 1;
+        virtualinvoke $r25.<java.util.ArrayList: java.lang.Object set(int,java.lang.Object)>($i12, r2);
+
+     label12:
+        i0 = i0 + 1;
+        goto label10;
+
+     label13:
+        r3 = new com.ophone.MiniPlayer.utils.PinyinComparator;
+        specialinvoke r3.<com.ophone.MiniPlayer.utils.PinyinComparator: void <init>()>();
+        $r27 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        if $r27 == null goto label15;
+
+        i13 = 0;
+
+     label14:
+        $r28 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i14 = virtualinvoke $r28.<java.util.ArrayList: int size()>();
+        if i13 < $i14 goto label16;
+
+     label15:
+        virtualinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.List getAdapterMap()>();
+        $r30 = r0.<com.ophone.MiniPlayer.PlayingListActivity: com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter simpleAdapter>;
+        virtualinvoke $r30.<com.ophone.MiniPlayer.PlayingListActivity$MySimpleAdapter: void notifyDataSetChanged()>();
+        specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: void SendSonglisttoService()>();
+        goto label0;
+
+     label16:
+        i15 = 0;
+
+     label17:
+        $r31 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i16 = virtualinvoke $r31.<java.util.ArrayList: int size()>();
+        $i17 = $i16 - i13;
+        $i18 = $i17 - 1;
+        if i15 < $i18 goto label18;
+
+        i13 = i13 + 1;
+        goto label14;
+
+     label18:
+        $r32 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r33 = virtualinvoke $r32.<java.util.ArrayList: java.lang.Object get(int)>(i15);
+        $r34 = (com.ophone.MiniPlayer.provider.Song) $r33;
+        $r35 = virtualinvoke $r34.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $r36 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i19 = i15 + 1;
+        $r37 = virtualinvoke $r36.<java.util.ArrayList: java.lang.Object get(int)>($i19);
+        $r38 = (com.ophone.MiniPlayer.provider.Song) $r37;
+        $r39 = virtualinvoke $r38.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $i20 = virtualinvoke r3.<com.ophone.MiniPlayer.utils.PinyinComparator: int compare(java.lang.String,java.lang.String)>($r35, $r39);
+        if $i20 <= 0 goto label19;
+
+        $r40 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r41 = virtualinvoke $r40.<java.util.ArrayList: java.lang.Object get(int)>(i15);
+        r42 = (com.ophone.MiniPlayer.provider.Song) $r41;
+        $r43 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $r44 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i21 = i15 + 1;
+        $r45 = virtualinvoke $r44.<java.util.ArrayList: java.lang.Object get(int)>($i21);
+        $r46 = (com.ophone.MiniPlayer.provider.Song) $r45;
+        virtualinvoke $r43.<java.util.ArrayList: java.lang.Object set(int,java.lang.Object)>(i15, $r46);
+        $r48 = r0.<com.ophone.MiniPlayer.PlayingListActivity: java.util.ArrayList songlist>;
+        $i22 = i15 + 1;
+        virtualinvoke $r48.<java.util.ArrayList: java.lang.Object set(int,java.lang.Object)>($i22, r42);
+
+     label19:
+        i15 = i15 + 1;
+        goto label17;
+
+     label20:
+        $r50 = new android.app.AlertDialog$Builder;
+        specialinvoke $r50.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r51 = virtualinvoke $r50.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034220);
+        $r52 = specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] getFilelist(java.lang.String)>("/sdcard/myplayer/playlist");
+        $i23 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem>;
+        $r53 = new com.ophone.MiniPlayer.PlayingListActivity$9;
+        specialinvoke $r53.<com.ophone.MiniPlayer.PlayingListActivity$9: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r54 = virtualinvoke $r51.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setSingleChoiceItems(java.lang.CharSequence[],int,android.content.DialogInterface$OnClickListener)>($r52, $i23, $r53);
+        $r55 = new com.ophone.MiniPlayer.PlayingListActivity$10;
+        specialinvoke $r55.<com.ophone.MiniPlayer.PlayingListActivity$10: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r56 = virtualinvoke $r54.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener)>(2131034194, $r55);
+        $r57 = new com.ophone.MiniPlayer.PlayingListActivity$11;
+        specialinvoke $r57.<com.ophone.MiniPlayer.PlayingListActivity$11: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r58 = virtualinvoke $r56.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener)>(2131034195, $r57);
+        $r59 = virtualinvoke $r58.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        virtualinvoke $r59.<android.app.Dialog: void show()>();
+        goto label0;
+
+     label21:
+        $r60 = new android.app.AlertDialog$Builder;
+        specialinvoke $r60.<android.app.AlertDialog$Builder: void <init>(android.content.Context)>(r0);
+        $r61 = virtualinvoke $r60.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setTitle(int)>(2131034222);
+        $r62 = specialinvoke r0.<com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] getFilelist(java.lang.String)>("/sdcard/myplayer/playlist");
+        $i24 = r0.<com.ophone.MiniPlayer.PlayingListActivity: int chooseItem1>;
+        $r63 = new com.ophone.MiniPlayer.PlayingListActivity$12;
+        specialinvoke $r63.<com.ophone.MiniPlayer.PlayingListActivity$12: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r64 = virtualinvoke $r61.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setSingleChoiceItems(java.lang.CharSequence[],int,android.content.DialogInterface$OnClickListener)>($r62, $i24, $r63);
+        $r65 = new com.ophone.MiniPlayer.PlayingListActivity$13;
+        specialinvoke $r65.<com.ophone.MiniPlayer.PlayingListActivity$13: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r66 = virtualinvoke $r64.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener)>(2131034194, $r65);
+        $r67 = new com.ophone.MiniPlayer.PlayingListActivity$14;
+        specialinvoke $r67.<com.ophone.MiniPlayer.PlayingListActivity$14: void <init>(com.ophone.MiniPlayer.PlayingListActivity)>(r0);
+        $r68 = virtualinvoke $r66.<android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener)>(2131034195, $r67);
+        $r69 = virtualinvoke $r68.<android.app.AlertDialog$Builder: android.app.AlertDialog create()>();
+        virtualinvoke $r69.<android.app.Dialog: void show()>();
+        goto label0;
+    }
+
+    protected void onPause()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        specialinvoke r0.<android.app.ListActivity: void onPause()>();
+        return;
+    }
+
+    protected void onResume()
+    {
+        com.ophone.MiniPlayer.PlayingListActivity r0;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity;
+        specialinvoke r0.<android.app.ListActivity: void onResume()>();
+        return;
+    }
+}

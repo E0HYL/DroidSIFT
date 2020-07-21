@@ -1,0 +1,38 @@
+class com.ophone.MiniPlayer.lyricsactivity$5 extends java.lang.Object implements android.content.DialogInterface$OnClickListener
+{
+    final com.ophone.MiniPlayer.lyricsactivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity$5 r0;
+        com.ophone.MiniPlayer.lyricsactivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity$5;
+        r1 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r0.<com.ophone.MiniPlayer.lyricsactivity$5: com.ophone.MiniPlayer.lyricsactivity this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onClick(android.content.DialogInterface, int)
+    {
+        com.ophone.MiniPlayer.lyricsactivity$5 r0;
+        android.content.DialogInterface r1;
+        int i0;
+        com.ophone.MiniPlayer.lyricsactivity $r2, $r5;
+        java.lang.Object $r3;
+        android.app.ActivityManager $r4;
+        java.lang.String $r6;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity$5;
+        r1 := @parameter0: android.content.DialogInterface;
+        i0 := @parameter1: int;
+        $r2 = r0.<com.ophone.MiniPlayer.lyricsactivity$5: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r3 = virtualinvoke $r2.<com.ophone.MiniPlayer.lyricsactivity: java.lang.Object getSystemService(java.lang.String)>("activity");
+        $r4 = (android.app.ActivityManager) $r3;
+        $r5 = r0.<com.ophone.MiniPlayer.lyricsactivity$5: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r6 = virtualinvoke $r5.<com.ophone.MiniPlayer.lyricsactivity: java.lang.String getPackageName()>();
+        virtualinvoke $r4.<android.app.ActivityManager: void restartPackage(java.lang.String)>($r6);
+        return;
+    }
+}

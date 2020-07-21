@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog27.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#listFiles</string></attr>
+<attr name="functionPrototype"><string>r4 = virtualinvoke r3.(java.io.File: java.io.File[] listFiles())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getName</string></attr>
+<attr name="functionPrototype"><string>$r6 = virtualinvoke $r5.(java.io.File: java.lang.String getName())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>i0 = virtualinvoke $r6.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getFilelist</string></attr>
+<attr name="functionPrototype"><string>$r4 = specialinvoke r0.(com.ophone.MiniPlayer.MyPlayerService: java.util.ArrayList getFilelist(java.lang.String))("/sdcard/myplayer/playlist")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke $r14.(java.io.File: void (init)(java.lang.String))(r9)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="6">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>i</string></attr>
+<attr name="functionPrototype"><string>staticinvoke (android.util.Log: int i(java.lang.String,java.lang.String))("MyPlayer", $r12)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="2" to="3">
+</edge>
+<edge from="2" to="4">
+</edge>
+<edge from="3" to="4">
+</edge>
+<edge from="4" to="5">
+</edge>
+<edge from="4" to="6">
+</edge>
+</graph>
+</gxl>

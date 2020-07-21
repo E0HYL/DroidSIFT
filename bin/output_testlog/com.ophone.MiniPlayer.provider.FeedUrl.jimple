@@ -1,0 +1,210 @@
+public class com.ophone.MiniPlayer.provider.FeedUrl extends java.lang.Object
+{
+    private static final java.lang.String TAG;
+    private static final java.lang.String flash_player_key;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.FeedUrl r0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.FeedUrl;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static java.lang.String getMusicBoxFeed(java.lang.Integer)
+    {
+        java.lang.Integer r0;
+        long l0, l1;
+        int $i2;
+        java.lang.StringBuilder $r1, $r3, $r4, $r5, $r7, $r9, $r10, $r11;
+        java.lang.String $r2, $r6, $r8, $r12;
+
+        r0 := @parameter0: java.lang.Integer;
+        l0 = staticinvoke <java.lang.System: long currentTimeMillis()>();
+        l1 = l0 / 10000000000L;
+        $i2 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+        tableswitch($i2)
+        {
+            case 2131034184: goto label1;
+            case 2131034185: goto label2;
+            case 2131034186: goto label4;
+            case 2131034187: goto label3;
+            case 2131034188: goto label5;
+            case 2131034189: goto label6;
+            default: goto label0;
+        };
+
+     label0:
+        return "";
+
+     label1:
+        return "http://www.google.cn/music/chartlisting?output=xml&q=chinese%5Fnew%5Fsongs%5Fcn&cat=song";
+
+     label2:
+        return "http://www.google.cn/music/chartlisting?q=chinese%5Fsongs%5Fcn&cat=song&output=xml";
+
+     label3:
+        return "http://www.google.cn/music/chartlisting?cat=song&output=xml&q=ea%5Fnew%5Fsongs%5Fcn";
+
+     label4:
+        return "http://www.google.cn/music/chartlisting?cat=song&output=xml&q=ea%5Fsongs%5Fcn";
+
+     label5:
+        $r1 = new java.lang.StringBuilder;
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>("http://box.zhangmen.baidu.com/x?op=22&listid=402&.r=");
+        specialinvoke $r1.<java.lang.StringBuilder: void <init>(java.lang.String)>($r2);
+        $r3 = virtualinvoke $r1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("0.");
+        $r4 = virtualinvoke $r3.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.String toString()>();
+        return $r6;
+
+     label6:
+        $r7 = new java.lang.StringBuilder;
+        $r8 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>("http://box.zhangmen.baidu.com/x?op=22&listid=3&.r=");
+        specialinvoke $r7.<java.lang.StringBuilder: void <init>(java.lang.String)>($r8);
+        $r9 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("0.");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l0);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>(l1);
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.String toString()>();
+        return $r12;
+    }
+
+    public static java.lang.String getMusicItemFeed(java.lang.Integer, com.ophone.MiniPlayer.provider.Song)
+    {
+        java.lang.Integer r0;
+        com.ophone.MiniPlayer.provider.Song r1;
+        java.lang.String r2, $r6, $r8, $r9, $r12, r14, $r17, $r19, $r24, $r26, $r27, $r29, $r32, $r34, $r35, $r38, $r40, $r43, $r45, $r46, $r49, $r51, $r53, $r54, $r59, $r60, $r63, $r64, $r69;
+        com.ophone.MiniPlayer.utils.Digest r3;
+        java.lang.StringBuilder $r4, $r5, $r7, $r10, $r11, $r13, $r15, $r16, $r18, $r20, $r21, $r22, $r23, $r25, $r28, $r30, $r31, $r33, $r36, $r37, $r39, $r41, $r42, $r44, $r47, $r48, $r50, $r52, $r55, $r56, $r61, $r62, $r65, $r66, $r67, $r68;
+        int $i0;
+        java.util.ArrayList $r57;
+        java.lang.Object $r58;
+        java.io.UnsupportedEncodingException $r70;
+
+        r0 := @parameter0: java.lang.Integer;
+        r1 := @parameter1: com.ophone.MiniPlayer.provider.Song;
+        r2 = "";
+        r3 = new com.ophone.MiniPlayer.utils.Digest;
+        specialinvoke r3.<com.ophone.MiniPlayer.utils.Digest: void <init>()>();
+        $i0 = virtualinvoke r0.<java.lang.Integer: int intValue()>();
+        tableswitch($i0)
+        {
+            case 2131034184: goto label1;
+            case 2131034185: goto label2;
+            case 2131034186: goto label4;
+            case 2131034187: goto label3;
+            case 2131034188: goto label5;
+            case 2131034189: goto label5;
+            default: goto label0;
+        };
+
+     label0:
+        return r2;
+
+     label1:
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("http://www.google.cn/music/songstreaming?output=xml&cd=chinese%5Fnew%5Fsongs%5Fcn&sig=");
+        $r5 = new java.lang.StringBuilder;
+        specialinvoke $r5.<java.lang.StringBuilder: void <init>(java.lang.String)>("c51181b7f9bfce1ac742ed8b4a1ae4ed");
+        $r6 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r7 = virtualinvoke $r5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r9 = virtualinvoke r3.<com.ophone.MiniPlayer.utils.Digest: java.lang.String testDigest(java.lang.String)>($r8);
+        $r10 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r9);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&cad=chart%5Fplayer&id=");
+        $r12 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r13 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r12);
+        r14 = virtualinvoke $r13.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r15 = new java.lang.StringBuilder;
+        specialinvoke $r15.<java.lang.StringBuilder: void <init>(java.lang.String)>("musicItemFeed:");
+        $r16 = virtualinvoke $r15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r14);
+        $r17 = virtualinvoke $r16.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r17);
+        return r14;
+
+     label2:
+        $r18 = new java.lang.StringBuilder;
+        specialinvoke $r18.<java.lang.StringBuilder: void <init>(java.lang.String)>("http://www.google.cn/music/songstreaming?cad=chart%5Fplayer&id=");
+        $r19 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r20 = virtualinvoke $r18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r19);
+        $r21 = virtualinvoke $r20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&cd=chinese");
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%5Fsongs%5Fcn&output=xml&sig=");
+        $r23 = new java.lang.StringBuilder;
+        specialinvoke $r23.<java.lang.StringBuilder: void <init>(java.lang.String)>("c51181b7f9bfce1ac742ed8b4a1ae4ed");
+        $r24 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r25 = virtualinvoke $r23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r24);
+        $r26 = virtualinvoke $r25.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r27 = virtualinvoke r3.<com.ophone.MiniPlayer.utils.Digest: java.lang.String testDigest(java.lang.String)>($r26);
+        $r28 = virtualinvoke $r22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r27);
+        $r29 = virtualinvoke $r28.<java.lang.StringBuilder: java.lang.String toString()>();
+        return $r29;
+
+     label3:
+        $r30 = new java.lang.StringBuilder;
+        specialinvoke $r30.<java.lang.StringBuilder: void <init>(java.lang.String)>("http://www.google.cn/music/songstreaming?output=xml&cd=ea%5Fnew%5Fsongs%5Fcn&sig=");
+        $r31 = new java.lang.StringBuilder;
+        specialinvoke $r31.<java.lang.StringBuilder: void <init>(java.lang.String)>("c51181b7f9bfce1ac742ed8b4a1ae4ed");
+        $r32 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r33 = virtualinvoke $r31.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r32);
+        $r34 = virtualinvoke $r33.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r35 = virtualinvoke r3.<com.ophone.MiniPlayer.utils.Digest: java.lang.String testDigest(java.lang.String)>($r34);
+        $r36 = virtualinvoke $r30.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r35);
+        $r37 = virtualinvoke $r36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&cad=chart%5Fplayer&id=");
+        $r38 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r39 = virtualinvoke $r37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r38);
+        $r40 = virtualinvoke $r39.<java.lang.StringBuilder: java.lang.String toString()>();
+        return $r40;
+
+     label4:
+        $r41 = new java.lang.StringBuilder;
+        specialinvoke $r41.<java.lang.StringBuilder: void <init>(java.lang.String)>("http://www.google.cn/music/songstreaming?output=xml&cd=ea%5Fsongs%5Fcn&sig=");
+        $r42 = new java.lang.StringBuilder;
+        specialinvoke $r42.<java.lang.StringBuilder: void <init>(java.lang.String)>("c51181b7f9bfce1ac742ed8b4a1ae4ed");
+        $r43 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r44 = virtualinvoke $r42.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r43);
+        $r45 = virtualinvoke $r44.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r46 = virtualinvoke r3.<com.ophone.MiniPlayer.utils.Digest: java.lang.String testDigest(java.lang.String)>($r45);
+        $r47 = virtualinvoke $r41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r46);
+        $r48 = virtualinvoke $r47.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("&cad=chart%5Fplayer&id=");
+        $r49 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getId()>();
+        $r50 = virtualinvoke $r48.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r49);
+        $r51 = virtualinvoke $r50.<java.lang.StringBuilder: java.lang.String toString()>();
+        return $r51;
+
+     label5:
+        $r52 = new java.lang.StringBuilder;
+        specialinvoke $r52.<java.lang.StringBuilder: void <init>(java.lang.String)>("http://box.zhangmen.baidu.com/x?op=12&count=1&title=");
+        $r53 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getName()>();
+        $r54 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r53, "gbk");
+        $r55 = virtualinvoke $r52.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r54);
+        $r56 = virtualinvoke $r55.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$$");
+        $r57 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.util.ArrayList getSinger()>();
+        $r58 = virtualinvoke $r57.<java.util.ArrayList: java.lang.Object get(int)>(0);
+        $r59 = (java.lang.String) $r58;
+        $r60 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r59, "gbk");
+        $r61 = virtualinvoke $r56.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r60);
+        $r62 = virtualinvoke $r61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$$");
+        $r63 = virtualinvoke r1.<com.ophone.MiniPlayer.provider.Song: java.lang.String getAlbum()>();
+        $r64 = staticinvoke <java.net.URLEncoder: java.lang.String encode(java.lang.String,java.lang.String)>($r63, "gbk");
+        $r65 = virtualinvoke $r62.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($r64);
+        $r66 = virtualinvoke $r65.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$$");
+        r2 = virtualinvoke $r66.<java.lang.StringBuilder: java.lang.String toString()>();
+        $r67 = new java.lang.StringBuilder;
+        specialinvoke $r67.<java.lang.StringBuilder: void <init>(java.lang.String)>("musicItemFeed:");
+        $r68 = virtualinvoke $r67.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(r2);
+        $r69 = virtualinvoke $r68.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r69);
+
+     label6:
+        return r2;
+
+     label7:
+        $r70 := @caughtexception;
+        virtualinvoke $r70.<java.io.UnsupportedEncodingException: void printStackTrace()>();
+        return r2;
+
+        catch java.io.UnsupportedEncodingException from label5 to label6 with label7;
+    }
+}

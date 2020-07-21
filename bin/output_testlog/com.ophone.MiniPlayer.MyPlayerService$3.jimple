@@ -1,0 +1,32 @@
+class com.ophone.MiniPlayer.MyPlayerService$3 extends java.lang.Object implements android.media.MediaPlayer$OnCompletionListener
+{
+    final com.ophone.MiniPlayer.MyPlayerService this$0;
+
+    void <init>(com.ophone.MiniPlayer.MyPlayerService)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$3 r0;
+        com.ophone.MiniPlayer.MyPlayerService r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$3;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayerService;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$3: com.ophone.MiniPlayer.MyPlayerService this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onCompletion(android.media.MediaPlayer)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$3 r0;
+        android.media.MediaPlayer r1;
+        com.ophone.MiniPlayer.MyPlayerService $r2, $r3;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$3;
+        r1 := @parameter0: android.media.MediaPlayer;
+        virtualinvoke r1.<android.media.MediaPlayer: void stop()>();
+        $r2 = r0.<com.ophone.MiniPlayer.MyPlayerService$3: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r2.<com.ophone.MiniPlayer.MyPlayerService: int status> = 102;
+        $r3 = r0.<com.ophone.MiniPlayer.MyPlayerService$3: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$11(com.ophone.MiniPlayer.MyPlayerService)>($r3);
+        return;
+    }
+}

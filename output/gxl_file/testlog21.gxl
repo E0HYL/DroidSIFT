@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog21.gxl">
+<node id="1">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#execute</string></attr>
+<attr name="functionPrototype"><string>$r7 = virtualinvoke r2.(org.apache.http.impl.client.DefaultHttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest))(r6)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r6.(org.apache.http.client.methods.HttpPost: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r2.(org.apache.http.impl.client.DefaultHttpClient: void (init)())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>getParams</string></attr>
+<attr name="functionPrototype"><string>$r4 = virtualinvoke r2.(org.apache.http.impl.client.DefaultHttpClient: org.apache.http.params.HttpParams getParams())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="1">
+</edge>
+<edge from="4" to="1">
+</edge>
+</graph>
+</gxl>

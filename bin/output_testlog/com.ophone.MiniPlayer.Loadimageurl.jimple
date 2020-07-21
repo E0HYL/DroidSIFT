@@ -1,0 +1,252 @@
+public class com.ophone.MiniPlayer.Loadimageurl extends java.lang.Object
+{
+    private static final java.lang.String TAG;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.Loadimageurl r0;
+
+        r0 := @this: com.ophone.MiniPlayer.Loadimageurl;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static void download(java.lang.String, java.lang.String)
+    {
+        java.lang.String r0, r1;
+        java.net.URL r2;
+        java.io.FileOutputStream r3;
+        java.io.InputStream r4;
+        byte[] r5;
+        int i1;
+        java.net.MalformedURLException $r6;
+        java.io.IOException $r7, $r10, r11, $r12;
+        java.io.FileNotFoundException $r8, r9, $r13;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: java.lang.String;
+
+     label0:
+        r2 = new java.net.URL;
+        specialinvoke r2.<java.net.URL: void <init>(java.lang.String)>(r0);
+
+     label1:
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("MyPlayer", "download");
+
+     label2:
+        r4 = virtualinvoke r2.<java.net.URL: java.io.InputStream openStream()>();
+
+     label3:
+        r3 = new java.io.FileOutputStream;
+        specialinvoke r3.<java.io.FileOutputStream: void <init>(java.lang.String)>(r1);
+
+     label4:
+        r5 = newarray (byte)[8192];
+
+     label5:
+        i1 = virtualinvoke r4.<java.io.InputStream: int read(byte[],int,int)>(r5, 0, 8192);
+
+     label6:
+        if i1 != -1 goto label9;
+
+        return;
+
+     label7:
+        $r6 := @caughtexception;
+        virtualinvoke $r6.<java.net.MalformedURLException: void printStackTrace()>();
+        return;
+
+     label8:
+        $r7 := @caughtexception;
+        virtualinvoke $r7.<java.io.IOException: void printStackTrace()>();
+        return;
+
+     label9:
+        virtualinvoke r3.<java.io.OutputStream: void write(byte[],int,int)>(r5, 0, i1);
+
+     label10:
+        goto label5;
+
+     label11:
+        $r8 := @caughtexception;
+        r9 = $r8;
+
+     label12:
+        virtualinvoke r9.<java.io.FileNotFoundException: void printStackTrace()>();
+        return;
+
+     label13:
+        $r10 := @caughtexception;
+        r11 = $r10;
+
+     label14:
+        virtualinvoke r11.<java.io.IOException: void printStackTrace()>();
+        return;
+
+     label15:
+        $r12 := @caughtexception;
+        r11 = $r12;
+        goto label14;
+
+     label16:
+        $r13 := @caughtexception;
+        r9 = $r13;
+        goto label12;
+
+        catch java.net.MalformedURLException from label0 to label1 with label7;
+        catch java.io.IOException from label2 to label3 with label8;
+        catch java.io.FileNotFoundException from label3 to label4 with label16;
+        catch java.io.IOException from label3 to label4 with label13;
+        catch java.io.FileNotFoundException from label4 to label5 with label11;
+        catch java.io.IOException from label4 to label5 with label15;
+        catch java.io.FileNotFoundException from label5 to label6 with label11;
+        catch java.io.IOException from label5 to label6 with label15;
+        catch java.io.FileNotFoundException from label9 to label10 with label11;
+        catch java.io.IOException from label9 to label10 with label15;
+    }
+
+    public static android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap, int, int)
+    {
+        android.graphics.Bitmap r0, $r7;
+        int i0, i1, i2, i3;
+        android.graphics.Matrix r1;
+        java.lang.String $r2, $r3, $r4, $r5;
+        float $f0, $f1, $f2, $f3, $f4, $f5;
+        android.graphics.drawable.BitmapDrawable $r6;
+
+        r0 := @parameter0: android.graphics.Bitmap;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        i2 = virtualinvoke r0.<android.graphics.Bitmap: int getWidth()>();
+        i3 = virtualinvoke r0.<android.graphics.Bitmap: int getHeight()>();
+        $r2 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i2);
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("MyPlayer", $r2);
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i3);
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("MyPlayer", $r3);
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("MyPlayer", $r4);
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i1);
+        staticinvoke <android.util.Log: int v(java.lang.String,java.lang.String)>("MyPlayer", $r5);
+        r1 = new android.graphics.Matrix;
+        specialinvoke r1.<android.graphics.Matrix: void <init>()>();
+        $f0 = (float) i0;
+        $f1 = (float) i2;
+        $f2 = $f0 / $f1;
+        $f3 = (float) i1;
+        $f4 = (float) i3;
+        $f5 = $f3 / $f4;
+        virtualinvoke r1.<android.graphics.Matrix: boolean postScale(float,float)>($f2, $f5);
+        $r6 = new android.graphics.drawable.BitmapDrawable;
+        $r7 = staticinvoke <android.graphics.Bitmap: android.graphics.Bitmap createBitmap(android.graphics.Bitmap,int,int,int,int,android.graphics.Matrix,boolean)>(r0, 0, 0, i2, i3, r1, 1);
+        specialinvoke $r6.<android.graphics.drawable.BitmapDrawable: void <init>(android.graphics.Bitmap)>($r7);
+        return $r6;
+    }
+
+    public android.graphics.Bitmap returnBitMap(java.lang.String)
+    {
+        com.ophone.MiniPlayer.Loadimageurl r0;
+        java.lang.String r1;
+        java.net.URL r2, r4;
+        android.graphics.Bitmap r3;
+        java.net.URLConnection $r5;
+        java.net.HttpURLConnection r6;
+        java.io.InputStream $r7;
+        java.net.MalformedURLException $r8;
+        java.io.IOException $r9;
+
+        r0 := @this: com.ophone.MiniPlayer.Loadimageurl;
+        r1 := @parameter0: java.lang.String;
+        r3 = null;
+
+     label0:
+        r2 = new java.net.URL;
+        specialinvoke r2.<java.net.URL: void <init>(java.lang.String)>(r1);
+
+     label1:
+        r4 = r2;
+
+     label2:
+        $r5 = virtualinvoke r4.<java.net.URL: java.net.URLConnection openConnection()>();
+        r6 = (java.net.HttpURLConnection) $r5;
+        virtualinvoke r6.<java.net.HttpURLConnection: void setDoInput(boolean)>(1);
+        virtualinvoke r6.<java.net.HttpURLConnection: void connect()>();
+        $r7 = virtualinvoke r6.<java.net.HttpURLConnection: java.io.InputStream getInputStream()>();
+        r3 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream)>($r7);
+        virtualinvoke $r7.<java.io.InputStream: void close()>();
+
+     label3:
+        return r3;
+
+     label4:
+        $r8 := @caughtexception;
+        virtualinvoke $r8.<java.net.MalformedURLException: void printStackTrace()>();
+        r4 = null;
+        goto label2;
+
+     label5:
+        $r9 := @caughtexception;
+        virtualinvoke $r9.<java.io.IOException: void printStackTrace()>();
+        return r3;
+
+        catch java.net.MalformedURLException from label0 to label1 with label4;
+        catch java.io.IOException from label2 to label3 with label5;
+    }
+
+    public android.graphics.Bitmap returnBitmapfromfile(java.lang.String)
+    {
+        com.ophone.MiniPlayer.Loadimageurl r0;
+        java.lang.String r1;
+        java.io.FileInputStream r2, r4;
+        java.io.File $r3;
+        android.graphics.Bitmap r5, r6;
+        java.io.FileNotFoundException $r7, r8, $r10;
+        java.io.IOException $r9;
+
+        r0 := @this: com.ophone.MiniPlayer.Loadimageurl;
+        r1 := @parameter0: java.lang.String;
+        r4 = null;
+
+     label0:
+        r2 = new java.io.FileInputStream;
+        $r3 = new java.io.File;
+        specialinvoke $r3.<java.io.File: void <init>(java.lang.String)>(r1);
+        specialinvoke r2.<java.io.FileInputStream: void <init>(java.io.File)>($r3);
+
+     label1:
+        r5 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream)>(r2);
+
+     label2:
+        r6 = r5;
+        r4 = r2;
+
+     label3:
+        virtualinvoke r4.<java.io.InputStream: void close()>();
+
+     label4:
+        return r6;
+
+     label5:
+        $r7 := @caughtexception;
+        r8 = $r7;
+
+     label6:
+        virtualinvoke r8.<java.io.FileNotFoundException: void printStackTrace()>();
+        r6 = null;
+        goto label3;
+
+     label7:
+        $r9 := @caughtexception;
+        virtualinvoke $r9.<java.io.IOException: void printStackTrace()>();
+        return r6;
+
+     label8:
+        $r10 := @caughtexception;
+        r8 = $r10;
+        r4 = r2;
+        goto label6;
+
+        catch java.io.FileNotFoundException from label0 to label1 with label5;
+        catch java.io.FileNotFoundException from label1 to label2 with label8;
+        catch java.io.IOException from label3 to label4 with label7;
+    }
+}

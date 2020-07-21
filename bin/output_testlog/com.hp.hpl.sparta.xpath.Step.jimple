@@ -1,0 +1,224 @@
+public class com.hp.hpl.sparta.xpath.Step extends java.lang.Object
+{
+    public static com.hp.hpl.sparta.xpath.Step DOT;
+    private final boolean multiLevel_;
+    private final com.hp.hpl.sparta.xpath.NodeTest nodeTest_;
+    private final com.hp.hpl.sparta.xpath.BooleanExpr predicate_;
+
+    static void <clinit>()
+    {
+        com.hp.hpl.sparta.xpath.Step $r0;
+        com.hp.hpl.sparta.xpath.ThisNodeTest $r1;
+        com.hp.hpl.sparta.xpath.TrueExpr $r2;
+
+        $r0 = new com.hp.hpl.sparta.xpath.Step;
+        $r1 = <com.hp.hpl.sparta.xpath.ThisNodeTest: com.hp.hpl.sparta.xpath.ThisNodeTest INSTANCE>;
+        $r2 = <com.hp.hpl.sparta.xpath.TrueExpr: com.hp.hpl.sparta.xpath.TrueExpr INSTANCE>;
+        specialinvoke $r0.<com.hp.hpl.sparta.xpath.Step: void <init>(com.hp.hpl.sparta.xpath.NodeTest,com.hp.hpl.sparta.xpath.BooleanExpr)>($r1, $r2);
+        <com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.Step DOT> = $r0;
+        return;
+    }
+
+    void <init>(com.hp.hpl.sparta.xpath.NodeTest, com.hp.hpl.sparta.xpath.BooleanExpr)
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        com.hp.hpl.sparta.xpath.NodeTest r1;
+        com.hp.hpl.sparta.xpath.BooleanExpr r2;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.NodeTest;
+        r2 := @parameter1: com.hp.hpl.sparta.xpath.BooleanExpr;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = r1;
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr predicate_> = r2;
+        r0.<com.hp.hpl.sparta.xpath.Step: boolean multiLevel_> = 0;
+        return;
+    }
+
+    void <init>(com.hp.hpl.sparta.xpath.XPath, boolean, com.hp.hpl.sparta.xpath.SimpleStreamTokenizer) throws com.hp.hpl.sparta.xpath.XPathException, java.io.IOException
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        com.hp.hpl.sparta.xpath.XPath r1;
+        boolean z0, $z1;
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r2;
+        int $i0, $i1, $i2, $i4, $i5, $i6, $i7;
+        com.hp.hpl.sparta.xpath.XPathException $r3, $r6, $r9, $r13;
+        com.hp.hpl.sparta.xpath.ParentNodeTest $r4;
+        com.hp.hpl.sparta.xpath.BooleanExpr $r5;
+        com.hp.hpl.sparta.xpath.ThisNodeTest $r7;
+        com.hp.hpl.sparta.xpath.AllElementTest $r8;
+        com.hp.hpl.sparta.xpath.AttrTest $r10;
+        java.lang.String $r11, $r12, $r16;
+        com.hp.hpl.sparta.xpath.TextTest $r14;
+        com.hp.hpl.sparta.xpath.ElementTest $r15;
+        com.hp.hpl.sparta.xpath.TrueExpr $r17;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.XPath;
+        z0 := @parameter1: boolean;
+        r2 := @parameter2: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.Step: boolean multiLevel_> = z0;
+        $i0 = r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        lookupswitch($i0)
+        {
+            case -3: goto label7;
+            case 42: goto label4;
+            case 46: goto label1;
+            case 64: goto label5;
+            default: goto label0;
+        };
+
+     label0:
+        $r3 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r3.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer,java.lang.String)>(r1, "at begininning of step", r2, "\'.\' or \'*\' or name");
+        throw $r3;
+
+     label1:
+        $i1 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i1 != 46 goto label3;
+
+        $r4 = <com.hp.hpl.sparta.xpath.ParentNodeTest: com.hp.hpl.sparta.xpath.ParentNodeTest INSTANCE>;
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = $r4;
+
+     label2:
+        $i2 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i2 != 91 goto label12;
+
+        virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        $r5 = staticinvoke <com.hp.hpl.sparta.xpath.ExprFactory: com.hp.hpl.sparta.xpath.BooleanExpr createExpr(com.hp.hpl.sparta.xpath.XPath,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)>(r1, r2);
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr predicate_> = $r5;
+        $i4 = r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i4 == 93 goto label11;
+
+        $r6 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r6.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer,java.lang.String)>(r1, "after predicate expression", r2, "]");
+        throw $r6;
+
+     label3:
+        virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void pushBack()>();
+        $r7 = <com.hp.hpl.sparta.xpath.ThisNodeTest: com.hp.hpl.sparta.xpath.ThisNodeTest INSTANCE>;
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = $r7;
+        goto label2;
+
+     label4:
+        $r8 = <com.hp.hpl.sparta.xpath.AllElementTest: com.hp.hpl.sparta.xpath.AllElementTest INSTANCE>;
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = $r8;
+        goto label2;
+
+     label5:
+        $i5 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i5 == -3 goto label6;
+
+        $r9 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r9.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer,java.lang.String)>(r1, "after @ in node test", r2, "name");
+        throw $r9;
+
+     label6:
+        $r10 = new com.hp.hpl.sparta.xpath.AttrTest;
+        $r11 = r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval>;
+        specialinvoke $r10.<com.hp.hpl.sparta.xpath.AttrTest: void <init>(java.lang.String)>($r11);
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = $r10;
+        goto label2;
+
+     label7:
+        $r12 = r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval>;
+        $z1 = virtualinvoke $r12.<java.lang.String: boolean equals(java.lang.Object)>("text");
+        if $z1 == 0 goto label10;
+
+        $i6 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i6 != 40 goto label8;
+
+        $i7 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        if $i7 == 41 goto label9;
+
+     label8:
+        $r13 = new com.hp.hpl.sparta.xpath.XPathException;
+        specialinvoke $r13.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String,com.hp.hpl.sparta.xpath.SimpleStreamTokenizer,java.lang.String)>(r1, "after text", r2, "()");
+        throw $r13;
+
+     label9:
+        $r14 = <com.hp.hpl.sparta.xpath.TextTest: com.hp.hpl.sparta.xpath.TextTest INSTANCE>;
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = $r14;
+        goto label2;
+
+     label10:
+        $r15 = new com.hp.hpl.sparta.xpath.ElementTest;
+        $r16 = r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval>;
+        specialinvoke $r15.<com.hp.hpl.sparta.xpath.ElementTest: void <init>(java.lang.String)>($r16);
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_> = $r15;
+        goto label2;
+
+     label11:
+        virtualinvoke r2.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        return;
+
+     label12:
+        $r17 = <com.hp.hpl.sparta.xpath.TrueExpr: com.hp.hpl.sparta.xpath.TrueExpr INSTANCE>;
+        r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr predicate_> = $r17;
+        return;
+    }
+
+    public com.hp.hpl.sparta.xpath.NodeTest getNodeTest()
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        com.hp.hpl.sparta.xpath.NodeTest $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_>;
+        return $r1;
+    }
+
+    public com.hp.hpl.sparta.xpath.BooleanExpr getPredicate()
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        com.hp.hpl.sparta.xpath.BooleanExpr $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr predicate_>;
+        return $r1;
+    }
+
+    public boolean isMultiLevel()
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        boolean $z0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        $z0 = r0.<com.hp.hpl.sparta.xpath.Step: boolean multiLevel_>;
+        return $z0;
+    }
+
+    public boolean isStringValue()
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        com.hp.hpl.sparta.xpath.NodeTest $r1;
+        boolean $z0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_>;
+        $z0 = virtualinvoke $r1.<com.hp.hpl.sparta.xpath.NodeTest: boolean isStringValue()>();
+        return $z0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.Step r0;
+        java.lang.StringBuffer $r1, $r4, $r7;
+        com.hp.hpl.sparta.xpath.NodeTest $r2;
+        java.lang.String $r3, $r6, $r8;
+        com.hp.hpl.sparta.xpath.BooleanExpr $r5;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.Step;
+        $r1 = new java.lang.StringBuffer;
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>()>();
+        $r2 = r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.NodeTest nodeTest_>;
+        $r3 = virtualinvoke $r2.<java.lang.Object: java.lang.String toString()>();
+        $r4 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r3);
+        $r5 = r0.<com.hp.hpl.sparta.xpath.Step: com.hp.hpl.sparta.xpath.BooleanExpr predicate_>;
+        $r6 = virtualinvoke $r5.<java.lang.Object: java.lang.String toString()>();
+        $r7 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r8;
+    }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog25.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>Reflection#invoke</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r5.(java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[]))($r6, r7)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getMethod</string></attr>
+<attr name="functionPrototype"><string>r5 = virtualinvoke r2.(java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[]))("copyFile", r4)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>forName</string></attr>
+<attr name="functionPrototype"><string>r2 = staticinvoke (java.lang.Class: java.lang.Class forName(java.lang.String))("android.os.FileUtils")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="2">
+</edge>
+<edge from="3" to="1">
+</edge>
+</graph>
+</gxl>

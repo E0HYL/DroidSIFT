@@ -1,0 +1,50 @@
+class com.ophone.MiniPlayer.MyPlayerService$2 extends android.os.Handler
+{
+    final com.ophone.MiniPlayer.MyPlayerService this$0;
+
+    void <init>(com.ophone.MiniPlayer.MyPlayerService)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$2 r0;
+        com.ophone.MiniPlayer.MyPlayerService r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$2;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayerService;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$2: com.ophone.MiniPlayer.MyPlayerService this$0> = r1;
+        specialinvoke r0.<android.os.Handler: void <init>()>();
+        return;
+    }
+
+    public void handleMessage(android.os.Message)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$2 r0;
+        android.os.Message r1;
+        int $i0, $i1, $i2;
+        com.ophone.MiniPlayer.MyPlayerService $r2, $r4;
+        java.io.PrintStream $r3;
+        android.widget.Toast $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$2;
+        r1 := @parameter0: android.os.Message;
+        $i0 = r1.<android.os.Message: int what>;
+        tableswitch($i0)
+        {
+            case 0: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        return;
+
+     label1:
+        $r2 = r0.<com.ophone.MiniPlayer.MyPlayerService$2: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $i1 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: int access$4(com.ophone.MiniPlayer.MyPlayerService)>($r2);
+        $i2 = $i1 - 1;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$5(com.ophone.MiniPlayer.MyPlayerService,int)>($r2, $i2);
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r3.<java.io.PrintStream: void print(java.lang.String)>("Download over");
+        $r4 = r0.<com.ophone.MiniPlayer.MyPlayerService$2: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r5 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>($r4, 2131034210, 0);
+        virtualinvoke $r5.<android.widget.Toast: void show()>();
+        return;
+    }
+}

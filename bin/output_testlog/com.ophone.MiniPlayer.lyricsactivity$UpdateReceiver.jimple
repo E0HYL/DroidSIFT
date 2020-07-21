@@ -1,0 +1,120 @@
+public class com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver extends android.content.BroadcastReceiver
+{
+    final com.ophone.MiniPlayer.lyricsactivity this$0;
+
+    public void <init>(com.ophone.MiniPlayer.lyricsactivity)
+    {
+        com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver r0;
+        com.ophone.MiniPlayer.lyricsactivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver;
+        r1 := @parameter0: com.ophone.MiniPlayer.lyricsactivity;
+        r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0> = r1;
+        specialinvoke r0.<android.content.BroadcastReceiver: void <init>()>();
+        return;
+    }
+
+    public void onReceive(android.content.Context, android.content.Intent)
+    {
+        com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver r0;
+        android.content.Context r1;
+        android.content.Intent r2;
+        com.ophone.MiniPlayer.lyricsactivity $r3, $r4, $r7, $r9, $r11, $r13, $r15, $r16, $r18, $r20, $r23, $r25, $r26, $r27, $r29, $r30, $r31, $r32, $r33, $r34;
+        int $i0, $i1, $i2, $i3;
+        java.io.Serializable $r5;
+        java.util.ArrayList $r6;
+        java.lang.String $r8, $r10, $r12, $r22;
+        java.util.List $r14, $r17;
+        java.lang.StringBuilder $r19, $r21;
+        android.widget.Button $r24, $r28;
+
+        r0 := @this: com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: android.content.Intent;
+        $r3 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $i0 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("status", -1);
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$4(com.ophone.MiniPlayer.lyricsactivity,int)>($r3, $i0);
+        $r4 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r5 = virtualinvoke r2.<android.content.Intent: java.io.Serializable getSerializableExtra(java.lang.String)>("artist");
+        $r6 = (java.util.ArrayList) $r5;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$5(com.ophone.MiniPlayer.lyricsactivity,java.util.List)>($r4, $r6);
+        $r7 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r8 = virtualinvoke r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("songname");
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$6(com.ophone.MiniPlayer.lyricsactivity,java.lang.String)>($r7, $r8);
+        $r9 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r10 = virtualinvoke r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("lyricurlgoogle");
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$7(com.ophone.MiniPlayer.lyricsactivity,java.lang.String)>($r9, $r10);
+        $r11 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r12 = virtualinvoke r2.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("lyricurllocal");
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$8(com.ophone.MiniPlayer.lyricsactivity,java.lang.String)>($r11, $r12);
+        $r13 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r14 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: java.util.List access$9(com.ophone.MiniPlayer.lyricsactivity)>($r13);
+        if $r14 == null goto label0;
+
+        $r15 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r16 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r17 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: java.util.List access$9(com.ophone.MiniPlayer.lyricsactivity)>($r16);
+        $i1 = interfaceinvoke $r17.<java.util.List: int size()>();
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$10(com.ophone.MiniPlayer.lyricsactivity,int)>($r15, $i1);
+
+     label0:
+        $r18 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $i2 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: int access$11(com.ophone.MiniPlayer.lyricsactivity)>($r18);
+        lookupswitch($i2)
+        {
+            case 100: goto label2;
+            case 101: goto label3;
+            case 103: goto label4;
+            case 104: goto label5;
+            case 111: goto label6;
+            default: goto label1;
+        };
+
+     label1:
+        $r19 = new java.lang.StringBuilder;
+        specialinvoke $r19.<java.lang.StringBuilder: void <init>(java.lang.String)>("UpdateReceiver STATUS=");
+        $r20 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $i3 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: int access$11(com.ophone.MiniPlayer.lyricsactivity)>($r20);
+        $r21 = virtualinvoke $r19.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i3);
+        $r22 = virtualinvoke $r21.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("MyPlayer", $r22);
+        return;
+
+     label2:
+        $r23 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r24 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: android.widget.Button access$12(com.ophone.MiniPlayer.lyricsactivity)>($r23);
+        virtualinvoke $r24.<android.widget.Button: void setBackgroundResource(int)>(2130837531);
+        $r25 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$0(com.ophone.MiniPlayer.lyricsactivity)>($r25);
+        $r26 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$13(com.ophone.MiniPlayer.lyricsactivity)>($r26);
+        goto label1;
+
+     label3:
+        $r27 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        $r28 = staticinvoke <com.ophone.MiniPlayer.lyricsactivity: android.widget.Button access$12(com.ophone.MiniPlayer.lyricsactivity)>($r27);
+        virtualinvoke $r28.<android.widget.Button: void setBackgroundResource(int)>(2130837532);
+        goto label1;
+
+     label4:
+        $r29 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$13(com.ophone.MiniPlayer.lyricsactivity)>($r29);
+        $r30 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$0(com.ophone.MiniPlayer.lyricsactivity)>($r30);
+        goto label1;
+
+     label5:
+        $r31 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$13(com.ophone.MiniPlayer.lyricsactivity)>($r31);
+        $r32 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$0(com.ophone.MiniPlayer.lyricsactivity)>($r32);
+        goto label1;
+
+     label6:
+        $r33 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$13(com.ophone.MiniPlayer.lyricsactivity)>($r33);
+        $r34 = r0.<com.ophone.MiniPlayer.lyricsactivity$UpdateReceiver: com.ophone.MiniPlayer.lyricsactivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.lyricsactivity: void access$0(com.ophone.MiniPlayer.lyricsactivity)>($r34);
+        goto label1;
+    }
+}

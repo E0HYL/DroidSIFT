@@ -1,0 +1,403 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog22.gxl">
+<node id="1">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#execute</string></attr>
+<attr name="functionPrototype"><string>$r14 = virtualinvoke $r13.(org.apache.http.impl.client.DefaultHttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest))(r3)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r3.(org.apache.http.client.methods.HttpGet: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>Cipher#getInstance</string></attr>
+<attr name="functionPrototype"><string>$r3 = staticinvoke (javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String))("DES/CBC/PKCS5Padding")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>getBytes</string></attr>
+<attr name="functionPrototype"><string>$r9 = virtualinvoke r0.(java.lang.String: byte[] getBytes(java.lang.String))("UTF-8")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r6.(org.apache.http.client.methods.HttpPost: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="6">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r6.(org.apache.http.client.methods.HttpPost: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="7">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r7.(org.apache.http.client.methods.HttpPost: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="8">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>Text Message manipulation#sendTextMessage</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke $r4.(android.telephony.gsm.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent))(r2, null, r3, $r6, null)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="9">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>getBroadcast</string></attr>
+<attr name="functionPrototype"><string>$r6 = staticinvoke (android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int))(r1, 0, $r5, 0)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="10">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#execute</string></attr>
+<attr name="functionPrototype"><string>r7 = virtualinvoke r2.(org.apache.http.impl.client.DefaultHttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest))(r6)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="11">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#execute</string></attr>
+<attr name="functionPrototype"><string>r7 = virtualinvoke r2.(org.apache.http.impl.client.DefaultHttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest))(r6)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="12">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#execute</string></attr>
+<attr name="functionPrototype"><string>r8 = virtualinvoke r2.(org.apache.http.impl.client.DefaultHttpClient: org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest))(r7)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="13">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>read</string></attr>
+<attr name="functionPrototype"><string>i2 = virtualinvoke r11.(java.io.InputStream: int read(byte[]))(r18)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="14">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>File and network IO#write</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r4.(java.io.FileOutputStream: void write(byte[],int,int))(r18, 0, i2)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="15">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r5.(java.io.BufferedReader: void (init)(java.io.Reader))($r3)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="16">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>readLine</string></attr>
+<attr name="functionPrototype"><string>r6 = virtualinvoke r5.(java.io.BufferedReader: java.lang.String readLine())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="17">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>getString</string></attr>
+<attr name="functionPrototype"><string>$r14 = virtualinvoke $r13.(android.content.Context: java.lang.String getString(int))(2131034181)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="18">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>indexOf</string></attr>
+<attr name="functionPrototype"><string>$i0 = virtualinvoke r1.(java.lang.String: int indexOf(java.lang.String))("(base href")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="19">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>replaceAll</string></attr>
+<attr name="functionPrototype"><string>$r11 = virtualinvoke $r10.(java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String))("a href=\"|\"", "")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="20">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>replaceAll</string></attr>
+<attr name="functionPrototype"><string>$r12 = virtualinvoke r2.(java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String))("https://", "")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="21">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>replaceAll</string></attr>
+<attr name="functionPrototype"><string>$r8 = virtualinvoke r2.(java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String))("http://", "")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="22">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>replaceAll</string></attr>
+<attr name="functionPrototype"><string>$r7 = virtualinvoke $r6.(java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String))("base href=\"|\"", "")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="23">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>replaceAll</string></attr>
+<attr name="functionPrototype"><string>$r12 = virtualinvoke $r11.(java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String))("amp;", "")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="24">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>indexOf</string></attr>
+<attr name="functionPrototype"><string>$i3 = virtualinvoke $r12.(java.lang.String: int indexOf(java.lang.String))("/")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="25">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>indexOf</string></attr>
+<attr name="functionPrototype"><string>$i1 = virtualinvoke $r8.(java.lang.String: int indexOf(java.lang.String))("/")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="26">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>replaceAll</string></attr>
+<attr name="functionPrototype"><string>r3 = virtualinvoke $r7.(java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String))("amp;", "")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="27">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>compile</string></attr>
+<attr name="functionPrototype"><string>$r5 = staticinvoke (java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String))("(a.*?/a)")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="28">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>compile</string></attr>
+<attr name="functionPrototype"><string>$r8 = staticinvoke (java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String))("a href=\".*?\"")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="29">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>compile</string></attr>
+<attr name="functionPrototype"><string>$r4 = staticinvoke (java.util.regex.Pattern: java.util.regex.Pattern compile(java.lang.String))("base href=\".*?\"")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="30">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>split</string></attr>
+<attr name="functionPrototype"><string>$r7 = virtualinvoke r1.(java.lang.String: java.lang.String[] split(java.lang.String))("\\|")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="31">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>toString</string></attr>
+<attr name="functionPrototype"><string>r5 = virtualinvoke $r3.(java.net.URI: java.lang.String toString())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="32">
+<attr name="packageName"><string>com.xxx.yyy</string></attr>
+<attr name="functionCategory"><string>getLocationURI</string></attr>
+<attr name="functionPrototype"><string>$r3 = specialinvoke r0.(org.apache.http.impl.client.DefaultRedirectHandler: java.net.URI getLocationURI(org.apache.http.HttpResponse,org.apache.http.protocol.HttpContext))(r1, r2)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="4">
+</edge>
+<edge from="3" to="2">
+</edge>
+<edge from="3" to="5">
+</edge>
+<edge from="3" to="6">
+</edge>
+<edge from="3" to="7">
+</edge>
+<edge from="3" to="8">
+</edge>
+<edge from="3" to="9">
+</edge>
+<edge from="4" to="4">
+</edge>
+<edge from="4" to="2">
+</edge>
+<edge from="4" to="5">
+</edge>
+<edge from="4" to="6">
+</edge>
+<edge from="4" to="7">
+</edge>
+<edge from="4" to="8">
+</edge>
+<edge from="4" to="9">
+</edge>
+<edge from="5" to="10">
+</edge>
+<edge from="6" to="11">
+</edge>
+<edge from="7" to="12">
+</edge>
+<edge from="9" to="8">
+</edge>
+<edge from="12" to="13">
+</edge>
+<edge from="13" to="14">
+</edge>
+<edge from="15" to="16">
+</edge>
+<edge from="16" to="2">
+</edge>
+<edge from="16" to="17">
+</edge>
+<edge from="16" to="18">
+</edge>
+<edge from="16" to="4">
+</edge>
+<edge from="16" to="19">
+</edge>
+<edge from="16" to="20">
+</edge>
+<edge from="16" to="21">
+</edge>
+<edge from="17" to="2">
+</edge>
+<edge from="17" to="18">
+</edge>
+<edge from="17" to="4">
+</edge>
+<edge from="17" to="19">
+</edge>
+<edge from="17" to="20">
+</edge>
+<edge from="17" to="21">
+</edge>
+<edge from="18" to="22">
+</edge>
+<edge from="19" to="23">
+</edge>
+<edge from="20" to="24">
+</edge>
+<edge from="21" to="25">
+</edge>
+<edge from="22" to="26">
+</edge>
+<edge from="23" to="2">
+</edge>
+<edge from="23" to="18">
+</edge>
+<edge from="23" to="4">
+</edge>
+<edge from="23" to="19">
+</edge>
+<edge from="23" to="20">
+</edge>
+<edge from="23" to="21">
+</edge>
+<edge from="24" to="2">
+</edge>
+<edge from="24" to="18">
+</edge>
+<edge from="24" to="4">
+</edge>
+<edge from="24" to="19">
+</edge>
+<edge from="24" to="20">
+</edge>
+<edge from="24" to="21">
+</edge>
+<edge from="25" to="2">
+</edge>
+<edge from="25" to="18">
+</edge>
+<edge from="25" to="4">
+</edge>
+<edge from="25" to="19">
+</edge>
+<edge from="25" to="20">
+</edge>
+<edge from="25" to="21">
+</edge>
+<edge from="26" to="2">
+</edge>
+<edge from="26" to="18">
+</edge>
+<edge from="26" to="4">
+</edge>
+<edge from="26" to="19">
+</edge>
+<edge from="26" to="20">
+</edge>
+<edge from="26" to="21">
+</edge>
+<edge from="27" to="19">
+</edge>
+<edge from="28" to="19">
+</edge>
+<edge from="29" to="22">
+</edge>
+<edge from="30" to="2">
+</edge>
+<edge from="30" to="17">
+</edge>
+<edge from="30" to="18">
+</edge>
+<edge from="30" to="4">
+</edge>
+<edge from="30" to="19">
+</edge>
+<edge from="30" to="20">
+</edge>
+<edge from="30" to="21">
+</edge>
+<edge from="31" to="2">
+</edge>
+<edge from="31" to="18">
+</edge>
+<edge from="31" to="4">
+</edge>
+<edge from="31" to="19">
+</edge>
+<edge from="31" to="20">
+</edge>
+<edge from="31" to="21">
+</edge>
+<edge from="32" to="31">
+</edge>
+<edge from="32" to="2">
+</edge>
+<edge from="32" to="18">
+</edge>
+<edge from="32" to="4">
+</edge>
+<edge from="32" to="19">
+</edge>
+<edge from="32" to="20">
+</edge>
+<edge from="32" to="21">
+</edge>
+</graph>
+</gxl>

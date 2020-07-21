@@ -1,0 +1,55 @@
+class com.hp.hpl.sparta.XPathVisitor$BooleanStack extends java.lang.Object
+{
+    private com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_;
+
+    private void <init>()
+    {
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack r0;
+
+        r0 := @this: com.hp.hpl.sparta.XPathVisitor$BooleanStack;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_> = null;
+        return;
+    }
+
+    void <init>(com.hp.hpl.sparta.XPathVisitor$1)
+    {
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack r0;
+        com.hp.hpl.sparta.XPathVisitor$1 r1;
+
+        r0 := @this: com.hp.hpl.sparta.XPathVisitor$BooleanStack;
+        r1 := @parameter0: com.hp.hpl.sparta.XPathVisitor$1;
+        specialinvoke r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: void <init>()>();
+        return;
+    }
+
+    java.lang.Boolean pop()
+    {
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack r0;
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item $r1, $r3, $r4;
+        java.lang.Boolean $r2;
+
+        r0 := @this: com.hp.hpl.sparta.XPathVisitor$BooleanStack;
+        $r1 = r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_>;
+        $r2 = $r1.<com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item: java.lang.Boolean bool>;
+        $r3 = r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_>;
+        $r4 = $r3.<com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item prev>;
+        r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_> = $r4;
+        return $r2;
+    }
+
+    void push(java.lang.Boolean)
+    {
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack r0;
+        java.lang.Boolean r1;
+        com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item $r2, $r3;
+
+        r0 := @this: com.hp.hpl.sparta.XPathVisitor$BooleanStack;
+        r1 := @parameter0: java.lang.Boolean;
+        $r2 = new com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item;
+        $r3 = r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_>;
+        specialinvoke $r2.<com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item: void <init>(java.lang.Boolean,com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item)>(r1, $r3);
+        r0.<com.hp.hpl.sparta.XPathVisitor$BooleanStack: com.hp.hpl.sparta.XPathVisitor$BooleanStack$Item top_> = $r2;
+        return;
+    }
+}

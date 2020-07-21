@@ -1,0 +1,253 @@
+public class com.xxx.yyy.SMSDatabaseHelper extends android.database.sqlite.SQLiteOpenHelper
+{
+    public static final java.lang.String FLAG;
+    public static final java.lang.String ID;
+    public static final java.lang.String KEYWORD;
+    public static final java.lang.String KEYWORD2;
+    public static final java.lang.String TB_NAME;
+    public static final java.lang.String TB_NAME2;
+    public static final java.lang.String TYPE;
+
+    public void <init>(android.content.Context, java.lang.String, android.database.sqlite.SQLiteDatabase$CursorFactory, int)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        android.content.Context r1;
+        java.lang.String r2;
+        android.database.sqlite.SQLiteDatabase$CursorFactory r3;
+        int i0;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: android.database.sqlite.SQLiteDatabase$CursorFactory;
+        i0 := @parameter3: int;
+        specialinvoke r0.<android.database.sqlite.SQLiteOpenHelper: void <init>(android.content.Context,java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory,int)>(r1, r2, r3, i0);
+        return;
+    }
+
+    public int deleteBackRecord()
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        android.database.sqlite.SQLiteDatabase $r1;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        $r1 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getWritableDatabase()>();
+        $i0 = virtualinvoke $r1.<android.database.sqlite.SQLiteDatabase: int delete(java.lang.String,java.lang.String,java.lang.String[])>("go_g2_sms", null, null);
+        return $i0;
+    }
+
+    public int deleteSMS(int)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        int i0, $i1;
+        android.database.sqlite.SQLiteDatabase $r1;
+        java.lang.String[] $r2;
+        java.lang.String $r3;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        i0 := @parameter0: int;
+        $r1 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getWritableDatabase()>();
+        $r2 = newarray (java.lang.String)[1];
+        $r3 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+        $r2[0] = $r3;
+        $i1 = virtualinvoke $r1.<android.database.sqlite.SQLiteDatabase: int delete(java.lang.String,java.lang.String,java.lang.String[])>("go_g1_sms", "id=?", $r2);
+        return $i1;
+    }
+
+    public int deleteSMS(java.lang.String)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        java.lang.String r1;
+        android.database.sqlite.SQLiteDatabase $r2;
+        java.lang.String[] $r3;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r1 := @parameter0: java.lang.String;
+        $r2 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getWritableDatabase()>();
+        $r3 = newarray (java.lang.String)[1];
+        $r3[0] = r1;
+        $i0 = virtualinvoke $r2.<android.database.sqlite.SQLiteDatabase: int delete(java.lang.String,java.lang.String,java.lang.String[])>("go_g1_sms", "keyword=?", $r3);
+        return $i0;
+    }
+
+    public java.util.List getAll(int, int)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        int i0, i1, $i3, $i4;
+        java.lang.String[] $r1, r2;
+        android.database.sqlite.SQLiteDatabase r3;
+        java.lang.String $r4, $r5, $r9;
+        android.database.Cursor r6;
+        java.util.ArrayList r7;
+        boolean $z0;
+        com.xxx.yyy.SMSEntityBad r8;
+        long $l2;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        i0 := @parameter0: int;
+        i1 := @parameter1: int;
+        r3 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getReadableDatabase()>();
+        $r1 = <com.xxx.yyy.SMSEntityBad: java.lang.String[] ALL_COLUMNS>;
+        r2 = newarray (java.lang.String)[2];
+        $r4 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i0);
+        r2[0] = $r4;
+        $r5 = staticinvoke <java.lang.String: java.lang.String valueOf(int)>(i1);
+        r2[1] = $r5;
+        r6 = virtualinvoke r3.<android.database.sqlite.SQLiteDatabase: android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,java.lang.String,java.lang.String)>("go_g1_sms", $r1, "type=? and flag=?", r2, null, null, null);
+        r7 = new java.util.ArrayList;
+        specialinvoke r7.<java.util.ArrayList: void <init>()>();
+
+     label0:
+        $z0 = interfaceinvoke r6.<android.database.Cursor: boolean moveToNext()>();
+        if $z0 != 0 goto label1;
+
+        interfaceinvoke r6.<android.database.Cursor: void close()>();
+        virtualinvoke r3.<android.database.sqlite.SQLiteDatabase: void close()>();
+        return r7;
+
+     label1:
+        r8 = new com.xxx.yyy.SMSEntityBad;
+        specialinvoke r8.<com.xxx.yyy.SMSEntityBad: void <init>()>();
+        $l2 = interfaceinvoke r6.<android.database.Cursor: long getLong(int)>(0);
+        virtualinvoke r8.<com.xxx.yyy.SMSEntityBad: void setId(long)>($l2);
+        $r9 = interfaceinvoke r6.<android.database.Cursor: java.lang.String getString(int)>(1);
+        virtualinvoke r8.<com.xxx.yyy.SMSEntityBad: void setKeyWord(java.lang.String)>($r9);
+        $i3 = interfaceinvoke r6.<android.database.Cursor: int getInt(int)>(2);
+        virtualinvoke r8.<com.xxx.yyy.SMSEntityBad: void setType(int)>($i3);
+        $i4 = interfaceinvoke r6.<android.database.Cursor: int getInt(int)>(3);
+        virtualinvoke r8.<com.xxx.yyy.SMSEntityBad: void setFlag(int)>($i4);
+        interfaceinvoke r7.<java.util.List: boolean add(java.lang.Object)>(r8);
+        goto label0;
+    }
+
+    public java.lang.String[] getBackContent()
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        java.lang.String[] r1, r2;
+        android.database.sqlite.SQLiteDatabase r3;
+        android.database.Cursor r4;
+        boolean $z0;
+        java.lang.String $r5, $r6;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r3 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getReadableDatabase()>();
+        r1 = newarray (java.lang.String)[2];
+        r1[0] = "keyword";
+        r1[1] = "keyword2";
+        r4 = virtualinvoke r3.<android.database.sqlite.SQLiteDatabase: android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,java.lang.String,java.lang.String)>("go_g2_sms", r1, null, null, null, null, null);
+        r2 = newarray (java.lang.String)[2];
+        r2[0] = "";
+        r2[1] = "";
+        $z0 = interfaceinvoke r4.<android.database.Cursor: boolean moveToNext()>();
+        if $z0 == 0 goto label0;
+
+        $r5 = interfaceinvoke r4.<android.database.Cursor: java.lang.String getString(int)>(0);
+        r2[0] = $r5;
+        $r6 = interfaceinvoke r4.<android.database.Cursor: java.lang.String getString(int)>(1);
+        r2[1] = $r6;
+
+     label0:
+        interfaceinvoke r4.<android.database.Cursor: void close()>();
+        virtualinvoke r3.<android.database.sqlite.SQLiteDatabase: void close()>();
+        return r2;
+    }
+
+    public int insertBackRecord(java.lang.String, java.lang.String)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        java.lang.String r1, r2;
+        android.database.sqlite.SQLiteDatabase $r3;
+        android.content.ContentValues r4;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        $r3 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getWritableDatabase()>();
+        r4 = new android.content.ContentValues;
+        specialinvoke r4.<android.content.ContentValues: void <init>()>();
+        virtualinvoke r4.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("keyword", r1);
+        virtualinvoke r4.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("keyword2", r2);
+        virtualinvoke $r3.<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>("go_g2_sms", "id", r4);
+        virtualinvoke $r3.<android.database.sqlite.SQLiteDatabase: void close()>();
+        return 0;
+    }
+
+    public int insertRecord(java.lang.String, int, int)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        java.lang.String r1;
+        int i0, i1;
+        android.database.sqlite.SQLiteDatabase $r2;
+        android.content.ContentValues r3;
+        java.lang.Integer $r4, $r5;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        $r2 = virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: android.database.sqlite.SQLiteDatabase getWritableDatabase()>();
+        r3 = new android.content.ContentValues;
+        specialinvoke r3.<android.content.ContentValues: void <init>()>();
+        virtualinvoke r3.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("keyword", r1);
+        $r4 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i0);
+        virtualinvoke r3.<android.content.ContentValues: void put(java.lang.String,java.lang.Integer)>("type", $r4);
+        $r5 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>(i1);
+        virtualinvoke r3.<android.content.ContentValues: void put(java.lang.String,java.lang.Integer)>("flag", $r5);
+        virtualinvoke $r2.<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>("go_g1_sms", "id", r3);
+        virtualinvoke $r2.<android.database.sqlite.SQLiteDatabase: void close()>();
+        return 0;
+    }
+
+    public void onCreate(android.database.sqlite.SQLiteDatabase)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        android.database.sqlite.SQLiteDatabase r1;
+        java.lang.StringBuilder r2, r12;
+        java.lang.String $r11, $r20;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r1 := @parameter0: android.database.sqlite.SQLiteDatabase;
+        r2 = new java.lang.StringBuilder;
+        specialinvoke r2.<java.lang.StringBuilder: void <init>()>();
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("CREATE TABLE IF NOT EXISTS ");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("go_g1_sms");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" (");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("id INTEGER PRIMARY KEY AUTOINCREMENT,");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("keyword VARCHAR(256),");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("type INTEGER,");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("flag INTEGER");
+        virtualinvoke r2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+        $r11 = virtualinvoke r2.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke r1.<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String)>($r11);
+        r12 = new java.lang.StringBuilder;
+        specialinvoke r12.<java.lang.StringBuilder: void <init>()>();
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("CREATE TABLE IF NOT EXISTS ");
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("go_g2_sms");
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" (");
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("id INTEGER PRIMARY KEY AUTOINCREMENT,");
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("keyword VARCHAR(256),");
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("keyword2 VARCHAR(256)");
+        virtualinvoke r12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")");
+        $r20 = virtualinvoke r12.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke r1.<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String)>($r20);
+        return;
+    }
+
+    public void onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)
+    {
+        com.xxx.yyy.SMSDatabaseHelper r0;
+        android.database.sqlite.SQLiteDatabase r1;
+        int i0, i1;
+
+        r0 := @this: com.xxx.yyy.SMSDatabaseHelper;
+        r1 := @parameter0: android.database.sqlite.SQLiteDatabase;
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        virtualinvoke r1.<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String)>("DROP TABLE IF EXISTS go_g1_sms");
+        virtualinvoke r1.<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String)>("DROP TABLE IF EXISTS go_g2_sms");
+        virtualinvoke r0.<com.xxx.yyy.SMSDatabaseHelper: void onCreate(android.database.sqlite.SQLiteDatabase)>(r1);
+        return;
+    }
+}

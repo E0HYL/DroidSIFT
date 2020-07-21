@@ -1,0 +1,188 @@
+class net.sourceforge.pinyin4j.PinyinFormatter extends java.lang.Object
+{
+
+    void <init>()
+    {
+        net.sourceforge.pinyin4j.PinyinFormatter r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinFormatter;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    private static java.lang.String convertToneNumber2ToneMark(java.lang.String)
+    {
+        java.lang.String r0, r1, $r2, $r3, $r5, $r6, $r9, $r10, $r12, $r13, $r14;
+        int i0, i1, i2, i3, $i5, $i6, i8, $i9, $i10, $i11, $i12, $i14, $i15, $i16, $i17, i18;
+        char c4, $c7, c13, $c19;
+        boolean $z0, $z1, $z2;
+        java.lang.StringBuffer r4;
+
+        r0 := @parameter0: java.lang.String;
+        r1 = virtualinvoke r0.<java.lang.String: java.lang.String toLowerCase()>();
+        $z0 = virtualinvoke r1.<java.lang.String: boolean matches(java.lang.String)>("[a-z]*[1-5]?");
+        if $z0 == 0 goto label1;
+
+        $z1 = virtualinvoke r1.<java.lang.String: boolean matches(java.lang.String)>("[a-z]*[1-5]");
+        if $z1 == 0 goto label7;
+
+        $i5 = virtualinvoke r1.<java.lang.String: int length()>();
+        $i6 = $i5 - 1;
+        $c7 = virtualinvoke r1.<java.lang.String: char charAt(int)>($i6);
+        i0 = staticinvoke <java.lang.Character: int getNumericValue(char)>($c7);
+        i1 = virtualinvoke r1.<java.lang.String: int indexOf(int)>(97);
+        i2 = virtualinvoke r1.<java.lang.String: int indexOf(int)>(101);
+        i3 = virtualinvoke r1.<java.lang.String: int indexOf(java.lang.String)>("ou");
+        if -1 == i1 goto label2;
+
+        c4 = 97;
+        i8 = i1;
+
+     label0:
+        if 36 == c4 goto label1;
+
+        if -1 == i8 goto label1;
+
+        $r2 = "\u0101\u00e1\u0103\u00e0a\u0113\u00e9\u0115\u00e8e\u012b\u00ed\u012d\u00eci\u014d\u00f3\u014f\u00f2o\u016b\u00fa\u016d\u00f9u\u01d6\u01d8\u01da\u01dc\u00fc";
+        $r3 = "aeiouv";
+        $i9 = virtualinvoke $r3.<java.lang.String: int indexOf(int)>(c4);
+        $i10 = $i9 * 5;
+        $i11 = i0 - 1;
+        $i12 = $i10 + $i11;
+        c13 = virtualinvoke $r2.<java.lang.String: char charAt(int)>($i12);
+        r4 = new java.lang.StringBuffer;
+        specialinvoke r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>(0, i8);
+        $r6 = virtualinvoke $r5.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("v", "\u00fc");
+        virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r6);
+        virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>(c13);
+        $i14 = i8 + 1;
+        $i15 = virtualinvoke r1.<java.lang.String: int length()>();
+        $i16 = $i15 - 1;
+        $r9 = virtualinvoke r1.<java.lang.String: java.lang.String substring(int,int)>($i14, $i16);
+        $r10 = virtualinvoke $r9.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("v", "\u00fc");
+        virtualinvoke r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r10);
+        r1 = virtualinvoke r4.<java.lang.StringBuffer: java.lang.String toString()>();
+
+     label1:
+        return r1;
+
+     label2:
+        if -1 == i2 goto label3;
+
+        c4 = 101;
+        i8 = i2;
+        goto label0;
+
+     label3:
+        if -1 == i3 goto label4;
+
+        $r12 = "ou";
+        c4 = virtualinvoke $r12.<java.lang.String: char charAt(int)>(0);
+        i8 = i3;
+        goto label0;
+
+     label4:
+        $i17 = virtualinvoke r1.<java.lang.String: int length()>();
+        i18 = $i17 - 1;
+
+     label5:
+        if i18 < 0 goto label8;
+
+        $c19 = virtualinvoke r1.<java.lang.String: char charAt(int)>(i18);
+        $r13 = staticinvoke <java.lang.String: java.lang.String valueOf(char)>($c19);
+        $z2 = virtualinvoke $r13.<java.lang.String: boolean matches(java.lang.String)>("[aeiouv]");
+        if $z2 == 0 goto label6;
+
+        c4 = virtualinvoke r1.<java.lang.String: char charAt(int)>(i18);
+        i8 = i18;
+        goto label0;
+
+     label6:
+        i18 = i18 + -1;
+        goto label5;
+
+     label7:
+        $r14 = virtualinvoke r1.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("v", "\u00fc");
+        return $r14;
+
+     label8:
+        c4 = 36;
+        i8 = -1;
+        goto label0;
+    }
+
+    static java.lang.String formatHanyuPinyin(java.lang.String, net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat) throws net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination
+    {
+        java.lang.String r0, r11, $r18;
+        net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat r1;
+        net.sourceforge.pinyin4j.format.HanyuPinyinToneType $r2, $r3, $r9, $r10, $r16, $r17;
+        net.sourceforge.pinyin4j.format.HanyuPinyinVCharType $r4, $r5, $r6, $r7, $r12, $r13, $r19, $r20;
+        net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination $r8;
+        net.sourceforge.pinyin4j.format.HanyuPinyinCaseType $r14, $r15;
+
+        r0 := @parameter0: java.lang.String;
+        r1 := @parameter1: net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+        $r2 = <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_MARK>;
+        $r3 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinToneType getToneType()>();
+        if $r2 != $r3 goto label1;
+
+        $r4 = <net.sourceforge.pinyin4j.format.HanyuPinyinVCharType: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType WITH_V>;
+        $r5 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType getVCharType()>();
+        if $r4 == $r5 goto label0;
+
+        $r6 = <net.sourceforge.pinyin4j.format.HanyuPinyinVCharType: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType WITH_U_AND_COLON>;
+        $r7 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType getVCharType()>();
+        if $r6 != $r7 goto label1;
+
+     label0:
+        $r8 = new net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+        specialinvoke $r8.<net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination: void <init>(java.lang.String)>("tone marks cannot be added to v or u:");
+        throw $r8;
+
+     label1:
+        $r9 = <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITHOUT_TONE>;
+        $r10 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinToneType getToneType()>();
+        if $r9 != $r10 goto label5;
+
+        r11 = virtualinvoke r0.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("[1-5]", "");
+
+     label2:
+        $r12 = <net.sourceforge.pinyin4j.format.HanyuPinyinVCharType: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType WITH_V>;
+        $r13 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType getVCharType()>();
+        if $r12 != $r13 goto label6;
+
+        r11 = virtualinvoke r11.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("u:", "v");
+
+     label3:
+        $r14 = <net.sourceforge.pinyin4j.format.HanyuPinyinCaseType: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType UPPERCASE>;
+        $r15 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinCaseType getCaseType()>();
+        if $r14 != $r15 goto label4;
+
+        r11 = virtualinvoke r11.<java.lang.String: java.lang.String toUpperCase()>();
+
+     label4:
+        return r11;
+
+     label5:
+        $r16 = <net.sourceforge.pinyin4j.format.HanyuPinyinToneType: net.sourceforge.pinyin4j.format.HanyuPinyinToneType WITH_TONE_MARK>;
+        $r17 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinToneType getToneType()>();
+        if $r16 != $r17 goto label7;
+
+        $r18 = virtualinvoke r0.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("u:", "v");
+        r11 = staticinvoke <net.sourceforge.pinyin4j.PinyinFormatter: java.lang.String convertToneNumber2ToneMark(java.lang.String)>($r18);
+        goto label2;
+
+     label6:
+        $r19 = <net.sourceforge.pinyin4j.format.HanyuPinyinVCharType: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType WITH_U_UNICODE>;
+        $r20 = virtualinvoke r1.<net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat: net.sourceforge.pinyin4j.format.HanyuPinyinVCharType getVCharType()>();
+        if $r19 != $r20 goto label3;
+
+        r11 = virtualinvoke r11.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("u:", "\u00fc");
+        goto label3;
+
+     label7:
+        r11 = r0;
+        goto label2;
+    }
+}

@@ -1,0 +1,32 @@
+final class demo.Pinyin4jAppletDemo$1 extends java.awt.event.WindowAdapter
+{
+    private final demo.Pinyin4jAppletDemo val$appletDemo;
+
+    void <init>(demo.Pinyin4jAppletDemo)
+    {
+        demo.Pinyin4jAppletDemo$1 r0;
+        demo.Pinyin4jAppletDemo r1;
+
+        r0 := @this: demo.Pinyin4jAppletDemo$1;
+        r1 := @parameter0: demo.Pinyin4jAppletDemo;
+        specialinvoke r0.<java.awt.event.WindowAdapter: void <init>()>();
+        r0.<demo.Pinyin4jAppletDemo$1: demo.Pinyin4jAppletDemo val$appletDemo> = r1;
+        return;
+    }
+
+    public void windowClosing(java.awt.event.WindowEvent)
+    {
+        demo.Pinyin4jAppletDemo$1 r0;
+        java.awt.event.WindowEvent r1;
+        demo.Pinyin4jAppletDemo $r2, $r3;
+
+        r0 := @this: demo.Pinyin4jAppletDemo$1;
+        r1 := @parameter0: java.awt.event.WindowEvent;
+        $r2 = r0.<demo.Pinyin4jAppletDemo$1: demo.Pinyin4jAppletDemo val$appletDemo>;
+        virtualinvoke $r2.<demo.Pinyin4jAppletDemo: void stop()>();
+        $r3 = r0.<demo.Pinyin4jAppletDemo$1: demo.Pinyin4jAppletDemo val$appletDemo>;
+        virtualinvoke $r3.<demo.Pinyin4jAppletDemo: void destroy()>();
+        staticinvoke <java.lang.System: void exit(int)>(0);
+        return;
+    }
+}

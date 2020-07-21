@@ -1,0 +1,111 @@
+class com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3 extends java.lang.Object implements android.view.View$OnClickListener
+{
+    final com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1;
+    private final int val$position;
+
+    void <init>(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter, int)
+    {
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3 r0;
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter r1;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3;
+        r1 := @parameter0: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter;
+        i0 := @parameter1: int;
+        r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1> = r1;
+        r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: int val$position> = i0;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onClick(android.view.View)
+    {
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3 r0;
+        android.view.View r1;
+        java.lang.Integer r2;
+        java.lang.Boolean r3;
+        android.widget.CheckBox $r4;
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter $r5, $r8, $r10, $r15, $r18, $r21, $r24, $r27, $r30, $r33, $r36, $r39, $r42;
+        java.util.Map r6;
+        int $i0, $i1;
+        boolean $z0, $z1, $z3, $z4, $z5;
+        com.ophone.MiniPlayer.OnlineMusicActivity $r9, $r11, $r16, $r19, $r22, $r25, $r28, $r31, $r34, $r37, $r40, $r43;
+        java.util.ArrayList $r12, $r17, $r23, $r26, $r32, $r35, $r41;
+        java.lang.Object $r13;
+        com.ophone.MiniPlayer.provider.Song $r14, $r20, $r29, $r38, $r44;
+
+        r0 := @this: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3;
+        r1 := @parameter0: android.view.View;
+        $r4 = (android.widget.CheckBox) r1;
+        $r5 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        r6 = $r5.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: java.util.Map map>;
+        $i0 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: int val$position>;
+        r2 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i0);
+        $z0 = virtualinvoke $r4.<android.widget.CheckBox: boolean isChecked()>();
+        r3 = staticinvoke <java.lang.Boolean: java.lang.Boolean valueOf(boolean)>($z0);
+        interfaceinvoke r6.<java.util.Map: java.lang.Object put(java.lang.Object,java.lang.Object)>(r2, r3);
+        $r8 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r9 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r8);
+        $r10 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r11 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r10);
+        $r12 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$4(com.ophone.MiniPlayer.OnlineMusicActivity)>($r11);
+        $i1 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: int val$position>;
+        $r13 = virtualinvoke $r12.<java.util.ArrayList: java.lang.Object get(int)>($i1);
+        $r14 = (com.ophone.MiniPlayer.provider.Song) $r13;
+        staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: void access$6(com.ophone.MiniPlayer.OnlineMusicActivity,com.ophone.MiniPlayer.provider.Song)>($r9, $r14);
+        $z1 = virtualinvoke $r4.<android.widget.CheckBox: boolean isChecked()>();
+        if $z1 == 0 goto label1;
+
+        $r15 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r16 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r15);
+        $r17 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$7(com.ophone.MiniPlayer.OnlineMusicActivity)>($r16);
+        $r18 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r19 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r18);
+        $r20 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: com.ophone.MiniPlayer.provider.Song access$8(com.ophone.MiniPlayer.OnlineMusicActivity)>($r19);
+        virtualinvoke $r17.<java.util.ArrayList: boolean add(java.lang.Object)>($r20);
+
+     label0:
+        return;
+
+     label1:
+        $r21 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r22 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r21);
+        $r23 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$7(com.ophone.MiniPlayer.OnlineMusicActivity)>($r22);
+        $z3 = virtualinvoke $r23.<java.util.ArrayList: boolean isEmpty()>();
+        if $z3 != 0 goto label2;
+
+        $r24 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r25 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r24);
+        $r26 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$7(com.ophone.MiniPlayer.OnlineMusicActivity)>($r25);
+        $r27 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r28 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r27);
+        $r29 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: com.ophone.MiniPlayer.provider.Song access$8(com.ophone.MiniPlayer.OnlineMusicActivity)>($r28);
+        $z4 = virtualinvoke $r26.<java.util.ArrayList: boolean contains(java.lang.Object)>($r29);
+        if $z4 != 0 goto label3;
+
+     label2:
+        $r30 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r31 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r30);
+        $r32 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$7(com.ophone.MiniPlayer.OnlineMusicActivity)>($r31);
+        if $r32 == null goto label0;
+
+        $r33 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r34 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r33);
+        $r35 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$7(com.ophone.MiniPlayer.OnlineMusicActivity)>($r34);
+        $r36 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r37 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r36);
+        $r38 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: com.ophone.MiniPlayer.provider.Song access$8(com.ophone.MiniPlayer.OnlineMusicActivity)>($r37);
+        $z5 = virtualinvoke $r35.<java.util.ArrayList: boolean contains(java.lang.Object)>($r38);
+        if $z5 == 0 goto label0;
+
+     label3:
+        $r39 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r40 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r39);
+        $r41 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: java.util.ArrayList access$7(com.ophone.MiniPlayer.OnlineMusicActivity)>($r40);
+        $r42 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$3: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r43 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r42);
+        $r44 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: com.ophone.MiniPlayer.provider.Song access$8(com.ophone.MiniPlayer.OnlineMusicActivity)>($r43);
+        virtualinvoke $r41.<java.util.ArrayList: boolean remove(java.lang.Object)>($r44);
+        return;
+    }
+}

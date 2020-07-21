@@ -1,0 +1,50 @@
+public class com.hp.hpl.sparta.xpath.ParentNodeTest extends com.hp.hpl.sparta.xpath.NodeTest
+{
+    static final com.hp.hpl.sparta.xpath.ParentNodeTest INSTANCE;
+
+    static void <clinit>()
+    {
+        com.hp.hpl.sparta.xpath.ParentNodeTest $r0;
+
+        $r0 = new com.hp.hpl.sparta.xpath.ParentNodeTest;
+        specialinvoke $r0.<com.hp.hpl.sparta.xpath.ParentNodeTest: void <init>()>();
+        <com.hp.hpl.sparta.xpath.ParentNodeTest: com.hp.hpl.sparta.xpath.ParentNodeTest INSTANCE> = $r0;
+        return;
+    }
+
+    private void <init>()
+    {
+        com.hp.hpl.sparta.xpath.ParentNodeTest r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ParentNodeTest;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.NodeTest: void <init>()>();
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.Visitor) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.ParentNodeTest r0;
+        com.hp.hpl.sparta.xpath.Visitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ParentNodeTest;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.Visitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.NodeTestVisitor: void visit(com.hp.hpl.sparta.xpath.ParentNodeTest)>(r0);
+        return;
+    }
+
+    public boolean isStringValue()
+    {
+        com.hp.hpl.sparta.xpath.ParentNodeTest r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ParentNodeTest;
+        return 0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.ParentNodeTest r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.ParentNodeTest;
+        return "..";
+    }
+}

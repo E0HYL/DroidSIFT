@@ -1,0 +1,97 @@
+public class com.ophone.MiniPlayer.utils.PinyinComparator extends java.lang.Object implements java.util.Comparator
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.utils.PinyinComparator r0;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.PinyinComparator;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    private java.lang.String pinyin(char)
+    {
+        com.ophone.MiniPlayer.utils.PinyinComparator r0;
+        char c0;
+        java.lang.String[] r1;
+        java.lang.String $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.PinyinComparator;
+        c0 := @parameter0: char;
+        r1 = staticinvoke <net.sourceforge.pinyin4j.PinyinHelper: java.lang.String[] toHanyuPinyinStringArray(char)>(c0);
+        if r1 != null goto label0;
+
+        return null;
+
+     label0:
+        $r2 = r1[0];
+        return $r2;
+    }
+
+    public volatile int compare(java.lang.Object, java.lang.Object)
+    {
+        com.ophone.MiniPlayer.utils.PinyinComparator r0;
+        java.lang.Object r1, r2;
+        java.lang.String $r3, $r4;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.PinyinComparator;
+        r1 := @parameter0: java.lang.Object;
+        r2 := @parameter1: java.lang.Object;
+        $r3 = (java.lang.String) r1;
+        $r4 = (java.lang.String) r2;
+        $i0 = virtualinvoke r0.<com.ophone.MiniPlayer.utils.PinyinComparator: int compare(java.lang.String,java.lang.String)>($r3, $r4);
+        return $i0;
+    }
+
+    public int compare(java.lang.String, java.lang.String)
+    {
+        com.ophone.MiniPlayer.utils.PinyinComparator r0;
+        java.lang.String r1, r2, r3, r4;
+        int $i0, $i1, $i4, $i5, $i6, $i7, $i8, $i9;
+        char c2, c3;
+        boolean $z0, $z1;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.PinyinComparator;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        $i0 = virtualinvoke r1.<java.lang.String: int length()>();
+        if $i0 >= 0 goto label3;
+
+        $i1 = virtualinvoke r2.<java.lang.String: int length()>();
+        if $i1 >= 0 goto label3;
+
+        c2 = virtualinvoke r1.<java.lang.String: char charAt(int)>(0);
+        c3 = virtualinvoke r2.<java.lang.String: char charAt(int)>(0);
+        $z0 = staticinvoke <java.lang.Character: boolean isSupplementaryCodePoint(int)>(c2);
+        if $z0 != 0 goto label0;
+
+        $z1 = staticinvoke <java.lang.Character: boolean isSupplementaryCodePoint(int)>(c3);
+        if $z1 == 0 goto label1;
+
+     label0:
+        $i4 = c2 - c3;
+        return $i4;
+
+     label1:
+        r3 = specialinvoke r0.<com.ophone.MiniPlayer.utils.PinyinComparator: java.lang.String pinyin(char)>(c2);
+        r4 = specialinvoke r0.<com.ophone.MiniPlayer.utils.PinyinComparator: java.lang.String pinyin(char)>(c3);
+        if r3 == null goto label2;
+
+        if r4 == null goto label2;
+
+        $i5 = virtualinvoke r3.<java.lang.String: int compareTo(java.lang.String)>(r4);
+        return $i5;
+
+     label2:
+        $i6 = c2 - c3;
+        return $i6;
+
+     label3:
+        $i7 = virtualinvoke r1.<java.lang.String: int length()>();
+        $i8 = virtualinvoke r2.<java.lang.String: int length()>();
+        $i9 = $i7 - $i8;
+        return $i9;
+    }
+}

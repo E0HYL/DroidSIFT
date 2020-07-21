@@ -1,0 +1,15 @@
+public interface  com.hp.hpl.sparta.xpath.NodeTestVisitor extends java.lang.Object
+{
+
+    public abstract void visit(com.hp.hpl.sparta.xpath.AllElementTest);
+
+    public abstract void visit(com.hp.hpl.sparta.xpath.AttrTest);
+
+    public abstract void visit(com.hp.hpl.sparta.xpath.ElementTest);
+
+    public abstract void visit(com.hp.hpl.sparta.xpath.ParentNodeTest) throws com.hp.hpl.sparta.xpath.XPathException;
+
+    public abstract void visit(com.hp.hpl.sparta.xpath.TextTest);
+
+    public abstract void visit(com.hp.hpl.sparta.xpath.ThisNodeTest);
+}

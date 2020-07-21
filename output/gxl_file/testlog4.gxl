@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog4.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#openConnection</string></attr>
+<attr name="functionPrototype"><string>$r10 = virtualinvoke r3.(java.net.URL: java.net.URLConnection openConnection())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r3.(java.net.URL: void (init)(java.lang.String))(r1)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i0 = virtualinvoke r1.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i3 = virtualinvoke r1.(java.lang.String: int lastIndexOf(java.lang.String))("/")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>$i5 = virtualinvoke r1.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="2">
+</edge>
+<edge from="4" to="2">
+</edge>
+<edge from="5" to="2">
+</edge>
+</graph>
+</gxl>

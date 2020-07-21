@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="bottom" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="top" android:id="@id/LinearLayout01" android:padding="10.0px" android:layout_width="fill_parent" android:layout_height="210.0px">
+        <ImageView android:id="@id/main1icon" android:layout_width="204.0px" android:layout_height="204.0px" android:adjustViewBounds="true" />
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/buttons" android:layout_width="fill_parent" android:layout_height="210.0px">
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="70.0px" android:baselineAlignedChildIndex="1">
+                <Button android:id="@id/jump" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/jump" />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="70.0px" android:baselineAlignedChildIndex="2">
+                <Button android:id="@id/random" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/random" />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="70.0px" android:baselineAlignedChildIndex="3">
+                <Button android:id="@id/repeat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/repeat" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/LinearLayout02" android:paddingLeft="15.0px" android:layout_width="wrap_content" android:layout_height="123.0px"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="41.0px" android:baselineAlignedChildIndex="1">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/artist" />
+            <TextView android:textSize="18.0px" android:textColor="#ffffffff" android:id="@id/artist" android:padding="5.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="41.0px" android:baselineAlignedChildIndex="2">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/album" />
+            <TextView android:textSize="15.0px" android:textColor="#ffffffff" android:id="@id/album" android:padding="5.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="41.0px" android:baselineAlignedChildIndex="3">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/songname" />
+            <TextView android:textSize="15.0px" android:textColor="#ffffffff" android:id="@id/songname" android:padding="5.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:gravity="bottom" android:orientation="vertical" android:id="@id/LinearLayout03" android:background="@drawable/gray" android:padding="5.0px" android:layout_width="fill_parent" android:layout_height="110.0px">
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:id="@id/buttons" android:padding="5.0px" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <TextView android:textColor="@drawable/white" android:layout_gravity="bottom" android:id="@id/current" android:padding="2.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0px" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="210.0px" android:layout_height="wrap_content" android:layout_marginTop="30.0px">
+                <LinearLayout android:gravity="center" android:layout_width="70.0px" android:layout_height="wrap_content">
+                    <Button android:id="@id/pre" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/pre" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center" android:layout_width="70.0px" android:layout_height="wrap_content">
+                    <Button android:id="@id/play" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/play" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center" android:layout_width="70.0px" android:layout_height="wrap_content">
+                    <Button android:id="@id/next" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/next" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView android:textColor="@drawable/white" android:layout_gravity="bottom" android:id="@id/total" android:padding="2.0px" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0px" />
+        </LinearLayout>
+        <SeekBar android:id="@id/progress" android:layout_width="fill_parent" android:layout_height="28.0px" style="?android:attr/progressBarStyleHorizontal" />
+    </LinearLayout>
+</LinearLayout>

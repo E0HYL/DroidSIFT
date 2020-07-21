@@ -1,0 +1,284 @@
+public class com.ophone.MiniPlayer.Search extends android.app.Activity
+{
+    private static final int OPTION_ITEM_LOCALSONG;
+    private static final int OPTION_ITEM_ONLINESONG;
+    private static final int OPTION_ITEM_PLAYING;
+    private static final int OPTION_ITEM_PLAYLIST;
+    int a;
+    android.widget.Button bt1;
+    android.widget.Button bt2;
+    private android.util.DisplayMetrics dm;
+    android.widget.EditText ev;
+    java.lang.String googlesuffix;
+    private android.widget.LinearLayout l1;
+    private android.widget.LinearLayout l2;
+    private android.widget.LinearLayout l3;
+    private com.ophone.MiniPlayer.Loadimageurl liu;
+    android.widget.GridView menuGrid;
+    int[] menu_image_array;
+    int[] menu_name_array;
+    java.lang.String[] menu_name_arrays;
+    android.widget.PopupWindow pop;
+    java.lang.String urlbaidu;
+    java.lang.String urlgoogle;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.Search r0;
+        com.ophone.MiniPlayer.Loadimageurl $r1;
+        int[] r2, r3;
+        java.lang.String[] r4;
+
+        r0 := @this: com.ophone.MiniPlayer.Search;
+        specialinvoke r0.<android.app.Activity: void <init>()>();
+        $r1 = new com.ophone.MiniPlayer.Loadimageurl;
+        specialinvoke $r1.<com.ophone.MiniPlayer.Loadimageurl: void <init>()>();
+        r0.<com.ophone.MiniPlayer.Search: com.ophone.MiniPlayer.Loadimageurl liu> = $r1;
+        r2 = newarray (int)[2];
+        r2[0] = 2130837509;
+        r2[1] = 2130837516;
+        r0.<com.ophone.MiniPlayer.Search: int[] menu_image_array> = r2;
+        r3 = newarray (int)[2];
+        r3[0] = 2131034178;
+        r3[1] = 2131034179;
+        r0.<com.ophone.MiniPlayer.Search: int[] menu_name_array> = r3;
+        r4 = newarray (java.lang.String)[2];
+        r4[0] = "baidu";
+        r4[1] = "google";
+        r0.<com.ophone.MiniPlayer.Search: java.lang.String[] menu_name_arrays> = r4;
+        r0.<com.ophone.MiniPlayer.Search: java.lang.String urlbaidu> = null;
+        r0.<com.ophone.MiniPlayer.Search: java.lang.String urlgoogle> = null;
+        r0.<com.ophone.MiniPlayer.Search: java.lang.String googlesuffix> = null;
+        r0.<com.ophone.MiniPlayer.Search: int a> = 0;
+        return;
+    }
+
+    private android.widget.SimpleAdapter getMenuAdapter(java.lang.String[], int[])
+    {
+        com.ophone.MiniPlayer.Search r0;
+        java.lang.String[] r1, r6;
+        int[] r2, r7;
+        java.util.ArrayList r3;
+        int i0, $i1, $i2;
+        java.util.HashMap r4;
+        android.widget.SimpleAdapter $r5;
+        java.lang.Integer $r8;
+        java.lang.String $r10;
+
+        r0 := @this: com.ophone.MiniPlayer.Search;
+        r1 := @parameter0: java.lang.String[];
+        r2 := @parameter1: int[];
+        r3 = new java.util.ArrayList;
+        specialinvoke r3.<java.util.ArrayList: void <init>()>();
+        i0 = 0;
+
+     label0:
+        $i1 = lengthof r1;
+        if i0 < $i1 goto label1;
+
+        $r5 = new android.widget.SimpleAdapter;
+        r6 = newarray (java.lang.String)[2];
+        r6[0] = "itemImage";
+        r6[1] = "itemText";
+        r7 = newarray (int)[2];
+        r7[0] = 2131230725;
+        r7[1] = 2131230726;
+        specialinvoke $r5.<android.widget.SimpleAdapter: void <init>(android.content.Context,java.util.List,int,java.lang.String[],int[])>(r0, r3, 2130903045, r6, r7);
+        return $r5;
+
+     label1:
+        r4 = new java.util.HashMap;
+        specialinvoke r4.<java.util.HashMap: void <init>()>();
+        $i2 = r2[i0];
+        $r8 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(int)>($i2);
+        virtualinvoke r4.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>("itemImage", $r8);
+        $r10 = r1[i0];
+        virtualinvoke r4.<java.util.HashMap: java.lang.Object put(java.lang.Object,java.lang.Object)>("itemText", $r10);
+        virtualinvoke r3.<java.util.ArrayList: boolean add(java.lang.Object)>(r4);
+        i0 = i0 + 1;
+        goto label0;
+    }
+
+    public void onCreate(android.os.Bundle)
+    {
+        com.ophone.MiniPlayer.Search r0;
+        android.os.Bundle r1;
+        android.widget.LinearLayout$LayoutParams r2;
+        android.util.DisplayMetrics $r3, $r6, $r7, $r8;
+        android.view.WindowManager $r4;
+        android.view.Display $r5;
+        int $i0, i1, $i2, $i3;
+        android.view.View $r9, $r12, $r18, $r20, r29, $r36;
+        android.widget.LinearLayout $r10, $r11;
+        android.widget.Button $r13, $r17, $r21, $r24, $r25;
+        android.content.res.Resources $r14;
+        android.graphics.Bitmap $r15, $r22;
+        android.graphics.drawable.Drawable r16, r23;
+        android.widget.EditText $r19;
+        com.ophone.MiniPlayer.Search$1 $r26;
+        android.widget.PopupWindow $r27, $r30, $r31, $r33, $r34;
+        android.view.LayoutInflater $r28;
+        android.graphics.drawable.BitmapDrawable $r32;
+        com.ophone.MiniPlayer.Search$2 $r35;
+        android.widget.GridView $r37, $r38, $r42;
+        java.lang.String[] $r39;
+        int[] $r40;
+        android.widget.SimpleAdapter $r41;
+        com.ophone.MiniPlayer.Search$3 $r43;
+
+        r0 := @this: com.ophone.MiniPlayer.Search;
+        r1 := @parameter0: android.os.Bundle;
+        specialinvoke r0.<android.app.Activity: void onCreate(android.os.Bundle)>(r1);
+        virtualinvoke r0.<com.ophone.MiniPlayer.Search: void setContentView(int)>(2130903058);
+        $r3 = new android.util.DisplayMetrics;
+        specialinvoke $r3.<android.util.DisplayMetrics: void <init>()>();
+        r0.<com.ophone.MiniPlayer.Search: android.util.DisplayMetrics dm> = $r3;
+        $r4 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.view.WindowManager getWindowManager()>();
+        $r5 = interfaceinvoke $r4.<android.view.WindowManager: android.view.Display getDefaultDisplay()>();
+        $r6 = r0.<com.ophone.MiniPlayer.Search: android.util.DisplayMetrics dm>;
+        virtualinvoke $r5.<android.view.Display: void getMetrics(android.util.DisplayMetrics)>($r6);
+        r2 = new android.widget.LinearLayout$LayoutParams;
+        $r7 = r0.<com.ophone.MiniPlayer.Search: android.util.DisplayMetrics dm>;
+        $i0 = $r7.<android.util.DisplayMetrics: int widthPixels>;
+        $r8 = r0.<com.ophone.MiniPlayer.Search: android.util.DisplayMetrics dm>;
+        i1 = $r8.<android.util.DisplayMetrics: int heightPixels>;
+        $r9 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.view.View findViewById(int)>(2131230736);
+        $r10 = (android.widget.LinearLayout) $r9;
+        r0.<com.ophone.MiniPlayer.Search: android.widget.LinearLayout l2> = $r10;
+        $i2 = $i0 - 40;
+        $i3 = $i2 - 40;
+        specialinvoke r2.<android.widget.LinearLayout$LayoutParams: void <init>(int,int)>($i3, -1);
+        $r11 = r0.<com.ophone.MiniPlayer.Search: android.widget.LinearLayout l2>;
+        virtualinvoke $r11.<android.widget.LinearLayout: void setLayoutParams(android.view.ViewGroup$LayoutParams)>(r2);
+        $r12 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.view.View findViewById(int)>(2131230769);
+        $r13 = (android.widget.Button) $r12;
+        r0.<com.ophone.MiniPlayer.Search: android.widget.Button bt1> = $r13;
+        $r14 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.content.res.Resources getResources()>();
+        $r15 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>($r14, 2130837526);
+        r16 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r15, 40, 40);
+        $r17 = r0.<com.ophone.MiniPlayer.Search: android.widget.Button bt1>;
+        virtualinvoke $r17.<android.widget.Button: void setBackgroundDrawable(android.graphics.drawable.Drawable)>(r16);
+        $r18 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.view.View findViewById(int)>(2131230770);
+        $r19 = (android.widget.EditText) $r18;
+        r0.<com.ophone.MiniPlayer.Search: android.widget.EditText ev> = $r19;
+        $r20 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.view.View findViewById(int)>(2131230771);
+        $r21 = (android.widget.Button) $r20;
+        r0.<com.ophone.MiniPlayer.Search: android.widget.Button bt2> = $r21;
+        $r22 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>($r14, 2130837547);
+        r23 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r22, 40, 40);
+        $r24 = r0.<com.ophone.MiniPlayer.Search: android.widget.Button bt2>;
+        virtualinvoke $r24.<android.widget.Button: void setBackgroundDrawable(android.graphics.drawable.Drawable)>(r23);
+        $r25 = r0.<com.ophone.MiniPlayer.Search: android.widget.Button bt2>;
+        $r26 = new com.ophone.MiniPlayer.Search$1;
+        specialinvoke $r26.<com.ophone.MiniPlayer.Search$1: void <init>(com.ophone.MiniPlayer.Search)>(r0);
+        virtualinvoke $r25.<android.widget.Button: void setOnClickListener(android.view.View$OnClickListener)>($r26);
+        $r27 = new android.widget.PopupWindow;
+        $r28 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.view.LayoutInflater getLayoutInflater()>();
+        r29 = virtualinvoke $r28.<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup)>(2130903057, null);
+        specialinvoke $r27.<android.widget.PopupWindow: void <init>(android.view.View,int,int)>(r29, 320, 450);
+        r0.<com.ophone.MiniPlayer.Search: android.widget.PopupWindow pop> = $r27;
+        $r30 = r0.<com.ophone.MiniPlayer.Search: android.widget.PopupWindow pop>;
+        virtualinvoke $r30.<android.widget.PopupWindow: void setOutsideTouchable(boolean)>(0);
+        $r31 = r0.<com.ophone.MiniPlayer.Search: android.widget.PopupWindow pop>;
+        $r32 = new android.graphics.drawable.BitmapDrawable;
+        specialinvoke $r32.<android.graphics.drawable.BitmapDrawable: void <init>()>();
+        virtualinvoke $r31.<android.widget.PopupWindow: void setBackgroundDrawable(android.graphics.drawable.Drawable)>($r32);
+        $r33 = r0.<com.ophone.MiniPlayer.Search: android.widget.PopupWindow pop>;
+        virtualinvoke $r33.<android.widget.PopupWindow: void setFocusable(boolean)>(1);
+        $r34 = r0.<com.ophone.MiniPlayer.Search: android.widget.PopupWindow pop>;
+        $r35 = new com.ophone.MiniPlayer.Search$2;
+        specialinvoke $r35.<com.ophone.MiniPlayer.Search$2: void <init>(com.ophone.MiniPlayer.Search)>(r0);
+        virtualinvoke $r34.<android.widget.PopupWindow: void setTouchInterceptor(android.view.View$OnTouchListener)>($r35);
+        $r36 = virtualinvoke r29.<android.view.View: android.view.View findViewById(int)>(2131230768);
+        $r37 = (android.widget.GridView) $r36;
+        r0.<com.ophone.MiniPlayer.Search: android.widget.GridView menuGrid> = $r37;
+        $r38 = r0.<com.ophone.MiniPlayer.Search: android.widget.GridView menuGrid>;
+        $r39 = r0.<com.ophone.MiniPlayer.Search: java.lang.String[] menu_name_arrays>;
+        $r40 = r0.<com.ophone.MiniPlayer.Search: int[] menu_image_array>;
+        $r41 = specialinvoke r0.<com.ophone.MiniPlayer.Search: android.widget.SimpleAdapter getMenuAdapter(java.lang.String[],int[])>($r39, $r40);
+        virtualinvoke $r38.<android.widget.GridView: void setAdapter(android.widget.ListAdapter)>($r41);
+        $r42 = r0.<com.ophone.MiniPlayer.Search: android.widget.GridView menuGrid>;
+        $r43 = new com.ophone.MiniPlayer.Search$3;
+        specialinvoke $r43.<com.ophone.MiniPlayer.Search$3: void <init>(com.ophone.MiniPlayer.Search)>(r0);
+        virtualinvoke $r42.<android.widget.GridView: void setOnItemClickListener(android.widget.AdapterView$OnItemClickListener)>($r43);
+        return;
+    }
+
+    public boolean onCreateOptionsMenu(android.view.Menu)
+    {
+        com.ophone.MiniPlayer.Search r0;
+        android.view.Menu r1;
+        android.graphics.drawable.Drawable r2, r8, r12, r16;
+        android.content.res.Resources r3;
+        android.graphics.Bitmap $r4, $r7, $r11, $r15;
+        android.view.MenuItem $r5, $r9, $r13, $r17;
+
+        r0 := @this: com.ophone.MiniPlayer.Search;
+        r1 := @parameter0: android.view.Menu;
+        r3 = virtualinvoke r0.<com.ophone.MiniPlayer.Search: android.content.res.Resources getResources()>();
+        $r4 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837521);
+        r2 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r4, 48, 48);
+        $r5 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 1, 1, 2131034174);
+        interfaceinvoke $r5.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r2);
+        $r7 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837536);
+        r8 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r7, 48, 48);
+        $r9 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 4, 2, 2131034175);
+        interfaceinvoke $r9.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r8);
+        $r11 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837529);
+        r12 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r11, 48, 48);
+        $r13 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 2, 3, 2131034173);
+        interfaceinvoke $r13.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r12);
+        $r15 = staticinvoke <android.graphics.BitmapFactory: android.graphics.Bitmap decodeResource(android.content.res.Resources,int)>(r3, 2130837533);
+        r16 = staticinvoke <com.ophone.MiniPlayer.Loadimageurl: android.graphics.drawable.Drawable resizeImage(android.graphics.Bitmap,int,int)>($r15, 48, 48);
+        $r17 = interfaceinvoke r1.<android.view.Menu: android.view.MenuItem add(int,int,int,int)>(0, 3, 4, 2131034176);
+        interfaceinvoke $r17.<android.view.MenuItem: android.view.MenuItem setIcon(android.graphics.drawable.Drawable)>(r16);
+        return 1;
+    }
+
+    public boolean onOptionsItemSelected(android.view.MenuItem)
+    {
+        com.ophone.MiniPlayer.Search r0;
+        android.view.MenuItem r1;
+        android.content.Intent $r2, $r3, $r4, $r5;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.Search;
+        r1 := @parameter0: android.view.MenuItem;
+        $i0 = interfaceinvoke r1.<android.view.MenuItem: int getItemId()>();
+        tableswitch($i0)
+        {
+            case 1: goto label1;
+            case 2: goto label2;
+            case 3: goto label3;
+            case 4: goto label4;
+            default: goto label0;
+        };
+
+     label0:
+        return 1;
+
+     label1:
+        $r2 = new android.content.Intent;
+        specialinvoke $r2.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MusicActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.Search: void startActivity(android.content.Intent)>($r2);
+        goto label0;
+
+     label2:
+        $r3 = new android.content.Intent;
+        specialinvoke $r3.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/MusicFeedActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.Search: void startActivity(android.content.Intent)>($r3);
+        goto label0;
+
+     label3:
+        $r4 = new android.content.Intent;
+        specialinvoke $r4.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/lyricsactivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.Search: void startActivity(android.content.Intent)>($r4);
+        goto label0;
+
+     label4:
+        $r5 = new android.content.Intent;
+        specialinvoke $r5.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>(r0, class "com/ophone/MiniPlayer/PlayingListActivity");
+        virtualinvoke r0.<com.ophone.MiniPlayer.Search: void startActivity(android.content.Intent)>($r5);
+        goto label0;
+    }
+}

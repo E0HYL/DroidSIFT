@@ -1,0 +1,19 @@
+public final class com.ophone.MiniPlayer.R$style extends java.lang.Object
+{
+    public static final int MyPlayer_Theme;
+    public static final int TextAppearance_Theme_PlainText;
+    public static final int Theme;
+    public static final int Theme_Black;
+    public static final int Theme_PlainText;
+    public static final int Theme_Translucent;
+    public static final int Theme_Transparent;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$style r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$style;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

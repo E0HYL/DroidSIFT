@@ -1,0 +1,36 @@
+public class com.hp.hpl.sparta.xpath.AttrNotEqualsExpr extends com.hp.hpl.sparta.xpath.AttrCompareExpr
+{
+
+    void <init>(java.lang.String, java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.AttrNotEqualsExpr r0;
+        java.lang.String r1, r2;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrNotEqualsExpr;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.AttrCompareExpr: void <init>(java.lang.String,java.lang.String)>(r1, r2);
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.BooleanExprVisitor) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.AttrNotEqualsExpr r0;
+        com.hp.hpl.sparta.xpath.BooleanExprVisitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrNotEqualsExpr;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.BooleanExprVisitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.BooleanExprVisitor: void visit(com.hp.hpl.sparta.xpath.AttrNotEqualsExpr)>(r0);
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.AttrNotEqualsExpr r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrNotEqualsExpr;
+        $r1 = virtualinvoke r0.<com.hp.hpl.sparta.xpath.AttrCompareExpr: java.lang.String toString(java.lang.String)>("!=");
+        return $r1;
+    }
+}

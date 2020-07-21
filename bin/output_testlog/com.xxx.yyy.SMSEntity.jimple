@@ -1,0 +1,298 @@
+public class com.xxx.yyy.SMSEntity extends java.lang.Object
+{
+    private java.lang.String body;
+    private java.lang.String date;
+    private java.lang.String 'from';
+    private long id;
+    private int isRead;
+    private java.lang.String person;
+    private java.lang.String protocol;
+    private java.lang.String replyPathPresent;
+    private java.lang.String serviceCenter;
+    private int status;
+    private java.lang.String subject;
+    private long threadID;
+    private java.lang.String type;
+
+    public void <init>()
+    {
+        com.xxx.yyy.SMSEntity r0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public java.lang.String getBody()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String body>;
+        return $r1;
+    }
+
+    public java.lang.String getDate()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String date>;
+        return $r1;
+    }
+
+    public java.lang.String getFrom()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String 'from'>;
+        return $r1;
+    }
+
+    public long getId()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        long $l0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $l0 = r0.<com.xxx.yyy.SMSEntity: long id>;
+        return $l0;
+    }
+
+    public java.lang.String getPerson()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String person>;
+        return $r1;
+    }
+
+    public java.lang.String getProtocol()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String protocol>;
+        return $r1;
+    }
+
+    public java.lang.String getReplyPathPresent()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String replyPathPresent>;
+        return $r1;
+    }
+
+    public java.lang.String getServiceCenter()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String serviceCenter>;
+        return $r1;
+    }
+
+    public int getStatus()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $i0 = r0.<com.xxx.yyy.SMSEntity: int status>;
+        return $i0;
+    }
+
+    public java.lang.String getSubject()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String subject>;
+        return $r1;
+    }
+
+    public long getThreadID()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        long $l0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $l0 = r0.<com.xxx.yyy.SMSEntity: long threadID>;
+        return $l0;
+    }
+
+    public java.lang.String getType()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $r1 = r0.<com.xxx.yyy.SMSEntity: java.lang.String type>;
+        return $r1;
+    }
+
+    public int isRead()
+    {
+        com.xxx.yyy.SMSEntity r0;
+        int $i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        $i0 = r0.<com.xxx.yyy.SMSEntity: int isRead>;
+        return $i0;
+    }
+
+    public void setBody(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String body> = r1;
+        return;
+    }
+
+    public void setDate(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String date> = r1;
+        return;
+    }
+
+    public void setFrom(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String 'from'> = r1;
+        return;
+    }
+
+    public void setId(long)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        long l0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        l0 := @parameter0: long;
+        r0.<com.xxx.yyy.SMSEntity: long id> = l0;
+        return;
+    }
+
+    public void setPerson(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String person> = r1;
+        return;
+    }
+
+    public void setProtocol(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String protocol> = r1;
+        return;
+    }
+
+    public void setRead(int)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        int i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        i0 := @parameter0: int;
+        r0.<com.xxx.yyy.SMSEntity: int isRead> = i0;
+        return;
+    }
+
+    public void setReplyPathPresent(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String replyPathPresent> = r1;
+        return;
+    }
+
+    public void setServiceCenter(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String serviceCenter> = r1;
+        return;
+    }
+
+    public void setStatus(int)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        int i0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        i0 := @parameter0: int;
+        r0.<com.xxx.yyy.SMSEntity: int status> = i0;
+        return;
+    }
+
+    public void setSubject(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String subject> = r1;
+        return;
+    }
+
+    public void setThreadID(long)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        long l0;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        l0 := @parameter0: long;
+        r0.<com.xxx.yyy.SMSEntity: long threadID> = l0;
+        return;
+    }
+
+    public void setType(java.lang.String)
+    {
+        com.xxx.yyy.SMSEntity r0;
+        java.lang.String r1;
+
+        r0 := @this: com.xxx.yyy.SMSEntity;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.xxx.yyy.SMSEntity: java.lang.String type> = r1;
+        return;
+    }
+}

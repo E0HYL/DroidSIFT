@@ -1,0 +1,14 @@
+public abstract class com.hp.hpl.sparta.xpath.BooleanExpr extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.hp.hpl.sparta.xpath.BooleanExpr r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.BooleanExpr;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public abstract void accept(com.hp.hpl.sparta.xpath.BooleanExprVisitor) throws com.hp.hpl.sparta.xpath.XPathException;
+}

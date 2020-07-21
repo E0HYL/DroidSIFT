@@ -1,0 +1,90 @@
+class com.hp.hpl.sparta.DefaultLog extends java.lang.Object implements com.hp.hpl.sparta.ParseLog
+{
+
+    void <init>()
+    {
+        com.hp.hpl.sparta.DefaultLog r0;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultLog;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void error(java.lang.String, java.lang.String, int)
+    {
+        com.hp.hpl.sparta.DefaultLog r0;
+        java.lang.String r1, r2, $r11;
+        int i0;
+        java.io.PrintStream $r3;
+        java.lang.StringBuffer $r4, $r5, $r6, $r7, $r8, $r9, $r10;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultLog;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        i0 := @parameter2: int;
+        $r3 = <java.lang.System: java.io.PrintStream err>;
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("(");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(i0);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("): ");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" (ERROR)");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r11);
+        return;
+    }
+
+    public void note(java.lang.String, java.lang.String, int)
+    {
+        com.hp.hpl.sparta.DefaultLog r0;
+        java.lang.String r1, r2, $r11;
+        int i0;
+        java.io.PrintStream $r3;
+        java.lang.StringBuffer $r4, $r5, $r6, $r7, $r8, $r9, $r10;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultLog;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        i0 := @parameter2: int;
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("(");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(i0);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("): ");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" (NOTE)");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r11);
+        return;
+    }
+
+    public void warning(java.lang.String, java.lang.String, int)
+    {
+        com.hp.hpl.sparta.DefaultLog r0;
+        java.lang.String r1, r2, $r11;
+        int i0;
+        java.io.PrintStream $r3;
+        java.lang.StringBuffer $r4, $r5, $r6, $r7, $r8, $r9, $r10;
+
+        r0 := @this: com.hp.hpl.sparta.DefaultLog;
+        r1 := @parameter0: java.lang.String;
+        r2 := @parameter1: java.lang.String;
+        i0 := @parameter2: int;
+        $r3 = <java.lang.System: java.io.PrintStream out>;
+        $r4 = new java.lang.StringBuffer;
+        specialinvoke $r4.<java.lang.StringBuffer: void <init>()>();
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("(");
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(i0);
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("): ");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r1);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" (WARNING)");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke $r3.<java.io.PrintStream: void println(java.lang.String)>($r11);
+        return;
+    }
+}

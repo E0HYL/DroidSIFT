@@ -1,0 +1,17 @@
+public final class com.ophone.MiniPlayer.R$attr extends java.lang.Object
+{
+    public static final int imgBackground;
+    public static final int textColor;
+    public static final int textPaddingLeft;
+    public static final int textPaddingTop;
+    public static final int textSize;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$attr r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$attr;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

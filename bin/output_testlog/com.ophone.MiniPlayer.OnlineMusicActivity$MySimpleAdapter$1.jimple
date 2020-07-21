@@ -1,0 +1,53 @@
+class com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1 extends android.os.Handler
+{
+    final com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1;
+
+    void <init>(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)
+    {
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1 r0;
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter r1;
+
+        r0 := @this: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1;
+        r1 := @parameter0: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter;
+        r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1> = r1;
+        specialinvoke r0.<android.os.Handler: void <init>()>();
+        return;
+    }
+
+    public void handleMessage(android.os.Message)
+    {
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1 r0;
+        android.os.Message r1;
+        int $i0;
+        com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter $r2, $r4, $r8;
+        com.ophone.MiniPlayer.OnlineMusicActivity $r3, $r5, $r9;
+        android.view.View $r6;
+        android.widget.LinearLayout $r7, $r10;
+
+        r0 := @this: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1;
+        r1 := @parameter0: android.os.Message;
+        $i0 = r1.<android.os.Message: int what>;
+        tableswitch($i0)
+        {
+            case 0: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        return;
+
+     label1:
+        $r2 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r3 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r2);
+        $r4 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r5 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r4);
+        $r6 = virtualinvoke $r5.<com.ophone.MiniPlayer.OnlineMusicActivity: android.view.View findViewById(int)>(2131230723);
+        $r7 = (android.widget.LinearLayout) $r6;
+        staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: void access$2(com.ophone.MiniPlayer.OnlineMusicActivity,android.widget.LinearLayout)>($r3, $r7);
+        $r8 = r0.<com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter$1: com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter this$1>;
+        $r9 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter: com.ophone.MiniPlayer.OnlineMusicActivity access$0(com.ophone.MiniPlayer.OnlineMusicActivity$MySimpleAdapter)>($r8);
+        $r10 = staticinvoke <com.ophone.MiniPlayer.OnlineMusicActivity: android.widget.LinearLayout access$3(com.ophone.MiniPlayer.OnlineMusicActivity)>($r9);
+        virtualinvoke $r10.<android.widget.LinearLayout: void setVisibility(int)>(8);
+        return;
+    }
+}

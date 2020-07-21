@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog11.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#exists</string></attr>
+<attr name="functionPrototype"><string>$z1 = virtualinvoke r34.(java.io.File: boolean exists())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#mkdir</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r34.(java.io.File: boolean mkdir())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>(init)</string></attr>
+<attr name="functionPrototype"><string>specialinvoke r34.(java.io.File: void (init)(java.lang.String))("\\sdcard\\myplayer\\playlist")</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="3" to="1">
+</edge>
+<edge from="3" to="2">
+</edge>
+</graph>
+</gxl>

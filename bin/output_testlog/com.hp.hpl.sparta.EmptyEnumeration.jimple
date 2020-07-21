@@ -1,0 +1,31 @@
+class com.hp.hpl.sparta.EmptyEnumeration extends java.lang.Object implements java.util.Enumeration
+{
+
+    void <init>()
+    {
+        com.hp.hpl.sparta.EmptyEnumeration r0;
+
+        r0 := @this: com.hp.hpl.sparta.EmptyEnumeration;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public boolean hasMoreElements()
+    {
+        com.hp.hpl.sparta.EmptyEnumeration r0;
+
+        r0 := @this: com.hp.hpl.sparta.EmptyEnumeration;
+        return 0;
+    }
+
+    public java.lang.Object nextElement()
+    {
+        com.hp.hpl.sparta.EmptyEnumeration r0;
+        java.util.NoSuchElementException $r1;
+
+        r0 := @this: com.hp.hpl.sparta.EmptyEnumeration;
+        $r1 = new java.util.NoSuchElementException;
+        specialinvoke $r1.<java.util.NoSuchElementException: void <init>()>();
+        throw $r1;
+    }
+}

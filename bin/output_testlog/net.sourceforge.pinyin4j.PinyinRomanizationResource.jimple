@@ -1,0 +1,93 @@
+class net.sourceforge.pinyin4j.PinyinRomanizationResource extends java.lang.Object
+{
+    private com.hp.hpl.sparta.Document pinyinMappingDoc;
+
+    private void <init>()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource r0;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationResource;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        specialinvoke r0.<net.sourceforge.pinyin4j.PinyinRomanizationResource: void initializeResource()>();
+        return;
+    }
+
+    void <init>(net.sourceforge.pinyin4j.PinyinRomanizationResource$1)
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource r0;
+        net.sourceforge.pinyin4j.PinyinRomanizationResource$1 r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationResource;
+        r1 := @parameter0: net.sourceforge.pinyin4j.PinyinRomanizationResource$1;
+        specialinvoke r0.<net.sourceforge.pinyin4j.PinyinRomanizationResource: void <init>()>();
+        return;
+    }
+
+    static net.sourceforge.pinyin4j.PinyinRomanizationResource getInstance()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource $r0;
+
+        $r0 = <net.sourceforge.pinyin4j.PinyinRomanizationResource$PinyinRomanizationSystemResourceHolder: net.sourceforge.pinyin4j.PinyinRomanizationResource theInstance>;
+        return $r0;
+    }
+
+    private void initializeResource()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource r0;
+        java.io.BufferedInputStream $r1;
+        com.hp.hpl.sparta.Document $r2;
+        java.io.FileNotFoundException $r3;
+        java.io.IOException $r4;
+        com.hp.hpl.sparta.ParseException $r5;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationResource;
+
+     label0:
+        $r1 = staticinvoke <net.sourceforge.pinyin4j.ResourceHelper: java.io.BufferedInputStream getResourceInputStream(java.lang.String)>("/pinyindb/pinyin_mapping.xml");
+        $r2 = staticinvoke <com.hp.hpl.sparta.Parser: com.hp.hpl.sparta.Document parse(java.lang.String,java.io.InputStream)>("", $r1);
+        specialinvoke r0.<net.sourceforge.pinyin4j.PinyinRomanizationResource: void setPinyinMappingDoc(com.hp.hpl.sparta.Document)>($r2);
+
+     label1:
+        return;
+
+     label2:
+        $r3 := @caughtexception;
+        virtualinvoke $r3.<java.io.FileNotFoundException: void printStackTrace()>();
+        return;
+
+     label3:
+        $r4 := @caughtexception;
+        virtualinvoke $r4.<java.io.IOException: void printStackTrace()>();
+        return;
+
+     label4:
+        $r5 := @caughtexception;
+        virtualinvoke $r5.<com.hp.hpl.sparta.ParseException: void printStackTrace()>();
+        return;
+
+        catch java.io.FileNotFoundException from label0 to label1 with label2;
+        catch java.io.IOException from label0 to label1 with label3;
+        catch com.hp.hpl.sparta.ParseException from label0 to label1 with label4;
+    }
+
+    private void setPinyinMappingDoc(com.hp.hpl.sparta.Document)
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource r0;
+        com.hp.hpl.sparta.Document r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationResource;
+        r1 := @parameter0: com.hp.hpl.sparta.Document;
+        r0.<net.sourceforge.pinyin4j.PinyinRomanizationResource: com.hp.hpl.sparta.Document pinyinMappingDoc> = r1;
+        return;
+    }
+
+    com.hp.hpl.sparta.Document getPinyinMappingDoc()
+    {
+        net.sourceforge.pinyin4j.PinyinRomanizationResource r0;
+        com.hp.hpl.sparta.Document $r1;
+
+        r0 := @this: net.sourceforge.pinyin4j.PinyinRomanizationResource;
+        $r1 = r0.<net.sourceforge.pinyin4j.PinyinRomanizationResource: com.hp.hpl.sparta.Document pinyinMappingDoc>;
+        return $r1;
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog24.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>cell phone tasks query and manipulation#restartPackage</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke $r4.(android.app.ActivityManager: void restartPackage(java.lang.String))($r6)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getPackageName</string></attr>
+<attr name="functionPrototype"><string>$r6 = virtualinvoke $r5.(com.ophone.MiniPlayer.lyricsactivity: java.lang.String getPackageName())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getSystemService</string></attr>
+<attr name="functionPrototype"><string>$r3 = virtualinvoke $r2.(com.ophone.MiniPlayer.lyricsactivity: java.lang.Object getSystemService(java.lang.String))("activity")</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<edge from="2" to="1">
+</edge>
+<edge from="3" to="1">
+</edge>
+</graph>
+</gxl>

@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog28.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#listFiles</string></attr>
+<attr name="functionPrototype"><string>r3 = virtualinvoke r2.(java.io.File: java.io.File[] listFiles())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getName</string></attr>
+<attr name="functionPrototype"><string>$r7 = virtualinvoke $r6.(java.io.File: java.lang.String getName())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getFilelist</string></attr>
+<attr name="functionPrototype"><string>$r52 = specialinvoke r0.(com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] getFilelist(java.lang.String))("/sdcard/myplayer/playlist")</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="4">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>getFilelist</string></attr>
+<attr name="functionPrototype"><string>$r62 = specialinvoke r0.(com.ophone.MiniPlayer.PlayingListActivity: java.lang.String[] getFilelist(java.lang.String))("/sdcard/myplayer/playlist")</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="5">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>putExtra</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r2.(android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String))("filename", r1)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="6">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>putExtra</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke r2.(android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String))("deleteplaylist", r1)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="7">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>lastIndexOf</string></attr>
+<attr name="functionPrototype"><string>i3 = virtualinvoke $r7.(java.lang.String: int lastIndexOf(java.lang.String))(".")</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string>CONST</string></attr>
+</node>
+<node id="8">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>setSingleChoiceItems</string></attr>
+<attr name="functionPrototype"><string>$r54 = virtualinvoke $r51.(android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setSingleChoiceItems(java.lang.CharSequence[],int,android.content.DialogInterface$OnClickListener))($r52, $i23, $r53)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="9">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>setSingleChoiceItems</string></attr>
+<attr name="functionPrototype"><string>$r64 = virtualinvoke $r61.(android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setSingleChoiceItems(java.lang.CharSequence[],int,android.content.DialogInterface$OnClickListener))($r62, $i24, $r63)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="10">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>setNegativeButton</string></attr>
+<attr name="functionPrototype"><string>$r56 = virtualinvoke $r54.(android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener))(2131034194, $r55)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="11">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>setNegativeButton</string></attr>
+<attr name="functionPrototype"><string>$r66 = virtualinvoke $r64.(android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setNegativeButton(int,android.content.DialogInterface$OnClickListener))(2131034194, $r65)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="12">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>setPositiveButton</string></attr>
+<attr name="functionPrototype"><string>$r58 = virtualinvoke $r56.(android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener))(2131034195, $r57)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="13">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>setPositiveButton</string></attr>
+<attr name="functionPrototype"><string>$r68 = virtualinvoke $r66.(android.app.AlertDialog$Builder: android.app.AlertDialog$Builder setPositiveButton(int,android.content.DialogInterface$OnClickListener))(2131034195, $r67)</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="14">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>create</string></attr>
+<attr name="functionPrototype"><string>$r59 = virtualinvoke $r58.(android.app.AlertDialog$Builder: android.app.AlertDialog create())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="15">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>create</string></attr>
+<attr name="functionPrototype"><string>$r69 = virtualinvoke $r68.(android.app.AlertDialog$Builder: android.app.AlertDialog create())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="16">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>show</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke $r59.(android.app.Dialog: void show())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="17">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>show</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke $r69.(android.app.Dialog: void show())()</string></attr>
+<attr name="entryPoints"><string>UserInteractiveEntryPoint</string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="1" to="3">
+</edge>
+<edge from="1" to="4">
+</edge>
+<edge from="1" to="5">
+</edge>
+<edge from="1" to="6">
+</edge>
+<edge from="2" to="7">
+</edge>
+<edge from="3" to="8">
+</edge>
+<edge from="4" to="9">
+</edge>
+<edge from="8" to="10">
+</edge>
+<edge from="9" to="11">
+</edge>
+<edge from="10" to="12">
+</edge>
+<edge from="11" to="13">
+</edge>
+<edge from="12" to="14">
+</edge>
+<edge from="13" to="15">
+</edge>
+<edge from="14" to="16">
+</edge>
+<edge from="15" to="17">
+</edge>
+</graph>
+</gxl>

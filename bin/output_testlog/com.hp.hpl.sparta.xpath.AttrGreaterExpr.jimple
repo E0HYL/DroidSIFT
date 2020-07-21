@@ -1,0 +1,37 @@
+public class com.hp.hpl.sparta.xpath.AttrGreaterExpr extends com.hp.hpl.sparta.xpath.AttrRelationalExpr
+{
+
+    public void <init>(java.lang.String, int)
+    {
+        com.hp.hpl.sparta.xpath.AttrGreaterExpr r0;
+        java.lang.String r1;
+        int i0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrGreaterExpr;
+        r1 := @parameter0: java.lang.String;
+        i0 := @parameter1: int;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.AttrRelationalExpr: void <init>(java.lang.String,int)>(r1, i0);
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.BooleanExprVisitor) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.AttrGreaterExpr r0;
+        com.hp.hpl.sparta.xpath.BooleanExprVisitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrGreaterExpr;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.BooleanExprVisitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.BooleanExprVisitor: void visit(com.hp.hpl.sparta.xpath.AttrGreaterExpr)>(r0);
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.AttrGreaterExpr r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.AttrGreaterExpr;
+        $r1 = virtualinvoke r0.<com.hp.hpl.sparta.xpath.AttrRelationalExpr: java.lang.String toString(java.lang.String)>(">");
+        return $r1;
+    }
+}

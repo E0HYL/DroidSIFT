@@ -1,0 +1,73 @@
+public final class com.ophone.MiniPlayer.R$id extends java.lang.Object
+{
+    public static final int CheckBox;
+    public static final int CheckBox01;
+    public static final int LinearLayout01;
+    public static final int LinearLayout02;
+    public static final int LinearLayout03;
+    public static final int LinearLayout04;
+    public static final int LinearLayout05;
+    public static final int album;
+    public static final int artist;
+    public static final int bar;
+    public static final int buttons;
+    public static final int ctx_delete;
+    public static final int ctx_download;
+    public static final int ctx_ringtone;
+    public static final int current;
+    public static final int current_action;
+    public static final int duration;
+    public static final int feed_icon;
+    public static final int feed_title;
+    public static final int feeds;
+    public static final int fullscreen_loading_style;
+    public static final int grid;
+    public static final int gridview;
+    public static final int icon1;
+    public static final int indexpicture;
+    public static final int item_image;
+    public static final int item_text;
+    public static final int jump;
+    public static final int listicon1;
+    public static final int main1icon;
+    public static final int main_Loading;
+    public static final int myview;
+    public static final int next;
+    public static final int online_artist;
+    public static final int online_duration;
+    public static final int online_listicon1;
+    public static final int online_title;
+    public static final int onlinesongs;
+    public static final int play;
+    public static final int playinglist_counter;
+    public static final int playinglist_duration;
+    public static final int playinglist_image;
+    public static final int playinglist_listicon1;
+    public static final int playinglist_title;
+    public static final int playlistname_edit;
+    public static final int playlistname_view;
+    public static final int popdialog;
+    public static final int pre;
+    public static final int progress;
+    public static final int random;
+    public static final int repeat;
+    public static final int searchbutton1;
+    public static final int searchbutton2;
+    public static final int searchet;
+    public static final int songname;
+    public static final int stop;
+    public static final int title;
+    public static final int top;
+    public static final int total;
+    public static final int widget0;
+    public static final int widget1;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.R$id r0;
+
+        r0 := @this: com.ophone.MiniPlayer.R$id;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

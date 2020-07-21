@@ -1,0 +1,41 @@
+class com.ophone.MiniPlayer.MyPlayer$3 extends android.os.Handler
+{
+    final com.ophone.MiniPlayer.MyPlayer this$0;
+
+    void <init>(com.ophone.MiniPlayer.MyPlayer)
+    {
+        com.ophone.MiniPlayer.MyPlayer$3 r0;
+        com.ophone.MiniPlayer.MyPlayer r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayer$3;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayer;
+        r0.<com.ophone.MiniPlayer.MyPlayer$3: com.ophone.MiniPlayer.MyPlayer this$0> = r1;
+        specialinvoke r0.<android.os.Handler: void <init>()>();
+        return;
+    }
+
+    public void handleMessage(android.os.Message)
+    {
+        com.ophone.MiniPlayer.MyPlayer$3 r0;
+        android.os.Message r1;
+        int $i0;
+        com.ophone.MiniPlayer.MyPlayer $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayer$3;
+        r1 := @parameter0: android.os.Message;
+        $i0 = r1.<android.os.Message: int what>;
+        tableswitch($i0)
+        {
+            case 2: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        return;
+
+     label1:
+        $r2 = r0.<com.ophone.MiniPlayer.MyPlayer$3: com.ophone.MiniPlayer.MyPlayer this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayer: void access$3(com.ophone.MiniPlayer.MyPlayer)>($r2);
+        return;
+    }
+}

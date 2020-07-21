@@ -1,0 +1,82 @@
+public class com.ophone.MiniPlayer.MusicActivity$UpdateReceiver extends android.content.BroadcastReceiver
+{
+    final com.ophone.MiniPlayer.MusicActivity this$0;
+
+    public void <init>(com.ophone.MiniPlayer.MusicActivity)
+    {
+        com.ophone.MiniPlayer.MusicActivity$UpdateReceiver r0;
+        com.ophone.MiniPlayer.MusicActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$UpdateReceiver;
+        r1 := @parameter0: com.ophone.MiniPlayer.MusicActivity;
+        r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0> = r1;
+        specialinvoke r0.<android.content.BroadcastReceiver: void <init>()>();
+        return;
+    }
+
+    public void onReceive(android.content.Context, android.content.Intent)
+    {
+        com.ophone.MiniPlayer.MusicActivity$UpdateReceiver r0;
+        android.content.Context r1;
+        android.content.Intent r2, r15;
+        com.ophone.MiniPlayer.MusicActivity $r3, $r5, $r11, $r12, $r14, $r16, $r17, $r22, $r25;
+        int $i0, i1, $i2, $i5, $i6;
+        java.lang.StringBuilder $r4, $r6, $r8, $r9;
+        java.lang.String $r7, $r10;
+        android.widget.Toast $r13;
+        java.util.ArrayList $r18;
+        java.lang.Object $r19;
+        java.io.Serializable $r20;
+        java.lang.Integer $r23;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$UpdateReceiver;
+        r1 := @parameter0: android.content.Context;
+        r2 := @parameter1: android.content.Intent;
+        $r3 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $i0 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("status", -1);
+        staticinvoke <com.ophone.MiniPlayer.MusicActivity: void access$7(com.ophone.MiniPlayer.MusicActivity,int)>($r3, $i0);
+        i1 = virtualinvoke r2.<android.content.Intent: int getIntExtra(java.lang.String,int)>("position", -1);
+        $r4 = new java.lang.StringBuilder;
+        specialinvoke $r4.<java.lang.StringBuilder: void <init>(java.lang.String)>("status=");
+        $r5 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $i2 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: int access$8(com.ophone.MiniPlayer.MusicActivity)>($r5);
+        $r6 = virtualinvoke $r4.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r7);
+        $r8 = new java.lang.StringBuilder;
+        specialinvoke $r8.<java.lang.StringBuilder: void <init>(java.lang.String)>("position=");
+        $r9 = virtualinvoke $r8.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.String toString()>();
+        staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("OnlinePlayer", $r10);
+        $r11 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $i5 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: int access$8(com.ophone.MiniPlayer.MusicActivity)>($r11);
+        if $i5 != 110 goto label1;
+
+        $r12 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r13 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>($r12, 2131034201, 0);
+        virtualinvoke $r13.<android.widget.Toast: void show()>();
+
+     label0:
+        return;
+
+     label1:
+        $r14 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $i6 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: int access$8(com.ophone.MiniPlayer.MusicActivity)>($r14);
+        if $i6 != 113 goto label0;
+
+        r15 = new android.content.Intent;
+        $r16 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        specialinvoke r15.<android.content.Intent: void <init>(android.content.Context,java.lang.Class)>($r16, class "com/ophone/MiniPlayer/lyricsactivity");
+        $r17 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r18 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.util.ArrayList access$0(com.ophone.MiniPlayer.MusicActivity)>($r17);
+        $r19 = virtualinvoke $r18.<java.util.ArrayList: java.lang.Object get(int)>(i1);
+        $r20 = (java.io.Serializable) $r19;
+        virtualinvoke r15.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("song", $r20);
+        $r22 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        $r23 = staticinvoke <com.ophone.MiniPlayer.MusicActivity: java.lang.Integer access$9(com.ophone.MiniPlayer.MusicActivity)>($r22);
+        virtualinvoke r15.<android.content.Intent: android.content.Intent putExtra(java.lang.String,java.io.Serializable)>("R.string", $r23);
+        $r25 = r0.<com.ophone.MiniPlayer.MusicActivity$UpdateReceiver: com.ophone.MiniPlayer.MusicActivity this$0>;
+        virtualinvoke $r25.<com.ophone.MiniPlayer.MusicActivity: void startActivity(android.content.Intent)>(r15);
+        return;
+    }
+}

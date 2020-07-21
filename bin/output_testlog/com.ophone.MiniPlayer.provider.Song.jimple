@@ -1,0 +1,641 @@
+public class com.ophone.MiniPlayer.provider.Song extends java.lang.Object implements java.io.Serializable
+{
+    private java.lang.String Imageurl;
+    private long adddate;
+    private java.lang.String album;
+    private java.lang.String albumId;
+    private java.lang.String artistId;
+    private boolean canBeDownloaded;
+    private boolean canBeStreamed;
+    private int coverImgURL;
+    private java.lang.String duration;
+    private java.lang.String googlepath;
+    private boolean hasFullLyrics;
+    private boolean hasRecommendation;
+    private boolean hasSimilarSongs;
+    private java.lang.String id;
+    private int index;
+    private int listenmost;
+    private java.lang.String lyrics;
+    private java.lang.String name;
+    private java.lang.String path;
+    private java.lang.String ringtoneUrl;
+    private java.util.ArrayList singer;
+    private com.ophone.MiniPlayer.provider.Song$Source source;
+    private int sourcePos;
+    private boolean tag;
+    private boolean tagImage;
+    private boolean tagbaidu;
+    private boolean tagfile;
+    private boolean taggoogle;
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.util.ArrayList $r1;
+        com.ophone.MiniPlayer.provider.Song$Source $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r1 = new java.util.ArrayList;
+        specialinvoke $r1.<java.util.ArrayList: void <init>()>();
+        r0.<com.ophone.MiniPlayer.provider.Song: java.util.ArrayList singer> = $r1;
+        r0.<com.ophone.MiniPlayer.provider.Song: int listenmost> = 0;
+        $r2 = new com.ophone.MiniPlayer.provider.Song$Source;
+        specialinvoke $r2.<com.ophone.MiniPlayer.provider.Song$Source: void <init>(com.ophone.MiniPlayer.provider.Song)>(r0);
+        r0.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source source> = $r2;
+        r0.<com.ophone.MiniPlayer.provider.Song: int sourcePos> = 0;
+        return;
+    }
+
+    public long getAdddate()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        long $l0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $l0 = r0.<com.ophone.MiniPlayer.provider.Song: long adddate>;
+        return $l0;
+    }
+
+    public java.lang.String getAlbum()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String album>;
+        return $r1;
+    }
+
+    public java.lang.String getAlbumId()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String albumId>;
+        return $r1;
+    }
+
+    public java.lang.String getArtistId()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String artistId>;
+        return $r1;
+    }
+
+    public java.lang.String getDuration()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String duration>;
+        return $r1;
+    }
+
+    public java.lang.String getGooglepath()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String googlepath>;
+        return $r1;
+    }
+
+    public java.lang.String getId()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String id>;
+        return $r1;
+    }
+
+    public java.lang.String getImageurl()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String Imageurl>;
+        return $r1;
+    }
+
+    public int getIndex()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $i0 = r0.<com.ophone.MiniPlayer.provider.Song: int index>;
+        return $i0;
+    }
+
+    public int getListenmost()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        int $i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $i0 = r0.<com.ophone.MiniPlayer.provider.Song: int listenmost>;
+        return $i0;
+    }
+
+    public java.lang.String getLyrics()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String lyrics>;
+        return $r1;
+    }
+
+    public java.lang.String getName()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String name>;
+        return $r1;
+    }
+
+    public java.lang.String getPath()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String path>;
+        return $r1;
+    }
+
+    public java.lang.String getRingtoneUrl()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String ringtoneUrl>;
+        return $r1;
+    }
+
+    public java.util.ArrayList getSinger()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.util.ArrayList $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: java.util.ArrayList singer>;
+        return $r1;
+    }
+
+    public com.ophone.MiniPlayer.provider.Song$Source getSource()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        com.ophone.MiniPlayer.provider.Song$Source $r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source source>;
+        return $r1;
+    }
+
+    public boolean isCanBeDownloaded()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean canBeDownloaded>;
+        return $z0;
+    }
+
+    public boolean isCanBeStreamed()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean canBeStreamed>;
+        return $z0;
+    }
+
+    public boolean isHasFullLyrics()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean hasFullLyrics>;
+        return $z0;
+    }
+
+    public boolean isHasRecommendation()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean hasRecommendation>;
+        return $z0;
+    }
+
+    public boolean isHasSimilarSongs()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean hasSimilarSongs>;
+        return $z0;
+    }
+
+    public boolean isTag()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean tag>;
+        return $z0;
+    }
+
+    public boolean isTagImage()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean tagImage>;
+        return $z0;
+    }
+
+    public boolean isTagbaidu()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean tagbaidu>;
+        return $z0;
+    }
+
+    public boolean isTagfile()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean tagfile>;
+        return $z0;
+    }
+
+    public boolean isTaggoogle()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean $z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $z0 = r0.<com.ophone.MiniPlayer.provider.Song: boolean taggoogle>;
+        return $z0;
+    }
+
+    public java.lang.String nextSource()
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        com.ophone.MiniPlayer.provider.Song$Source $r1, $r3, $r5;
+        java.util.ArrayList $r2, $r4, $r6;
+        boolean $z0;
+        int $i0, $i1, $i2;
+        java.lang.Object $r7;
+        java.lang.String $r8;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        $r1 = r0.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source source>;
+        $r2 = virtualinvoke $r1.<com.ophone.MiniPlayer.provider.Song$Source: java.util.ArrayList getLinks()>();
+        $z0 = virtualinvoke $r2.<java.util.ArrayList: boolean isEmpty()>();
+        if $z0 != 0 goto label0;
+
+        $i0 = r0.<com.ophone.MiniPlayer.provider.Song: int sourcePos>;
+        $r3 = r0.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source source>;
+        $r4 = virtualinvoke $r3.<com.ophone.MiniPlayer.provider.Song$Source: java.util.ArrayList getLinks()>();
+        $i1 = virtualinvoke $r4.<java.util.ArrayList: int size()>();
+        if $i0 < $i1 goto label1;
+
+     label0:
+        return null;
+
+     label1:
+        $r5 = r0.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source source>;
+        $r6 = virtualinvoke $r5.<com.ophone.MiniPlayer.provider.Song$Source: java.util.ArrayList getLinks()>();
+        $i2 = r0.<com.ophone.MiniPlayer.provider.Song: int sourcePos>;
+        $r7 = virtualinvoke $r6.<java.util.ArrayList: java.lang.Object get(int)>($i2);
+        $r8 = (java.lang.String) $r7;
+        return $r8;
+    }
+
+    public void setAdddate(long)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        long l0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        l0 := @parameter0: long;
+        r0.<com.ophone.MiniPlayer.provider.Song: long adddate> = l0;
+        return;
+    }
+
+    public void setAlbum(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String album> = r1;
+        return;
+    }
+
+    public void setAlbumId(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String albumId> = r1;
+        return;
+    }
+
+    public void setArtistId(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String artistId> = r1;
+        return;
+    }
+
+    public void setCanBeDownloaded(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean canBeDownloaded> = z0;
+        return;
+    }
+
+    public void setCanBeStreamed(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean canBeStreamed> = z0;
+        return;
+    }
+
+    public void setCoverImgURL(int)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        i0 := @parameter0: int;
+        r0.<com.ophone.MiniPlayer.provider.Song: int coverImgURL> = i0;
+        return;
+    }
+
+    public void setDuration(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String duration> = r1;
+        return;
+    }
+
+    public void setGooglepath(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String googlepath> = r1;
+        return;
+    }
+
+    public void setHasFullLyrics(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean hasFullLyrics> = z0;
+        return;
+    }
+
+    public void setHasRecommendation(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean hasRecommendation> = z0;
+        return;
+    }
+
+    public void setHasSimilarSongs(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean hasSimilarSongs> = z0;
+        return;
+    }
+
+    public void setId(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String id> = r1;
+        return;
+    }
+
+    public void setImageurl(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String Imageurl> = r1;
+        return;
+    }
+
+    public void setIndex(int)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        i0 := @parameter0: int;
+        r0.<com.ophone.MiniPlayer.provider.Song: int index> = i0;
+        return;
+    }
+
+    public void setListenmost(int)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        int i0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        i0 := @parameter0: int;
+        r0.<com.ophone.MiniPlayer.provider.Song: int listenmost> = i0;
+        return;
+    }
+
+    public void setLyrics(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String lyrics> = r1;
+        return;
+    }
+
+    public void setName(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String name> = r1;
+        return;
+    }
+
+    public void setPath(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String path> = r1;
+        return;
+    }
+
+    public void setRingtoneUrl(java.lang.String)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.lang.String r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.lang.String;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.lang.String ringtoneUrl> = r1;
+        return;
+    }
+
+    public void setSinger(java.util.ArrayList)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        java.util.ArrayList r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: java.util.ArrayList;
+        r0.<com.ophone.MiniPlayer.provider.Song: java.util.ArrayList singer> = r1;
+        return;
+    }
+
+    public void setSource(com.ophone.MiniPlayer.provider.Song$Source)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        com.ophone.MiniPlayer.provider.Song$Source r1;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        r1 := @parameter0: com.ophone.MiniPlayer.provider.Song$Source;
+        r0.<com.ophone.MiniPlayer.provider.Song: com.ophone.MiniPlayer.provider.Song$Source source> = r1;
+        return;
+    }
+
+    public void setTag(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean tag> = z0;
+        return;
+    }
+
+    public void setTagImage(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean tagImage> = z0;
+        return;
+    }
+
+    public void setTagbaidu(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean tagbaidu> = z0;
+        return;
+    }
+
+    public void setTagfile(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean tagfile> = z0;
+        return;
+    }
+
+    public void setTaggoogle(boolean)
+    {
+        com.ophone.MiniPlayer.provider.Song r0;
+        boolean z0;
+
+        r0 := @this: com.ophone.MiniPlayer.provider.Song;
+        z0 := @parameter0: boolean;
+        r0.<com.ophone.MiniPlayer.provider.Song: boolean taggoogle> = z0;
+        return;
+    }
+}

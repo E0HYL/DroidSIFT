@@ -1,0 +1,369 @@
+public final class com.xxx.yyy.ZipUtil extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.xxx.yyy.ZipUtil r0;
+
+        r0 := @this: com.xxx.yyy.ZipUtil;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static byte[] compress(byte[]) throws java.io.IOException
+    {
+        byte[] r0, $r1;
+
+        r0 := @parameter0: byte[];
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] compress(byte[],int)>(r0, 0);
+        return $r1;
+    }
+
+    public static byte[] compress(byte[], int) throws java.io.IOException
+    {
+        byte[] r0, $r1, $r2;
+        int i0, $i1, $i2, $i3;
+
+        r0 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        $i1 = lengthof r0;
+        if $i1 <= 32768 goto label0;
+
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] compress(byte[],int,int,int)>(r0, i0, 32768, 32768);
+        return $r1;
+
+     label0:
+        $i2 = lengthof r0;
+        $i3 = lengthof r0;
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] compress(byte[],int,int,int)>(r0, i0, $i2, $i3);
+        return $r2;
+    }
+
+    public static byte[] compress(byte[], int, int, int) throws java.io.IOException
+    {
+        byte[] r0, $r3;
+        int i0, i1, i2;
+        java.io.ByteArrayOutputStream r1;
+        com.xxx.yyy.GZipOutputStream r2;
+
+        r0 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        i2 := @parameter3: int;
+        r1 = new java.io.ByteArrayOutputStream;
+        specialinvoke r1.<java.io.ByteArrayOutputStream: void <init>(int)>(1024);
+        r2 = new com.xxx.yyy.GZipOutputStream;
+        specialinvoke r2.<com.xxx.yyy.GZipOutputStream: void <init>(java.io.OutputStream,int,int,int,int)>(r1, 1024, i0, i1, i2);
+        virtualinvoke r2.<com.xxx.yyy.GZipOutputStream: void write(byte[])>(r0);
+        virtualinvoke r2.<com.xxx.yyy.GZipOutputStream: void close()>();
+        $r3 = virtualinvoke r1.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+        return $r3;
+    }
+
+    public static byte[] compressIntArray(int[]) throws java.io.IOException
+    {
+        int[] r0;
+        byte[] $r1, $r2;
+
+        r0 := @parameter0: int[];
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] convertIntToByteArray(int[])>(r0);
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] compress(byte[])>($r1);
+        return $r2;
+    }
+
+    public static byte[] compressRgbArray(int[]) throws java.io.IOException
+    {
+        int[] r0;
+        int $i0;
+        byte[] $r1, $r2;
+
+        r0 := @parameter0: int[];
+        $i0 = lengthof r0;
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] convertRgbToByteArray(int[],int,int)>(r0, 0, $i0);
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] compress(byte[])>($r1);
+        return $r2;
+    }
+
+    public static byte[] compressRgbArray(int[], int, int) throws java.io.IOException
+    {
+        int[] r0;
+        int i0, i1;
+        byte[] $r1, $r2;
+
+        r0 := @parameter0: int[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] convertRgbToByteArray(int[],int,int)>(r0, i0, i1);
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] compress(byte[])>($r1);
+        return $r2;
+    }
+
+    public static int[] convertByteToIntArray(byte[])
+    {
+        byte[] r0;
+        int[] r1;
+        int i0, i1, $i2, $i3, $i4, $i5, $i8, $i9, $i12, $i13, $i14, $i17, $i18, $i19, $i22, $i23;
+        byte $b6, $b10, $b15, $b20;
+        short $s7, $s11, $s16, $s21;
+
+        r0 := @parameter0: byte[];
+        $i2 = lengthof r0;
+        $i3 = $i2 / 4;
+        r1 = newarray (int)[$i3];
+        i0 = 0;
+        i1 = 0;
+
+     label0:
+        $i4 = lengthof r1;
+        if i1 < $i4 goto label1;
+
+        return r1;
+
+     label1:
+        $i5 = i0 + 0;
+        $b6 = r0[$i5];
+        $s7 = 255 & $b6;
+        $i8 = $s7 << 24;
+        $i9 = i0 + 1;
+        $b10 = r0[$i9];
+        $s11 = 255 & $b10;
+        $i12 = $s11 << 16;
+        $i13 = $i8 | $i12;
+        $i14 = i0 + 2;
+        $b15 = r0[$i14];
+        $s16 = 255 & $b15;
+        $i17 = $s16 << 8;
+        $i18 = $i13 | $i17;
+        $i19 = i0 + 3;
+        $b20 = r0[$i19];
+        $s21 = 255 & $b20;
+        $i22 = $s21 << 0;
+        $i23 = $i18 | $i22;
+        r1[i1] = $i23;
+        i0 = i0 + 4;
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    public static int[] convertByteToRgbArray(byte[])
+    {
+        byte[] r0;
+        int[] r1;
+        int i0, i1, $i2, $i3, $i4, $i5, $i8, $i9, $i12, $i13, $i14, $i17;
+        byte $b6, $b10, $b15;
+        short $s7, $s11, $s16;
+
+        r0 := @parameter0: byte[];
+        $i2 = lengthof r0;
+        $i3 = $i2 / 3;
+        r1 = newarray (int)[$i3];
+        i0 = 0;
+        i1 = 0;
+
+     label0:
+        $i4 = lengthof r1;
+        if i1 < $i4 goto label1;
+
+        return r1;
+
+     label1:
+        $i5 = i0 + 0;
+        $b6 = r0[$i5];
+        $s7 = 255 & $b6;
+        $i8 = $s7 << 16;
+        $i9 = i0 + 1;
+        $b10 = r0[$i9];
+        $s11 = 255 & $b10;
+        $i12 = $s11 << 8;
+        $i13 = $i8 | $i12;
+        $i14 = i0 + 2;
+        $b15 = r0[$i14];
+        $s16 = 255 & $b15;
+        $i17 = $i13 | $s16;
+        r1[i1] = $i17;
+        i0 = i0 + 3;
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    public static byte[] convertIntToByteArray(int[])
+    {
+        int[] r0;
+        byte[] r1;
+        int i0, i1, i2, $i3, $i4, $i5, $i6, $i7, $i8, $i10, $i11, $i12, $i14, $i15, $i16, $i18, $i19, $i20;
+        byte $b9, $b13, $b17, $b21;
+
+        r0 := @parameter0: int[];
+        $i3 = lengthof r0;
+        $i4 = 4 * $i3;
+        r1 = newarray (byte)[$i4];
+        i0 = 0;
+        i1 = 0;
+
+     label0:
+        $i5 = lengthof r0;
+        if i1 < $i5 goto label1;
+
+        return r1;
+
+     label1:
+        i2 = r0[i1];
+        $i6 = i0 + 0;
+        $i7 = i2 >>> 24;
+        $i8 = 255 & $i7;
+        $b9 = (byte) $i8;
+        r1[$i6] = $b9;
+        $i10 = i0 + 1;
+        $i11 = i2 >>> 16;
+        $i12 = 255 & $i11;
+        $b13 = (byte) $i12;
+        r1[$i10] = $b13;
+        $i14 = i0 + 2;
+        $i15 = i2 >>> 8;
+        $i16 = 255 & $i15;
+        $b17 = (byte) $i16;
+        r1[$i14] = $b17;
+        $i18 = i0 + 3;
+        $i19 = i2 >>> 0;
+        $i20 = 255 & $i19;
+        $b21 = (byte) $i20;
+        r1[$i18] = $b21;
+        i0 = i0 + 4;
+        i1 = i1 + 1;
+        goto label0;
+    }
+
+    public static byte[] convertRgbToByteArray(int[])
+    {
+        int[] r0;
+        int $i0;
+        byte[] $r1;
+
+        r0 := @parameter0: int[];
+        $i0 = lengthof r0;
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] convertRgbToByteArray(int[],int,int)>(r0, 0, $i0);
+        return $r1;
+    }
+
+    public static byte[] convertRgbToByteArray(int[], int, int)
+    {
+        int[] r0;
+        int i0, i1, i2, i3, i4, $i5, $i6, $i7, $i8, $i9, $i11, $i12, $i13, $i15, $i16;
+        byte[] r1;
+        byte $b10, $b14, $b17;
+
+        r0 := @parameter0: int[];
+        i0 := @parameter1: int;
+        i1 := @parameter2: int;
+        $i5 = i1 * 3;
+        r1 = newarray (byte)[$i5];
+        i2 = 0;
+        i3 = i0;
+
+     label0:
+        $i6 = i0 + i1;
+        if i3 < $i6 goto label1;
+
+        return r1;
+
+     label1:
+        i4 = r0[i3];
+        $i7 = i2 + 0;
+        $i8 = i4 >>> 16;
+        $i9 = 255 & $i8;
+        $b10 = (byte) $i9;
+        r1[$i7] = $b10;
+        $i11 = i2 + 1;
+        $i12 = i4 >>> 8;
+        $i13 = 255 & $i12;
+        $b14 = (byte) $i13;
+        r1[$i11] = $b14;
+        $i15 = i2 + 2;
+        $i16 = i4 & 255;
+        $b17 = (byte) $i16;
+        r1[$i15] = $b17;
+        i2 = i2 + 3;
+        i3 = i3 + 1;
+        goto label0;
+    }
+
+    public static byte[] decompress(byte[]) throws java.io.IOException
+    {
+        byte[] r0, $r2;
+        java.io.PrintStream $r1;
+
+        r0 := @parameter0: byte[];
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("simple decompress");
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] decompress(byte[],int)>(r0, 0);
+        return $r2;
+    }
+
+    public static byte[] decompress(byte[], int) throws java.io.IOException
+    {
+        byte[] r0, r2, $r7;
+        int i0, i1, $i2;
+        java.io.PrintStream $r1, $r6, $r8;
+        com.xxx.yyy.GZipInputStream r3;
+        java.io.ByteArrayInputStream $r4;
+        java.io.ByteArrayOutputStream r5;
+        java.lang.StringBuilder $r9, $r10, $r11, $r12;
+        java.lang.String $r13;
+
+        r0 := @parameter0: byte[];
+        i0 := @parameter1: int;
+        $r1 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r1.<java.io.PrintStream: void println(java.lang.String)>("simple decompress, creating new GZipInputStream");
+        r2 = newarray (byte)[1024];
+        r3 = new com.xxx.yyy.GZipInputStream;
+        $r4 = new java.io.ByteArrayInputStream;
+        specialinvoke $r4.<java.io.ByteArrayInputStream: void <init>(byte[])>(r0);
+        specialinvoke r3.<com.xxx.yyy.GZipInputStream: void <init>(java.io.InputStream,int,int,boolean)>($r4, 1024, i0, 1);
+        r5 = new java.io.ByteArrayOutputStream;
+        specialinvoke r5.<java.io.ByteArrayOutputStream: void <init>(int)>(1024);
+        $r6 = <java.lang.System: java.io.PrintStream out>;
+        virtualinvoke $r6.<java.io.PrintStream: void println(java.lang.String)>("now reading from GZipInputStream and writing to ByteArrayOutputStream");
+
+     label0:
+        i1 = virtualinvoke r3.<com.xxx.yyy.GZipInputStream: int read(byte[],int,int)>(r2, 0, 1024);
+        if i1 > 0 goto label1;
+
+        $r7 = virtualinvoke r5.<java.io.ByteArrayOutputStream: byte[] toByteArray()>();
+        return $r7;
+
+     label1:
+        $r8 = <java.lang.System: java.io.PrintStream out>;
+        $r9 = new java.lang.StringBuilder;
+        specialinvoke $r9.<java.lang.StringBuilder: void <init>(java.lang.String)>("read=");
+        $r10 = virtualinvoke $r9.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>(i1);
+        $r11 = virtualinvoke $r10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(", size=");
+        $i2 = virtualinvoke r5.<java.io.ByteArrayOutputStream: int size()>();
+        $r12 = virtualinvoke $r11.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($i2);
+        $r13 = virtualinvoke $r12.<java.lang.StringBuilder: java.lang.String toString()>();
+        virtualinvoke $r8.<java.io.PrintStream: void println(java.lang.String)>($r13);
+        virtualinvoke r5.<java.io.ByteArrayOutputStream: void write(byte[],int,int)>(r2, 0, i1);
+        goto label0;
+    }
+
+    public static int[] decompressIntArray(byte[]) throws java.io.IOException
+    {
+        byte[] r0, $r1;
+        int[] $r2;
+
+        r0 := @parameter0: byte[];
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] decompress(byte[],int)>(r0, 0);
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: int[] convertByteToIntArray(byte[])>($r1);
+        return $r2;
+    }
+
+    public static int[] decompressRgbArray(byte[]) throws java.io.IOException
+    {
+        byte[] r0, $r1;
+        int[] $r2;
+
+        r0 := @parameter0: byte[];
+        $r1 = staticinvoke <com.xxx.yyy.ZipUtil: byte[] decompress(byte[],int)>(r0, 0);
+        $r2 = staticinvoke <com.xxx.yyy.ZipUtil: int[] convertByteToRgbArray(byte[])>($r1);
+        return $r2;
+    }
+}

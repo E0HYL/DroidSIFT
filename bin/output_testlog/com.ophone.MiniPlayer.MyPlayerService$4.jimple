@@ -1,0 +1,61 @@
+class com.ophone.MiniPlayer.MyPlayerService$4 extends java.lang.Object implements android.media.MediaPlayer$OnCompletionListener
+{
+    final com.ophone.MiniPlayer.MyPlayerService this$0;
+
+    void <init>(com.ophone.MiniPlayer.MyPlayerService)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$4 r0;
+        com.ophone.MiniPlayer.MyPlayerService r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$4;
+        r1 := @parameter0: com.ophone.MiniPlayer.MyPlayerService;
+        r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onCompletion(android.media.MediaPlayer)
+    {
+        com.ophone.MiniPlayer.MyPlayerService$4 r0;
+        android.media.MediaPlayer r1, $r8;
+        com.ophone.MiniPlayer.MyPlayerService $r2, $r3, $r4, $r6, $r7, $r9, $r10, $r11, $r12, $r13, $r14;
+        int $i0, $i1, $i2, $i3, $i4;
+        java.util.ArrayList $r5;
+
+        r0 := @this: com.ophone.MiniPlayer.MyPlayerService$4;
+        r1 := @parameter0: android.media.MediaPlayer;
+        $r2 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $i0 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: int access$27(com.ophone.MiniPlayer.MyPlayerService)>($r2);
+        $i1 = $i0 + 1;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$28(com.ophone.MiniPlayer.MyPlayerService,int)>($r2, $i1);
+        $r3 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $i2 = staticinvoke <com.ophone.MiniPlayer.MyPlayerService: int access$27(com.ophone.MiniPlayer.MyPlayerService)>($r3);
+        $i3 = 1 + $i2;
+        $r4 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r5 = $r4.<com.ophone.MiniPlayer.MyPlayerService: java.util.ArrayList songlist>;
+        $i4 = virtualinvoke $r5.<java.util.ArrayList: int size()>();
+        if $i3 != $i4 goto label0;
+
+        $r6 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$28(com.ophone.MiniPlayer.MyPlayerService,int)>($r6, 0);
+        $r7 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r8 = $r7.<com.ophone.MiniPlayer.MyPlayerService: android.media.MediaPlayer player>;
+        virtualinvoke $r8.<android.media.MediaPlayer: void stop()>();
+        $r9 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$12(com.ophone.MiniPlayer.MyPlayerService)>($r9);
+        return;
+
+     label0:
+        $r10 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        $r10.<com.ophone.MiniPlayer.MyPlayerService: int status> = 103;
+        $r11 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$15(com.ophone.MiniPlayer.MyPlayerService)>($r11);
+        $r12 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$1(com.ophone.MiniPlayer.MyPlayerService)>($r12);
+        $r13 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$12(com.ophone.MiniPlayer.MyPlayerService)>($r13);
+        $r14 = r0.<com.ophone.MiniPlayer.MyPlayerService$4: com.ophone.MiniPlayer.MyPlayerService this$0>;
+        staticinvoke <com.ophone.MiniPlayer.MyPlayerService: void access$10(com.ophone.MiniPlayer.MyPlayerService)>($r14);
+        return;
+    }
+}

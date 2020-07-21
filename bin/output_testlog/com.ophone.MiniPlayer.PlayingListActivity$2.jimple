@@ -1,0 +1,46 @@
+class com.ophone.MiniPlayer.PlayingListActivity$2 extends java.lang.Object implements android.content.ServiceConnection
+{
+    final com.ophone.MiniPlayer.PlayingListActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.PlayingListActivity)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$2 r0;
+        com.ophone.MiniPlayer.PlayingListActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$2;
+        r1 := @parameter0: com.ophone.MiniPlayer.PlayingListActivity;
+        r0.<com.ophone.MiniPlayer.PlayingListActivity$2: com.ophone.MiniPlayer.PlayingListActivity this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onServiceConnected(android.content.ComponentName, android.os.IBinder)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$2 r0;
+        android.content.ComponentName r1;
+        android.os.IBinder r2;
+        com.ophone.MiniPlayer.PlayingListActivity $r3;
+        com.ophone.MiniPlayer.IPlayback $r4;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$2;
+        r1 := @parameter0: android.content.ComponentName;
+        r2 := @parameter1: android.os.IBinder;
+        $r3 = r0.<com.ophone.MiniPlayer.PlayingListActivity$2: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        $r4 = staticinvoke <com.ophone.MiniPlayer.IPlayback$Stub: com.ophone.MiniPlayer.IPlayback asInterface(android.os.IBinder)>(r2);
+        staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: void access$0(com.ophone.MiniPlayer.PlayingListActivity,com.ophone.MiniPlayer.IPlayback)>($r3, $r4);
+        return;
+    }
+
+    public void onServiceDisconnected(android.content.ComponentName)
+    {
+        com.ophone.MiniPlayer.PlayingListActivity$2 r0;
+        android.content.ComponentName r1;
+        com.ophone.MiniPlayer.PlayingListActivity $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.PlayingListActivity$2;
+        r1 := @parameter0: android.content.ComponentName;
+        $r2 = r0.<com.ophone.MiniPlayer.PlayingListActivity$2: com.ophone.MiniPlayer.PlayingListActivity this$0>;
+        staticinvoke <com.ophone.MiniPlayer.PlayingListActivity: void access$0(com.ophone.MiniPlayer.PlayingListActivity,com.ophone.MiniPlayer.IPlayback)>($r2, null);
+        return;
+    }
+}

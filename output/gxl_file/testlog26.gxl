@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<gxl>
+<graph id="testlog26.gxl">
+<node id="1">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>File and network IO#getInputStream</string></attr>
+<attr name="functionPrototype"><string>$r7 = virtualinvoke r6.(java.net.HttpURLConnection: java.io.InputStream getInputStream())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="2">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>decodeStream</string></attr>
+<attr name="functionPrototype"><string>r3 = staticinvoke (android.graphics.BitmapFactory: android.graphics.Bitmap decodeStream(java.io.InputStream))($r7)</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<node id="3">
+<attr name="packageName"><string>com.ophone.MiniPlayer</string></attr>
+<attr name="functionCategory"><string>close</string></attr>
+<attr name="functionPrototype"><string>virtualinvoke $r7.(java.io.InputStream: void close())()</string></attr>
+<attr name="entryPoints"><string> </string></attr>
+<attr name="parameters"><string> </string></attr>
+</node>
+<edge from="1" to="2">
+</edge>
+<edge from="1" to="3">
+</edge>
+</graph>
+</gxl>

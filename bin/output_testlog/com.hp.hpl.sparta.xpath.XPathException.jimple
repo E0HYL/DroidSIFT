@@ -1,0 +1,173 @@
+public class com.hp.hpl.sparta.xpath.XPathException extends java.lang.Exception
+{
+    private java.lang.Throwable cause_;
+
+    void <init>(com.hp.hpl.sparta.xpath.XPath, java.lang.Exception)
+    {
+        com.hp.hpl.sparta.xpath.XPathException r0;
+        com.hp.hpl.sparta.xpath.XPath r1;
+        java.lang.Exception r2;
+        java.lang.StringBuffer $r3, $r4, $r5, $r6;
+        java.lang.String $r7;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPathException;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.XPath;
+        r2 := @parameter1: java.lang.Exception;
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r1);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" ");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<java.lang.Exception: void <init>(java.lang.String)>($r7);
+        r0.<com.hp.hpl.sparta.xpath.XPathException: java.lang.Throwable cause_> = null;
+        r0.<com.hp.hpl.sparta.xpath.XPathException: java.lang.Throwable cause_> = r2;
+        return;
+    }
+
+    public void <init>(com.hp.hpl.sparta.xpath.XPath, java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.XPathException r0;
+        com.hp.hpl.sparta.xpath.XPath r1;
+        java.lang.String r2, $r7;
+        java.lang.StringBuffer $r3, $r4, $r5, $r6;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPathException;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.XPath;
+        r2 := @parameter1: java.lang.String;
+        $r3 = new java.lang.StringBuffer;
+        specialinvoke $r3.<java.lang.StringBuffer: void <init>()>();
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r1);
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" ");
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<java.lang.Exception: void <init>(java.lang.String)>($r7);
+        r0.<com.hp.hpl.sparta.xpath.XPathException: java.lang.Throwable cause_> = null;
+        return;
+    }
+
+    void <init>(com.hp.hpl.sparta.xpath.XPath, java.lang.String, com.hp.hpl.sparta.xpath.SimpleStreamTokenizer, java.lang.String)
+    {
+        com.hp.hpl.sparta.xpath.XPathException r0;
+        com.hp.hpl.sparta.xpath.XPath r1;
+        java.lang.String r2, r4, $r8, $r12;
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r3;
+        java.lang.StringBuffer $r5, $r6, $r7, $r9, $r10, $r11;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPathException;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.XPath;
+        r2 := @parameter1: java.lang.String;
+        r3 := @parameter2: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        r4 := @parameter3: java.lang.String;
+        $r5 = new java.lang.StringBuffer;
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>()>();
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r2);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(" got \"");
+        $r8 = staticinvoke <com.hp.hpl.sparta.xpath.XPathException: java.lang.String toString(com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)>(r3);
+        $r9 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r8);
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("\" instead of expected ");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(r4);
+        $r12 = virtualinvoke $r11.<java.lang.StringBuffer: java.lang.String toString()>();
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.XPathException: void <init>(com.hp.hpl.sparta.xpath.XPath,java.lang.String)>(r1, $r12);
+        return;
+    }
+
+    private static java.lang.String toString(com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        java.lang.StringBuffer r1, $r9, $r10, $r11, $r12;
+        java.lang.String $r2, $r4, r6, $r13;
+        int $i0;
+        java.io.IOException $r7, r8;
+
+        r0 := @parameter0: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+
+     label0:
+        r1 = new java.lang.StringBuffer;
+        specialinvoke r1.<java.lang.StringBuffer: void <init>()>();
+        $r2 = staticinvoke <com.hp.hpl.sparta.xpath.XPathException: java.lang.String tokenToString(com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)>(r0);
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r2);
+        $i0 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        if $i0 == -1 goto label1;
+
+        virtualinvoke r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nextToken()>();
+        $r4 = staticinvoke <com.hp.hpl.sparta.xpath.XPathException: java.lang.String tokenToString(com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)>(r0);
+        virtualinvoke r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($r4);
+        virtualinvoke r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: void pushBack()>();
+
+     label1:
+        r6 = virtualinvoke r1.<java.lang.StringBuffer: java.lang.String toString()>();
+
+     label2:
+        return r6;
+
+     label3:
+        $r7 := @caughtexception;
+        r8 = $r7;
+        $r9 = new java.lang.StringBuffer;
+        specialinvoke $r9.<java.lang.StringBuffer: void <init>()>();
+        $r10 = virtualinvoke $r9.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("(cannot get  info: ");
+        $r11 = virtualinvoke $r10.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>(r8);
+        $r12 = virtualinvoke $r11.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>(")");
+        $r13 = virtualinvoke $r12.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r13;
+
+        catch java.io.IOException from label0 to label1 with label3;
+        catch java.io.IOException from label1 to label2 with label3;
+    }
+
+    private static java.lang.String tokenToString(com.hp.hpl.sparta.xpath.SimpleStreamTokenizer)
+    {
+        com.hp.hpl.sparta.xpath.SimpleStreamTokenizer r0;
+        int $i0, $i1, $i3;
+        java.lang.StringBuffer $r1, $r2, $r3, $r5, $r6, $r7;
+        char $c2;
+        java.lang.String $r4, $r8, $r9;
+
+        r0 := @parameter0: com.hp.hpl.sparta.xpath.SimpleStreamTokenizer;
+        $i0 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        tableswitch($i0)
+        {
+            case -3: goto label3;
+            case -2: goto label2;
+            case -1: goto label1;
+            default: goto label0;
+        };
+
+     label0:
+        $r1 = new java.lang.StringBuffer;
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>()>();
+        $i1 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int ttype>;
+        $c2 = (char) $i1;
+        $r2 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.StringBuffer append(char)>($c2);
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("");
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r4;
+
+     label1:
+        return "<end of expression>";
+
+     label2:
+        $r5 = new java.lang.StringBuffer;
+        specialinvoke $r5.<java.lang.StringBuffer: void <init>()>();
+        $i3 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: int nval>;
+        $r6 = virtualinvoke $r5.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>($i3);
+        $r7 = virtualinvoke $r6.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("");
+        $r8 = virtualinvoke $r7.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r8;
+
+     label3:
+        $r9 = r0.<com.hp.hpl.sparta.xpath.SimpleStreamTokenizer: java.lang.String sval>;
+        return $r9;
+    }
+
+    public java.lang.Throwable getCause()
+    {
+        com.hp.hpl.sparta.xpath.XPathException r0;
+        java.lang.Throwable $r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.XPathException;
+        $r1 = r0.<com.hp.hpl.sparta.xpath.XPathException: java.lang.Throwable cause_>;
+        return $r1;
+    }
+}

@@ -1,0 +1,23 @@
+public class com.ophone.MiniPlayer.utils.LogUtils extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.ophone.MiniPlayer.utils.LogUtils r0;
+
+        r0 := @this: com.ophone.MiniPlayer.utils.LogUtils;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public static com.ophone.MiniPlayer.utils.Log getLog(java.lang.Class)
+    {
+        java.lang.Class r0;
+        com.ophone.MiniPlayer.utils.Log $r1;
+
+        r0 := @parameter0: java.lang.Class;
+        $r1 = new com.ophone.MiniPlayer.utils.Log;
+        specialinvoke $r1.<com.ophone.MiniPlayer.utils.Log: void <init>(java.lang.Class)>(r0);
+        return $r1;
+    }
+}

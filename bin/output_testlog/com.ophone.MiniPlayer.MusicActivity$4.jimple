@@ -1,0 +1,31 @@
+class com.ophone.MiniPlayer.MusicActivity$4 extends java.lang.Object implements android.content.DialogInterface$OnClickListener
+{
+    final com.ophone.MiniPlayer.MusicActivity this$0;
+
+    void <init>(com.ophone.MiniPlayer.MusicActivity)
+    {
+        com.ophone.MiniPlayer.MusicActivity$4 r0;
+        com.ophone.MiniPlayer.MusicActivity r1;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$4;
+        r1 := @parameter0: com.ophone.MiniPlayer.MusicActivity;
+        r0.<com.ophone.MiniPlayer.MusicActivity$4: com.ophone.MiniPlayer.MusicActivity this$0> = r1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public void onClick(android.content.DialogInterface, int)
+    {
+        com.ophone.MiniPlayer.MusicActivity$4 r0;
+        android.content.DialogInterface r1;
+        int i0;
+        com.ophone.MiniPlayer.MusicActivity $r2;
+
+        r0 := @this: com.ophone.MiniPlayer.MusicActivity$4;
+        r1 := @parameter0: android.content.DialogInterface;
+        i0 := @parameter1: int;
+        $r2 = r0.<com.ophone.MiniPlayer.MusicActivity$4: com.ophone.MiniPlayer.MusicActivity this$0>;
+        virtualinvoke $r2.<com.ophone.MiniPlayer.MusicActivity: void dismissDialog(int)>(3);
+        return;
+    }
+}

@@ -1,0 +1,37 @@
+public interface  com.ophone.MiniPlayer.IPlayback extends java.lang.Object implements android.os.IInterface
+{
+
+    public abstract java.lang.String getAlbum() throws android.os.RemoteException;
+
+    public abstract java.util.List getArtist() throws android.os.RemoteException;
+
+    public abstract int getDuration() throws android.os.RemoteException;
+
+    public abstract java.lang.String getId() throws android.os.RemoteException;
+
+    public abstract int getStatus() throws android.os.RemoteException;
+
+    public abstract int getTime() throws android.os.RemoteException;
+
+    public abstract java.lang.String getTitle() throws android.os.RemoteException;
+
+    public abstract java.lang.String getlyricurlgoogle() throws android.os.RemoteException;
+
+    public abstract java.lang.String getlyricurllocal() throws android.os.RemoteException;
+
+    public abstract boolean isPlaying() throws android.os.RemoteException;
+
+    public abstract void next() throws android.os.RemoteException;
+
+    public abstract void pause() throws android.os.RemoteException;
+
+    public abstract void previous() throws android.os.RemoteException;
+
+    public abstract void release() throws android.os.RemoteException;
+
+    public abstract void seek(int) throws android.os.RemoteException;
+
+    public abstract void start() throws android.os.RemoteException;
+
+    public abstract void stop() throws android.os.RemoteException;
+}

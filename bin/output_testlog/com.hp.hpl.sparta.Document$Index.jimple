@@ -1,0 +1,210 @@
+public class com.hp.hpl.sparta.Document$Index extends java.lang.Object implements com.hp.hpl.sparta.Document$Observer
+{
+    private final java.lang.String attrName_;
+    private transient com.hp.hpl.sparta.Sparta$Cache dict_;
+    private final com.hp.hpl.sparta.Document this$0;
+    private final com.hp.hpl.sparta.xpath.XPath xpath_;
+
+    void <init>(com.hp.hpl.sparta.Document, com.hp.hpl.sparta.xpath.XPath) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.Document$Index r0;
+        com.hp.hpl.sparta.Document r1;
+        com.hp.hpl.sparta.xpath.XPath r2;
+        java.lang.String $r3;
+
+        r0 := @this: com.hp.hpl.sparta.Document$Index;
+        r1 := @parameter0: com.hp.hpl.sparta.Document;
+        r2 := @parameter1: com.hp.hpl.sparta.xpath.XPath;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Document this$0> = r1;
+        r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_> = null;
+        $r3 = virtualinvoke r2.<com.hp.hpl.sparta.xpath.XPath: java.lang.String getIndexingAttrName()>();
+        r0.<com.hp.hpl.sparta.Document$Index: java.lang.String attrName_> = $r3;
+        r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.xpath.XPath xpath_> = r2;
+        virtualinvoke r1.<com.hp.hpl.sparta.Document: void addObserver(com.hp.hpl.sparta.Document$Observer)>(r0);
+        return;
+    }
+
+    private void regenerate() throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Document$Index r0;
+        com.hp.hpl.sparta.Sparta$Cache $r1, $r12, $r14;
+        java.util.Enumeration r2;
+        com.hp.hpl.sparta.Element r3;
+        java.lang.String r4, $r11;
+        java.util.Vector r5, r6;
+        com.hp.hpl.sparta.Document $r7;
+        com.hp.hpl.sparta.xpath.XPath $r8;
+        com.hp.hpl.sparta.XPathVisitor $r9;
+        boolean $z0;
+        java.lang.Object $r10, $r13;
+        com.hp.hpl.sparta.xpath.XPathException $r16, r17;
+        com.hp.hpl.sparta.ParseException $r18;
+
+        r0 := @this: com.hp.hpl.sparta.Document$Index;
+
+     label0:
+        $r1 = staticinvoke <com.hp.hpl.sparta.Sparta: com.hp.hpl.sparta.Sparta$Cache newCache()>();
+        r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_> = $r1;
+        $r7 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Document this$0>;
+        $r8 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.xpath.XPath xpath_>;
+        $r9 = virtualinvoke $r7.<com.hp.hpl.sparta.Document: com.hp.hpl.sparta.XPathVisitor visitor(com.hp.hpl.sparta.xpath.XPath,boolean)>($r8, 0);
+        r2 = virtualinvoke $r9.<com.hp.hpl.sparta.XPathVisitor: java.util.Enumeration getResultEnumeration()>();
+
+     label1:
+        $z0 = interfaceinvoke r2.<java.util.Enumeration: boolean hasMoreElements()>();
+        if $z0 != 0 goto label3;
+
+     label2:
+        return;
+
+     label3:
+        $r10 = interfaceinvoke r2.<java.util.Enumeration: java.lang.Object nextElement()>();
+        r3 = (com.hp.hpl.sparta.Element) $r10;
+        $r11 = r0.<com.hp.hpl.sparta.Document$Index: java.lang.String attrName_>;
+        r4 = virtualinvoke r3.<com.hp.hpl.sparta.Element: java.lang.String getAttribute(java.lang.String)>($r11);
+        $r12 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_>;
+        $r13 = interfaceinvoke $r12.<com.hp.hpl.sparta.Sparta$Cache: java.lang.Object get(java.lang.Object)>(r4);
+        r5 = (java.util.Vector) $r13;
+
+     label4:
+        if r5 != null goto label6;
+
+     label5:
+        r6 = new java.util.Vector;
+        specialinvoke r6.<java.util.Vector: void <init>(int)>(1);
+        r5 = r6;
+        $r14 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_>;
+        interfaceinvoke $r14.<com.hp.hpl.sparta.Sparta$Cache: java.lang.Object put(java.lang.Object,java.lang.Object)>(r4, r6);
+
+     label6:
+        virtualinvoke r5.<java.util.Vector: void addElement(java.lang.Object)>(r3);
+
+     label7:
+        goto label1;
+
+     label8:
+        $r16 := @caughtexception;
+        r17 = $r16;
+        $r18 = new com.hp.hpl.sparta.ParseException;
+        specialinvoke $r18.<com.hp.hpl.sparta.ParseException: void <init>(java.lang.String,java.lang.Throwable)>("XPath problem", r17);
+        throw $r18;
+
+        catch com.hp.hpl.sparta.xpath.XPathException from label0 to label1 with label8;
+        catch com.hp.hpl.sparta.xpath.XPathException from label1 to label2 with label8;
+        catch com.hp.hpl.sparta.xpath.XPathException from label3 to label4 with label8;
+        catch com.hp.hpl.sparta.xpath.XPathException from label5 to label6 with label8;
+        catch com.hp.hpl.sparta.xpath.XPathException from label6 to label7 with label8;
+    }
+
+    public java.util.Enumeration get(java.lang.String) throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Document$Index r0;
+        java.lang.String r1;
+        com.hp.hpl.sparta.Sparta$Cache $r2, $r3;
+        java.lang.Object $r4;
+        java.util.Vector r5;
+        java.util.Enumeration r6, r7;
+        java.lang.Throwable $r8;
+
+        r0 := @this: com.hp.hpl.sparta.Document$Index;
+        r1 := @parameter0: java.lang.String;
+        entermonitor r0;
+
+     label0:
+        $r2 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_>;
+        if $r2 != null goto label1;
+
+        specialinvoke r0.<com.hp.hpl.sparta.Document$Index: void regenerate()>();
+
+     label1:
+        $r3 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_>;
+        $r4 = interfaceinvoke $r3.<com.hp.hpl.sparta.Sparta$Cache: java.lang.Object get(java.lang.Object)>(r1);
+        r5 = (java.util.Vector) $r4;
+
+     label2:
+        if r5 != null goto label5;
+
+     label3:
+        r6 = <com.hp.hpl.sparta.Document: java.util.Enumeration EMPTY>;
+
+     label4:
+        exitmonitor r0;
+        return r6;
+
+     label5:
+        r7 = virtualinvoke r5.<java.util.Vector: java.util.Enumeration elements()>();
+
+     label6:
+        r6 = r7;
+        goto label4;
+
+     label7:
+        $r8 := @caughtexception;
+        exitmonitor r0;
+        throw $r8;
+
+        catch java.lang.Throwable from label0 to label1 with label7;
+        catch java.lang.Throwable from label1 to label2 with label7;
+        catch java.lang.Throwable from label3 to label4 with label7;
+        catch java.lang.Throwable from label5 to label6 with label7;
+    }
+
+    public int size() throws com.hp.hpl.sparta.ParseException
+    {
+        com.hp.hpl.sparta.Document$Index r0;
+        int i0;
+        com.hp.hpl.sparta.Sparta$Cache $r1, $r2;
+        java.lang.Throwable $r3;
+
+        r0 := @this: com.hp.hpl.sparta.Document$Index;
+        entermonitor r0;
+
+     label0:
+        $r1 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_>;
+        if $r1 != null goto label1;
+
+        specialinvoke r0.<com.hp.hpl.sparta.Document$Index: void regenerate()>();
+
+     label1:
+        $r2 = r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_>;
+        i0 = interfaceinvoke $r2.<com.hp.hpl.sparta.Sparta$Cache: int size()>();
+
+     label2:
+        exitmonitor r0;
+        return i0;
+
+     label3:
+        $r3 := @caughtexception;
+        exitmonitor r0;
+        throw $r3;
+
+        catch java.lang.Throwable from label0 to label1 with label3;
+        catch java.lang.Throwable from label1 to label2 with label3;
+    }
+
+    public void update(com.hp.hpl.sparta.Document)
+    {
+        com.hp.hpl.sparta.Document$Index r0;
+        com.hp.hpl.sparta.Document r1;
+        java.lang.Throwable $r2;
+
+        r0 := @this: com.hp.hpl.sparta.Document$Index;
+        r1 := @parameter0: com.hp.hpl.sparta.Document;
+        entermonitor r0;
+
+     label0:
+        r0.<com.hp.hpl.sparta.Document$Index: com.hp.hpl.sparta.Sparta$Cache dict_> = null;
+
+     label1:
+        exitmonitor r0;
+        return;
+
+     label2:
+        $r2 := @caughtexception;
+        exitmonitor r0;
+        throw $r2;
+
+        catch java.lang.Throwable from label0 to label1 with label2;
+    }
+}

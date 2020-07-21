@@ -1,0 +1,16 @@
+public abstract class com.hp.hpl.sparta.xpath.NodeTest extends java.lang.Object
+{
+
+    public void <init>()
+    {
+        com.hp.hpl.sparta.xpath.NodeTest r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.NodeTest;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+
+    public abstract void accept(com.hp.hpl.sparta.xpath.Visitor) throws com.hp.hpl.sparta.xpath.XPathException;
+
+    public abstract boolean isStringValue();
+}

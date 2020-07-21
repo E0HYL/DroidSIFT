@@ -1,0 +1,21 @@
+public class com.hp.hpl.sparta.DOMException extends java.lang.Exception
+{
+    public static final short DOMSTRING_SIZE_ERR;
+    public static final short HIERARCHY_REQUEST_ERR;
+    public static final short NOT_FOUND_ERR;
+    public short code;
+
+    public void <init>(short, java.lang.String)
+    {
+        com.hp.hpl.sparta.DOMException r0;
+        short s0;
+        java.lang.String r1;
+
+        r0 := @this: com.hp.hpl.sparta.DOMException;
+        s0 := @parameter0: short;
+        r1 := @parameter1: java.lang.String;
+        specialinvoke r0.<java.lang.Exception: void <init>(java.lang.String)>(r1);
+        r0.<com.hp.hpl.sparta.DOMException: short code> = s0;
+        return;
+    }
+}

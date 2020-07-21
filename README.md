@@ -28,7 +28,7 @@ $ ./api-graph.sh <file_basename> <temp_dir_for_processing> <input_dir> <file_ext
 
 For example, you can generate API Dependency Graphs for ./ apktest/test.apk with Android v4.2 (API level 17).
 ~~~shell
-$ ./api-graph.sh test testLogger apktest .apk 17
+$ ./api-graph.sh test testLogger <complete_path>/apktest .apk 17
 ~~~
 
 Related Publication

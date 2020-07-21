@@ -1,0 +1,39 @@
+class com.hp.hpl.sparta.Sparta$1 extends java.lang.Object implements com.hp.hpl.sparta.Sparta$Internment
+{
+    private final java.util.Hashtable strings_;
+
+    void <init>()
+    {
+        com.hp.hpl.sparta.Sparta$1 r0;
+        java.util.Hashtable $r1;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta$1;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        $r1 = new java.util.Hashtable;
+        specialinvoke $r1.<java.util.Hashtable: void <init>()>();
+        r0.<com.hp.hpl.sparta.Sparta$1: java.util.Hashtable strings_> = $r1;
+        return;
+    }
+
+    public java.lang.String intern(java.lang.String)
+    {
+        com.hp.hpl.sparta.Sparta$1 r0;
+        java.lang.String r1, r2;
+        java.util.Hashtable $r3, $r5;
+        java.lang.Object $r4;
+
+        r0 := @this: com.hp.hpl.sparta.Sparta$1;
+        r1 := @parameter0: java.lang.String;
+        $r3 = r0.<com.hp.hpl.sparta.Sparta$1: java.util.Hashtable strings_>;
+        $r4 = virtualinvoke $r3.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>(r1);
+        r2 = (java.lang.String) $r4;
+        if r2 != null goto label0;
+
+        $r5 = r0.<com.hp.hpl.sparta.Sparta$1: java.util.Hashtable strings_>;
+        virtualinvoke $r5.<java.util.Hashtable: java.lang.Object put(java.lang.Object,java.lang.Object)>(r1, r1);
+        r2 = r1;
+
+     label0:
+        return r2;
+    }
+}

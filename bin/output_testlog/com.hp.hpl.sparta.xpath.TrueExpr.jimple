@@ -1,0 +1,42 @@
+public class com.hp.hpl.sparta.xpath.TrueExpr extends com.hp.hpl.sparta.xpath.BooleanExpr
+{
+    static final com.hp.hpl.sparta.xpath.TrueExpr INSTANCE;
+
+    static void <clinit>()
+    {
+        com.hp.hpl.sparta.xpath.TrueExpr $r0;
+
+        $r0 = new com.hp.hpl.sparta.xpath.TrueExpr;
+        specialinvoke $r0.<com.hp.hpl.sparta.xpath.TrueExpr: void <init>()>();
+        <com.hp.hpl.sparta.xpath.TrueExpr: com.hp.hpl.sparta.xpath.TrueExpr INSTANCE> = $r0;
+        return;
+    }
+
+    private void <init>()
+    {
+        com.hp.hpl.sparta.xpath.TrueExpr r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TrueExpr;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.BooleanExpr: void <init>()>();
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.BooleanExprVisitor)
+    {
+        com.hp.hpl.sparta.xpath.TrueExpr r0;
+        com.hp.hpl.sparta.xpath.BooleanExprVisitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TrueExpr;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.BooleanExprVisitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.BooleanExprVisitor: void visit(com.hp.hpl.sparta.xpath.TrueExpr)>(r0);
+        return;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.TrueExpr r0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.TrueExpr;
+        return "";
+    }
+}

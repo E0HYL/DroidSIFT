@@ -1,0 +1,29 @@
+public class com.xxx.yyy.APNMatchTools$APNNet extends java.lang.Object
+{
+    public static java.lang.String CMNET;
+    public static java.lang.String CMWAP;
+    public static java.lang.String GNET_3;
+    public static java.lang.String GWAP_3;
+    public static java.lang.String UNINET;
+    public static java.lang.String UNIWAP;
+
+    static void <clinit>()
+    {
+        <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String CMWAP> = "cmwap";
+        <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String CMNET> = "cmnet";
+        <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String GWAP_3> = "3gwap";
+        <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String GNET_3> = "3gnet";
+        <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String UNIWAP> = "uniwap";
+        <com.xxx.yyy.APNMatchTools$APNNet: java.lang.String UNINET> = "uninet";
+        return;
+    }
+
+    public void <init>()
+    {
+        com.xxx.yyy.APNMatchTools$APNNet r0;
+
+        r0 := @this: com.xxx.yyy.APNMatchTools$APNNet;
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

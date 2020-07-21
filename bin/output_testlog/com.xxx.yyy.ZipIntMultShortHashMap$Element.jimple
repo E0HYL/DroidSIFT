@@ -1,0 +1,22 @@
+public final class com.xxx.yyy.ZipIntMultShortHashMap$Element extends java.lang.Object
+{
+    public final int key;
+    public com.xxx.yyy.ZipIntMultShortHashMap$Element next;
+    public short size;
+    public short[] values;
+
+    public void <init>(int, short[])
+    {
+        com.xxx.yyy.ZipIntMultShortHashMap$Element r0;
+        int i0;
+        short[] r1;
+
+        r0 := @this: com.xxx.yyy.ZipIntMultShortHashMap$Element;
+        i0 := @parameter0: int;
+        r1 := @parameter1: short[];
+        specialinvoke r0.<java.lang.Object: void <init>()>();
+        r0.<com.xxx.yyy.ZipIntMultShortHashMap$Element: int key> = i0;
+        r0.<com.xxx.yyy.ZipIntMultShortHashMap$Element: short[] values> = r1;
+        return;
+    }
+}

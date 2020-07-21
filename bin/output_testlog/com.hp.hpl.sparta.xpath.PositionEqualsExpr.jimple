@@ -1,0 +1,55 @@
+public class com.hp.hpl.sparta.xpath.PositionEqualsExpr extends com.hp.hpl.sparta.xpath.BooleanExpr
+{
+    private final int position_;
+
+    public void <init>(int)
+    {
+        com.hp.hpl.sparta.xpath.PositionEqualsExpr r0;
+        int i0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.PositionEqualsExpr;
+        i0 := @parameter0: int;
+        specialinvoke r0.<com.hp.hpl.sparta.xpath.BooleanExpr: void <init>()>();
+        r0.<com.hp.hpl.sparta.xpath.PositionEqualsExpr: int position_> = i0;
+        return;
+    }
+
+    public void accept(com.hp.hpl.sparta.xpath.BooleanExprVisitor) throws com.hp.hpl.sparta.xpath.XPathException
+    {
+        com.hp.hpl.sparta.xpath.PositionEqualsExpr r0;
+        com.hp.hpl.sparta.xpath.BooleanExprVisitor r1;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.PositionEqualsExpr;
+        r1 := @parameter0: com.hp.hpl.sparta.xpath.BooleanExprVisitor;
+        interfaceinvoke r1.<com.hp.hpl.sparta.xpath.BooleanExprVisitor: void visit(com.hp.hpl.sparta.xpath.PositionEqualsExpr)>(r0);
+        return;
+    }
+
+    public int getPosition()
+    {
+        com.hp.hpl.sparta.xpath.PositionEqualsExpr r0;
+        int $i0;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.PositionEqualsExpr;
+        $i0 = r0.<com.hp.hpl.sparta.xpath.PositionEqualsExpr: int position_>;
+        return $i0;
+    }
+
+    public java.lang.String toString()
+    {
+        com.hp.hpl.sparta.xpath.PositionEqualsExpr r0;
+        java.lang.StringBuffer $r1, $r2, $r3, $r4;
+        int $i0;
+        java.lang.String $r5;
+
+        r0 := @this: com.hp.hpl.sparta.xpath.PositionEqualsExpr;
+        $r1 = new java.lang.StringBuffer;
+        specialinvoke $r1.<java.lang.StringBuffer: void <init>()>();
+        $r2 = virtualinvoke $r1.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("[");
+        $i0 = r0.<com.hp.hpl.sparta.xpath.PositionEqualsExpr: int position_>;
+        $r3 = virtualinvoke $r2.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>($i0);
+        $r4 = virtualinvoke $r3.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("]");
+        $r5 = virtualinvoke $r4.<java.lang.StringBuffer: java.lang.String toString()>();
+        return $r5;
+    }
+}
